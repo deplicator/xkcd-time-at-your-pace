@@ -20,7 +20,7 @@ if(isset($_REQUEST['frame'])) {
     <header>
         <h1>XKCD 1190 - <a href="http://www.xkcd.com/1190/" title="Link to original">Time</a></h1>
         <h2>at your own pace</h2>
-        <a href="https://github.com/deplicator">
+        <a href="https://github.com/deplicator/xkcdTime_atyourownpace">
             <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
         </a>
     </header>
