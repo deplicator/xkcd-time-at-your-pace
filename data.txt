@@ -412,7 +412,6 @@ http://imgs.xkcd.com/comics/time/c1c5d091c512299c988b91c4f262fc2d78dca1e7402c4bb
 http://imgs.xkcd.com/comics/time/351542d257ec8f7809a091d978ea2b2a9c3cd9f1eb3157d9783ccaa83c9f9578.png
 http://imgs.xkcd.com/comics/time/c3fc7faeb1a94ed909ed1f9f681d31d69d09fabc2f5c17f08248a1e1aa3612f5.png
 http://imgs.xkcd.com/comics/time/80fd0159693ad7b5d40f3a7a1a779cfffe14cb4390e4cd7765264d752b8ac92f.png
-
 http://imgs.xkcd.com/comics/time/cad084bde3a758a538360d6640aa6e2b26273b320eb68ea99bb3a8084d840925.png
 http://imgs.xkcd.com/comics/time/46cfbbb3658b6a089ec8e3eff783743f427eff76deef5d8724412495ad32abcb.png
 http://imgs.xkcd.com/comics/time/c86b4479e47304ee1d54a5a33351cf18052a4e1b5262921e2993d7baf238e32e.png
