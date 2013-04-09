@@ -137,6 +137,21 @@ $('#slow').click(function() {
 	$('#speed').html(fps.toFixed(2) + ' fps');
 });
 
+$('#previous').click(function() {
+	nextslideindex--;
+	nextslideindex=(nextslideindex<1)? images.length-1 : (nextslideindex>images.length-1)? 1 : nextslideindex
+	updateAll(nextslideindex);
+});
+
+$('#next').click(function() {
+	if(nextslideindex == images.length-1) {
+		nextslideindex = 1;
+	} else {
+		nextslideindex++;
+	}
+	updateAll(nextslideindex);
+});
+
 //Updates elements of the page that change as.
 function updateAll(frame) {
 	nextslideindex = frame;

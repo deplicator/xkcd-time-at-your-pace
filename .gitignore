@@ -1,4 +1,5 @@
-backup_images.php
-log.txt
-bitly.php
 images/
+backup_images.php
+bitly.php
+imagediff.js
+log.txt
