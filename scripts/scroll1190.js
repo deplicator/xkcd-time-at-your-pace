@@ -5,21 +5,23 @@
 
 var images = [];
 var imageslen = 0;
-var nextslideindex=1
+var nextslideindex = 1;
 var slideshow=document.getElementById("slideshow")
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
+var currentFrame = 1;
 
 $("#Loading").show();
 
 $.ajax({
-	url: "data.txt",
-	dataType: "text",
-	success: function(response) {
+    url: "data.txt",
+    dataType: "text",
+    success: function(response) {
         $("#LoadingImage").hide();
         //console.log(response);
         images = response.split('\n');
-	},
+        updateAll(frame);
+    },
     error: function() {
         $("#Loading").html('Oh noes, something has gone wrong!');
     }
@@ -29,13 +31,13 @@ $.ajax({
 //http://www.javascriptkit.com/javatutors/onmousewheel.shtml
 function rotateimage(e){
     var evt=window.event || e //equalize event object
-	
+
     var delta = evt.detail? evt.detail*(-120) : evt.wheelDelta //delta returns +120 when wheel is scrolled up, -120 when scrolled down
     nextslideindex=(delta<=-120)? nextslideindex+1 : nextslideindex-1 //move image index forward or back, depending on whether wheel is scrolled down or up
     nextslideindex=(nextslideindex<1)? images.length-1 : (nextslideindex>images.length-1)? 1 : nextslideindex //wrap image index around when it goes beyond lower and upper boundaries
 
-	updateAll(nextslideindex);
-    
+    updateAll(nextslideindex);
+
     if (evt.preventDefault) //disable default wheel action of scrolling page
         evt.preventDefault()
     else
@@ -52,7 +54,7 @@ if (slideshow.attachEvent) { //if IE (and Opera depending on user setting)
 $("#slider").slider({
   slide: function( event, ui ) {
     nextslideindex=$("#slider").slider("value");
-	updateAll(nextslideindex);
+    updateAll(nextslideindex);
   }
 });
 
@@ -89,77 +91,132 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
 $(document).ajaxComplete(function() {
     imageslen = images.length;
     $("#slider").slider({max:imageslen});
-	updateAll(frame);
-	$('#speed').html('0 fps');
+    //$('#speed').html('0 fps');
 });
+
+
 
 //Autoplay stuff
 var speed = 1000;
 var timer = $.timer(function() {
-	//https://code.google.com/p/jquery-timer/
-	updateAll(nextslideindex);
-	nextslideindex++;
-	if(nextslideindex == imageslen) {
-		timer.stop();
-		$('#speed').html('0 fps');
-	}
+    //https://code.google.com/p/jquery-timer/
+    updateAll(nextslideindex);
+    nextslideindex++;
+    if(nextslideindex == imageslen) {
+        timer.stop();
+        $('#speed').html('0 fps');
+    }
 });
 
 $('#play').click(function() {
-	if($('#play').val() == "Play") {
-		$('#play').val("Pause");
-		timer.set({ time : speed, autostart : true });
-		$('#speed').html(fps.toFixed(2) + ' fps');
-	} else {
-		$('#play').val("Play");
-		timer.stop()
-		$('#speed').html('0 fps');
-	}
+    if($('#play').val() == "Play") {
+        $('#play').val("Pause");
+        timer.set({ time : speed, autostart : true });
+        $('#speed').html(fps.toFixed(2) + ' fps');
+    } else {
+        $('#play').val("Play");
+        timer.stop()
+        $('#speed').html('0 fps');
+    }
 });
 
 $('#fast').click(function() {
-	speed -= 100;
-	if(speed <= 0){
-		speed = 100;
-	}
-	fps = 1000 / speed;
-	timer.set({ time : speed, autostart : true });
-	$('#speed').html(fps.toFixed(2) + ' fps');
+    speed -= 100;
+    if(speed <= 0){
+        speed = 100;
+    }
+    fps = 1000 / speed;
+    timer.set({ time : speed, autostart : true });
+    $('#speed').html(fps.toFixed(2) + ' fps');
 });
 
 $('#slow').click(function() {
-	speed += 100;
-	if(speed >= 2000){
-		speed = 2000;
-	}
-	fps = 1000 / speed;
-	timer.set({ time : speed, autostart : true });
-	$('#speed').html(fps.toFixed(2) + ' fps');
+    speed += 100;
+    if(speed >= 2000){
+        speed = 2000;
+    }
+    fps = 1000 / speed;
+    timer.set({ time : speed, autostart : true });
+    $('#speed').html(fps.toFixed(2) + ' fps');
 });
 
 $('#previous').click(function() {
-	nextslideindex--;
-	nextslideindex=(nextslideindex<1)? images.length-1 : (nextslideindex>images.length-1)? 1 : nextslideindex
-	updateAll(nextslideindex);
+    nextslideindex--;
+    nextslideindex=(nextslideindex<1)? images.length-1 : (nextslideindex>images.length-1)? 1 : nextslideindex
+    updateAll(nextslideindex);
 });
 
 $('#next').click(function() {
-	if(nextslideindex == images.length-1) {
-		nextslideindex = 1;
-	} else {
-		nextslideindex++;
-	}
-	updateAll(nextslideindex);
+    if(nextslideindex == images.length-1) {
+        nextslideindex = 1;
+    } else {
+        nextslideindex++;
+    }
+    updateAll(nextslideindex);
+});
+
+//Get's short url from local source if available.
+function getBitlyURL(frame){
+    $.ajax({
+        url: 'bitly.php?frame='+frame,
+        dataType: "text",
+        success: function(response) {
+            $('#link input').val(response);
+        },
+        error: function() {
+            $("#Loading").html('Oh noes, something has gone wrong!');
+        }
+    });
+}
+
+//Change how url is displayed
+function displayURL(frame, how) {
+    if(how == 'short') {
+        getBitlyURL(frame);
+    } else if(how == 'long') {
+        $('#link input').val(site+'/?frame='+frame);
+    }
+
+}
+
+//Immediatly change url when url check box is clicked.
+$('#urlCheckBox').click(function() {
+    if(!$('#urlCheckBox').is(':checked')) {
+        displayURL(currentFrame, 'short');
+    } else {
+        displayURL(currentFrame, 'long');
+    }
 });
 
 //Updates elements of the page that change as.
 function updateAll(frame) {
-	nextslideindex = frame;
-	slideshow.src = images[frame];
+    nextslideindex = frame;
+    currentFrame = frame;
+    slideshow.src = images[frame];
     $("#slider").slider( "value", frame );
-	for(i = 0; i < 7; i++) {
-		$('#preview').children().eq(i).attr("src", images[frame + i]);
-	}
-	$('#link input').val(site+'/?frame='+frame);
+    if(!$('#urlCheckBox').is(':checked')) {
+        displayURL(frame, 'short');
+    } else {
+        displayURL(frame, 'long');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
