@@ -29,13 +29,13 @@ h2 {
 h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-	padding: 10px;
+    padding: 10px;
 }
 
 h4 {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
-	padding: 10px 0 0 0;
+    padding: 10px 0 0 0;
 }
 
 a {
@@ -58,23 +58,23 @@ li {
 }
 
 #controls {
-	text-align: left;
-	margin: 0 0 0 23px;
+    text-align: left;
+    margin: 0 0 0 23px;
 }
 
 #controls input{
-	width: 60px;
-	height: 35px;
+    width: 60px;
+    height: 35px;
 }
 
 #step {
-	margin: 0 0 0 53px;
+    margin: 0 0 0 53px;
 }
 
 #tehmainevent {
     margin: auto;
     width: 600px;
-	text-align: center;
+    text-align: center;
 }
 
 #slider { 
@@ -83,25 +83,25 @@ li {
 }
 
 #link {
-	padding: 0 0 10px 0;
-	width: 600px;
+    padding: 0 0 10px 0;
+    width: 600px;
 }
 
 #link span {
-	font-size: 11px;
+    font-size: 11px;
 }
 
 #small {
-	margin: 0 0 0 10px;
-	font-size: 10px;
+    margin: 0 0 0 10px;
+    font-size: 10px;
 }
 
 #interest span {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 #interest li {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #credit {
@@ -123,25 +123,54 @@ footer {
 }
 
 #textframes ul {
-	margin: 0 35px;
+    margin: 0 35px;
 }
 
 #textframes li{
-	list-style-type: none;
-	display: inline;
-	margin: 0;
+    list-style-type: none;
+    display: inline;
+    margin: 0;
 }
 
 #textframes img{
-	width: 120px;
-	padding: 6px 4px;
+    width: 120px;
+    padding: 6px 4px;
+}
+
+#belowpic {
+    font-size: 10px;
+    margin: 0 25px;
+    text-align: left;
+}
+
+#frameNum {
+    float: right;
+}
+
+#scrollhere {
+    height: 398px;
+    position: relative;
+}
+
+#slideshow {
+    position: absolute;
+    margin: 0 0 0 -275px;
+}
+
+#canvas3 {
+    position: absolute;
+    margin: 0 0 0 -275px;
+}
+
+.hidden {
+    display: none;
 }
 
 @media screen and (min-width: 75em) {
-	#textframes {
-		float: right;
-		width: 50%
-	}
+    #textframes {
+        float: right;
+        width: 50%
+    }
 }
 
 @media screen and (min-width: 2600px) {

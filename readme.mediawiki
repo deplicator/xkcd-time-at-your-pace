@@ -11,7 +11,7 @@ scroll1190.js pulls from the data.txt file and handles all the scrolling, slidin
 
 bitly.php grabs the shortened link from bitlydata.txt if there is one for that frame. Otherwise it makes a new shortened url and adds that to the text file.
 
-Over all much of the code it kind of a kludge. I'm kind of embarrassed this is the project of mine people started paying attention to. For the most part it works, and I'll attempt some refactoring in the future.
+Much of the code it kind of a kludge. I'm kind of embarrassed this is the project people started paying attention to. For the most part it works, and I'll attempt some refactoring in the future.
 
 I'd also like to thank people for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 

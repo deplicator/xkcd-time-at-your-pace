@@ -6,6 +6,7 @@
 var images = [];
 var imageslen = 0;
 var nextslideindex = 1;
+var scrollhere=document.getElementById("scrollhere")
 var slideshow=document.getElementById("slideshow")
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
@@ -44,10 +45,10 @@ function rotateimage(e){
         return false
 }
 var mousewheelevt=(/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
-if (slideshow.attachEvent) { //if IE (and Opera depending on user setting)
-    slideshow.attachEvent("on"+mousewheelevt, rotateimage);
-} else if (slideshow.addEventListener) { //WC3 browsers
-    slideshow.addEventListener(mousewheelevt, rotateimage, false);
+if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
+    scrollhere.attachEvent("on"+mousewheelevt, rotateimage);
+} else if (scrollhere.addEventListener) { //WC3 browsers
+    scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
 
 //Adds slider and makes it work.
@@ -186,7 +187,6 @@ function displayURL(frame, how) {
     } else if(how == 'long') {
         $('#link input').val(site+'/?frame='+frame);
     }
-
 }
 
 //Immediatly change url when url check box is clicked.
@@ -198,15 +198,32 @@ $('#urlCheckBox').click(function() {
     }
 });
 
+//Clicking on showdiff check box.
+$('#showDiff').click(function() {
+    if($('#showDiff').is(':checked')) {
+        $('#slideshow').addClass('hidden');
+        $('#canvas3').removeClass('hidden');
+    } else {
+        $('#slideshow').removeClass('hidden');
+        $('#canvas3').addClass('hidden');
+    }
+
+});
+
 //Updates elements of the page that change as.
 function updateAll(frame) {
     currentFrame = frame;
+    nextslideindex = frame;
     slideshow.src = images[frame];
     $("#slider").slider( "value", frame );
+    $('#frameNum').html('frame: ' + frame);
     if(!$('#urlCheckBox').is(':checked')) {
         displayURL(frame, 'short');
     } else {
         displayURL(frame, 'long');
+    }
+    if($('#showDiff').is(':checked')) {
+        diff();
     }
 }
 

@@ -29,9 +29,6 @@ if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['fra
     <header>
         <h1>XKCD 1190 - <a href="http://www.xkcd.com/1190/" title="Link to original">Time</a></h1>
         <h2>at your own pace</h2>
-        <a href="https://github.com/deplicator/xkcdTime_atyourownpace">
-            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
-        </a>
     </header>
         <div id="LoadingImage">loading</div>
     <div id="tehmainevent">
@@ -46,7 +43,12 @@ if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['fra
                 <input id="next" type="button" value=">>" title="Next">
             </span>
         </div>
-        <img id="slideshow" src="http://www.explainxkcd.com/wiki/images/f/f8/time.png" />
+        
+        <div id="scrollhere">
+            <img id="slideshow" src="http://www.explainxkcd.com/wiki/images/f/f8/time.png" />
+            <canvas id="canvas3" class="hidden" width="553" height="395">Are you from the past?</canvas>
+        </div>
+        <div id="belowpic"><input id="showDiff" type="checkbox">Turn on image difference (still needs work but neat)<span id="frameNum"></span></div>
         <div id="slider"></div>
         <div id="link">
             <span>link directly to this frame -><input id="actuallink" type="text" size="50" readonly><input id="urlCheckBox" type="checkbox">show long url</span>
@@ -114,4 +116,16 @@ if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['fra
         <p id="note">Your screen is really wide.</p>
         <a href="mailto:james@geekwagon.net" title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a href="http://geekwagon.net" title="Just some guy">Who am I?</a>
     </footer>
+    <a href="https://github.com/deplicator/xkcdTime_atyourownpace">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+    </a>
+    
+    
+    
+    <script src="scripts/imagediff.js"></script>
+
+    <canvas id="canvas1" width="553" height="395" >Are you from the past?</canvas>
+    <canvas id="canvas2" width="553" height="395" >Are you from the past?</canvas>
+    
+    
 <body>
