@@ -6,10 +6,21 @@
  
 include('config.php');
 
-if(isset($_REQUEST['frame'])) {
+//Current frame count so we don't try to request things that don't need to be requested.
+//http://stackoverflow.com/questions/2162497/efficiently-counting-the-number-of-lines-of-a-text-file-200mb
+$file="data.txt";
+$linecount = 0;
+$handle = fopen($file, "r");
+while(!feof($handle)){
+  $line = fgets($handle);
+  $linecount++;
+}
+fclose($handle);
+
+if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['frame'] < $linecount && $_REQUEST['frame'] > 1) {
     $frame = $_REQUEST['frame'];
 } else {
-    $frame = 0;
+    $frame = 1;
 }
 
 $file = 'bitlydata.txt';

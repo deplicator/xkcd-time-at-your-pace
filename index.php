@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <?php
-if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame'])) {
+$file="data.txt";
+$linecount = 0;
+$handle = fopen($file, "r");
+while(!feof($handle)){
+  $line = fgets($handle);
+  $linecount++;
+}
+fclose($handle);
+
+if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['frame'] < $linecount && $_REQUEST['frame'] > 1) {
     echo '<script>var frame = ' . $_REQUEST['frame'] . ';</script>';
 } else {
     echo '<script>var frame = 1;</script>';

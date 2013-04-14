@@ -1,6 +1,6 @@
 /*
- * Makes most of the magic happen, I'm not the greatest coder and I've
- * given credit where it is due.
+ * Makes most of the magic happen, I'm not the greatest coder and I've tried to
+ * give credit where it is due.
  */
 
 var images = [];
@@ -89,6 +89,11 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
 
 //After all ajax loads update the page.
 $(document).ajaxComplete(function() {
+    if(frame > imageslen) {
+            frame = imageslen;
+        } else if(frame <= 1) {
+            frame = 1;
+        }
     imageslen = images.length;
     $("#slider").slider({max:imageslen});
     //$('#speed').html('0 fps');
@@ -157,6 +162,11 @@ $('#next').click(function() {
 
 //Get's short url from local source if available.
 function getBitlyURL(frame){
+    if(frame > imageslen) {
+        frame = imageslen;
+    } else if(frame <= 1) {
+        frame = 1;
+    }
     $.ajax({
         url: 'bitly.php?frame='+frame,
         dataType: "text",
@@ -190,7 +200,6 @@ $('#urlCheckBox').click(function() {
 
 //Updates elements of the page that change as.
 function updateAll(frame) {
-    nextslideindex = frame;
     currentFrame = frame;
     slideshow.src = images[frame];
     $("#slider").slider( "value", frame );

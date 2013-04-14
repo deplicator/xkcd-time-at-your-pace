@@ -5,10 +5,15 @@ Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way.
 
 get1190data.php checks for a new image and appends it to a file named data.txt. A cronjob is used at [http://geekwagon.net/projects/xkcd1190 geekwagon.net/projects/xkcd1190] to keep it updated. The data.txt file here will be out of date, an updated list of picture files can be found at [http://www.explainxkcd.com/wiki/index.php?title=1190#Frame_by_Frame_Breakdown Explain XKCD]. If/when this comic ends I'll do a final update for the data.txt file.
 
-The current version of get1190data.php also copies the image to an images folder. This is not in the live version yet.
+The current version of get1190data.php also copies the image to an images folder.
 
 scroll1190.js pulls from the data.txt file and handles all the scrolling, sliding, and playing of the comic.
 
-XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
+bitly.php grabs the shortened link from bitlydata.txt if there is one for that frame. Otherwise it makes a new shortened url and adds that to the text file.
+
+Over all much of the code it kind of a kludge. I'm kind of embarrassed this is the project of mine people started paying attention to. For the most part it works, and I'll attempt some refactoring in the future.
 
 I'd also like to thank people for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
+
+==A Friendly Reminder==
+XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
