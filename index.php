@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<?php
-$file="data.txt";
-$linecount = 0;
-$handle = fopen($file, "r");
-while(!feof($handle)){
-  $line = fgets($handle);
-  $linecount++;
-}
-fclose($handle);
-
-if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['frame'] < $linecount && $_REQUEST['frame'] > 1) {
-    echo '<script>var frame = ' . $_REQUEST['frame'] . ';</script>';
-} else {
-    echo '<script>var frame = 1;</script>';
-}
-?>
 <head>
     <title>XKCD Time - at your own pace</title>
     <link rel="stylesheet" href="css/default.css">
+    <script>
+    //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
+    // Read a page's GET URL variables and return them as an associative array.
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+    var vars=getUrlVars()
+    var frame;
+    if(vars.frame)
+        frame=parseInt(vars.frame) || 1
+    else
+        frame = 1;
+    
+    </script>
     <script src="scripts/jquery.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <script src="scripts/jquery.ui.touch-punch.min.js"></script>
