@@ -49,8 +49,12 @@
   }
   function diff() {
     loadedcount=0;
+    
+    //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
+    //img1.src = 'images/'+images[currentFrame].replace(/.*\//, '');
     img1.src = 'images/'+currentFrame+'.png';
 
+    //img2.src='images/' + images[nextframe].replace(/.*\//, '');
     var nextframe = currentFrame+1;
     img2.src='images/' + nextframe + '.png';
   }
