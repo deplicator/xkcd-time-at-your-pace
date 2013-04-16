@@ -8,11 +8,18 @@ var imageslen = 0;
 var nextslideindex = 1;
 var scrollhere=document.getElementById("scrollhere")
 var slideshow=document.getElementById("slideshow")
+var slider = document.getElementById("slider")
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
 var currentFrame = 1;
 
 $("#Loading").show();
+
+slider.onchange=function() {
+    console.log("onchange")
+    nextslideindex=slider.value
+    updateAll(nextslideindex)
+}
 
 $.ajax({
     url: "data.txt",
@@ -21,6 +28,14 @@ $.ajax({
         $("#LoadingImage").hide();
         //console.log(response);
         images = response.split('\n');
+        slider.max=images.length-1
+        imageslen = images.length;
+        if(frame >= imageslen) {
+                frame = imageslen-1;
+            } else if(frame <= 1) {
+                frame = 1;
+            }
+        
         updateAll(frame);
     },
     error: function() {
@@ -51,6 +66,7 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
     scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
 
+/*
 //Adds slider and makes it work.
 $("#slider").slider({
   slide: function( event, ui ) {
@@ -87,20 +103,7 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
     }
     return false;
 });
-
-//After all ajax loads update the page.
-$(document).ajaxComplete(function() {
-    if(frame > imageslen) {
-            frame = imageslen;
-        } else if(frame <= 1) {
-            frame = 1;
-        }
-    imageslen = images.length;
-    $("#slider").slider({max:imageslen});
-    //$('#speed').html('0 fps');
-});
-
-
+*/
 
 //Autoplay stuff
 var speed = 1000;
@@ -216,7 +219,7 @@ function updateAll(frame) {
     currentFrame = frame;
     nextslideindex = frame;
     slideshow.src = images[frame];
-    $("#slider").slider( "value", frame );
+    slider.value=frame;
     $('#frameNum').html('frame: ' + frame);
     if(!$('#urlCheckBox').is(':checked')) {
         displayURL(frame, 'short');
