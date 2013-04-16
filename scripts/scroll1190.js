@@ -17,7 +17,7 @@ $("#Loading").show();
 
 slider.onchange=function() {
     console.log("onchange")
-    nextslideindex=slider.value
+    nextslideindex=parseInt(slider.value) || 1 //Yes, that value is a String.
     updateAll(nextslideindex)
 }
 
