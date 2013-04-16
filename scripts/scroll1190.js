@@ -207,6 +207,7 @@ $('#showDiff').click(function() {
         $('#slideshow').removeClass('hidden');
         $('#canvas3').addClass('hidden');
     }
+    updateAll(currentFrame)
 
 });
 
