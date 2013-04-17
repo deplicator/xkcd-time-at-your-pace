@@ -8,11 +8,17 @@ var imageslen = 0;
 var nextslideindex = 1;
 var scrollhere=document.getElementById("scrollhere")
 var slideshow=document.getElementById("slideshow")
+var slider = document.getElementById("slider")
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
 var currentFrame = 1;
 
 $("#Loading").show();
+
+slider.onchange=function() {
+    nextslideindex=parseInt(slider.value) || 1 //Yes, that value is a String.
+    updateAll(nextslideindex)
+}
 
 $.ajax({
     url: "data.txt",
@@ -21,6 +27,14 @@ $.ajax({
         $("#LoadingImage").hide();
         //console.log(response);
         images = response.split('\n');
+        slider.max=images.length-1
+        imageslen = images.length;
+        if(frame >= imageslen) {
+                frame = imageslen-1;
+            } else if(frame <= 1) {
+                frame = 1;
+            }
+        
         updateAll(frame);
     },
     error: function() {
@@ -51,6 +65,7 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
     scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
 
+/*
 //Adds slider and makes it work.
 $("#slider").slider({
   slide: function( event, ui ) {
@@ -58,13 +73,13 @@ $("#slider").slider({
     updateAll(nextslideindex);
   }
 });
-
+*/
 //Allows slider bar to move with mouse wheel (I know it moves opposite of image--eh).
 //http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
 $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
     var delta = 0, element = $(this), value, result, oe;
     oe = e.originalEvent; // for jQuery >=1.7
-    value = element.slider('value');
+    value = slider.value;
 
     if (oe.wheelDelta) {
         delta = -oe.wheelDelta;
@@ -81,25 +96,13 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
         value = 1;
     }
 
-    result = element.slider('option', 'slide').call(element, e, { value: value });
-    if (result !== false) {
-        element.slider('value', value);
-    }
-    return false;
+    if(value!=slider.value)
+        updateAll(value) //Will update slider
+    if (e.preventDefault) //disable default wheel action of scrolling page
+        e.preventDefault()
+    else
+        return false
 });
-
-//After all ajax loads update the page.
-$(document).ajaxComplete(function() {
-    if(frame > imageslen) {
-            frame = imageslen;
-        } else if(frame <= 1) {
-            frame = 1;
-        }
-    imageslen = images.length;
-    $("#slider").slider({max:imageslen});
-    //$('#speed').html('0 fps');
-});
-
 
 
 //Autoplay stuff
@@ -216,7 +219,7 @@ function updateAll(frame) {
     currentFrame = frame;
     nextslideindex = frame;
     slideshow.src = images[frame];
-    $("#slider").slider( "value", frame );
+    slider.value=frame;
     $('#frameNum').html('frame: ' + frame);
     if(!$('#urlCheckBox').is(':checked')) {
         displayURL(frame, 'short');
