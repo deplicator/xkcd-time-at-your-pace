@@ -149,17 +149,15 @@ footer {
 
 #scrollhere {
     height: 398px;
-    position: relative;
+
 }
 
 #slideshow {
-    position: absolute;
-    margin: 0 0 0 -275px;
+
 }
 
 #canvas3 {
-    position: absolute;
-    margin: 0 0 0 -275px;
+
 }
 
 .hidden {
