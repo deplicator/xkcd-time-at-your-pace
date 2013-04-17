@@ -16,7 +16,6 @@ var currentFrame = 1;
 $("#Loading").show();
 
 slider.onchange=function() {
-    console.log("onchange")
     nextslideindex=parseInt(slider.value) || 1 //Yes, that value is a String.
     updateAll(nextslideindex)
 }
@@ -74,13 +73,13 @@ $("#slider").slider({
     updateAll(nextslideindex);
   }
 });
-
+*/
 //Allows slider bar to move with mouse wheel (I know it moves opposite of image--eh).
 //http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
 $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
     var delta = 0, element = $(this), value, result, oe;
     oe = e.originalEvent; // for jQuery >=1.7
-    value = element.slider('value');
+    value = slider.value;
 
     if (oe.wheelDelta) {
         delta = -oe.wheelDelta;
@@ -97,13 +96,14 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
         value = 1;
     }
 
-    result = element.slider('option', 'slide').call(element, e, { value: value });
-    if (result !== false) {
-        element.slider('value', value);
-    }
-    return false;
+    if(value!=slider.value)
+        updateAll(value) //Will update slider
+    if (e.preventDefault) //disable default wheel action of scrolling page
+        e.preventDefault()
+    else
+        return false
 });
-*/
+
 
 //Autoplay stuff
 var speed = 1000;
