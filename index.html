@@ -26,10 +26,11 @@
     
     </script>
     <script src="scripts/jquery.js"></script>
-    <script src="scripts/jquery-ui.min.js"></script>
-    <script src="scripts/jquery.ui.touch-punch.min.js"></script>
+    <!--<script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/jquery.ui.touch-punch.min.js"></script>-->
     <script src="scripts/jquery.timer.js"></script>
     <script src="scripts/analytic.js"></script>
+    <script src="html5slider.js"></script>
 </head>
 
 <body>
@@ -56,7 +57,7 @@
             <canvas id="canvas3" class="hidden" width="553" height="395">Are you from the past?</canvas>
         </div>
         <div id="belowpic"><input id="showDiff" type="checkbox">Turn on image difference (still needs work but neat)<span id="frameNum"></span></div>
-        <div id="slider"></div>
+        <input id="slider" type="range" min="1" max="1" value="1" step="1" name="framslider"></input>
         <div id="link">
             <span>link directly to this frame -><input id="actuallink" type="text" size="50" readonly><input id="urlCheckBox" type="checkbox">show long url</span>
         </div>
