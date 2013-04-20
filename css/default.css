@@ -77,8 +77,9 @@ li {
     text-align: center;
 }
 
-#slider { 
-    margin: 30px auto;
+#slider {
+    height: 70px;
+    margin: 5px auto;
     width: 600px;
 }
 
