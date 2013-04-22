@@ -20,6 +20,12 @@ slider.onchange=function() {
     updateAll(nextslideindex)
 }
 
+$(function() {
+    if (lastSeen() > 1) {
+        $('#lastSeen').show();
+    }
+});
+
 $.ajax({
     url: "data.txt",
     dataType: "text",
