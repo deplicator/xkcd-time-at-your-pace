@@ -20,6 +20,12 @@ slider.onchange=function() {
     updateAll(nextslideindex)
 }
 
+$(function() {
+    if (lastSeen() > 1) {
+        $('#lastSeen').show();
+    }
+});
+
 $.ajax({
     url: "data.txt",
     dataType: "text",
@@ -214,12 +220,36 @@ $('#showDiff').click(function() {
 
 });
 
+$('#lastSeen').click(function() {
+    updateAll(lastSeen());
+});
+
+function lastSeen() {
+    var i, m;
+    var cookies = document.cookie.split(';');
+    for( var i=0; i < cookies.length; ++i ) {
+        var m = cookies[i].match( /^lastSeen=(.*)/ );
+        if(m) return m[1];
+    }
+
+    return 0;
+}
+
+
+
 //Updates elements of the page that change as.
 function updateAll(frame) {
     currentFrame = frame;
     nextslideindex = frame;
     slideshow.src = images[frame];
     slider.value=frame;
+
+    if( frame > lastSeen() ) {
+        var expire = new Date();
+        expire.setFullYear( expire.getFullYear() + 1 );
+        document.cookie = 'lastSeen=' + frame + '; expires=' + expire.toGMTString();
+    }
+
     $('#frameNum').html('frame: ' + frame);
     if(!$('#urlCheckBox').is(':checked')) {
         displayURL(frame, 'short');
