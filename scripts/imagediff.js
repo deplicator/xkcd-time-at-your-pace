@@ -10,7 +10,11 @@
 
   var img1loaded=false;
   var img2loaded=false;
-  //Todo: use a proper barrier for drawing the diffimage
+
+  //Note: according to 
+  //http://stackoverflow.com/questions/1663125/is-javascript-multithreaded 
+  //i don't have to worry about the two onload-functions to mix up and break 
+  //everything.
   img1.onload=function() {
     ctx1.drawImage(img1,0,0);
     img1loaded=true;
