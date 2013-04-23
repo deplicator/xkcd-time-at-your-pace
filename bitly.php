@@ -18,7 +18,7 @@ while(!feof($handle)){
 fclose($handle);
 
 if(isset($_REQUEST['frame']) && is_numeric($_REQUEST['frame']) && $_REQUEST['frame'] < $linecount && $_REQUEST['frame'] > 1) {
-    $frame = $_REQUEST['frame'];
+    $frame = intval($_REQUEST['frame']);
 } else {
     $frame = 1;
 }
