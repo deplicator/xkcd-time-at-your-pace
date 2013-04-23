@@ -64,11 +64,11 @@
     {
       //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
       img1.src = ""; //to fix a webkit "bug" -> https://code.google.com/p/chromium/issues/detail?id=7731#c12
-      img1.src = 'images/'+images[prevFrame].replace(/.*\//, '');
-      //img1.src = 'images/'+prefFrame+'.png';
+      //img1.src = 'images/'+images[prevFrame].replace(/.*\//, '');
+      img1.src = 'images/'+prevFrame+'.png';
     }
 console.log("set img 2")
     img2.src="" // see above
-    img2.src='images/' + images[currentFrame].replace(/.*\//, '');
-    //img2.src='images/' + currentFrame + '.png';
+    //img2.src='images/' + images[currentFrame].replace(/.*\//, '');
+    img2.src='images/' + currentFrame + '.png';
   }
