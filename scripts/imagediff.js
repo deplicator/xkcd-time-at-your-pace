@@ -67,7 +67,6 @@
       //img1.src = 'images/'+images[prevFrame].replace(/.*\//, '');
       img1.src = 'images/'+prevFrame+'.png';
     }
-console.log("set img 2")
     img2.src="" // see above
     //img2.src='images/' + images[currentFrame].replace(/.*\//, '');
     img2.src='images/' + currentFrame + '.png';
