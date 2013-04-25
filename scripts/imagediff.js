@@ -8,34 +8,37 @@
   var ctx2=c2.getContext("2d");
   var img2=new Image();
 
-  var loadedcount=0;
+  var img1loaded=false;
+  var img2loaded=false;
 
-  function drawDiffImageWhenBothAreLoaded() {
-    loadedcount++
-    if(loadedcount>=2)
-    {
-      loadedcount=0;
+  //Note: according to 
+  //http://stackoverflow.com/questions/1663125/is-javascript-multithreaded 
+  //i don't have to worry about the two onload-functions to mix up and break 
+  //everything.
+  img1.onload=function() {
+    ctx1.drawImage(img1,0,0);
+    img1loaded=true;
+    if(img2loaded)
       drawDiffImage();
-    }
-  }
-  img1.onload=drawDiffImageWhenBothAreLoaded;
-  img2.onload=drawDiffImageWhenBothAreLoaded;
+  };
+  img2.onload=function() {
+    ctx2.drawImage(img2,0,0);
+    img2loaded=true;
+    if(img1loaded)
+      drawDiffImage();
+      };
 
 
   var c3=document.getElementById("canvas3");
   var ctx3=c3.getContext("2d");
   function drawDiffImage() {
-    ctx1.drawImage(img1,0,0);
     var data1 = ctx1.getImageData(0, 0, c1.width, c1.height).data;
-
-    ctx2.drawImage(img2,0,0);
     var data2 = ctx2.getImageData(0, 0, c2.width, c2.height).data;
 
     var imageData = ctx3.getImageData(0, 0, c3.width, c3.height);
     var data3 = imageData.data;
     for(var i = 0, n = data1.length; i < n; i += 4) {
       var color1 = data1[i];
-      
       var color2 = data2[i];
       
       data3[i] = color1==color2?color1:(color1<color2?0xFF:0x00);
@@ -48,13 +51,23 @@
 
   }
   function diff() {
-    loadedcount=0;
-    
-    //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
-    //img1.src = 'images/'+images[currentFrame].replace(/.*\//, '');
-    img1.src = 'images/'+currentFrame+'.png';
+    img1loaded=false
+    img2loaded=false
 
-    //img2.src='images/' + images[nextframe].replace(/.*\//, '');
-    var nextframe = currentFrame+1;
-    img2.src='images/' + nextframe + '.png';
+    var prevFrame = currentFrame-1;
+    if(prevFrame<1)
+    {
+      img1loaded=true
+      ctx1.clearRect(0,0,c1.width,c1.height);
+    }
+    else
+    {
+      //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
+      img1.src = ""; //to fix a webkit "bug" -> https://code.google.com/p/chromium/issues/detail?id=7731#c12
+      //img1.src = 'images/'+images[prevFrame].replace(/.*\//, '');
+      img1.src = 'images/'+prevFrame+'.png';
+    }
+    img2.src="" // see above
+    //img2.src='images/' + images[currentFrame].replace(/.*\//, '');
+    img2.src='images/' + currentFrame + '.png';
   }
