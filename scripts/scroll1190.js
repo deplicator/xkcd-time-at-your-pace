@@ -4,6 +4,7 @@
  */
 
 var images = [];
+var bitlydata = null;
 var imageslen = 0;
 var nextslideindex = 1;
 var scrollhere=document.getElementById("scrollhere")
@@ -46,6 +47,24 @@ $.ajax({
     error: function() {
         $("#Loading").html('Oh noes, something has gone wrong!');
     }
+});
+$.ajax({
+    url: "bitlydata.txt",
+    daa: "text",
+    success: function(response) {
+        bitlydata={};
+        var bitlylinks=response.split('\n');
+        var breakitup;
+        for (var i = bitlylinks.length - 1; i >= 0; i--) {
+            breakitup=bitlylinks[i].split(" ");
+            bitlydata[parseInt(breakitup[0])||-1]=breakitup[1];
+        };
+         $('#link input').val(bitlydata[currentFrame]);
+    },
+    error: function() {
+        $("#Loading").html('Oh noes, something has gone wrong!');
+    }
+
 });
 
 //Allow for mouse wheel scrolling of main event.
@@ -172,21 +191,32 @@ $('#next').click(function() {
 
 //Get's short url from local source if available.
 function getBitlyURL(frame){
+    if(!bitlydata)
+    {
+         $('#link input').val("Not yet loaded bitlydata.");
+         return;
+     }
+
     if(frame > imageslen) {
         frame = imageslen;
     } else if(frame <= 1) {
         frame = 1;
     }
-    $.ajax({
-        url: 'bitly.php?frame='+frame,
-        dataType: "text",
-        success: function(response) {
-            $('#link input').val(response);
-        },
-        error: function() {
-            $("#Loading").html('Oh noes, something has gone wrong!');
-        }
-    });
+    if(bitlydata[frame])
+        $('#link input').val(bitlydata[frame]);
+    else
+    {
+        $.ajax({
+            url: 'bitly.php?frame='+frame,
+            dataType: "text",
+            success: function(response) {
+                $('#link input').val(response);
+            },
+            error: function() {
+                $("#Loading").html('Oh noes, something has gone wrong!');
+            }
+        });
+    }
 }
 
 //Change how url is displayed
