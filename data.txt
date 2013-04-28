@@ -949,3 +949,4 @@ http://imgs.xkcd.com/comics/time/5d9c584ba858b20051621d7d6ba32aa34cfe1c3c9bc92fa
 http://imgs.xkcd.com/comics/time/3964d77ad57355714c7f6d77077e2547e7fa49faec6913306d063f962a177799.png
 http://imgs.xkcd.com/comics/time/a6dc9124ec42ace94cf557f5c2f22a23187829011bcee66dd13466c110e622cc.png
 http://imgs.xkcd.com/comics/time/c3a5e384e90b9f404eff3c009713e40753bb3a6524c1ab0156a323dc8d1af72d.png
+http://imgs.xkcd.com/comics/time/6064e4b4ad5fdadaff118e94974e71d565edd76760c48fc786b3c31ff4197aa8.png
