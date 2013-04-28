@@ -42,6 +42,8 @@ if(vars.framediff) {
     framediff = parseInt(vars.framediff);
     $('#showFrameDiff').prop('checked', true);
     $('#freezeframe').val(framediff);
+    $('#slideshow').addClass('hidden');
+    $('#canvas3').removeClass('hidden');
     updateAll(frame);
 } else {
     framediff = 1;
