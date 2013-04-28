@@ -2,35 +2,10 @@
 <head>
     <title>XKCD Time - at your own pace</title>
     <link rel="stylesheet" href="css/default.css">
-    <script>
-    //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
-    // Read a page's GET URL variables and return them as an associative array.
-    function getUrlVars()
-    {
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
-        {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars;
-    }
-    var vars=getUrlVars()
-    var frame;
-    if(vars.frame)
-        frame=parseInt(vars.frame) || 1
-    else
-        frame = 1;
-    
-    </script>
-    <script src="scripts/jquery.js"></script>
-    <!--<script src="scripts/jquery-ui.min.js"></script>
-    <script src="scripts/jquery.ui.touch-punch.min.js"></script>-->
-    <script src="scripts/jquery.timer.js"></script>
     <script src="scripts/analytic.js"></script>
-    <script src="html5slider.js"></script>
+    
+    
+    
 </head>
 
 <body>
@@ -44,7 +19,7 @@
             <p>Hover over image and scroll down to move forward, up to move back.</p>
         </div>
         <div id="controls">
-            Or use these -> <input id="play" type="button" value="Play" title="You can still scroll while it's playing (for the nerdiest of instant replays)"><input id="slow" type="button" value="Slower"><input id="fast" type="button" value="Faster">
+            <input id="play" type="button" value="Play" title="You can still scroll while it's playing (for the nerdiest of instant replays)"><input id="slow" type="button" value="Slower"><input id="fast" type="button" value="Faster">
             <span id="speed"></span>
             <span id="step">
                 <input id="previous" type="button" value="<<" title="Previous">
@@ -55,12 +30,20 @@
         
         <div id="scrollhere">
             <img id="slideshow" src="http://www.explainxkcd.com/wiki/images/f/f8/time.png" />
-            <canvas id="canvas3" class="hidden" width="553" height="395">Are you from the past?</canvas>
+            <canvas id="canvas3" class="hidden" width="553" height="395">
+                <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
+            </canvas>
         </div>
-        <div id="belowpic"><input id="showDiff" type="checkbox">Turn on image difference (still needs work but neat)<span id="frameNum"></span></div>
+        <div id="belowpic">
+            <input id="showFrameDiff" type="checkbox">Image Difference From Frame<input id="freezeframe" type="text"><br>
+            <input id="showDiff" type="checkbox">Previous Frame Difference
+            <span id="frameNum"></span>
+        </div>
+        
         <input id="slider" type="range" min="1" max="1" value="1" step="1" name="framslider"></input>
+        
         <div id="link">
-            <span>link directly to this frame -><input id="actuallink" type="text" size="50" readonly><input id="urlCheckBox" type="checkbox">show long url</span>
+            <span>link to this frame -><input id="actuallink" type="text" size="50" readonly><input id="urlCheckBox" type="checkbox">show long url</span>
         </div>
 
     </div>
@@ -68,84 +51,69 @@
     <div id="textframes">
         <h3>Frames with Text</h3>
         <ul>
-            <li><a href="./?frame=52"><img src="http://imgs.xkcd.com/comics/time/a790d74849afdba2bc7f1781ea6fca9fb62b57d46912b14c40d777843d493f1f.png" alt="" /></a></li>
-            <li><a href="./?frame=170"><img src="http://imgs.xkcd.com/comics/time/0a17cbccb6644aeba7896c8ed20857941e2a0fdd6e21d58cdf6ea1074de81a2d.png" alt="" /></a></li>
-            <li><a href="./?frame=175"><img src="http://imgs.xkcd.com/comics/time/0c13b40fb2d866d6d00a267bbb71f844731d97ed9982f97f1ddc0eaa1a054cb5.png" alt="" /></a></li>
-            <li><a href="./?frame=320"><img src="http://imgs.xkcd.com/comics/time/9afac8bc8b182103a28f21b3a7e453d830102c3b4c8d31a0255669aafad0dca3.png" alt="" /></a></li>
-            <li><a href="./?frame=408"><img src="http://imgs.xkcd.com/comics/time/5b030d59f46132186bc963e743f1171717e3a6ef63a502c7ad4946c06469ecbe.png" alt="" /></a></li>
-            <li><a href="./?frame=414"><img src="http://imgs.xkcd.com/comics/time/cad084bde3a758a538360d6640aa6e2b26273b320eb68ea99bb3a8084d840925.png" alt="" ></a></li>
-            <li><a href="./?frame=486"><img src="http://imgs.xkcd.com/comics/time/94547ab634e00575bbf9086b232f1f38b7a4269edb0f6dff61716094e3af4d0d.png" alt="" ></a></li>
-            <li><a href="./?frame=487"><img src="http://imgs.xkcd.com/comics/time/840355510c22bac0a6e52ec0945997b670d8ad1053465d1929d4320ca4150488.png" alt="" ></a></li>
-            <li><a href="./?frame=488"><img src="http://imgs.xkcd.com/comics/time/28fd8090ab04b85611fa82990b14740f2d331f651d90e67c88dbc8512554193d.png" alt="" ></a></li>
-            <li><a href="./?frame=490"><img src="http://imgs.xkcd.com/comics/time/039d849c96bcf5a3db4c9ad70f6118f092df7380fd237c56becd414dd37a590f.png" alt="" ></a></li>
-            <li><a href="./?frame=562"><img src="http://imgs.xkcd.com/comics/time/fbce93bd4284c593a9841e4ede8c55f80f7fc68c7ce38ef0fb40572af795fe11.png" alt="" ></a></li>
-            <li><a href="./?frame=563"><img src="http://imgs.xkcd.com/comics/time/00b3a5fca678039709dee08fae2ccf00dda1b6c8ba0b9821ff93dc73d6a4b4f3.png" alt="" ></a></li>
-            <li><a href="./?frame=564"><img src="http://imgs.xkcd.com/comics/time/c94ea34702f076e8f60ca812efeb0259f727ca3c875188f22ad78b62d2e8dfd0.png" alt="" ></a></li>
-            <li><a href="./?frame=637"><img src="http://imgs.xkcd.com/comics/time/8f6c6024e1299fee95941d55f348e176ffdc3cbbca58b0e8152c134e09c1a896.png" alt="" ></a></li>
-            <li><a href="./?frame=638"><img src="http://imgs.xkcd.com/comics/time/88dd86d52f26487cf07e2e2dcb487c115589b1710479fea1ac2d54a161ab40b5.png" alt="" ></a></li>
-            <li><a href="./?frame=640"><img src="http://imgs.xkcd.com/comics/time/d72b6b9bd8e9e37cd8b0ad060c2f60e0a7c00e47fddefb12e339a2d2f59b40c0.png" alt="" ></a></li>
-            <li><a href="./?frame=641"><img src="http://imgs.xkcd.com/comics/time/677dcc253fcb42f5cb3179596366dea3113f4e064b01b584222434c4797aa652.png" alt="" ></a></li>
-            <li><a href="./?frame=642"><img src="http://imgs.xkcd.com/comics/time/87d340523cfd7aa3b9c009779444141bd61d006c9cb6cf25458515d038c800ef.png" alt="" ></a></li>
-            <li><a href="./?frame=659"><img src="http://imgs.xkcd.com/comics/time/76e1f456f055633e90103e82dd4daad879f0faecec28290f378e623f4f8fbcf2.png" alt="" ></a></li>
-            <li><a href="./?frame=660"><img src="http://imgs.xkcd.com/comics/time/cb5b354eea184f94fc96daea373fc041166a514ec3fba9552a413221744692cf.png" alt="" ></a></li>
-            <li><a href="./?frame=661"><img src="http://imgs.xkcd.com/comics/time/0777f1b4b0e9f6bf5724d8a17def25f8626e61b0f1a5ee5c35ec246458ed2829.png" alt="" ></a></li>
+            <li><a href="./?frame=52"><img src="./images/52.png" alt="" /></a></li>
+            <li><a href="./?frame=170"><img src="./images/170.png" alt="" /></a></li>
+            <li><a href="./?frame=175"><img src="./images/175.png" alt="" /></a></li>
+            <li><a href="./?frame=320"><img src="./images/320.png" alt="" /></a></li>
+            <li><a href="./?frame=408"><img src="./images/408.png" alt="" /></a></li>
+            <li><a href="./?frame=414"><img src="./images/414.png" alt="" ></a></li>
+            <li><a href="./?frame=486"><img src="./images/486.png" alt="" ></a></li>
+            <li><a href="./?frame=487"><img src="./images/487.png" alt="" ></a></li>
+            <li><a href="./?frame=488"><img src="./images/488.png" alt="" ></a></li>
+            <li><a href="./?frame=490"><img src="./images/490.png" alt="" ></a></li>
+            <li><a href="./?frame=562"><img src="./images/562.png" alt="" ></a></li>
+            <li><a href="./?frame=563"><img src="./images/563.png" alt="" ></a></li>
+            <li><a href="./?frame=564"><img src="./images/564.png" alt="" ></a></li>
+            <li><a href="./?frame=637"><img src="./images/637.png" alt="" ></a></li>
+            <li><a href="./?frame=638"><img src="./images/638.png" alt="" ></a></li>
+            <li><a href="./?frame=640"><img src="./images/640.png" alt="" ></a></li>
+            <li><a href="./?frame=641"><img src="./images/641.png" alt="" ></a></li>
+            <li><a href="./?frame=642"><img src="./images/642.png" alt="" ></a></li>
+            <li><a href="./?frame=659"><img src="./images/659.png" alt="" ></a></li>
+            <li><a href="./?frame=660"><img src="./images/660.png" alt="" ></a></li>
+            <li><a href="./?frame=661"><img src="./images/661.png" alt="" ></a></li>
+            <li><a href="./?frame=827"><img src="./images/827.png" alt="" ></a></li>
+            <li><a href="./?frame=828"><img src="./images/828.png" alt="" ></a></li>
+            <li><a href="./?frame=829"><img src="./images/829.png" alt="" ></a></li>
+            <li><a href="./?frame=830"><img src="./images/830.png" alt="" ></a></li>
+            <li><a href="./?frame=833"><img src="./images/833.png" alt="" ></a></li>
+            <li><a href="./?frame=850"><img src="./images/850.png" alt="" ></a></li>
+            <li><a href="./?frame=851"><img src="./images/851.png" alt="" ></a></li>
+            <li><a href="./?frame=852"><img src="./images/852.png" alt="" ></a></li>
+            <li><a href="./?frame=854"><img src="./images/854.png" alt="" ></a></li>
+            <li><a href="./?frame=855"><img src="./images/855.png" alt="" ></a></li>
+            <li><a href="./?frame=856"><img src="./images/856.png" alt="" ></a></li>
+            <li><a href="./?frame=857"><img src="./images/857.png" alt="" ></a></li>
+            <li><a href="./?frame=859"><img src="./images/859.png" alt="" ></a></li>
+            <li><a href="./?frame=860"><img src="./images/860.png" alt="" ></a></li>
+            <li><a href="./?frame=876"><img src="./images/876.png" alt="" ></a></li>
         </ul>
     </div>
 
-    <div id="interest">
-        <h3>Points of Interest</h3>
-        <p id="small">from <a href="http://xkcd-time.wikia.com/wiki/Periods">http://xkcd-time.wikia.com/wiki/Periods</a></p>
-        <ul>
-            <li>1:   <a href="./?frame=1">The very first frame</a></li>
-            <li>16:  <a href="./?frame=16">Cueball dips his toe in the 'water'</a></li>
-            <li>25:  <a href="./?frame=25">Megan begins to build the first Castle</a></li>
-            <li>34:  <a href="./?frame=34">The first Tower is finished</a></li>
-            <li>50:  <a href="./?frame=50">The first Wall is completed</a></li>
-            <li>52:  <a href="./?frame=52">First text frame</a></li>
-            <li>75:  <a href="./?frame=75">Cueball returns</a></li>
-            <li>88:  <a href="./?frame=88">Megan Leaves</a></li>
-            <li>103: <a href="./?frame=103">Cueball falls, destroying a piece of the castle.</a></li>
-            <li>124: <a href="./?frame=124">Cueball leaves again (second time)</a></li>
-            <li>137: <a href="./?frame=137">The first glimpse of the second Castle</a></li>
-            <li>143: <a href="./?frame=143">The prophesied Frame, posted before its Time</a></li>
-            <li>146: <a href="./?frame=146">Megan re-appears</a></li>
-            <li>158: <a href="./?frame=158">Cueball re-appears</a></li>
-            <li>170: <a href="./?frame=170">Second Text frame: "Wanna Swim?"</a></li>
-            <li>175: <a href="./?frame=175">Third Text frame: Megan Coughs</a></li>
-            <li>177: <a href="./?frame=177">Megan Leaves again (second time)</a></li>
-            <li>179: <a href="./?frame=179">Cueball leaves again (third time)</a></li>
-            <li>306: <a href="./?frame=306">Cueball re-appears</a></li>
-            <li>308: <a href="./?frame=308">Cueball and Megan wave at each other</a></li>
-            <li>309: <a href="./?frame=309">Megan falls, destroying a piece of castle</a></li>
-            <li>320: <a href="./?frame=320">Fourth Text frame: The River question</a></li>
-            <li>403: <a href="./?frame=403">Close-up of Megan holding tiny trebuchet</a></li>
-            <li>408: <a href="./?frame=408">Fifth Text frame</a></li>
-            <li>414: <a href="./?frame=414">Sixth Text frame</a></li>
-            <li>486: <a href="./?frame=486">Seventh Text frame</a></li>
-            <li>487: <a href="./?frame=487">Eighth Text frame</a></li>
-            <li>488: <a href="./?frame=488">Ninth Text frame</a></li>
-            <li>490: <a href="./?frame=490">Tenth Text frame, ten text frames ha ha ha</a></li>
-        </ul>
-    </div>
-    <script src="scripts/scroll1190.js"></script>
+    
 
     <footer>
         <div id="credit">
-            XKCD is licensed by <a href="http://www.xkcd.com/about/">Randall Munroe</a> under a <a href="http://www.xkcd.com/license.html">Creative Commons Attribution-NonCommercial 2.5 License</a>, please give credit where it is due (because he's a cool guy as far as I can tell from being a regular reader of his comic).
+            XKCD is licensed by <a href="http://www.xkcd.com/about/">Randall Munroe</a> under a <a href="http://www.xkcd.com/license.html">Creative Commons Attribution-NonCommercial 2.5 License</a>, please give credit where it is due (because he's a cool guy as far as I can tell from being a regular reader of his comic).<br>
+            <br>
+            The code for this site is licensed <a href="http://geekwagon.net/ufl/license.txt">under a license I just made up</a> that lets you do whatever you want.
         </div>
         <p id="note">Your screen is really wide.</p>
         <a href="mailto:james@geekwagon.net" title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a href="http://geekwagon.net" title="Just some guy">Who am I?</a>
     </footer>
+    
     <a href="https://github.com/deplicator/xkcdTime_atyourownpace">
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
     </a>
-    
-    
-    
-    
+
     <canvas id="canvas1" width="553" height="395" style="display: none">Are you from the past?</canvas>
     <canvas id="canvas2" width="553" height="395" style="display: none">Are you from the past?</canvas>
+    
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery.timer.js"></script>
     <script src="scripts/imagediff.js"></script>
+    <script src="scripts/scroll1190.js"></script>
+    <script src="scripts/html5slider.js"></script>
     
-    
+
 <body>

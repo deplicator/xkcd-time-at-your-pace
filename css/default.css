@@ -1,5 +1,4 @@
-@import url(http://reset5.googlecode.com/hg/reset.min.css);
-@import url(ui-lightness/jquery-ui-1.10.2.custom.css);
+@import url(reset.min.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
 
@@ -115,7 +114,7 @@ footer {
     clear: both;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
-    margin: 10px 0 0 0;
+    margin: 25px 0 0 0;
     text-align: right;
 }
 
@@ -123,8 +122,15 @@ footer {
     display: none;
 }
 
+#textframes {
+    background: rgb(202, 202, 226);
+    margin: 20px auto 50px;
+    padding: 0 0 3px 0;
+    width: 901px;
+}
+
 #textframes ul {
-    margin: 0 35px;
+    margin: 0 4px;
 }
 
 #textframes li{
@@ -134,8 +140,8 @@ footer {
 }
 
 #textframes img{
-    width: 120px;
-    padding: 6px 4px;
+    width: 295px;
+    padding: 2px 0px;
 }
 
 #belowpic {
@@ -144,32 +150,24 @@ footer {
     text-align: left;
 }
 
+#freezeframe {
+    height: 10px;
+    font-size: 10px;
+    margin: 0 0 0 5px;
+    width: 40px;
+}
+
 #frameNum {
     float: right;
+    margin: -18px 0 0 0;
 }
 
 #scrollhere {
     height: 398px;
-
-}
-
-#slideshow {
-
-}
-
-#canvas3 {
-
 }
 
 .hidden {
     display: none;
-}
-
-@media screen and (min-width: 75em) {
-    #textframes {
-        float: right;
-        width: 50%
-    }
 }
 
 @media screen and (min-width: 2600px) {

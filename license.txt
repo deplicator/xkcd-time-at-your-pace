@@ -1,0 +1,19 @@
+Universal Forfeit License (UFL)
+Version 1
+
+Copyright (c) 2013 James Pryor
+
+You are permitted to copy and distribute verbatim or modified copies of this
+license. More information at http://geekwagon.net/ufl.
+
+This license irrevocably grants more rights than possible to the general public
+in any jurisdictions; known and unknown, real and fictional, past and future.
+This is not limited to local government, planet, galaxy, universe, dimension,
+or any other jurisdiction that can exist that has not yet been discovered.
+
+You can copy, modify, distribute, sublicense, rename, and/or perform the work,
+even for commercial purposes, without asking permission or referencing the 
+original (yes you've been given permission to plagiarise, although you should
+feel bad if you do).
+
+This work and license is provided without warranty.

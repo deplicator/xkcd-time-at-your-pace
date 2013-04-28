@@ -15,7 +15,9 @@ Much of the code it kind of a kludge. I'm kind of embarrassed this is the projec
 
 I'd also like to thank people for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
-Thanks to [https://github.com/MaPePeR MaPePeR] for contributing  code that fixed the image difference checkbox. Never got to play with merge before!
+===Thanks=== 
+[https://github.com/MaPePeR MaPePeR] for contributing code that fixed many bugs and made the site all around more efficient.
+[https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
 
 ==A Friendly Reminder==
 XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).

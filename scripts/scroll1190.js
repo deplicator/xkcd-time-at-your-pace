@@ -14,6 +14,39 @@ var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
 var currentFrame = 1;
 
+//From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
+// Read a page's GET URL variables and return them as an associative array.
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+var vars = getUrlVars();
+
+var frame;
+if(vars.frame) {
+    frame = parseInt(vars.frame);
+} else {
+    frame = 1;
+}
+
+var framediff;
+if(vars.framediff) {
+    framediff = parseInt(vars.framediff);
+    $('#showFrameDiff').prop('checked', true);
+    $('#freezeframe').val(framediff);
+    updateAll(frame);
+} else {
+    framediff = 1;
+}
+
 $("#Loading").show();
 
 slider.onchange=function() {
@@ -90,16 +123,8 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
     scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
 
-/*
-//Adds slider and makes it work.
-$("#slider").slider({
-  slide: function( event, ui ) {
-    nextslideindex=$("#slider").slider("value");
-    updateAll(nextslideindex);
-  }
-});
-*/
-//Allows slider bar to move with mouse wheel (I know it moves opposite of image--eh).
+
+//Allows slider bar to move with mouse wheel.
 //http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
 $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
     var delta = 0, element = $(this), value, result, oe;
@@ -107,7 +132,7 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
     value = slider.value;
 
     if (oe.wheelDelta) {
-        delta = -oe.wheelDelta;
+        delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
     }
     if (oe.detail) {
         delta = oe.detail * 1;
@@ -128,6 +153,7 @@ $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
     else
         return false
 });
+
 
 
 //Autoplay stuff
@@ -189,6 +215,7 @@ $('#next').click(function() {
     updateAll(nextslideindex);
 });
 
+
 //Get's short url from local source if available.
 function getBitlyURL(frame){
     if(!bitlydata)
@@ -240,6 +267,7 @@ $('#urlCheckBox').click(function() {
 //Clicking on showdiff check box.
 $('#showDiff').click(function() {
     if($('#showDiff').is(':checked')) {
+        $('#showFrameDiff').prop('checked', false);
         $('#slideshow').addClass('hidden');
         $('#canvas3').removeClass('hidden');
     } else {
@@ -247,7 +275,20 @@ $('#showDiff').click(function() {
         $('#canvas3').addClass('hidden');
     }
     updateAll(currentFrame)
+});
 
+//Image Diffrence from frame checkbox
+$('#showFrameDiff').click(function() {
+    if($('#showFrameDiff').is(':checked')) {
+        $('#showDiff').prop('checked', false);
+        $('#freezeframe').val(currentFrame);
+        $('#slideshow').addClass('hidden');
+        $('#canvas3').removeClass('hidden');
+    } else {
+        $('#slideshow').removeClass('hidden');
+        $('#canvas3').addClass('hidden');
+    }
+    updateAll(currentFrame)
 });
 
 $('#lastSeen').click(function() {
@@ -288,6 +329,10 @@ function updateAll(frame) {
     }
     if($('#showDiff').is(':checked')) {
         diff();
+    }
+    if($('#showFrameDiff').is(':checked')) {
+        var from = $('#freezeframe').val();
+        diff(from);
     }
 }
 
