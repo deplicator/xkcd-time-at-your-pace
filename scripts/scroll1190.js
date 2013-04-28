@@ -16,8 +16,7 @@ var currentFrame = 1;
 
 //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
 // Read a page's GET URL variables and return them as an associative array.
-function getUrlVars()
-{
+function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for(var i = 0; i < hashes.length; i++)
@@ -29,14 +28,12 @@ function getUrlVars()
     return vars;
 }
 var vars = getUrlVars();
-
 var frame;
 if(vars.frame) {
     frame = parseInt(vars.frame);
 } else {
     frame = 1;
 }
-
 var framediff;
 if(vars.framediff) {
     framediff = parseInt(vars.framediff);
@@ -51,9 +48,155 @@ if(vars.framediff) {
 
 $("#Loading").show();
 
-slider.onchange=function() {
-    nextslideindex=parseInt(slider.value) || 1 //Yes, that value is a String.
-    updateAll(nextslideindex)
+/*
+ * Browser detect http://www.quirksmode.org/js/detect.html
+ * There is more here than needed, but it might be useful someday.
+ * It is currently only used to detect Firefox and load a jQueryUI slider.
+ */
+var BrowserDetect = {
+	init: function () {
+		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+		this.version = this.searchVersion(navigator.userAgent)
+			|| this.searchVersion(navigator.appVersion)
+			|| "an unknown version";
+		this.OS = this.searchString(this.dataOS) || "an unknown OS";
+	},
+	searchString: function (data) {
+		for (var i=0;i<data.length;i++)	{
+			var dataString = data[i].string;
+			var dataProp = data[i].prop;
+			this.versionSearchString = data[i].versionSearch || data[i].identity;
+			if (dataString) {
+				if (dataString.indexOf(data[i].subString) != -1)
+					return data[i].identity;
+			}
+			else if (dataProp)
+				return data[i].identity;
+		}
+	},
+	searchVersion: function (dataString) {
+		var index = dataString.indexOf(this.versionSearchString);
+		if (index == -1) return;
+		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+	},
+	dataBrowser: [
+		{
+			string: navigator.userAgent,
+			subString: "Chrome",
+			identity: "Chrome"
+		},
+		{ 	string: navigator.userAgent,
+			subString: "OmniWeb",
+			versionSearch: "OmniWeb/",
+			identity: "OmniWeb"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Apple",
+			identity: "Safari",
+			versionSearch: "Version"
+		},
+		{
+			prop: window.opera,
+			identity: "Opera",
+			versionSearch: "Version"
+		},
+		{
+			string: navigator.vendor,
+			subString: "iCab",
+			identity: "iCab"
+		},
+		{
+			string: navigator.vendor,
+			subString: "KDE",
+			identity: "Konqueror"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Firefox",
+			identity: "Firefox"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Camino",
+			identity: "Camino"
+		},
+		{		// for newer Netscapes (6+)
+			string: navigator.userAgent,
+			subString: "Netscape",
+			identity: "Netscape"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "MSIE",
+			identity: "Explorer",
+			versionSearch: "MSIE"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Gecko",
+			identity: "Mozilla",
+			versionSearch: "rv"
+		},
+		{ 		// for older Netscapes (4-)
+			string: navigator.userAgent,
+			subString: "Mozilla",
+			identity: "Netscape",
+			versionSearch: "Mozilla"
+		}
+	],
+	dataOS : [
+		{
+			string: navigator.platform,
+			subString: "Win",
+			identity: "Windows"
+		},
+		{
+			string: navigator.platform,
+			subString: "Mac",
+			identity: "Mac"
+		},
+		{
+			   string: navigator.userAgent,
+			   subString: "iPhone",
+			   identity: "iPhone/iPod"
+	    },
+		{
+			string: navigator.platform,
+			subString: "Linux",
+			identity: "Linux"
+		}
+	]
+};
+BrowserDetect.init();
+
+
+if(BrowserDetect.browser == "Firefox") {
+    $.getScript('./scripts/jquery-ui-1.10.2.custom.min.js', function() {
+        $('#slider').addClass('hidden');
+        $('#ffslider').removeClass('hidden');
+        
+        $("#ffslider").slider({
+            slide: function( event, ui ) {
+                nextslideindex=$("#ffslider").slider("value");
+                updateAll(nextslideindex);
+            }
+        });
+    });
+    $(document).ajaxComplete(function() {
+    if(frame > imageslen) {
+            frame = imageslen;
+        } else if(frame <= 1) {
+            frame = 1;
+        }
+    $("#ffslider").slider({max:imageslen});
+});
+
+} else {
+    slider.onchange=function() {
+        nextslideindex=parseInt(slider.value) || 1 //Yes, that value is a String.
+        updateAll(nextslideindex)
+    }
 }
 
 $(function() {
@@ -83,6 +226,7 @@ $.ajax({
         $("#Loading").html('Oh noes, something has gone wrong!');
     }
 });
+
 $.ajax({
     url: "bitlydata.txt",
     daa: "text",
@@ -126,36 +270,43 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
 }
 
 
-//Allows slider bar to move with mouse wheel.
-//http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
-$('#slider').bind('mousewheel DOMMouseScroll', function (e) {
-    var delta = 0, element = $(this), value, result, oe;
-    oe = e.originalEvent; // for jQuery >=1.7
-    value = slider.value;
+/*
+ * Allows slider bar to move with mouse wheel.
+ * http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
+ * 
+ */
+if(BrowserDetect.browser != "Firefox") {
+    $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
+        var delta = 0, element = $(this), value, result, oe;
+        oe = e.originalEvent; // for jQuery >=1.7
+        value = slider.value;
 
-    if (oe.wheelDelta) {
-        delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
-    }
-    if (oe.detail) {
-        delta = oe.detail * 1;
-    }
+        if (oe.wheelDelta) {
+            delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
+        }
+        if (oe.detail) {
+            delta = oe.detail * 1;
+        }
 
-    value -= delta / 120;
-    if (value >= imageslen) {
-        value = imageslen-1;
-    }
-    if (value < 1) {
-        value = 1;
-    }
+        value -= delta / 120;
+        if (value >= imageslen) {
+            value = imageslen-1;
+        }
+        if (value < 1) {
+            value = 1;
+        }
 
-    if(value!=slider.value)
-        updateAll(value) //Will update slider
-    if (e.preventDefault) //disable default wheel action of scrolling page
-        e.preventDefault()
-    else
-        return false
-});
-
+        if(value!=slider.value)
+            updateAll(value) //Will update slider
+        if (e.preventDefault) //disable default wheel action of scrolling page
+            e.preventDefault()
+        else
+            return false
+    });
+} else {
+    console.log('I\'m growing a dislike for FF');
+    //do something here later, for now FF users can live without scrolling over the slider.
+}
 
 
 //Autoplay stuff
@@ -183,7 +334,7 @@ $('#play').click(function() {
 });
 
 $('#fast').click(function() {
-    speed -= 100;
+    speed -= 200;
     if(speed <= 0){
         speed = 100;
     }
@@ -193,7 +344,7 @@ $('#fast').click(function() {
 });
 
 $('#slow').click(function() {
-    speed += 100;
+    speed += 200;
     if(speed >= 2000){
         speed = 2000;
     }
@@ -218,7 +369,11 @@ $('#next').click(function() {
 });
 
 
-//Get's short url from local source if available.
+/* 
+ * Get's short url from local source if available.
+ * It should be noted the bitly links used here all go to geekwagon.net. Something to keep in mind
+ * if anyone sets this up on another domain.
+ */
 function getBitlyURL(frame){
     if(!bitlydata)
     {
@@ -248,12 +403,22 @@ function getBitlyURL(frame){
     }
 }
 
-//Change how url is displayed
-function displayURL(frame, how) {
+/* 
+ * Change how url is displayed in "link to this frame" text box.
+ * Frame is an int the frame to link to.
+ * How is a string for "short" or "long" url.
+ * From is optional int to show difference from frame. How string must be
+ * "long" to use this parameter.
+ */
+function displayURL(frame, how, from) {
     if(how == 'short') {
         getBitlyURL(frame);
     } else if(how == 'long') {
-        $('#link input').val(site+'/?frame='+frame);
+        if(!from) {
+            $('#link input').val(site+'/?frame='+frame);
+        } else {
+            $('#link input').val(site+'/?frame='+frame+'&framediff='+from);
+        }
     }
 }
 
@@ -272,9 +437,13 @@ $('#showDiff').click(function() {
         $('#showFrameDiff').prop('checked', false);
         $('#slideshow').addClass('hidden');
         $('#canvas3').removeClass('hidden');
+        $('#showlong').addClass('hidden');
+        $('#actuallink').attr("size", "65")
     } else {
         $('#slideshow').removeClass('hidden');
         $('#canvas3').addClass('hidden');
+        $('#showlong').removeClass('hidden');
+        $('#actuallink').attr("size", "50")
     }
     updateAll(currentFrame)
 });
@@ -286,9 +455,13 @@ $('#showFrameDiff').click(function() {
         $('#freezeframe').val(currentFrame);
         $('#slideshow').addClass('hidden');
         $('#canvas3').removeClass('hidden');
+        $('#showlong').addClass('hidden');
+        $('#actuallink').attr("size", "65")
     } else {
         $('#slideshow').removeClass('hidden');
         $('#canvas3').addClass('hidden');
+        $('#showlong').removeClass('hidden');
+        $('#actuallink').attr("size", "50")
     }
     updateAll(currentFrame)
 });
@@ -323,7 +496,7 @@ function updateAll(frame) {
         document.cookie = 'lastSeen=' + frame + '; expires=' + expire.toGMTString();
     }
 
-    $('#frameNum').html('frame: ' + frame);
+    $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
     if(!$('#urlCheckBox').is(':checked')) {
         displayURL(frame, 'short');
     } else {
@@ -331,10 +504,12 @@ function updateAll(frame) {
     }
     if($('#showDiff').is(':checked')) {
         diff();
+        displayURL(frame, 'long', frame-1);
     }
     if($('#showFrameDiff').is(':checked')) {
         var from = $('#freezeframe').val();
         diff(from);
+        displayURL(frame, 'long', from);
     }
 }
 

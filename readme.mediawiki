@@ -21,17 +21,27 @@ Made up a license file (I'm sure it's full of legal holes) that lets anyone (eve
 
 Created an Interface branch to test new interface options.
 
-Added "Image Difference From Frame" that lets the user see the differences between two frames that are not in sequential order. This feature is also linkable.
+Added "Image Difference From Frame" that lets the user see the differences between two frames that are not in sequential order. This feature is also linkable. The "link to this frame" textbox should also update to share image differenced link.
+A couple of examples:
+
+[http://geekwagon.net/projects/xkcd1190?frame=890&framediff=217 Shows increase in sealevel from maximum zoom to before fading]
  ?frame=890&framediff=217
+
+[http://geekwagon.net/projects/xkcd1190?frame=162&framediff=126 Shows scale difference before and after zoom]
+ ?frame=162&framediff=126
 
 Made the "Frames with Text" section easier to read.
 
+Made Firefox fall back to jQuery UI for slider since the HTML5Slider was causing issues. Firefox in general seems to be problematic; which surprises me becuase usually it's IE I can't stand (admittidly I did no testing for IE9 and below). This problem did help me find [http://www.quirksmode.org/js/detect.html this useful bit of code].
+
 
 ===Thanks=== 
-Thanks to [https://github.com/MaPePeR MaPePeR] for contributing code that fixed many bugs and made the site all around more efficient.
-Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
-Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
+* Thanks to [https://github.com/MaPePeR MaPePeR] for contributing code that fixed many bugs and made the site all around more efficient.
+* Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
+* Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
 
 ==A Friendly Reminder==
 XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
+
+The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "aweful" license].

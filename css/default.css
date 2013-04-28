@@ -1,6 +1,7 @@
 @import url(reset.min.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+@import url(./ui-lightness/jquery-ui-1.10.2.custom.min.css);
 
 html {
     background:#fdfdfd;
@@ -76,10 +77,14 @@ li {
     text-align: center;
 }
 
-#slider {
+#slider{
     height: 70px;
     margin: 5px auto;
     width: 600px;
+}
+
+#ffslider  {
+    margin: 25px auto 25px;
 }
 
 #link {
@@ -140,7 +145,7 @@ footer {
 }
 
 #textframes img{
-    width: 295px;
+    width: 294px;
     padding: 2px 0px;
 }
 

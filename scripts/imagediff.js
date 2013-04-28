@@ -53,6 +53,9 @@ function drawDiffImage() {
     ctx3.putImageData(imageData, 0, 0);
 }
 
+/*
+ * Difference between two frames, if frame parameter not provided is shows difference from previous frame.
+ */
 function diff(frame) {
     img1loaded = false
     img2loaded = false
