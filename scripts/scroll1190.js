@@ -371,10 +371,10 @@ function nextSlide() {
 $('#next').click(nextSlide);
 
 $(document).keydown(function(e){
-    if (e.keyCode == 37) { //left-key-pressed
+    if (e.which == 37) { //left-key-pressed
        prevSlide();
     }
-    else if(e.keyCode==39) { //right-key-pressed
+    else if(e.which==39) { //right-key-pressed
         nextSlide();
     }
 });
