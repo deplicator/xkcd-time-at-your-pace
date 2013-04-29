@@ -353,21 +353,31 @@ $('#slow').click(function() {
     $('#speed').html(fps.toFixed(2) + ' fps');
 });
 
-$('#previous').click(function() {
+function prevSlide(){
     nextslideindex--;
     nextslideindex=(nextslideindex<1)? images.length-1 : (nextslideindex>images.length-1)? 1 : nextslideindex
     updateAll(nextslideindex);
-});
+}
+$('#previous').click(prevSlide);
 
-$('#next').click(function() {
+function nextSlide() {
     if(nextslideindex == images.length-1) {
         nextslideindex = 1;
     } else {
         nextslideindex++;
     }
     updateAll(nextslideindex);
-});
+}
+$('#next').click(nextSlide);
 
+$(document).keydown(function(e){
+    if (e.keyCode == 37) { //left-key-pressed
+       prevSlide();
+    }
+    else if(e.keyCode==39) { //right-key-pressed
+        nextSlide();
+    }
+});
 
 /* 
  * Get's short url from local source if available.
