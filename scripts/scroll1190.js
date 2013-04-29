@@ -46,7 +46,7 @@ if(vars.framediff) {
     framediff = 1;
 }
 
-$("#Loading").show();
+$("#LoadingImage").show();
 
 /*
  * Browser detect http://www.quirksmode.org/js/detect.html
@@ -209,7 +209,7 @@ $.ajax({
     url: "data.txt",
     dataType: "text",
     success: function(response) {
-        $("#LoadingImage").hide();
+        $("#LoadingImage").html('');
         //console.log(response);
         images = response.split('\n');
         slider.max=images.length-1
@@ -223,7 +223,7 @@ $.ajax({
         updateAll(frame);
     },
     error: function() {
-        $("#Loading").html('Oh noes, something has gone wrong!');
+        $("#LoadingImage").html('Oh noes, something has gone wrong!');
     }
 });
 
@@ -241,7 +241,7 @@ $.ajax({
          $('#link input').val(bitlydata[currentFrame]);
     },
     error: function() {
-        $("#Loading").html('Oh noes, something has gone wrong!');
+        $("#LoadingImage").html('Oh noes, something has gone wrong!');
     }
 
 });
@@ -397,7 +397,7 @@ function getBitlyURL(frame){
                 $('#link input').val(response);
             },
             error: function() {
-                $("#Loading").html('Oh noes, something has gone wrong!');
+                $("#LoadingImage").html('Oh noes, something has gone wrong!');
             }
         });
     }
@@ -480,14 +480,24 @@ function lastSeen() {
 
     return 0;
 }
+function startLoading(frame) {
+    $("#LoadingIndicator").show();
+}
 
-
-
+function finishedLoading() {
+    $("#LoadingIndicator").hide();
+}
+slideshow.onload=finishedLoading;
 //Updates elements of the page that change as.
 function updateAll(frame) {
     currentFrame = frame;
+    startLoading(frame)
     nextslideindex = frame;
-    slideshow.src = images[frame];
+    if(!$('#showFrameDiff').is(':checked') && !$('#showDiff').is(':checked'))
+    {
+        slideshow.src="";
+        slideshow.src = images[frame];
+    }
     slider.value=frame;
 
     if( frame > lastSeen() ) {
