@@ -448,12 +448,12 @@ $('#showDiff').click(function() {
         $('#slideshow').addClass('hidden');
         $('#canvas3').removeClass('hidden');
         $('#showlong').addClass('hidden');
-        $('#actuallink').attr("size", "65")
+        $('#actuallink').attr("size", "63")
     } else {
         $('#slideshow').removeClass('hidden');
         $('#canvas3').addClass('hidden');
         $('#showlong').removeClass('hidden');
-        $('#actuallink').attr("size", "50")
+        $('#actuallink').attr("size", "48")
     }
     updateAll(currentFrame)
 });
@@ -530,6 +530,12 @@ function updateAll(frame) {
         var from = $('#freezeframe').val();
         diff(from);
         displayURL(frame, 'long', from);
+    }
+    
+    if(BrowserDetect.browser == "Firefox") {
+        $('#ffslider').slider({
+            value: frame
+        });
     }
 }
 
