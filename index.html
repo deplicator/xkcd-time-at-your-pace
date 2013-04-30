@@ -36,9 +36,10 @@
             </canvas>
         </div>
         <div id="belowpic">
-            <input id="showFrameDiff" type="checkbox">Image Difference From Frame<input id="freezeframe" type="text"><br>
-            <input id="showDiff" type="checkbox">Previous Frame Difference
+            <input name="difftype" value="none" type="radio" checked/>Normal<br/>
             <span id="frameNum"></span>
+            <input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/><br/>
+            <input name="difftype" value="prev" type="radio"/>Previous Frame Difference
         </div>
         
         <input id="slider" type="range" min="1" max="1" value="1" step="1" name="framslider"></input>
