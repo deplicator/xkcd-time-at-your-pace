@@ -37,7 +37,10 @@ if(vars.frame) {
 var framediff;
 if(vars.framediff) {
     framediff = parseInt(vars.framediff);
-    $('#showFrameDiff').prop('checked', true);
+    if(framediff==frame-1)
+        $("input[name='difftype'][value='prev']").attr("checked","checked");
+    else
+        $("input[name='difftype'][value='freeze']").attr("checked","checked");
     $('#freezeframe').val(framediff);
     $('#slideshow').addClass('hidden');
     $('#canvas3').removeClass('hidden');
