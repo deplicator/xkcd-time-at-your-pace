@@ -51,6 +51,7 @@ function drawDiffImage() {
     }
 
     ctx3.putImageData(imageData, 0, 0);
+    finishedLoading();
 }
 
 /*
