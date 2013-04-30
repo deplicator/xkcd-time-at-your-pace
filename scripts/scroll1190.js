@@ -457,6 +457,7 @@ $("input[name='difftype']").change(function() {
     updateAll(currentFrame)
 });
 
+$("#freezeframe").prop('disabled',true)
 $("#freezeframe").change(function () {
     updateAll(currentFrame)
 });
