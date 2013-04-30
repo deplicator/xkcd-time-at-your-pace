@@ -37,7 +37,7 @@ function drawDiffImage() {
     var data1 = ctx1.getImageData(0, 0, c1.width, c1.height).data;
     var data2 = ctx2.getImageData(0, 0, c2.width, c2.height).data;
 
-    var imageData = ctx3.getImageData(0, 0, c3.width, c3.height);
+    var imageData = ctx3.createImageData(c3.width,c3.height);
     var data3 = imageData.data;
 
     for(var i = 0, n = data1.length; i < n; i += 4) {

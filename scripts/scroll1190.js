@@ -8,7 +8,7 @@ var bitlydata = null;
 var imageslen = 0;
 var nextslideindex = 1;
 var scrollhere=document.getElementById("scrollhere")
-var slideshow=document.getElementById("slideshow")
+var slideshow=new Image()
 var slider = document.getElementById("slider")
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
@@ -39,8 +39,6 @@ if(vars.framediff) {
     framediff = parseInt(vars.framediff);
     $('#showFrameDiff').prop('checked', true);
     $('#freezeframe').val(framediff);
-    $('#slideshow').addClass('hidden');
-    $('#canvas3').removeClass('hidden');
     updateAll(frame);
 } else {
     framediff = 1;
@@ -445,13 +443,9 @@ $('#urlCheckBox').click(function() {
 $('#showDiff').click(function() {
     if($('#showDiff').is(':checked')) {
         $('#showFrameDiff').prop('checked', false);
-        $('#slideshow').addClass('hidden');
-        $('#canvas3').removeClass('hidden');
         $('#showlong').addClass('hidden');
         $('#actuallink').attr("size", "63")
     } else {
-        $('#slideshow').removeClass('hidden');
-        $('#canvas3').addClass('hidden');
         $('#showlong').removeClass('hidden');
         $('#actuallink').attr("size", "48")
     }
@@ -463,13 +457,9 @@ $('#showFrameDiff').click(function() {
     if($('#showFrameDiff').is(':checked')) {
         $('#showDiff').prop('checked', false);
         $('#freezeframe').val(currentFrame);
-        $('#slideshow').addClass('hidden');
-        $('#canvas3').removeClass('hidden');
         $('#showlong').addClass('hidden');
         $('#actuallink').attr("size", "65")
     } else {
-        $('#slideshow').removeClass('hidden');
-        $('#canvas3').addClass('hidden');
         $('#showlong').removeClass('hidden');
         $('#actuallink').attr("size", "50")
     }
@@ -497,7 +487,10 @@ function startLoading(frame) {
 function finishedLoading() {
     $("#LoadingIndicator").hide();
 }
-slideshow.onload=finishedLoading;
+slideshow.onload=function() {
+    ctx3.drawImage(slideshow,0,0);
+    finishedLoading();
+};
 //Updates elements of the page that change as.
 function updateAll(frame) {
     currentFrame = frame;
