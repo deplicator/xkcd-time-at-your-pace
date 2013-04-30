@@ -8,7 +8,7 @@ var bitlydata = null;
 var imageslen = 0;
 var nextslideindex = 1;
 var scrollhere=document.getElementById("scrollhere")
-var slideshow=document.getElementById("slideshow")
+var slideshow=new Image()
 var slider = document.getElementById("slider")
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
@@ -35,16 +35,21 @@ if(vars.frame) {
     frame = 1;
 }
 var framediff;
+var difftype="none"
+
 if(vars.framediff) {
     framediff = parseInt(vars.framediff);
     if(framediff==frame-1)
+    {
+        difftype="prev"
         $("input[name='difftype'][value='prev']").attr("checked","checked");
-    else
+    }
+    else{
+        difftype="freeze"
         $("input[name='difftype'][value='freeze']").attr("checked","checked");
+    }
     $('#freezeframe').val(framediff);
-    $('#slideshow').addClass('hidden');
-    $('#canvas3').removeClass('hidden');
-    updateAll(frame);
+    //updateAll(frame);
 } else {
     framediff = 1;
 }
@@ -444,7 +449,7 @@ $('#urlCheckBox').click(function() {
     }
 });
 
-var difftype="none"
+
 $("input[name='difftype']").change(function() {
     difftype = $(this).val();
     $("#freezeframe").prop('disabled', difftype!="freeze"); 
@@ -459,6 +464,7 @@ $("input[name='difftype']").change(function() {
 
 $("#freezeframe").prop('disabled',true)
 $("#freezeframe").change(function () {
+
     updateAll(currentFrame)
 });
 $('#lastSeen').click(function() {
@@ -482,7 +488,10 @@ function startLoading(frame) {
 function finishedLoading() {
     $("#LoadingIndicator").hide();
 }
-slideshow.onload=finishedLoading;
+slideshow.onload=function() {
+    ctx3.drawImage(slideshow,0,0);
+    finishedLoading();
+};
 //Updates elements of the page that change as.
 function updateAll(frame) {
     currentFrame = frame;

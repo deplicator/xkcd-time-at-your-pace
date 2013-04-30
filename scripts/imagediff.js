@@ -37,7 +37,7 @@ function drawDiffImage() {
     var data1 = ctx1.getImageData(0, 0, c1.width, c1.height).data;
     var data2 = ctx2.getImageData(0, 0, c2.width, c2.height).data;
 
-    var imageData = ctx3.getImageData(0, 0, c3.width, c3.height);
+    var imageData = ctx3.createImageData(c3.width,c3.height);
     var data3 = imageData.data;
 
     for(var i = 0, n = data1.length; i < n; i += 4) {
@@ -74,13 +74,13 @@ function diff(frame) {
     } else {
         //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
         img1.src = ""; //to fix a webkit "bug" -> https://code.google.com/p/chromium/issues/detail?id=7731#c12
-        //img1.src = 'images/'+images[prevFrame].replace(/.*\//, '');
-        img1.src = 'images/'+prevFrame+'.png';
+        img1.src = 'images/'+images[prevFrame].replace(/.*\//, '');
+        //img1.src = 'images/'+prevFrame+'.png';
     }
 
     img2.src="" // see above
-    //img2.src='images/' + images[currentFrame].replace(/.*\//, '');
-    img2.src='images/' + currentFrame + '.png';
+    img2.src='images/' + images[currentFrame].replace(/.*\//, '');
+    //img2.src='images/' + currentFrame + '.png';
 }
 
 
