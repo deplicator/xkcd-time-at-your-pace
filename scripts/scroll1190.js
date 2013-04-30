@@ -457,6 +457,9 @@ $("input[name='difftype']").change(function() {
     updateAll(currentFrame)
 });
 
+$("#freezeframe").change(function () {
+    updateAll(currentFrame)
+});
 $('#lastSeen').click(function() {
     updateAll(lastSeen());
 });
@@ -491,7 +494,7 @@ function updateAll(frame) {
         expire.setFullYear( expire.getFullYear() + 1 );
         document.cookie = 'lastSeen=' + frame + '; expires=' + expire.toGMTString();
     }
-
+    console.log(difftype);
     $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
     if(difftype=="prev") {
         diff();
