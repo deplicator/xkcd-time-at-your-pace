@@ -441,38 +441,16 @@ $('#urlCheckBox').click(function() {
     }
 });
 
-//Clicking on showdiff check box.
-$('#showDiff').click(function() {
-    if($('#showDiff').is(':checked')) {
-        $('#showFrameDiff').prop('checked', false);
-        $('#slideshow').addClass('hidden');
-        $('#canvas3').removeClass('hidden');
-        $('#showlong').addClass('hidden');
-        $('#actuallink').attr("size", "63")
-    } else {
-        $('#slideshow').removeClass('hidden');
-        $('#canvas3').addClass('hidden');
-        $('#showlong').removeClass('hidden');
-        $('#actuallink').attr("size", "48")
-    }
-    updateAll(currentFrame)
-});
-
-//Image Diffrence from frame checkbox
-$('#showFrameDiff').click(function() {
-    if($('#showFrameDiff').is(':checked')) {
-        $('#showDiff').prop('checked', false);
-        $('#freezeframe').val(currentFrame);
-        $('#slideshow').addClass('hidden');
-        $('#canvas3').removeClass('hidden');
-        $('#showlong').addClass('hidden');
-        $('#actuallink').attr("size", "65")
-    } else {
-        $('#slideshow').removeClass('hidden');
-        $('#canvas3').addClass('hidden');
-        $('#showlong').removeClass('hidden');
-        $('#actuallink').attr("size", "50")
-    }
+var difftype="none"
+$("input[name='difftype']").change(function() {
+    difftype = $(this).val();
+    $("#freezeframe").prop('disabled', difftype!="freeze"); 
+    //difftype!=none=>freeze or prev selected => we only allow long url
+    $("#urlCheckBox").prop('disabled', difftype!="none");  
+    if(difftype!="none")
+        $('#urlCheckBox').prop('checked', true);
+    else
+        $("#freezeframe").val("");
     updateAll(currentFrame)
 });
 
@@ -503,11 +481,6 @@ function updateAll(frame) {
     currentFrame = frame;
     startLoading(frame)
     nextslideindex = frame;
-    if(!$('#showFrameDiff').is(':checked') && !$('#showDiff').is(':checked'))
-    {
-        slideshow.src="";
-        slideshow.src = images[frame];
-    }
     slider.value=frame;
 
     if( frame > lastSeen() ) {
@@ -517,19 +490,24 @@ function updateAll(frame) {
     }
 
     $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
-    if(!$('#urlCheckBox').is(':checked')) {
-        displayURL(frame, 'short');
-    } else {
-        displayURL(frame, 'long');
-    }
-    if($('#showDiff').is(':checked')) {
+    if(difftype=="prev") {
         diff();
         displayURL(frame, 'long', frame-1);
+        $('#freezeframe').val(frame-1)
     }
-    if($('#showFrameDiff').is(':checked')) {
-        var from = $('#freezeframe').val();
+    else if(difftype=="freeze") {
+        var from = parseInt($('#freezeframe').val());
         diff(from);
         displayURL(frame, 'long', from);
+    }
+    else {
+        if(!$('#urlCheckBox').is(':checked')) {
+            displayURL(frame, 'short');
+        } else {
+            displayURL(frame, 'long');
+        }
+        slideshow.src="";
+        slideshow.src = images[frame]
     }
     
     if(BrowserDetect.browser == "Firefox") {
