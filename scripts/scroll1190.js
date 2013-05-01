@@ -1,6 +1,12 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true */
 /*global $, BrowserDetect, ctx3, diff: false */
 
+//Fix console.log for IE
+if (typeof console === "undefined" || typeof console.log === "undefined") {
+    console = {};
+    console.log = function () {};
+}
+
 
 /*
  * Makes most of the magic happen, I'm not the greatest coder and I've tried to
