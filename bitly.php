@@ -52,8 +52,8 @@ if($bitlyCheck == False) { //if it was not found, make one and add it to the fil
     $shortURL = str_replace('\\', '', $shortURL);
     file_put_contents($file, $frame . ' ' . $shortURL . "\r\n", FILE_APPEND);
     
-    $eventtime = date("c");
-    file_put_contents('log.txt', $eventtime . " - Created bitly link for frame " . $frame . ": " . $shortURL . "\n", FILE_APPEND);
+    $eventtime = date("Y-m-d\tH:i:s");
+    file_put_contents('log.txt', $eventtime . "\tCreated bitly link for frame " . $frame . ", " . $shortURL . "\n", FILE_APPEND);
     
     echo $shortURL;
 }

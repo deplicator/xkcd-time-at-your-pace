@@ -1,7 +1,11 @@
 <?php
 /*
  * This uses the data.txt to recreate an image folder.
+ * Will overwrite images already in images folder.
+ * This can take a few minutes to run.
  */
+
+set_time_limit(0);
 
 function savePhoto($remoteImage, $isbn) {
     $ch = curl_init();
@@ -11,7 +15,7 @@ function savePhoto($remoteImage, $isbn) {
     $fileContents = curl_exec($ch);
     curl_close($ch);
     $newImg = imagecreatefromstring($fileContents);
-    return imagepng($newImg, "./test/".$isbn.'.png');
+    return imagepng($newImg, "./images/".$isbn.'.png');
 }
 
 $file = "data.txt";
