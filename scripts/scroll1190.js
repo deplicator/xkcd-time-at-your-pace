@@ -15,7 +15,6 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 var images = [];
 var bitlydata = null;
 var imageslen = 0;
-var nextslideindex = 1;
 var scrollhere = document.getElementById("scrollhere");
 var slideshow = new Image();
 var slider = document.getElementById("slider");
@@ -36,11 +35,11 @@ function getUrlVars() {
     return vars;
 }
 var vars = getUrlVars();
-var frame;
+var initialframe;
 if (vars.frame) {
-    frame = parseInt(vars.frame, 10);
+    initialframe = parseInt(vars.frame, 10);
 } else {
-    frame = 1;
+    initialframe = 1;
 }
 
 var framediff;
@@ -48,7 +47,7 @@ var difftype = "none";
 
 if (vars.framediff) {
     framediff = parseInt(vars.framediff, 10);
-    if (framediff == frame - 1) {
+    if (framediff == initialframe - 1) {
         difftype = "prev";
         $("input[name='difftype'][value='prev']").attr("checked", "checked");
     } else {
@@ -73,22 +72,14 @@ if (BrowserDetect.browser == "Firefox") {
         $('#ffslider').removeClass('hidden');
         $("#ffslider").slider({
             slide: function (event, ui) {
-                nextslideindex = $("#ffslider").slider("value");
+                var nextslideindex = $("#ffslider").slider("value");
                 updateAll(nextslideindex);
             }
         });
     });
-    $(document).ajaxComplete(function () {
-        if (frame > imageslen) {
-            frame = imageslen;
-        } else if (frame <= 1) {
-            frame = 1;
-        }
-        $("#ffslider").slider({max: imageslen});
-    });
 } else {
     slider.onchange = function () {
-        nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
+        var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
         updateAll(nextslideindex);
     };
 }
@@ -110,12 +101,15 @@ $.ajax({
         images = response.split('\n');
         slider.max = images.length - 1;
         imageslen = images.length;
-        if (frame >= imageslen) {
-            frame = imageslen - 1;
-        } else if (frame <= 1) {
-            frame = 1;
+        if (initialframe >= imageslen) {
+            currentFrame = imageslen - 1;
+        } else if (initialframe <= 1) {
+            currentFrame = 1;
         }
-        updateAll(frame);
+        if (BrowserDetect.browser == "Firefox") {
+            $("#ffslider").slider({max: imageslen});
+        }
+        updateAll(currentFrame);
     },
     error: function () {
         $("#LoadingImage").html('Oh noes, something has gone wrong!');
@@ -145,9 +139,8 @@ $.ajax({
 function rotateimage(e) {
     var evt = window.event || e; //equalize event object
     var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta; //delta returns +120 when wheel is scrolled up, -120 when scrolled down
-    nextslideindex = (delta <= -120) ? nextslideindex + 1 : nextslideindex - 1; //move image index forward or back, depending on whether wheel is scrolled down or up
+    var nextslideindex = (delta <= -120) ? currentFrame + 1 : currentFrame - 1; //move image index forward or back, depending on whether wheel is scrolled down or up
     nextslideindex = (nextslideindex < 1) ? images.length - 1  : (nextslideindex > images.length - 1) ? 1 : nextslideindex; //wrap image index around when it goes beyond lower and upper boundaries
-
     updateAll(nextslideindex);
 
     if (evt.preventDefault) {//disable default wheel action of scrolling page
@@ -208,9 +201,9 @@ if (BrowserDetect.browser != "Firefox") {
 var speed = 1000;
 var timer = $.timer(function () {
     //https://code.google.com/p/jquery-timer/
-    updateAll(nextslideindex);
-    nextslideindex++;
-    if (nextslideindex == imageslen) {
+    currentFrame++;
+    updateAll(currentFrame);
+    if (currentFrame == imageslen) {
         timer.stop();
         $('#speed').html('0 fps');
     }
@@ -249,13 +242,14 @@ $('#slow').click(function () {
 });
 
 function prevSlide() {
-    nextslideindex--;
+    var nextslideindex = currentFrame - 1;
     nextslideindex = (nextslideindex < 1) ? images.length - 1 : (nextslideindex > images.length - 1) ? 1 : nextslideindex;
     updateAll(nextslideindex);
 }
 $('#previous').click(prevSlide);
 
 function nextSlide() {
+    var nextslideindex = currentFrame + 1;
     if (nextslideindex == images.length - 1) {
         nextslideindex = 1;
     } else {
@@ -389,7 +383,6 @@ slideshow.onload = function () {
 function updateAll(frame) {
     currentFrame = frame;
     startLoading(frame);
-    nextslideindex = frame;
     slider.value = frame;
 
     if (frame > lastSeen()) {
