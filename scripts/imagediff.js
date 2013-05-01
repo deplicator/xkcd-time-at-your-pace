@@ -58,17 +58,17 @@ function drawDiffImage() {
  * Difference between two frames, if frame parameter not provided is shows difference from previous frame.
  */
 function diff(frame) {
-    img1loaded = false
-    img2loaded = false
-    
+    img1loaded = false;
+    img2loaded = false;
+    var prevFrame;
     if(!frame) {
-        var prevFrame = currentFrame-1;
+        prevFrame = currentFrame-1;
     } else {
-        var prevFrame = frame;
+        prevFrame = frame;
     }
-    
+
     if(prevFrame < 1) {
-        img1loaded = true
+        img1loaded = true;
         ctx1.fillStyle = "white";
         ctx1.fillRect(0,0,c1.width,c1.height);
     } else {
@@ -78,7 +78,7 @@ function diff(frame) {
         img1.src = 'images/'+prevFrame+'.png';
     }
 
-    img2.src="" // see above
+    img2.src=""; // see above
     //img2.src='images/' + images[currentFrame].replace(/.*\//, '');
     img2.src='images/' + currentFrame + '.png';
 }
