@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true */
-/*global $, BrowserDetect, ctx3, diff: false */
+/*global $, BrowserDetect, ctx3, diff,addWheelListener: false */
 
 //Fix console.log for IE
 if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -154,41 +154,6 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
     scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
 
-
-/*
- * Allows slider bar to move with mouse wheel.
- * http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
- * 
- */
-$('#slider').bind('mousewheel DOMMouseScroll', function (e) {
-    var delta = 0, element = $(this), value, result, oe;
-    oe = e.originalEvent; // for jQuery >=1.7
-    value = slider.value;
-
-    if (oe.wheelDelta) {
-        delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
-    }
-    if (oe.detail) {
-        delta = oe.detail * 1; //Really * 1 ?
-    }
-
-    value -= delta / 120;
-    if (value >= imageslen) {
-        value = imageslen - 1;
-    }
-    if (value < 1) {
-        value = 1;
-    }
-
-    if (value != slider.value)
-        updateAll(value); //Will update slider
-    if (e.preventDefault) {//disable default wheel action of scrolling page
-        e.preventDefault();
-    } else {
-        return false;
-    }
-});
-
 //Autoplay stuff
 var speed = 1000;
 var timer = $.timer(function () {
@@ -257,6 +222,20 @@ $(document).keydown(function (e) {
     }
 });
 
+/*
+ * Allows slider bar to move with mouse wheel.
+ */
+addWheelListener(slider, function (e) {
+    //Delta was allways = 3 in my tests with Firefox and Chrome. 
+    //Maybe we can use it to determine the speed, but for now we only scroll one frame.
+    var delta = e.deltaY != 0 ? e.deltaY : (e.deltaX != 0 ? e.deltaX : 0);
+    if (delta < 0) { //Up or left-Scroll
+        prevSlide();
+    } else if (delta > 0) { //Down or Right-Scroll
+        nextSlide();
+    }
+    e.preventDefault();
+});
 /* 
  * Get's short url from local source if available.
  * It should be noted the bitly links used here all go to geekwagon.net. Something to keep in mind
