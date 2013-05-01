@@ -87,23 +87,11 @@ $("#LoadingImage").show();
 
 
 
-if (BrowserDetect.browser == "Firefox") {
-    $.getScript('./scripts/jquery-ui-1.10.2.custom.min.js', function () {
-        $('#slider').addClass('hidden');
-        $('#ffslider').removeClass('hidden');
-        $("#ffslider").slider({
-            slide: function (event, ui) {
-                var nextslideindex = $("#ffslider").slider("value");
-                updateAll(nextslideindex);
-            }
-        });
-    });
-} else {
-    slider.onchange = function () {
-        var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
-        updateAll(nextslideindex);
-    };
-}
+slider.onchange = function () {
+    var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
+    updateAllWithoutSlider(nextslideindex);
+};
+
 
 $.ajax({
     url: "data.txt",
@@ -118,9 +106,6 @@ $.ajax({
             initialframe = imageslen - 1;
         } else if (initialframe <= 1) {
             initialframe = 1;
-        }
-        if (BrowserDetect.browser == "Firefox") {
-            $("#ffslider").slider({max: imageslen});
         }
         updateAll(initialframe);
     },
@@ -175,40 +160,34 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
  * http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
  * 
  */
-if (BrowserDetect.browser != "Firefox") {
-    $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
-        var delta = 0, element = $(this), value, result, oe;
-        oe = e.originalEvent; // for jQuery >=1.7
-        value = slider.value;
+$('#slider').bind('mousewheel DOMMouseScroll', function (e) {
+    var delta = 0, element = $(this), value, result, oe;
+    oe = e.originalEvent; // for jQuery >=1.7
+    value = slider.value;
 
-        if (oe.wheelDelta) {
-            delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
-        }
-        if (oe.detail) {
-            delta = oe.detail * 1;
-        }
+    if (oe.wheelDelta) {
+        delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
+    }
+    if (oe.detail) {
+        delta = oe.detail * 1; //Really * 1 ?
+    }
 
-        value -= delta / 120;
-        if (value >= imageslen) {
-            value = imageslen - 1;
-        }
-        if (value < 1) {
-            value = 1;
-        }
+    value -= delta / 120;
+    if (value >= imageslen) {
+        value = imageslen - 1;
+    }
+    if (value < 1) {
+        value = 1;
+    }
 
-        if (value != slider.value)
-            updateAll(value); //Will update slider
-        if (e.preventDefault) {//disable default wheel action of scrolling page
-            e.preventDefault();
-        } else {
-            return false;
-        }
-    });
-} else {
-    console.log('I\'m growing a dislike for FF');
-    //do something here later, for now FF users can live without scrolling over the slider.
-}
-
+    if (value != slider.value)
+        updateAll(value); //Will update slider
+    if (e.preventDefault) {//disable default wheel action of scrolling page
+        e.preventDefault();
+    } else {
+        return false;
+    }
+});
 
 //Autoplay stuff
 var speed = 1000;
@@ -379,10 +358,9 @@ slideshow.onload = function () {
 };
 
 //Updates elements of the page that change as.
-function updateAll(frame) {
+function updateAllWithoutSlider(frame) {
     currentFrame = frame;
     startLoading(frame);
-    slider.value = frame;
 
     if (frame > lastSeen()) {
         var expire = new Date();
@@ -409,14 +387,11 @@ function updateAll(frame) {
         slideshow.src = "";
         slideshow.src = images[frame];
     }
-
-    if (BrowserDetect.browser == "Firefox") {
-        $('#ffslider').slider({
-            value: frame
-        });
-    }
 }
-
+function updateAll(frame) {
+    slider.value = frame;
+    updateAllWithoutSlider(frame);
+}
 
 // Show and hide frames with text.
 $('#textframes h3').click(function () {
