@@ -1,6 +1,5 @@
-/*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4 */
-/*global $: false */
-/*global BrowserDetect: false */
+/*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true */
+/*global $, BrowserDetect, ctx3, diff: false */
 
 
 /*
@@ -103,7 +102,7 @@ $.ajax({
         $("#LoadingImage").html('');
         //console.log(response);
         images = response.split('\n');
-        slider.max  =images.length-1;
+        slider.max = images.length - 1;
         imageslen = images.length;
         if (frame >= imageslen) {
             frame = imageslen - 1;
@@ -121,7 +120,7 @@ $.ajax({
     url: "bitlydata.txt",
     daa: "text",
     success: function (response) {
-        bitlydata={};
+        bitlydata = {};
         var bitlylinks = response.split('\n'), breakitup, i;
         for (i = bitlylinks.length - 1; i >= 0; i--) {
             breakitup = bitlylinks[i].split(" ");
@@ -138,7 +137,7 @@ $.ajax({
 //Allow for mouse wheel scrolling of main event.
 //http://www.javascriptkit.com/javatutors/onmousewheel.shtml
 function rotateimage(e) {
-    var evt=window.event || e; //equalize event object
+    var evt = window.event || e; //equalize event object
     var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta; //delta returns +120 when wheel is scrolled up, -120 when scrolled down
     nextslideindex = (delta <= -120) ? nextslideindex + 1 : nextslideindex - 1; //move image index forward or back, depending on whether wheel is scrolled down or up
     nextslideindex = (nextslideindex < 1) ? images.length - 1  : (nextslideindex > images.length - 1) ? 1 : nextslideindex; //wrap image index around when it goes beyond lower and upper boundaries
@@ -151,9 +150,9 @@ function rotateimage(e) {
         return false;
     }
 }
-var mousewheelevt=(/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
+var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
 if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
-    scrollhere.attachEvent("on"+mousewheelevt, rotateimage);
+    scrollhere.attachEvent("on" + mousewheelevt, rotateimage);
 } else if (scrollhere.addEventListener) { //WC3 browsers
     scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
@@ -260,11 +259,10 @@ function nextSlide() {
 }
 $('#next').click(nextSlide);
 
-$(document).keydown(function (e){
+$(document).keydown(function (e) {
     if (e.which == 37) { //left-key-pressed
         prevSlide();
-    }
-    else if(e.which==39) { //right-key-pressed
+    } else if (e.which == 39) { //right-key-pressed
         nextSlide();
     }
 });
@@ -274,29 +272,27 @@ $(document).keydown(function (e){
  * It should be noted the bitly links used here all go to geekwagon.net. Something to keep in mind
  * if anyone sets this up on another domain.
  */
-function getBitlyURL(frame){
-    if(!bitlydata)
-    {
+function getBitlyURL(frame) {
+    if (!bitlydata) {
         $('#link input').val("Not yet loaded bitlydata.");
         return;
     }
 
-    if(frame > imageslen) {
+    if (frame > imageslen) {
         frame = imageslen;
-    } else if(frame <= 1) {
+    } else if (frame <= 1) {
         frame = 1;
     }
-    if(bitlydata[frame])
+    if (bitlydata[frame]) {
         $('#link input').val(bitlydata[frame]);
-    else
-    {
+    } else {
         $.ajax({
-            url: 'bitly.php?frame='+frame,
+            url: 'bitly.php?frame=' + frame,
             dataType: "text",
-            success: function(response) {
+            success: function (response) {
                 $('#link input').val(response);
             },
-            error: function() {
+            error: function () {
                 $("#LoadingImage").html('Oh noes, something has gone wrong!');
             }
         });
@@ -311,20 +307,20 @@ function getBitlyURL(frame){
  * "long" to use this parameter.
  */
 function displayURL(frame, how, from) {
-    if(how == 'short') {
+    if (how == 'short') {
         getBitlyURL(frame);
-    } else if(how == 'long') {
-        if(!from) {
-            $('#link input').val(site+'/?frame='+frame);
+    } else if (how == 'long') {
+        if (!from) {
+            $('#link input').val(site + '/?frame=' + frame);
         } else {
-            $('#link input').val(site+'/?frame='+frame+'&framediff='+from);
+            $('#link input').val(site + '/?frame=' + frame + '&framediff=' + from);
         }
     }
 }
 
 //Immediatly change url when url check box is clicked.
 $('#urlCheckBox').click(function () {
-    if(!$('#urlCheckBox').is(':checked')) {
+    if (!$('#urlCheckBox').is(':checked')) {
         displayURL(currentFrame, 'short');
     } else {
         displayURL(currentFrame, 'long');
@@ -334,13 +330,13 @@ $('#urlCheckBox').click(function () {
 
 $("input[name='difftype']").change(function () {
     difftype = $(this).val();
-    $("#freezeframe").prop('disabled', difftype!="freeze");
+    $("#freezeframe").prop('disabled', difftype != "freeze");
     //difftype!=none=>freeze or prev selected => we only allow long url
-    $("#urlCheckBox").prop('disabled', difftype!="none");
-    if(difftype == "freeze") {
+    $("#urlCheckBox").prop('disabled', difftype != "none");
+    if (difftype == "freeze") {
         $("#freezeframe").val(currentFrame);
     }
-    if(difftype != "none") {
+    if (difftype != "none") {
         $('#urlCheckBox').prop('checked', true);
     } else {
         $("#freezeframe").val("");
@@ -348,7 +344,7 @@ $("input[name='difftype']").change(function () {
     updateAll(currentFrame);
 });
 
-$("#freezeframe").prop('disabled', difftype!="freeze");
+$("#freezeframe").prop('disabled', difftype != "freeze");
 
 $("#freezeframe").change(function () {
     updateAll(currentFrame);
@@ -361,9 +357,11 @@ $('#lastSeen').click(function () {
 function lastSeen() {
     var i, m;
     var cookies = document.cookie.split(';');
-    for (i=0; i < cookies.length; ++i) {
-        m = cookies[i].match( /^lastSeen=(.*)/ );
-        if(m) return parseInt(m[1], 10);
+    for (i = 0; i < cookies.length; ++i) {
+        m = cookies[i].match(/^lastSeen=(.*)/);
+        if (m) {
+            return parseInt(m[1], 10);
+        }
     }
     return 0;
 }
@@ -376,8 +374,8 @@ function finishedLoading() {
     $("#LoadingIndicator").hide();
 }
 
-slideshow.onload=function() {
-    ctx3.drawImage(slideshow,0,0);
+slideshow.onload = function () {
+    ctx3.drawImage(slideshow, 0, 0);
     finishedLoading();
 };
 
@@ -386,35 +384,35 @@ function updateAll(frame) {
     currentFrame = frame;
     startLoading(frame);
     nextslideindex = frame;
-    slider.value=frame;
+    slider.value = frame;
 
-    if( frame > lastSeen() ) {
+    if (frame > lastSeen()) {
         var expire = new Date();
-        expire.setFullYear( expire.getFullYear() + 1 );
+        expire.setFullYear(expire.getFullYear() + 1);
         document.cookie = 'lastSeen=' + frame + '; expires=' + expire.toGMTString();
     }
 
     $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
 
-    if(difftype=="prev") {
+    if (difftype == "prev") {
         diff();
-        displayURL(frame, 'long', frame-1);
-        $('#freezeframe').val(frame-1);
-    } else if(difftype=="freeze") {
+        displayURL(frame, 'long', frame - 1);
+        $('#freezeframe').val(frame - 1);
+    } else if (difftype == "freeze") {
         var from = parseInt($('#freezeframe').val(), 10);
         diff(from);
         displayURL(frame, 'long', from);
     } else {
-        if(!$('#urlCheckBox').is(':checked')) {
+        if (!$('#urlCheckBox').is(':checked')) {
             displayURL(frame, 'short');
         } else {
             displayURL(frame, 'long');
         }
-        slideshow.src="";
+        slideshow.src = "";
         slideshow.src = images[frame];
     }
 
-    if(BrowserDetect.browser == "Firefox") {
+    if (BrowserDetect.browser == "Firefox") {
         $('#ffslider').slider({
             value: frame
         });
@@ -423,8 +421,8 @@ function updateAll(frame) {
 
 
 // Show and hide frames with text.
-$('#textframes h3').click(function() {
-    $('#textframes ul').slideToggle('slow', function() {
+$('#textframes h3').click(function () {
+    $('#textframes ul').slideToggle('slow', function () {
         console.log('something');
     });
 });
