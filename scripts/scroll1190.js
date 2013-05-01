@@ -3,6 +3,7 @@
  * give credit where it is due.
  */
 
+var specialframes = [52, 170, 175, 320, 408, 414, 486, 487, 488, 490, 562, 563, 564, 637, 638, 640, 641, 642, 659, 660, 661, 832, 833, 834, 835, 838, 839, 855, 856, 857, 859, 860, 861, 862, 864, 865, 985, 1004, 1006];
 var images = [];
 var bitlydata = null;
 var imageslen = 0;
@@ -55,6 +56,16 @@ if(vars.framediff) {
 }
 
 $("#LoadingImage").show();
+
+
+
+/*
+ * Add the special-frames to the html
+ */
+
+for (var i=0; i<specialframes.length;i++) {
+    $('#textframelist').append('<li><a href="./?frame='+specialframes[i]+'"><img src="./images/'+specialframes[i]+'.png" alt=""></a></li>');
+}
 
 /*
  * Browser detect http://www.quirksmode.org/js/detect.html
