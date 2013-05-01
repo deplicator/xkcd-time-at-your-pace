@@ -211,7 +211,7 @@ $('#previous').click(prevSlide);
 
 function nextSlide() {
     var nextslideindex = currentFrame + 1;
-    if (nextslideindex == images.length - 1) {
+    if (nextslideindex >= images.length) {
         nextslideindex = 1;
     }
     updateAll(nextslideindex);
