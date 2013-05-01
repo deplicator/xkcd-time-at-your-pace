@@ -93,6 +93,10 @@ slider.onchange = function () {
 };
 
 
+/*
+ * Loaded data.txt 
+ * Now we know how many images exists and can check the selected initialframe.
+ */
 $.ajax({
     url: "data.txt",
     dataType: "text",
@@ -368,7 +372,10 @@ function updateAllWithoutSlider(frame) {
     }
 }
 function updateAll(frame) {
-    slider.value = frame;
+    console.log("frame="+frame)
+    console.log("before slider.value="+slider.value)
+    slider.value = parseInt(frame);
+    console.log("after slider.value="+slider.value)
     updateAllWithoutSlider(frame);
 }
 
