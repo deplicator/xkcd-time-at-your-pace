@@ -372,10 +372,7 @@ function updateAllWithoutSlider(frame) {
     }
 }
 function updateAll(frame) {
-    console.log("frame="+frame)
-    console.log("before slider.value="+slider.value)
-    slider.value = parseInt(frame);
-    console.log("after slider.value="+slider.value)
+    slider.value = frame;
     updateAllWithoutSlider(frame);
 }
 
