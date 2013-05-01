@@ -21,6 +21,24 @@ var slider = document.getElementById("slider");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
 var currentFrame = 1;
+var initialframe;
+
+
+
+function lastSeen() {
+    var i, m;
+    var cookies = document.cookie.split(';');
+    for (i = 0; i < cookies.length; ++i) {
+        m = cookies[i].match(/^lastSeen=(.*)/);
+        if (m) {
+            return parseInt(m[1], 10);
+        }
+    }
+    return 0;
+}
+if (lastSeen() > 1) {
+    $('#lastSeen').show();
+}
 
 //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
 // Read a page's GET URL variables and return them as an associative array.
@@ -35,11 +53,14 @@ function getUrlVars() {
     return vars;
 }
 var vars = getUrlVars();
-var initialframe;
 if (vars.frame) {
     initialframe = parseInt(vars.frame, 10);
 } else {
-    initialframe = 1;
+    if (lastSeen() > 1) {
+        initialframe = lastSeen();
+    } else {
+        initialframe = 1;
+    }
 }
 
 var framediff;
@@ -84,14 +105,6 @@ if (BrowserDetect.browser == "Firefox") {
     };
 }
 
-$(document).ajaxComplete(function () {
-    if (lastSeen() > 1) {
-        $('#lastSeen').show();
-        updateAll(lastSeen());
-        nextslideindex = lastSeen() + 1;
-    }
-});
-
 $.ajax({
     url: "data.txt",
     dataType: "text",
@@ -102,14 +115,14 @@ $.ajax({
         slider.max = images.length - 1;
         imageslen = images.length;
         if (initialframe >= imageslen) {
-            currentFrame = imageslen - 1;
+            initialframe = imageslen - 1;
         } else if (initialframe <= 1) {
-            currentFrame = 1;
+            initialframe = 1;
         }
         if (BrowserDetect.browser == "Firefox") {
             $("#ffslider").slider({max: imageslen});
         }
-        updateAll(currentFrame);
+        updateAll(initialframe);
     },
     error: function () {
         $("#LoadingImage").html('Oh noes, something has gone wrong!');
@@ -252,8 +265,6 @@ function nextSlide() {
     var nextslideindex = currentFrame + 1;
     if (nextslideindex == images.length - 1) {
         nextslideindex = 1;
-    } else {
-        nextslideindex++;
     }
     updateAll(nextslideindex);
 }
@@ -353,18 +364,6 @@ $("#freezeframe").change(function () {
 $('#lastSeen').click(function () {
     updateAll(lastSeen());
 });
-
-function lastSeen() {
-    var i, m;
-    var cookies = document.cookie.split(';');
-    for (i = 0; i < cookies.length; ++i) {
-        m = cookies[i].match(/^lastSeen=(.*)/);
-        if (m) {
-            return parseInt(m[1], 10);
-        }
-    }
-    return 0;
-}
 
 function startLoading(frame) {
     $("#LoadingIndicator").show();
