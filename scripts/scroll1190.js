@@ -32,7 +32,12 @@ var frame;
 if(vars.frame) {
     frame = parseInt(vars.frame);
 } else {
-    frame = 1;
+     if (lastSeen() > 1) {
+        $('#lastSeen').show();
+        frame = lastSeen();
+    } else {
+        frame = 1;
+    }
 }
 
 var framediff;
@@ -205,14 +210,6 @@ if(BrowserDetect.browser == "Firefox") {
         updateAll(nextslideindex)
     }
 }
-
-$(document).ajaxComplete(function() {
-    if (lastSeen() > 1) {
-        $('#lastSeen').show();
-        updateAll(lastSeen());
-        nextslideindex = lastSeen() + 1;
-    }
-});
 
 $.ajax({
     url: "data.txt",
