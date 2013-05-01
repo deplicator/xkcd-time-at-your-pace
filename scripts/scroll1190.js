@@ -34,22 +34,22 @@ if(vars.frame) {
 } else {
     frame = 1;
 }
+
 var framediff;
 var difftype="none"
 
 if(vars.framediff) {
     framediff = parseInt(vars.framediff);
-    if(framediff==frame-1)
-    {
+    if(framediff == frame-1) {
         difftype="prev"
         $("input[name='difftype'][value='prev']").attr("checked","checked");
-    }
-    else{
+    } else {
         difftype="freeze"
+        $("#freezeframe").prop('disabled', false); 
         $("input[name='difftype'][value='freeze']").attr("checked","checked");
     }
+    $("#urlCheckBox").prop('disabled', difftype!="none");
     $('#freezeframe').val(framediff);
-    //updateAll(frame);
 } else {
     framediff = 1;
 }
@@ -192,14 +192,13 @@ if(BrowserDetect.browser == "Firefox") {
         });
     });
     $(document).ajaxComplete(function() {
-    if(frame > imageslen) {
-            frame = imageslen;
-        } else if(frame <= 1) {
-            frame = 1;
-        }
-    $("#ffslider").slider({max:imageslen});
-});
-
+        if(frame > imageslen) {
+                frame = imageslen;
+            } else if(frame <= 1) {
+                frame = 1;
+            }
+        $("#ffslider").slider({max:imageslen});
+    });
 } else {
     slider.onchange=function() {
         nextslideindex=parseInt(slider.value) || 1 //Yes, that value is a String.
@@ -207,9 +206,11 @@ if(BrowserDetect.browser == "Firefox") {
     }
 }
 
-$(function() {
+$(document).ajaxComplete(function() {
     if (lastSeen() > 1) {
         $('#lastSeen').show();
+        updateAll(lastSeen());
+        nextslideindex = lastSeen() + 1;
     }
 });
 
@@ -452,21 +453,26 @@ $('#urlCheckBox').click(function() {
 
 $("input[name='difftype']").change(function() {
     difftype = $(this).val();
-    $("#freezeframe").prop('disabled', difftype!="freeze"); 
+    $("#freezeframe").prop('disabled', difftype!="freeze");
     //difftype!=none=>freeze or prev selected => we only allow long url
-    $("#urlCheckBox").prop('disabled', difftype!="none");  
-    if(difftype!="none")
+    $("#urlCheckBox").prop('disabled', difftype!="none");
+    if(difftype == "freeze") {
+        $("#freezeframe").val(currentFrame);
+    }
+    if(difftype != "none") {
         $('#urlCheckBox').prop('checked', true);
-    else
+    } else {
         $("#freezeframe").val("");
+    }
     updateAll(currentFrame)
 });
 
-$("#freezeframe").prop('disabled',true)
+$("#freezeframe").prop('disabled', difftype!="freeze");
+
 $("#freezeframe").change(function () {
-
-    updateAll(currentFrame)
+    updateAll(currentFrame);
 });
+
 $('#lastSeen').click(function() {
     updateAll(lastSeen());
 });
@@ -476,11 +482,11 @@ function lastSeen() {
     var cookies = document.cookie.split(';');
     for( var i=0; i < cookies.length; ++i ) {
         var m = cookies[i].match( /^lastSeen=(.*)/ );
-        if(m) return m[1];
+        if(m) return parseInt(m[1]);
     }
-
     return 0;
 }
+
 function startLoading(frame) {
     $("#LoadingIndicator").show();
 }
@@ -488,10 +494,12 @@ function startLoading(frame) {
 function finishedLoading() {
     $("#LoadingIndicator").hide();
 }
+
 slideshow.onload=function() {
     ctx3.drawImage(slideshow,0,0);
     finishedLoading();
 };
+
 //Updates elements of the page that change as.
 function updateAll(frame) {
     currentFrame = frame;
@@ -504,18 +512,18 @@ function updateAll(frame) {
         expire.setFullYear( expire.getFullYear() + 1 );
         document.cookie = 'lastSeen=' + frame + '; expires=' + expire.toGMTString();
     }
+    
     $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
+    
     if(difftype=="prev") {
         diff();
         displayURL(frame, 'long', frame-1);
         $('#freezeframe').val(frame-1)
-    }
-    else if(difftype=="freeze") {
+    } else if(difftype=="freeze") {
         var from = parseInt($('#freezeframe').val());
         diff(from);
         displayURL(frame, 'long', from);
-    }
-    else {
+    } else {
         if(!$('#urlCheckBox').is(':checked')) {
             displayURL(frame, 'short');
         } else {
@@ -533,6 +541,12 @@ function updateAll(frame) {
 }
 
 
+// Show and hide frames with text.
+$('#textframes h3').click(function() {
+    $('#textframes ul').slideToggle('slow', function() {
+        console.log('something');
+    });
+})
 
 
 

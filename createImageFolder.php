@@ -4,7 +4,7 @@
  * Will overwrite images already in images folder.
  * This can take a few minutes to run.
  */
-
+header('Content-Type: text/plain');
 set_time_limit(0);
 
 function savePhoto($remoteImage, $isbn) {
@@ -26,4 +26,5 @@ foreach ($data as $piclink) {
     $pic = explode('/',$piclink);
     savePhoto($piclink, $count);
     $count++;
+    echo $count . ".png created.";
 }

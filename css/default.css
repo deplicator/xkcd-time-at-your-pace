@@ -59,7 +59,8 @@ li {
 
 #controls {
     text-align: left;
-    margin: 0 0 0 23px;
+    margin: 0 auto;
+    width: 554px;
 }
 
 #controls input{
@@ -68,7 +69,7 @@ li {
 }
 
 #step {
-    margin: 0 0 0 35px;
+    float: right;
 }
 
 #tehmainevent {
@@ -133,8 +134,15 @@ footer {
     width: 901px;
 }
 
+#textframes h3{
+    background: url('expand_arrow_down.png') no-repeat left;
+    margin: 0 0 0 10px;
+    padding-left: 24px;
+}
+
 #textframes ul {
     margin: 0 4px;
+    display: none;
 }
 
 #textframes li{
@@ -163,7 +171,12 @@ footer {
 
 #frameNum {
     float: right;
-    margin: -18px 0 0 0;
+    margin: -31px 0 0 0;
+}
+
+#LoadingIndicator {
+    float: right;
+    margin: -17px 0 0 0;
 }
 
 #scrollhere {
