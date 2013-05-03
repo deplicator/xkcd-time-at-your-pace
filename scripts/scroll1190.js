@@ -267,10 +267,7 @@ $(document).keydown(function (e) {
     }
 });
 
-/*
- * Allows slider bar to move with mouse wheel.
- */
-addWheelListener(slider, function (e) {
+function scrollHandler(e) {
     //Delta was allways = 3 in my tests with Firefox and Chrome. 
     //Maybe we can use it to determine the speed, but for now we only scroll one frame.
     var delta = e.deltaY != 0 ? e.deltaY : (e.deltaX != 0 ? e.deltaX : 0);
@@ -280,7 +277,13 @@ addWheelListener(slider, function (e) {
         nextSlide();
     }
     e.preventDefault();
-});
+}
+/*
+ * Attach same Handler to slider and image
+ */
+addWheelListener(slider, scrollHandler);
+addWheelListener(scrollhere, scrollHandler);
+
 /* 
  * Get's short url from local source if available.
  * It should be noted the bitly links used here all go to geekwagon.net. Something to keep in mind
