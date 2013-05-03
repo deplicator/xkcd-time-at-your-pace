@@ -240,8 +240,9 @@ var timer = $.timer(function() {
     }
     currentFrame++;
     updateAll(currentFrame);
-    if (currentFrame == imageslen) {
+    if (currentFrame >= (imageslen-1)) {
         timer.stop();
+        $('#play').val("Play");
         $('#speed').html('0 fps');
     }
 });
@@ -249,6 +250,9 @@ var timer = $.timer(function() {
 $('#play').click(function () {
     if ($('#play').val() == "Play") {
         $('#play').val("Pause");
+        if (currentFrame >= (imageslen - 1)) {
+            updateAll(1);
+        }
         timer.set({ time : speed, autostart : true });
         $('#speed').html(fps.toFixed(2) + ' fps');
     } else {
