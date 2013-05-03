@@ -165,45 +165,6 @@ if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
     scrollhere.addEventListener(mousewheelevt, rotateimage, false);
 }
 
-/*
- * Allows slider bar to move with mouse wheel.
- * http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
- * 
- */
-if(BrowserDetect.browser != "Firefox") {
-    $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
-        var delta = 0, element = $(this), value, result, oe;
-        oe = e.originalEvent; // for jQuery >=1.7
-        value = slider.value;
-
-        if (oe.wheelDelta) {
-            delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
-        }
-        if (oe.detail) {
-            delta = oe.detail * 1;
-        }
-
-        value -= delta / 120;
-        if (value >= imageslen) {
-            value = imageslen-1;
-        }
-        if (value < 1) {
-            value = 1;
-        }
-
-        if(value!=slider.value)
-            updateAll(value) //Will update slider
-        if (e.preventDefault) //disable default wheel action of scrolling page
-            e.preventDefault()
-        else
-            return false
-    });
-} else {
-    console.log('I\'m growing a dislike for FF');
-    //do something here later, for now FF users can live without scrolling over the slider.
-}
-
-
 // Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
 function binary_search_iterative(a, value) {
     var lo = 0, hi = a.length - 1, mid;
