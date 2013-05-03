@@ -19,7 +19,7 @@ $frame = count($data);
 
 if(empty($newpic)) {
 	//if $newpic is empty, it probably could not access the site.
-	echo $eventtime . "\tCould not access http://imgs.xkcd.com/comics/time.png.";
+	echo $eventtime . "\tCould not access http://imgs.xkcd.com/comics/time.png.\n";
 	
 } else if($lastline != $newpic) {
 	//If the last line in data.txta and newpic do not match, put the new image link at the end.

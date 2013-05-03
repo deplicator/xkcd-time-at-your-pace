@@ -1,7 +1,6 @@
 @import url(reset.min.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
-@import url(./ui-lightness/jquery-ui-1.10.2.custom.min.css);
 
 html {
     background:#fdfdfd;
