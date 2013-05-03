@@ -143,28 +143,6 @@ $.ajax({
 
 });
 
-//Allow for mouse wheel scrolling of main event.
-//http://www.javascriptkit.com/javatutors/onmousewheel.shtml
-function rotateimage(e) {
-    var evt = window.event || e; //equalize event object
-    var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta; //delta returns +120 when wheel is scrolled up, -120 when scrolled down
-    var nextslideindex = (delta <= -120) ? currentFrame + 1 : currentFrame - 1; //move image index forward or back, depending on whether wheel is scrolled down or up
-    nextslideindex = (nextslideindex < 1) ? images.length - 1  : (nextslideindex > images.length - 1) ? 1 : nextslideindex; //wrap image index around when it goes beyond lower and upper boundaries
-    updateAll(nextslideindex);
-
-    if (evt.preventDefault) {//disable default wheel action of scrolling page
-        evt.preventDefault();
-    } else {
-        return false;
-    }
-}
-var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
-if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
-    scrollhere.attachEvent("on" + mousewheelevt, rotateimage);
-} else if (scrollhere.addEventListener) { //WC3 browsers
-    scrollhere.addEventListener(mousewheelevt, rotateimage, false);
-}
-
 // Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
 function binary_search_iterative(a, value) {
     var lo = 0, hi = a.length - 1, mid;
