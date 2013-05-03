@@ -88,7 +88,10 @@ if (vars.framediff) {
 
 $("#LoadingImage").show();
 
-slider.onchange = function () {
+/*
+ * The slider has been moved.
+ */
+slider.oninput = function () {
     var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
     updateAllWithoutSlider(nextslideindex);
 }
@@ -142,67 +145,6 @@ $.ajax({
     }
 
 });
-
-//Allow for mouse wheel scrolling of main event.
-//http://www.javascriptkit.com/javatutors/onmousewheel.shtml
-function rotateimage(e) {
-    var evt = window.event || e; //equalize event object
-    var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta; //delta returns +120 when wheel is scrolled up, -120 when scrolled down
-    var nextslideindex = (delta <= -120) ? currentFrame + 1 : currentFrame - 1; //move image index forward or back, depending on whether wheel is scrolled down or up
-    nextslideindex = (nextslideindex < 1) ? images.length - 1  : (nextslideindex > images.length - 1) ? 1 : nextslideindex; //wrap image index around when it goes beyond lower and upper boundaries
-    updateAll(nextslideindex);
-
-    if (evt.preventDefault) {//disable default wheel action of scrolling page
-        evt.preventDefault();
-    } else {
-        return false;
-    }
-}
-var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
-if (scrollhere.attachEvent) { //if IE (and Opera depending on user setting)
-    scrollhere.attachEvent("on" + mousewheelevt, rotateimage);
-} else if (scrollhere.addEventListener) { //WC3 browsers
-    scrollhere.addEventListener(mousewheelevt, rotateimage, false);
-}
-
-/*
- * Allows slider bar to move with mouse wheel.
- * http://stackoverflow.com/questions/3338364/jquery-unbinding-mousewheel-event-then-rebinding-it-after-actions-are-complete
- * 
- */
-if(BrowserDetect.browser != "Firefox") {
-    $('#slider').bind('mousewheel DOMMouseScroll', function (e) {
-        var delta = 0, element = $(this), value, result, oe;
-        oe = e.originalEvent; // for jQuery >=1.7
-        value = slider.value;
-
-        if (oe.wheelDelta) {
-            delta = oe.wheelDelta; //Now it moves the same as the image scroll because this value is not negative.
-        }
-        if (oe.detail) {
-            delta = oe.detail * 1;
-        }
-
-        value -= delta / 120;
-        if (value >= imageslen) {
-            value = imageslen-1;
-        }
-        if (value < 1) {
-            value = 1;
-        }
-
-        if(value!=slider.value)
-            updateAll(value) //Will update slider
-        if (e.preventDefault) //disable default wheel action of scrolling page
-            e.preventDefault()
-        else
-            return false
-    });
-} else {
-    console.log('I\'m growing a dislike for FF');
-    //do something here later, for now FF users can live without scrolling over the slider.
-}
-
 
 // Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
 function binary_search_iterative(a, value) {
@@ -306,10 +248,7 @@ $(document).keydown(function (e) {
     }
 });
 
-/*
- * Allows slider bar to move with mouse wheel.
- */
-addWheelListener(slider, function (e) {
+function scrollHandler(e) {
     //Delta was allways = 3 in my tests with Firefox and Chrome. 
     //Maybe we can use it to determine the speed, but for now we only scroll one frame.
     var delta = e.deltaY != 0 ? e.deltaY : (e.deltaX != 0 ? e.deltaX : 0);
@@ -319,7 +258,13 @@ addWheelListener(slider, function (e) {
         nextSlide();
     }
     e.preventDefault();
-});
+}
+/*
+ * Attach same Handler to slider and image
+ */
+addWheelListener(slider, scrollHandler);
+addWheelListener(scrollhere, scrollHandler);
+
 /* 
  * Get's short url from local source if available.
  * It should be noted the bitly links used here all go to geekwagon.net. Something to keep in mind
