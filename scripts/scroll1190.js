@@ -456,12 +456,9 @@ function updateAll(frame) {
     updateAllWithoutSlider(frame);
 }
 
-
 // Show and hide frames with text, can be moved to a ui only file
 $('#textframes h3').click(function () {
-    $('#textframes ul').slideToggle('slow', function () {
-        console.log('something');
-    });
+    $('#textframes ul').slideToggle('slow');
 });
 
 
