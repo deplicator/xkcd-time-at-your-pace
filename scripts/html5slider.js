@@ -2,7 +2,7 @@
 html5slider - a JS implementation of <input type=range> for Firefox 16 and up
 https://github.com/fryn/html5slider
 
-Copyright (c) 2010-2012 Frank Yan, <http://frankyan.com>
+Copyright (c) 2010-2013 Frank Yan, <http://frankyan.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -67,6 +67,8 @@ var options = {
   attributeFilter: ['min', 'max', 'step', 'value']
 };
 var forEach = Array.prototype.forEach;
+var onInput = document.createEvent('HTMLEvents');
+onInput.initEvent('input', true, false);
 var onChange = document.createEvent('HTMLEvents');
 onChange.initEvent('change', true, false);
 
@@ -122,24 +124,22 @@ function transform(slider) {
     value = '' + val;
     isValueSet = true;
     draw();
-    delete slider.value;
-    slider.value = value;
-    slider.__defineGetter__('value', getValue);
-    slider.__defineSetter__('value', setValue);
   };
-  slider.__defineGetter__('value', getValue);
-  slider.__defineSetter__('value', setValue);
-  slider.__defineGetter__('type', function() { return 'range'; });
+  Object.defineProperty(slider, 'value', {
+    get: getValue,
+    set: setValue
+  });
+  Object.defineProperty(slider, 'type', {
+    get: function() { return 'range'; }
+  });
 
   // sync properties with attributes
   ['min', 'max', 'step'].forEach(function(prop) {
     if (slider.hasAttribute(prop))
       areAttrsSet = true;
-    slider.__defineGetter__(prop, function() {
-      return this.hasAttribute(prop) ? this.getAttribute(prop) : '';
-    });
-    slider.__defineSetter__(prop, function(val) {
-      val === null ? this.removeAttribute(prop) : this.setAttribute(prop, val);
+    Object.defineProperty(slider, prop, {
+      get: function() { return this.hasAttribute(prop) ? this.getAttribute(prop) : ''; },
+      set: function(val) { val === null ? this.removeAttribute(prop) : this.setAttribute(prop, val);update(); }
     });
   });
 
@@ -204,6 +204,7 @@ function transform(slider) {
   function onDragEnd() {
     this.removeEventListener('mousemove', onDrag, true);
     this.removeEventListener('mouseup', onDragEnd, true);
+    slider.dispatchEvent(onChange);
   }
 
   function onKeyDown(e) {
@@ -258,7 +259,7 @@ function transform(slider) {
   function draw(attrsModified) {
     calc();
     if (isChanged && value != prevValue)
-      slider.dispatchEvent(onChange);
+      slider.dispatchEvent(onInput);
     isChanged = false;
     if (!attrsModified && value == prevValue)
       return;

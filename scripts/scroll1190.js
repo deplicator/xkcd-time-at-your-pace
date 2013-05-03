@@ -88,7 +88,10 @@ if (vars.framediff) {
 
 $("#LoadingImage").show();
 
-slider.onchange = function () {
+/*
+ * The slider has been moved.
+ */
+slider.oninput = function () {
     var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
     updateAllWithoutSlider(nextslideindex);
 }
