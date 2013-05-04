@@ -13,15 +13,17 @@ scroll1190.js pulls from the data.txt file and handles all the scrolling, slidin
 bitly.php grabs the shortened link from bitlydata.txt if there is one for that frame. Otherwise it makes a new shortened url and adds that to the text file.
 
 
-===Updates===
-====April 28, 2013====
-Started keep an update log, just in time too since the comic appears to be ending.
+===Features===
+====Previous Frame Difference====
+Shows the new pixels in green and removed pixels in red when compaired to previous frame.
 
-Made up a license file (I'm sure it's full of legal holes) that lets anyone (even the bogus interdimensional knowledge seeking Aliens from Indy 4) use this code for anything.
 
-Created an Interface branch to test new interface options.
+====Image Difference From Frame====
+Same as above, expcet shows difference from a chosen frame.
 
-Added "Image Difference From Frame" that lets the user see the differences between two frames that are not in sequential order. This feature is also linkable. The "link to this frame" textbox should also update to share image differenced link.
+====Share Links====
+The text box below the slide bar allows for linking directly to a frame. 
+
 A couple of examples:
 
 [http://geekwagon.net/projects/xkcd1190?frame=890&framediff=217 Shows increase in sealevel from maximum zoom to before fading]

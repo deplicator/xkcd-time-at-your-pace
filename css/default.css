@@ -67,6 +67,16 @@ li {
     height: 35px;
 }
 
+#PauseSpecialFrames {
+    font-size: 10px;
+}
+
+#PauseSpecialFrames  input{
+    height: 15px;
+    margin: 5px 0;
+    width: 35px;
+}
+
 #step {
     float: right;
 }
@@ -170,12 +180,12 @@ footer {
 
 #frameNum {
     float: right;
-    margin: -31px 0 0 0;
+    margin: -45px 0 0 0;
 }
 
 #LoadingIndicator {
     float: right;
-    margin: -17px 0 0 0;
+    margin: -31px 0 0 0;
 }
 
 #scrollhere {

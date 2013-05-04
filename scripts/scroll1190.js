@@ -7,7 +7,6 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
     console.log = function () {};
 }
 
-
 /*
  * Makes most of the magic happen, I'm not the greatest coder and I've tried to
  * give credit where it is due.
@@ -16,7 +15,7 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 562, 563, 564, 637, 638,
                      640, 641, 642, 659, 660, 661, 832, 833, 834, 835, 838, 839, 855, 856, 857, 859,
                      860, 861, 862, 864, 865, 985, 1004, 1006, 1018, 1024, 1025, 1041, 1042, 1044, 
-                     1045, 1049, 1050, 1052, 1053, 1058, 1068, 1067, 1069, 1071, 1072, 1073];
+                     1045, 1049, 1050, 1052, 1053, 1066, 1067, 1069, 1071, 1072, 1073];
 var images = [];
 var bitlydata = null;
 var imageslen = 0;
@@ -90,16 +89,18 @@ $("#LoadingImage").show();
 
 /*
  * The slider has been moved.
- */
+*/
 slider.oninput = function () {
     var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
     updateAllWithoutSlider(nextslideindex);
-}
+} 
+
 
 /*
  * Add the special-frames to the html
  */
-for (var i=0; i<specialframes.length;i++) {
+sflen = specialframes.length;
+for (var i = 0; i < sflen; i++) {
     $('#textframelist').append('<li><a href="./?frame='+specialframes[i]+'"><img src="./images/'+specialframes[i]+'.png" alt=""></a></li>');
 }
 
@@ -205,7 +206,7 @@ $('#play').click(function () {
 });
 
 $('#fast').click(function () {
-    speed -= 200;
+    speed -= 100;
     if (speed <= 0) {
         speed = 100;
     }
@@ -215,7 +216,7 @@ $('#fast').click(function () {
 });
 
 $('#slow').click(function () {
-    speed += 200;
+    speed += 100;
     if (speed >= 2000) {
         speed = 2000;
     }
@@ -395,7 +396,13 @@ function updateAllWithoutSlider(frame) {
         slideshow.src = "";
         slideshow.src = images[frame];
     }
+    
+    /* Preloading experiment */
+    for(i = frame; i < frame + 5; i++) {
+        $('#preload').html('<img src='+images[i]+'>');
+    }
 }
+
 function updateAll(frame) {
     slider.value = frame;
     updateAllWithoutSlider(frame);
