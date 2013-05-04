@@ -15,7 +15,7 @@ function predictFrames(frame) {
     var img, i;
 
     //Preload 5 frames forwards.
-    for (i = frame + 1; i < end; i++) {
+    for (i = frame + 1; i <= end; i++) {
         if (!preloadedImages[i]) {
             img = new Image();
             img.src = getFrameURL(i);
@@ -37,6 +37,7 @@ function predictFrames(frame) {
  * callback(frameNumber, Image-Object) will be called when the image is loaded.
  * Also this uses startLoading() and finishedLoading() to show the loading 
  * indicator.
+ * if doNotSignalFinishLoading is false it will not mark the loading as finished.
  */
 function preloadFrame(frame, callback, doNotSignalFinishLoading) {
     if (typeof frame !== "number") {
