@@ -73,4 +73,5 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
         };
         preloadedImages[frame].src = getFrameURL(frame);
     }
+    predictFrames(frame);
 }
