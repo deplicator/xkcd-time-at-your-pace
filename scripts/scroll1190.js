@@ -396,11 +396,6 @@ function updateAllWithoutSlider(frame) {
         slideshow.src = "";
         slideshow.src = images[frame];
     }
-    
-    /* Preloading experiment */
-    for(i = frame; i < frame + 5; i++) {
-        $('#preload').html('<img src='+images[i]+'>');
-    }
 }
 
 function updateAll(frame) {
