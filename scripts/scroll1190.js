@@ -1,5 +1,5 @@
-/*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true */
-/*global $, BrowserDetect, ctx3, diff,addWheelListener: false */
+/*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
+/*global $, BrowserDetect, ctx3, diff,addWheelListener, preloadFrame: false */
 
 //Fix console.log for IE
 if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -20,7 +20,6 @@ var images = [];
 var bitlydata = null;
 var imageslen = 0;
 var scrollhere = document.getElementById("scrollhere");
-var slideshow = new Image();
 var slider = document.getElementById("slider");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var fps = 1;
@@ -93,13 +92,13 @@ $("#LoadingImage").show();
 slider.oninput = function () {
     var nextslideindex = parseInt(slider.value, 10) || 1; //Yes, that value is a String.
     updateAllWithoutSlider(nextslideindex);
-} 
+};
 
 
 /*
  * Add the special-frames to the html
  */
-sflen = specialframes.length;
+var sflen = specialframes.length;
 for (var i = 0; i < sflen; i++) {
     $('#textframelist').append('<li><a href="./?frame='+specialframes[i]+'"><img src="./images/'+specialframes[i]+'.png" alt=""></a></li>');
 }
@@ -122,6 +121,7 @@ $.ajax({
         } else if (initialframe <= 1) {
             initialframe = 1;
         }
+        initPreloadingStatus(imageslen-1);
         updateAll(initialframe);
     },
     error: function () {
@@ -361,15 +361,16 @@ function finishedLoading() {
     $("#LoadingIndicator").hide();
 }
 
-slideshow.onload = function () {
-    ctx3.drawImage(slideshow, 0, 0);
-    finishedLoading();
-};
+function slideshowLoaded(frame, img) {
+    if (currentFrame == frame) {
+        ctx3.drawImage(img, 0, 0);
+    }
+}
 
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
     currentFrame = frame;
-    startLoading(frame);
+    //startLoading(frame);
 
     if (frame > lastSeen()) {
         var expire = new Date();
@@ -393,13 +394,7 @@ function updateAllWithoutSlider(frame) {
         } else {
             displayURL(frame, 'long');
         }
-        slideshow.src = "";
-        slideshow.src = images[frame];
-    }
-    
-    /* Preloading experiment */
-    for(i = frame; i < frame + 5; i++) {
-        $('#preload').html('<img src='+images[i]+'>');
+        preloadFrame(frame, slideshowLoaded);
     }
 }
 
