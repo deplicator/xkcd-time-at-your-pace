@@ -121,6 +121,7 @@ $.ajax({
         } else if (initialframe <= 1) {
             initialframe = 1;
         }
+        initPreloadingStatus(imageslen-1);
         updateAll(initialframe);
     },
     error: function () {

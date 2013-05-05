@@ -3,6 +3,9 @@
 <head>
     <title>XKCD Time - at your own pace</title>
     <link rel="stylesheet" href="css/default.css">
+    <script src="scripts/browserdetect.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery.timer.js"></script>
     <script src="scripts/analytic.js"></script>
     <script src="scripts/preload.js"></script>
     <script src="scripts/html5slider.js"></script>
@@ -44,7 +47,9 @@
             <span id="frameNum"></span>
             <span id="LoadingIndicator">Loading...</span>
         </div>
-        
+        <canvas id="preloadingStatus" width="500" height="0" title="Preloaded Frames">
+            <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
+        </canvas> <input type="button" value="Preload all!" id="preloadAllButton"/>
         <input id="slider" type="range" min="1" step="1" name="framslider"></input>
         <div id="link">
             <span><input id="actuallink" type="text" size="65" readonly><span id="showlong"><input id="urlCheckBox" type="checkbox">show long url</span></span>
@@ -76,9 +81,6 @@
     <canvas id="canvas1" width="553" height="395" style="display: none">Are you from the past?</canvas>
     <canvas id="canvas2" width="553" height="395" style="display: none">Are you from the past?</canvas>
     <div id="preload" style="position:absolute; top: -1000px;"></div>
-    <script src="scripts/browserdetect.js"></script>
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/jquery.timer.js"></script>
     <script src="scripts/imagediff.js"></script>
     <script src="scripts/scroll1190.js"></script>
 
