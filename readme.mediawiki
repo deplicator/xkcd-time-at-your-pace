@@ -3,26 +3,18 @@ __NOTOC__
 ==Description==
 Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way.
 
-===Details===
-get1190data.php checks for a new image and appends it to a file named data.txt. A cronjob is used at [http://geekwagon.net/projects/xkcd1190 geekwagon.net/projects/xkcd1190] to keep it updated. The data.txt file here will be out of date, an updated list of picture files can be found at [http://www.explainxkcd.com/wiki/index.php?title=1190#Frame_by_Frame_Breakdown Explain XKCD]. If/when this comic ends I'll do a final update for the data.txt file.
 
-The current version of get1190data.php also copies the image to an images folder.
-
-scroll1190.js pulls from the data.txt file and handles all the scrolling, sliding, and playing of the comic.
-
-bitly.php grabs the shortened link from bitlydata.txt if there is one for that frame. Otherwise it makes a new shortened url and adds that to the text file.
-
-
-===Features===
-====Previous Frame Difference====
+==Features==
+===Previous Frame Difference===
 Shows the new pixels in green and removed pixels in red when compaired to previous frame.
 
-
-====Image Difference From Frame====
+===Image Difference From Frame===
 Same as above, expcet shows difference from a chosen frame.
 
-====Share Links====
-The text box below the slide bar allows for linking directly to a frame. 
+===Share Links===
+The text box below the slide bar allows for linking directly to a frame. The short bitly link only works for a normal frame link.
+
+There is an option to link frame differences.
 
 A couple of examples:
 
@@ -32,13 +24,18 @@ A couple of examples:
 [http://geekwagon.net/projects/xkcd1190?frame=162&framediff=126 Shows scale difference before and after zoom]
  ?frame=162&framediff=126
 
-Made the "Frames with Text" section easier to read.
+===Special Frames===
+Most special frames are frames with text. The auto play now pauses for a user specifed amount of time on these frames.
 
-Made Firefox fall back to jQuery UI for slider since the HTML5Slider was causing issues. Firefox in general seems to be problematic; which surprises me becuase usually it's IE I can't stand (admittidly I did no testing for IE9 and below). This problem did help me find [http://www.quirksmode.org/js/detect.html this useful bit of code].
+There is a panel below the comic that can be opened to see all the special frames.
 
+This part is updated manually, so some of the latest special frames may not show up.
 
-===Thanks=== 
-* Thanks to [https://github.com/MaPePeR MaPePeR] for contributing code that fixed many bugs and made the site all around more efficient.
+===Preloading===
+[https://github.com/MaPePeR MaPePeR] has outdone himself by adding code that preloads images for quicker playback. Clicking "Preload All" twice will load every image in the comic.
+
+==Thanks==
+* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (probably more than me now). It's been fun having someone so knowledgeable to work with.
 * Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
 * Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
