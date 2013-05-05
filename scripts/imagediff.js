@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true */
-/*global finishedLoading, currentFrame: false */
+/*global finishedLoading, currentFrame, preloadFrame: false */
 /*
  * based on http://pastebin.com/cWxA6EDR
  * No idea who to give credit to, but thanks.
@@ -7,11 +7,9 @@
 
 var c1 = document.getElementById("canvas1");
 var ctx1 = c1.getContext("2d");
-var img1 = new Image();
 
 var c2 = document.getElementById("canvas2");
 var ctx2 = c2.getContext("2d");
-var img2 = new Image();
 
 var c3 = document.getElementById("canvas3");
 var ctx3 = c3.getContext("2d");
@@ -42,21 +40,29 @@ function drawDiffImage() {
     finishedLoading();
 }
 
-//Note: according to 
-//http://stackoverflow.com/questions/1663125/is-javascript-multithreaded 
-//i don't have to worry about the two onload-functions to mix up and break 
-//everything.
-img1.onload = function () {
-    ctx1.drawImage(img1, 0, 0);
-    img1loaded = true;
-    if (img2loaded) { drawDiffImage(); }
-};
 
-img2.onload = function () {
-    ctx2.drawImage(img2, 0, 0);
-    img2loaded = true;
-    if (img1loaded) { drawDiffImage(); }
-};
+var compareFrame;
+function image2preloaded(frame, img) {
+    if (compareFrame == frame) {
+        ctx2.drawImage(img, 0, 0);
+        img2loaded = true;
+        if (img1loaded) {
+            finishedLoading();
+            drawDiffImage();
+        }
+    }
+}
+function image1preloaded(frame, img) {
+    if (currentFrame == frame) {
+        ctx1.drawImage(img, 0, 0);
+        img1loaded = true;
+        if (img2loaded) {
+            finishedLoading();
+            drawDiffImage();
+        }
+    }
+}
+
 
 /*
  * Difference between two frames, if frame parameter not provided is shows difference from previous frame.
@@ -64,27 +70,21 @@ img2.onload = function () {
 function diff(frame) {
     img1loaded = false;
     img2loaded = false;
-    var prevFrame;
     if (!frame) {
-        prevFrame = currentFrame - 1;
+        compareFrame = currentFrame - 1;
     } else {
-        prevFrame = frame;
+        compareFrame = frame;
     }
 
-    if (prevFrame < 1) {
+    if (compareFrame < 1) {
         img1loaded = true;
         ctx1.fillStyle = "white";
         ctx1.fillRect(0, 0, c1.width, c1.height);
     } else {
-        //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
-        img1.src = ""; //to fix a webkit "bug" -> https://code.google.com/p/chromium/issues/detail?id=7731#c12
-        //img1.src = 'images/' + images[prevFrame].replace(/.*\//, '');
-        img1.src = 'images/' + prevFrame + '.png';
+        preloadFrame(compareFrame, image2preloaded, false);
     }
 
-    img2.src = ""; // see above
-    //img2.src = 'images/' + images[currentFrame].replace(/.*\//, '');
-    img2.src = 'images/' + currentFrame + '.png';
+    preloadFrame(currentFrame, image1preloaded, false);
 }
 
 
