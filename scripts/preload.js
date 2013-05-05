@@ -37,8 +37,8 @@ $(document).ready(function () {
 
 function getFrameURL(frame) {
     //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
-    return 'images/' + images[frame].replace(/.*\//, '');
-    //return 'images/' + frame + '.png';
+    //return 'images/' + images[frame].replace(/.*\//, '');
+    return 'images/' + frame + '.png';
     //return images[frame];  //Do not use! will break imagediff, because of cross-origin.
 }
 
