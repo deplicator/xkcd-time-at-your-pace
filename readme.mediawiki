@@ -5,11 +5,21 @@ Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way.
 
 
 ==Features==
+===Auto Play===
+Plays the frames at 10 frames per second and pauses for 2 seconds on Special Frames, both of these are adjustable with the text boxes next to the play/pause button.
+
+===Special Frames===
+Most special frames are frames with text. The auto play now pauses for a user specified amount of time on these frames.
+
+There is a panel below the comic that can be opened to see all the special frames.
+
+This part is updated manually, so some of the latest special frames may not show up.
+
 ===Previous Frame Difference===
-Shows the new pixels in green and removed pixels in red when compaired to previous frame.
+Shows the new pixels in green and removed pixels in red when compared to previous frame.
 
 ===Image Difference From Frame===
-Same as above, expcet shows difference from a chosen frame.
+Same as above, except shows difference from a chosen frame.
 
 ===Share Links===
 The text box below the slide bar allows for linking directly to a frame. The short bitly link only works for a normal frame link.
@@ -18,18 +28,11 @@ There is an option to link frame differences.
 
 A couple of examples:
 
-[http://geekwagon.net/projects/xkcd1190?frame=890&framediff=217 Shows increase in sealevel from maximum zoom to before fading]
+[http://geekwagon.net/projects/xkcd1190?frame=890&framediff=217 Shows increase in sea level from maximum zoom to before fading]
  ?frame=890&framediff=217
 
 [http://geekwagon.net/projects/xkcd1190?frame=162&framediff=126 Shows scale difference before and after zoom]
  ?frame=162&framediff=126
-
-===Special Frames===
-Most special frames are frames with text. The auto play now pauses for a user specifed amount of time on these frames.
-
-There is a panel below the comic that can be opened to see all the special frames.
-
-This part is updated manually, so some of the latest special frames may not show up.
 
 ===Preloading===
 [https://github.com/MaPePeR MaPePeR] has outdone himself by adding code that preloads images for quicker playback. Clicking "Preload All" twice will load every image in the comic.
@@ -43,4 +46,4 @@ This part is updated manually, so some of the latest special frames may not show
 ==A Friendly Reminder==
 XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
 
-The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "aweful" license].
+The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "awful" license].
