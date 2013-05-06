@@ -56,30 +56,74 @@ li {
     padding: 4px 0 0 0;
 }
 
+
+/* Controls */
 #controls {
-    text-align: left;
     margin: 0 auto;
-    width: 554px;
+    width: 550px;
 }
 
-#controls input{
+#controls #autoplay {
+    background: #EAEEF4;
+    border: 1px solid #96A8C8;
+    border-left: none;
+    border-radius: 7px;
+    float: left;
+    font-size: 11px;
+    height: 45px;
+    margin: 12px 0 0 58px;
+    padding: 0 5px;
+    position: relative;
+    width: 286px;
+}
+
+#controls #autoplay p {
+    float: right;
+    padding: 4px 0 0 0;
+    text-align: left;
+    width: 236px;
+}
+
+#controls #autoplay input {
+    height: 13px;
+    font-size: 12px;
+    margin: -2px 0 0 0;
+}
+
+#controls #autoplay #play {
+    background: #96A8C8;
+    border: 1px solid #222;
+    border-radius: 40px;
+    font-weight: 700;
+    float: left;
+    height: 60px;
+    left: -15px;
+    position: absolute;
+    top: -8px;
+    width: 60px;
+}
+
+#controls #step {
+    border-left: 1px dashed #222;
+    float: right;
+    font-size: 11px;
+    height: 70px;
+    padding: 0 20px;
+}
+
+#controls #step input{
     width: 60px;
     height: 35px;
 }
 
-#PauseSpecialFrames {
-    font-size: 10px;
+#controls #mousewheel {
+    border-top: 1px dashed #222;
+    clear: both;
+    font-size: 13px;
+    margin: 0 0 5px 0;
+    text-align: center;
 }
 
-#PauseSpecialFrames  input{
-    height: 15px;
-    margin: 5px 0;
-    width: 35px;
-}
-
-#step {
-    float: right;
-}
 
 #tehmainevent {
     margin: auto;
@@ -137,7 +181,7 @@ footer {
 }
 
 #textframes {
-    background: rgb(202, 202, 226);
+    background: #96A8C8;
     margin: 20px auto 50px;
     padding: 0 0 3px 0;
     width: 901px;

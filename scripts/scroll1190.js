@@ -15,14 +15,15 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
 var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 562, 563, 564, 637, 638,
                      640, 641, 642, 659, 660, 661, 832, 833, 834, 835, 838, 839, 855, 856, 857, 859,
                      860, 861, 862, 864, 865, 985, 1004, 1006, 1018, 1024, 1025, 1041, 1042, 1044, 
-                     1045, 1049, 1050, 1052, 1053, 1066, 1067, 1069, 1071, 1072, 1073, 1093, 1096];
+                     1045, 1049, 1050, 1052, 1053, 1066, 1067, 1069, 1071, 1072, 1073, 1093, 1096, 
+                     1022];
 var images = [];
 var bitlydata = null;
-var imageslen = 0;
+var imageslen = 0; //replacing imageslen with framecount
+var framecount = 0; //were we calling it framecount or imagecount?
 var scrollhere = document.getElementById("scrollhere");
 var slider = document.getElementById("slider");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
-var fps = 1;
 var currentFrame = 1;
 var initialframe;
 
@@ -114,14 +115,15 @@ $.ajax({
         $("#LoadingImage").html('');
         //console.log(response);
         images = response.split('\n');
-        slider.max = images.length - 1;
         imageslen = images.length;
+        framecount = imageslen - 1;
+        slider.max = framecount;
         if (initialframe >= imageslen) {
-            initialframe = imageslen - 1;
+            initialframe = framecount;
         } else if (initialframe <= 1) {
             initialframe = 1;
         }
-        initPreloadingStatus(imageslen-1);
+        initPreloadingStatus(framecount);
         updateAll(initialframe);
     },
     error: function () {
@@ -145,84 +147,6 @@ $.ajax({
         $("#LoadingImage").html('Oh noes, something has gone wrong!');
     }
 
-});
-
-// Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
-function binary_search_iterative(a, value) {
-    var lo = 0, hi = a.length - 1, mid;
-    while (lo <= hi) {
-        mid = Math.floor((lo+hi)/2);
-        if (a[mid] > value)
-            hi = mid - 1;
-        else if (a[mid] < value)
-            lo = mid + 1;
-        else
-            return mid;
-    }
-    return null;
-}
-
-function isSpecial(frame) {
-    return binary_search_iterative(specialframes,frame) != null;
-}
-
-//Autoplay stuff
-var specialframecounter = 0;
-var speed = 1000;
-
-//https://code.google.com/p/jquery-timer/
-var timer = $.timer(function() {
-    if(isSpecial(currentFrame)) {
-        specialframecounter+=speed;
-        if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(),10) || 0)*1000) {
-            return;//should pause x seconds... 
-        }
-        else {
-            specialframecounter=0;
-        }
-    }
-    currentFrame++;
-    updateAll(currentFrame);
-    if (currentFrame >= (imageslen-1)) {
-        timer.stop();
-        $('#play').val("Play");
-        $('#speed').html('0 fps');
-    }
-});
-
-$('#play').click(function () {
-    if ($('#play').val() == "Play") {
-        $('#play').val("Pause");
-        if (currentFrame >= (imageslen - 1)) {
-            updateAll(1);
-        }
-        timer.set({ time : speed, autostart : true });
-        $('#speed').html(fps.toFixed(2) + ' fps');
-    } else {
-        $('#play').val("Play");
-        timer.stop();
-        $('#speed').html('0 fps');
-    }
-});
-
-$('#fast').click(function () {
-    speed -= 100;
-    if (speed <= 0) {
-        speed = 100;
-    }
-    fps = 1000 / speed;
-    timer.set({ time : speed, autostart : true });
-    $('#speed').html(fps.toFixed(2) + ' fps');
-});
-
-$('#slow').click(function () {
-    speed += 100;
-    if (speed >= 2000) {
-        speed = 2000;
-    }
-    fps = 1000 / speed;
-    timer.set({ time : speed, autostart : true });
-    $('#speed').html(fps.toFixed(2) + ' fps');
 });
 
 function prevSlide() {

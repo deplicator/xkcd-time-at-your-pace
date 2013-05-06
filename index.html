@@ -19,20 +19,18 @@
     </header>
         <div id="LoadingImage">loading</div>
     <div id="tehmainevent">
-        <div id="instructions">
-            <p>Hover over image and scroll down to move forward, up to move back.</p>
-        </div>
         <div id="controls">
-            <input id="play" type="button" value="Play" title="You can still scroll while it's playing (for the nerdiest of instant replays)"><input id="slow" type="button" value="Slower"><input id="fast" type="button" value="Faster">
-            <span id="speed"></span>
-            <span id="step">
+            <div id="autoplay">
+                <input id="play" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
+                <p>Playback speed: <input id="autoplayspeed" type="number" min="0" step="5" max="100" value="10"> fps</p>
+                <p>Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
+            </div>
+            <div id="step">
+                <p>Step through frames</p>
                 <input id="previous" type="button" value="<<" title="Previous">
                 <input id="next" type="button" value=">>" title="Next">
-                <input id="lastSeen" type="button" value=">|" title="Last Seen" style="display: none;">
-            </span><br>
-            <span id="PauseSpecialFrames" title="Only interesting, if using auto-play.">
-                Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"/> seconds
-            </span>
+            </div>
+            <p id="mousewheel">Mouse Wheel: Hover over image and scroll down to move forward, up to move back.</p>
         </div>
         
         <div id="scrollhere">
@@ -83,6 +81,7 @@
     <div id="preload" style="position:absolute; top: -1000px;"></div>
     <script src="scripts/imagediff.js"></script>
     <script src="scripts/scroll1190.js"></script>
+    <script src="scripts/ayop-autoplay.js"></script>
 
 <body>
 </html>
