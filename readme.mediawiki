@@ -12,7 +12,7 @@ The 'step through frames' will navigate through the frames one at a time. If pla
 
 The left and right arrow keys work the same as the 'step through frames' buttons.
 
-Hovoring over the image or slider and scrolling with the mouse wheel will navigate through the frames as well. Fun Fact: this was the motivating feature for the whole project.
+Hovering over the image or slider and scrolling with the mouse wheel will navigate through the frames as well. Fun Fact: this was the motivating feature for the whole project.
 
 ===Special Frames===
 Most special frames are frames with text. The auto play now pauses for a user specified amount of time on these frames.
