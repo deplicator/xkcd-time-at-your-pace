@@ -150,6 +150,8 @@ $.ajax({
 });
 
 function prevSlide() {
+    $('#play').val("Play");
+    timer.stop();
     var nextslideindex = currentFrame - 1;
     nextslideindex = (nextslideindex < 1) ? images.length - 1 : (nextslideindex > images.length - 1) ? 1 : nextslideindex;
     updateAll(nextslideindex);
@@ -157,6 +159,8 @@ function prevSlide() {
 $('#previous').click(prevSlide);
 
 function nextSlide() {
+    $('#play').val("Play");
+    timer.stop();
     var nextslideindex = currentFrame + 1;
     if (nextslideindex >= images.length) {
         nextslideindex = 1;
