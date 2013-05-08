@@ -4,7 +4,7 @@
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
-var preloadingStatusRectSize = 4;
+var preloadingStatusRectSize = 5;
 function initPreloadingStatus(maxImages) {
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
         throw "ERROR: Rect size does not equally divide width";
