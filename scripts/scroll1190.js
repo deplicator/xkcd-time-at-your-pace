@@ -16,7 +16,8 @@ var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 531, 
                      564, 637, 638, 640, 641, 642, 659, 660, 661, 832, 833, 834, 835, 838, 855, 856,
                      857, 859, 860, 861, 862, 864, 865, 985, 1004, 1005, 1006, 1018, 1024, 1025, 
                      1041, 1042, 1044, 1045, 1049, 1050, 1052, 1053, 1058, 1066, 1067, 1069, 1071, 
-                     1072, 1073, 1093, 1096, 1123, 1130, 1131, 1142, 1143, 1144];
+                     1072, 1073, 1093, 1096, 1123, 1130, 1131, 1142, 1143, 1144, 1146, 1159, 1160, 
+                     1161];
 var images = [];
 var bitlydata = null;
 var imageslen = 0; //replacing imageslen with framecount
@@ -149,50 +150,6 @@ $.ajax({
 
 });
 
-function prevSlide() {
-    $('#play').val("Play");
-    timer.stop();
-    var nextslideindex = currentFrame - 1;
-    nextslideindex = (nextslideindex < 1) ? images.length - 1 : (nextslideindex > images.length - 1) ? 1 : nextslideindex;
-    updateAll(nextslideindex);
-}
-$('#previous').click(prevSlide);
-
-function nextSlide() {
-    $('#play').val("Play");
-    timer.stop();
-    var nextslideindex = currentFrame + 1;
-    if (nextslideindex >= images.length) {
-        nextslideindex = 1;
-    }
-    updateAll(nextslideindex);
-}
-$('#next').click(nextSlide);
-
-$(document).keydown(function (e) {
-    if (e.which == 37) { //left-key-pressed
-        prevSlide();
-    } else if (e.which == 39) { //right-key-pressed
-        nextSlide();
-    }
-});
-
-function scrollHandler(e) {
-    //Delta was allways = 3 in my tests with Firefox and Chrome. 
-    //Maybe we can use it to determine the speed, but for now we only scroll one frame.
-    var delta = e.deltaY != 0 ? e.deltaY : (e.deltaX != 0 ? e.deltaX : 0);
-    if (delta < 0) { //Up or left-Scroll
-        prevSlide();
-    } else if (delta > 0) { //Down or Right-Scroll
-        nextSlide();
-    }
-    e.preventDefault();
-}
-/*
- * Attach same Handler to slider and image
- */
-addWheelListener(slider, scrollHandler);
-addWheelListener(scrollhere, scrollHandler);
 
 /* 
  * Get's short url from local source if available.
@@ -282,11 +239,11 @@ $('#lastSeen').click(function () {
 });
 
 function startLoading(frame) {
-    $("#LoadingIndicator").show();
+    $("#loading").show();
 }
 
 function finishedLoading() {
-    $("#LoadingIndicator").hide();
+    $("#loading").hide();
 }
 
 function slideshowLoaded(frame, img) {
@@ -333,8 +290,29 @@ function updateAll(frame) {
 
 // Show and hide frames with text, can be moved to a ui only file
 $('#textframes h3').click(function () {
-    $('#textframes ul').slideToggle('slow');
+    $('#textframes ul').slideToggle('slow', function() {
+        if($('#textframes h3 .craparrow').html() == '→') {
+            $('#textframes h3 .craparrow').html('↓')
+        } else {
+            $('#textframes h3 .craparrow').html('→');
+        }
+    });
 });
+
+$('#funstuff h3').click(function () {
+    $('#funstuff #inside').slideToggle('slow', function() {
+        if($('#funstuff h3 .craparrow').html() == '→') {
+            $('#funstuff h3 .craparrow').html('↓')
+        } else {
+            $('#funstuff h3 .craparrow').html('→');
+        }
+    });
+});
+
+
+
+
+
 
 
 

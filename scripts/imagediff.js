@@ -26,8 +26,8 @@ function drawDiffImage() {
     var data3 = imageData.data;
 
     for (i = 0, n = data1.length; i < n; i += 4) {
-        var color1 = data1[i];
-        var color2 = data2[i];
+        var color2 = data1[i];
+        var color1 = data2[i];
 
         //TODO: Fix for Grey Images
         data3[i]     = color1 == color2 ? color1 : (color1 < color2 ? 0xFF : 0x00);

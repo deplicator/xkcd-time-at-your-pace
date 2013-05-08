@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>XKCD Time - at your own pace</title>
     <link rel="stylesheet" href="css/default.css">
     <script src="scripts/browserdetect.js"></script>
@@ -17,47 +18,56 @@
         <h1>XKCD 1190 - <a href="http://www.xkcd.com/1190/" title="Link to original">Time</a></h1>
         <h2>at your own pace</h2>
     </header>
-        <div id="LoadingImage">loading</div>
-    <div id="tehmainevent">
-        <div id="controls">
-            <div id="autoplay">
-                <input id="play" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
-                <p>Playback speed: <input id="autoplayspeed" type="number" min="0" step="5" max="100" value="10"> fps</p>
-                <p>Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
-            </div>
-            <div id="step">
-                <p>Step through frames</p>
-                <input id="previous" type="button" value="<<" title="Previous">
-                <input id="next" type="button" value=">>" title="Next">
-                <p>or arrow keys</p>
-            </div>
-            <p id="mousewheel">Mouse Wheel: Hover over image and scroll down to move forward, up to move back.</p>
+    <div id="LoadingImage">loading</div>
+    <div id="controls">
+        <div id="autoplay">
+            <input id="play" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
+            <p>Playback speed: <input id="autoplayspeed" type="number" min="0" step="5" max="100" value="10"> fps</p>
+            <p>Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
         </div>
-        
+        <div id="step">
+            <p>Step through frames</p>
+            <input id="first" type="button" value="|<" title="First Frame">
+            <input id="previous-special" type="button" value="<<" title="Previous Special Frame">
+            <input id="previous" type="button" value="<" title="Previous Frame">
+            <input id="next" type="button" value=">" title="Next Frame">
+            <input id="next-special" type="button" value=">>" title="Next Special Frame">
+            <input id="last" type="button" value=">|" title="Newest Frame">
+            <p>or arrow keys</p>
+        </div>
+        <p id="mousewheel">Mouse Wheel: Hover over image and scroll down to move forward, up to move back.</p>
+    </div>
+    <div id="tehmainevent">        
         <div id="scrollhere">
             <canvas id="canvas3" width="553" height="395">
                 <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
             </canvas>
         </div>
-        <div id="belowpic">
-            <input name="difftype" value="none" type="radio" checked/>Normal<br/>
-            <input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/><br/>
-            <input name="difftype" value="prev" type="radio"/>Previous Frame Difference<br/>
-            <span id="frameNum"></span>
-            <span id="LoadingIndicator">Loading...</span>
-        </div>
-        <canvas id="preloadingStatus" width="500" height="0" title="Preloaded Frames">
-            <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
-        </canvas> <input type="button" value="Preload all!" id="preloadAllButton"/>
+        <span id="frameNum"></span>
+        <span id="loading">Loading...</span>
         <input id="slider" type="range" min="1" step="1" name="framslider"></input>
-        <div id="link">
-            <span><input id="actuallink" type="text" size="65" readonly><span id="showlong"><input id="urlCheckBox" type="checkbox">show long url</span></span>
+    </div>
+    <div id="funstuff">
+        <h3><span class="craparrow">↓</span>Fun Stuff</h3>
+        <div id="inside">
+            <div id="link">Link to this frame -><input id="actuallink" type="text" size="65" readonly><span id="showlong"><input id="urlCheckBox" type="checkbox">show long url</span></div>
+            <div id="imgdiffopts">
+                <input name="difftype" value="none" type="radio" checked/>Normal<br/>
+                <input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/><br/>
+                <input name="difftype" value="prev" type="radio"/>Previous Frame Difference<br/>
+            </div>
+            <div id="preloadindicator">
+                <input id="preloadAllButton" type="button" value="Preload all!"/>
+                <p>Preload Indicator</p>
+                <canvas id="preloadingStatus" width="500" height="0" title="Preloaded Frames">
+                    <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
+                </canvas>
+            </div>
         </div>
-
     </div>
 
     <div id="textframes">
-        <h3>Special Frames</h3>
+        <h3><span class="craparrow">→</span>Special Frames</h3>
         <ul id="textframelist">
 
         </ul>
@@ -77,12 +87,12 @@
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
     </a>
 
-    <canvas id="canvas1" width="553" height="395" style="display: none">Are you from the past?</canvas>
-    <canvas id="canvas2" width="553" height="395" style="display: none">Are you from the past?</canvas>
+    <canvas id="canvas1" width="553" height="395" style="display: none"></canvas>
+    <canvas id="canvas2" width="553" height="395" style="display: none"></canvas>
     <div id="preload" style="position:absolute; top: -1000px;"></div>
     <script src="scripts/imagediff.js"></script>
     <script src="scripts/scroll1190.js"></script>
-    <script src="scripts/ayop-autoplay.js"></script>
+    <script src="scripts/ayop-navigation.js"></script>
 
 <body>
 </html>
