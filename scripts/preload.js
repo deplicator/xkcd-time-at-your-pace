@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global assert, startLoading,finishedLoading, images, imageslen,isSpecial, $: false */
+/*global assert, startLoading,finishedLoading, images, imageslen,isSpecial,specialframes, $: false */
 
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
@@ -7,6 +7,7 @@ var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
 var specialFrameColor = "yellow";
 function initPreloadingStatus(maxImages) {
+    var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
         throw "ERROR: Rect size does not equally divide width";
     }
@@ -22,6 +23,9 @@ function initPreloadingStatus(maxImages) {
         preloadingStatusWidth -  (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusRectSize
     );
+    for (i = 0; i < specialframes.length; i++) {
+        markPreloadingFrame(specialframes[i], "gray");
+    }
 }
 $(document).ready(function () {
     preloadingStatus = document.getElementById("preloadingStatus");
