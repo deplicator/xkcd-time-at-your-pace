@@ -15,7 +15,7 @@ function initPreloadingStatus(maxImages) {
     preloadingStatusCtx.lineWidth = 1;
     preloadingStatusCtx.fillStyle = "gray";
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
-    preloadingStatusCtx.fillStyle = "white";
+    preloadingStatusCtx.fillStyle = $("#funstuff").css('backgroundColor');
     preloadingStatusCtx.fillRect(
         (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusHeight - preloadingStatusRectSize,
@@ -50,8 +50,8 @@ function markPreloadingFrame(frame, color) {
     preloadingStatusCtx.fillRect(
         (preloadingStatusRectSize * frame) % preloadingStatusWidth,
         preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
-        preloadingStatusRectSize - 1,
-        preloadingStatusRectSize - 1
+        preloadingStatusRectSize,
+        preloadingStatusRectSize
     );
 
     if (isSpecial(frame)) {
@@ -59,7 +59,7 @@ function markPreloadingFrame(frame, color) {
         preloadingStatusCtx.strokeRect(
             (preloadingStatusRectSize * frame) % preloadingStatusWidth,
             preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
-            preloadingStatusRectSize - 1,
+            preloadingStatusRectSize - 1, //Looks like this draws a rect with size+1
             preloadingStatusRectSize - 1
         );
     }
