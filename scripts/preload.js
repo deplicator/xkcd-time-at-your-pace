@@ -1,16 +1,18 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global assert, startLoading,finishedLoading, images, imageslen, $: false */
+/*global assert, startLoading,finishedLoading, images, imageslen,isSpecial, $: false */
 
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
+var specialFrameColor = "yellow";
 function initPreloadingStatus(maxImages) {
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
         throw "ERROR: Rect size does not equally divide width";
     }
     preloadingStatusHeight = preloadingStatusRectSize * Math.floor(maxImages / (preloadingStatusWidth / preloadingStatusRectSize) + 1);
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
+    preloadingStatusCtx.lineWidth = 1;
     preloadingStatusCtx.fillStyle = "gray";
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
     preloadingStatusCtx.fillStyle = "white";
@@ -48,9 +50,19 @@ function markPreloadingFrame(frame, color) {
     preloadingStatusCtx.fillRect(
         (preloadingStatusRectSize * frame) % preloadingStatusWidth,
         preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
-        preloadingStatusRectSize,
-        preloadingStatusRectSize
+        preloadingStatusRectSize - 1,
+        preloadingStatusRectSize - 1
     );
+
+    if (isSpecial(frame)) {
+        preloadingStatusCtx.strokeStyle = specialFrameColor;
+        preloadingStatusCtx.strokeRect(
+            (preloadingStatusRectSize * frame) % preloadingStatusWidth,
+            preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
+            preloadingStatusRectSize - 1,
+            preloadingStatusRectSize - 1
+        );
+    }
 }
 
 function preloadingInProgress(frame) {
