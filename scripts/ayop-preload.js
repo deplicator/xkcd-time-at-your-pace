@@ -61,8 +61,8 @@ function markPreloadingFrame(frame, color) {
     if (isSpecial(frame)) {
         preloadingStatusCtx.strokeStyle = specialFrameColor;
         preloadingStatusCtx.strokeRect(
-            (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth,
-            preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)),
+            (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth + 0.5,
+            preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)) + 0.5,
             preloadingStatusRectSize - 1, //Looks like this draws a rect with size+1
             preloadingStatusRectSize - 1
         );
@@ -122,7 +122,7 @@ function predictFrames(frame) {
 }
 
 function preloadAll() {
-    var i;
+    var i, img;
     for (i = 1; i <= imageslen - 1; i++) {
         if (!preloadedImages[i]) {
             img = new Image();
