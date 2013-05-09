@@ -92,14 +92,6 @@ slider.oninput = function () {
 
 
 /*
- * Add the special-frames to the html
- */
-var sflen = specialframes.length;
-for (var i = 0; i < sflen; i++) {
-    $('#textframelist').append('<li><a href="./?frame='+specialframes[i]+'"><img src="./images/'+specialframes[i]+'.png" alt=""></a></li>');
-}
-
-/*
  * Loaded data.txt 
  * Now we know how many images exists and can check the selected initialframe.
  */
