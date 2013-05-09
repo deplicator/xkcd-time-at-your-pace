@@ -58,7 +58,7 @@ function markPreloadingFrame(frame, color) {
         preloadingStatusRectSize
     );
 
-    if (isSpecial(frame+1)) { //I don't know what that fixed it, but now all the special frames have a yellow boarder.
+    if (isSpecial(frame+1)) {
         preloadingStatusCtx.strokeStyle = specialFrameColor;
         preloadingStatusCtx.strokeRect(
             (preloadingStatusRectSize * frame) % preloadingStatusWidth,

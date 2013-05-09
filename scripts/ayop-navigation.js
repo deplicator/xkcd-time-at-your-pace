@@ -212,6 +212,10 @@ $('#autoplayspeed').change(function() {
         time: speed,
         autoplay: true
     });
+    playreverse.set({
+        time: speed,
+        autoplay: true
+    });
 });
 
 

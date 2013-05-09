@@ -256,7 +256,6 @@ function slideshowLoaded(frame, img) {
 function updateAllWithoutSlider(frame) {
     currentFrame = frame;
     //startLoading(frame);
-
     if (frame > lastSeen()) {
         var expire = new Date();
         expire.setFullYear(expire.getFullYear() + 1);

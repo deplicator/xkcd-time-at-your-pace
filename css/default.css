@@ -28,7 +28,6 @@ h2 {
 h4 {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
-    padding: 10px 0 0 0;
 }
 
 a {
@@ -52,6 +51,7 @@ li {
 
 .bluebutton {
     background: #96A8C8;
+    border: 1px solid #2D323C;
     background-image: -ms-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */ 
     background-image: -moz-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
     background-image: -o-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Opera */ 
@@ -106,7 +106,6 @@ li {
 }
 
 #controls #autoplay #play {
-    border: 1px solid #2D323C;
     border-radius: 40px;
     font-weight: 700;
     float: left;
@@ -127,7 +126,6 @@ li {
 
 #controls #autoplay #reverse,
 #controls #autoplay #forward {
-    border: 1px solid #2D323C;
     border-radius: 0px;
     float: left;
     height: 20px;
@@ -163,7 +161,6 @@ li {
 }
 
 #controls #step input{
-    border: 1px solid #2D323C;
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0px #666;
     font-weight: 700;
@@ -191,8 +188,13 @@ li {
 /* Comic */
 #tehmainevent {
     font-size: 10px;
+    position: relative;
     margin: auto;
     width: 600px;
+}
+
+#scrollhere {
+    text-align: center;
 }
 
 #frameNum {
@@ -209,6 +211,16 @@ li {
     height: 70px;
     margin: 5px auto;
     width: 600px;
+}
+
+#vote {
+    display: none;
+
+    border: 1px solid;
+    position: absolute;
+    right: -173px;
+    text-align: center;
+    top: 198px;
 }
 
 
@@ -250,7 +262,6 @@ li {
 }
 
 #funstuff #preloadindicator #preloadAllButton {
-    border: 1px solid #2D323C;
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0px #666;
     float: left;
