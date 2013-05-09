@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global assert, startLoading,finishedLoading, images, imageslen,isSpecial,specialframes, $: false */
+/*global startLoading, finishedLoading, images, imageslen,isSpecial,specialframes, $, currentFrame: false */
 
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
