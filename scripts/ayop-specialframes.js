@@ -9,7 +9,7 @@ var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 531, 
         return a - b;
     });
 
-                     /*
+/*
  * Add the special-frames to the html
  */
 $(document).ready(function () {
