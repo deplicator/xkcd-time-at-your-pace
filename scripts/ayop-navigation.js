@@ -1,5 +1,5 @@
 /*jslint browser: true, sloppy: true, indent: 4, eqeq: true*/
-/*global $, updateAll, framecount, currentFrame, addWheelListener, slider, scrollhere:false */
+/*global $, updateAll, framecount, currentFrame, addWheelListener, slider, scrollhere, isSpecial:false */
 /*
  * Navigation
  * Handels auto play back, frame steps, keyboard input, slider, and scrolling.
@@ -93,26 +93,6 @@ function scrollHandler(e) {
     e.preventDefault();
 }
 
-
-// Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
-function binary_search_iterative(a, value) {
-    var lo = 0, hi = a.length - 1, mid;
-    while (lo <= hi) {
-        mid = Math.floor((lo + hi) / 2);
-        if (a[mid] > value) {
-            hi = mid - 1;
-        } else if (a[mid] < value) {
-            lo = mid + 1;
-        } else {
-            return mid;
-        }
-    }
-    return null;
-}
-
-function isSpecial(frame) {
-    return binary_search_iterative(specialframes, frame) != null;
-}
 
 //https://code.google.com/p/jquery-timer/
 //TODO: Changer timer to something usefule, like playforward.
