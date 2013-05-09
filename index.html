@@ -15,18 +15,20 @@
     <div id="LoadingImage">loading</div>
     <div id="controls">
         <div id="autoplay">
-            <input id="play" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
+            <input id="play" class="bluebutton" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
+            <input id="reverse" class="direction bluebutton" type="button" value="<~" title="You can go backwards now, because why not?">
+            <input id="forward" class="direction bluebutton dir-select" type="button" value="~>">
             <p>Playback speed: <input id="autoplayspeed" type="number" min="0" step="5" max="100" value="10"> fps</p>
             <p>Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
         </div>
         <div id="step">
             <p>Step through frames</p>
-            <input id="first" type="button" value="|<" title="First Frame">
-            <input id="previous-special" type="button" value="<<" title="Previous Special Frame">
-            <input id="previous" type="button" value="<" title="Previous Frame">
-            <input id="next" type="button" value=">" title="Next Frame">
-            <input id="next-special" type="button" value=">>" title="Next Special Frame">
-            <input id="last" type="button" value=">|" title="Newest Frame">
+            <input id="first" class="bluebutton" type="button" value="|<" title="First Frame">
+            <input id="previous-special" class="bluebutton" type="button" value="<<" title="Previous Special Frame">
+            <input id="previous" class="bluebutton" type="button" value="<" title="Previous Frame">
+            <input id="next" class="bluebutton" type="button" value=">" title="Next Frame">
+            <input id="next-special" class="bluebutton" type="button" value=">>" title="Next Special Frame">
+            <input id="last" class="bluebutton" type="button" value=">|" title="Newest Frame">
             <p>or arrow keys</p>
         </div>
         <p id="mousewheel">Mouse Wheel: Hover over image and scroll down to move forward, up to move back.</p>
@@ -51,7 +53,7 @@
                 <input name="difftype" value="prev" type="radio"/>Previous Frame Difference<br/>
             </div>
             <div id="preloadindicator">
-                <input id="preloadAllButton" type="button" value="Preload all!"/>
+                <input id="preloadAllButton" class="bluebutton" type="button" value="Preload all!"/>
                 <p>Preload Indicator</p>
                 <canvas id="preloadingStatus" width="500" height="0" title="Preloaded Frames">
                     <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
@@ -95,6 +97,7 @@
     <script src="scripts/imagediff.js"></script>
     <script src="scripts/scroll1190.js"></script>
     <script src="scripts/ayop-navigation.js"></script>
+    <script src="scripts/ayop-ui.js"></script>
 
 <body>
 </html>

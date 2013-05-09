@@ -17,7 +17,7 @@ var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 531, 
                      857, 859, 860, 861, 862, 864, 865, 985, 1004, 1005, 1006, 1018, 1024, 1025, 
                      1041, 1042, 1044, 1045, 1049, 1050, 1052, 1053, 1058, 1066, 1067, 1069, 1071, 
                      1072, 1073, 1093, 1096, 1123, 1130, 1131, 1142, 1143, 1144, 1146, 1159, 1160, 
-                     1161];
+                     1161, 1178, 1179, 1184];
 var images = [];
 var bitlydata = null;
 var imageslen = 0; //replacing imageslen with framecount
@@ -287,32 +287,3 @@ function updateAll(frame) {
     slider.value = frame;
     updateAllWithoutSlider(frame);
 }
-
-// Show and hide frames with text, can be moved to a ui only file
-$('#textframes h3').click(function () {
-    $('#textframes ul').slideToggle('slow', function() {
-        if($('#textframes h3 .craparrow').html() == '→') {
-            $('#textframes h3 .craparrow').html('↓')
-        } else {
-            $('#textframes h3 .craparrow').html('→');
-        }
-    });
-});
-
-$('#funstuff h3').click(function () {
-    $('#funstuff #inside').slideToggle('slow', function() {
-        if($('#funstuff h3 .craparrow').html() == '→') {
-            $('#funstuff h3 .craparrow').html('↓')
-        } else {
-            $('#funstuff h3 .craparrow').html('→');
-        }
-    });
-});
-
-
-
-
-
-
-
-

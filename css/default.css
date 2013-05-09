@@ -50,6 +50,25 @@ li {
     padding: 4px 0 0 0;
 }
 
+.bluebutton {
+    background: #96A8C8;
+    background-image: -ms-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */ 
+    background-image: -moz-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
+    background-image: -o-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Opera */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(to bottom, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */ 
+}
+
+.bluebutton:active {
+    background: #96A8C8;
+    background-image: -ms-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */
+    background-image: -moz-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
+    background-image: -o-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Opera */ 
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(to top, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */
+}
 
 /* Top Controls */
 #controls {
@@ -87,7 +106,6 @@ li {
 }
 
 #controls #autoplay #play {
-    background: #96A8C8;
     border: 1px solid #2D323C;
     border-radius: 40px;
     font-weight: 700;
@@ -97,13 +115,6 @@ li {
     position: absolute;
     top: -8px;
     width: 60px;
-
-    background-image: -ms-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */ 
-    background-image: -moz-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to bottom, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */ 
 }
 
 #controls #autoplay #play:hover {
@@ -112,13 +123,31 @@ li {
 
 #controls #autoplay #play:active {
     box-shadow: 0 0 20px blue;
-    
-    background-image: -ms-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */
-    background-image: -moz-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to top, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */
+}
+
+#controls #autoplay #reverse,
+#controls #autoplay #forward {
+    border: 1px solid #2D323C;
+    border-radius: 0px;
+    float: left;
+    height: 20px;
+    left: -26px;
+    position: absolute;
+    top: 40px;
+    width: 40px;
+    transform: skew(30deg,20deg);
+    -ms-transform: skew(30deg,20deg);
+    -webkit-transform: skew(-18deg,0deg);
+}
+
+#controls #autoplay #forward {
+    left: 17px;
+}
+
+/* toggle direction playing */
+.dir-select {
+    box-shadow: 0 0 5px blue;
+    font-weight: 700;
 }
 
 #controls #step {
@@ -134,7 +163,6 @@ li {
 }
 
 #controls #step input{
-    background: #96A8C8;
     border: 1px solid #2D323C;
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0px #666;
@@ -142,13 +170,6 @@ li {
     height: 32px;
     margin: 0 2px 0 0!important;
     width: 48px;
-
-    background-image: -ms-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */ 
-    background-image: -moz-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to bottom, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */ 
 }
 
 #controls #step input:active {
@@ -156,13 +177,6 @@ li {
     box-shadow: none;
     top: 2px;
     left: 2px;
-
-    background-image: -ms-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */
-    background-image: -moz-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to top, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */
 }
 
 #controls #mousewheel {
@@ -236,7 +250,6 @@ li {
 }
 
 #funstuff #preloadindicator #preloadAllButton {
-    background: #96A8C8;
     border: 1px solid #2D323C;
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0px #666;
@@ -246,13 +259,6 @@ li {
     position: relative;
     top: 24px;
     width: 82px;
-    
-    background-image: -ms-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */ 
-    background-image: -moz-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to bottom, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */ 
 }
 
 #funstuff #preloadindicator #preloadAllButton:active {
@@ -260,13 +266,6 @@ li {
     box-shadow: none;
     top: 26px;
     left: 2px;
-
-    background-image: -ms-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */
-    background-image: -moz-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to top, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */
 }
 
 

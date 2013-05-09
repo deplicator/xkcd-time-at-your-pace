@@ -112,7 +112,11 @@ function isSpecial(frame) {
 }
 
 //https://code.google.com/p/jquery-timer/
+//TODO: Changer timer to something usefule, like playforward.
 var timer = $.timer(function() {
+    if (currentFrame >= framecount) {
+        updateAll(1);
+    }
     if(isSpecial(currentFrame)) {
         specialframecounter += speed;
         if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(),10) || 0)*1000) {
@@ -124,8 +128,30 @@ var timer = $.timer(function() {
     }
     currentFrame++;
     updateAll(currentFrame);
-    if (currentFrame >= (framecount)) {
+    if (currentFrame >= framecount) {
         timer.stop();
+        $('#play').val("Play");
+    }
+});
+
+//same as above, but backwards
+var playreverse = $.timer(function() {
+    if (currentFrame <= 1) {
+        updateAll(framecount);
+    }
+    if(isSpecial(currentFrame)) {
+        specialframecounter += speed;
+        if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(),10) || 0)*1000) {
+            return;//should pause x seconds... 
+        }
+        else {
+            specialframecounter=0;
+        }
+    }
+    currentFrame--;
+    updateAll(currentFrame);
+    if (currentFrame <= 1) {
+        playreverse.stop();
         $('#play').val("Play");
     }
 });
@@ -134,18 +160,46 @@ var timer = $.timer(function() {
 $('#play').click(function () {
     if ($('#play').val() == "Play") {
         $('#play').val("Pause");
-        if (currentFrame >= (framecount)) {
-            updateAll(1);
+        if($('#forward').hasClass('dir-select')) {
+            timer.set({
+                time: speed,
+                autostart: true
+            });
+        } else {
+            playreverse.set({
+                time: speed,
+                autostart: true
+            });
         }
+        
+    } else {
+        $('#play').val("Play");
+        timer.stop();
+        playreverse.stop();
+    }
+});
+
+//Change directions on the fly.
+$('#reverse').click(function() {
+    if(timer.isActive) {
+        timer.stop();
+        playreverse.set({
+            time: speed,
+            autostart: true
+        });
+    }
+});
+
+$('#forward').click(function() {
+    if(playreverse.isActive) {
+        playreverse.stop();
         timer.set({
             time: speed,
             autostart: true
         });
-    } else {
-        $('#play').val("Play");
-        timer.stop();
     }
 });
+
 
 //Changes playback speed from input, should work on the fly.
 $('#autoplayspeed').change(function() {
