@@ -1,3 +1,5 @@
+/*jslint browser: true, sloppy: true, indent: 4, eqeq: true*/
+/*global $, updateAll, framecount, currentFrame, addWheelListener, slider, scrollhere:false */
 /*
  * Navigation
  * Handels auto play back, frame steps, keyboard input, slider, and scrolling.
@@ -26,7 +28,7 @@ function prevFrame() {
     $('#play').val("Play");
     timer.stop();
     var nextslideindex = currentFrame - 1;
-    nextslideindex = (nextslideindex < 1) ? images.length - 1 : (nextslideindex > images.length - 1) ? 1 : nextslideindex;
+    nextslideindex = (nextslideindex < 1) ? framecount : (nextslideindex > framecount) ? 1 : nextslideindex;
     updateAll(nextslideindex);
 }
 
@@ -34,7 +36,7 @@ function nextFrame() {
     $('#play').val("Play");
     timer.stop();
     var nextslideindex = currentFrame + 1;
-    if (nextslideindex >= images.length) {
+    if (nextslideindex > framecount) {
         nextslideindex = 1;
     }
     updateAll(nextslideindex);
@@ -44,7 +46,7 @@ function prevSpecialFrame() {
     $('#play').val("Play");
     timer.stop();
     currentFrame--;
-    while(isSpecial(currentFrame) == false) {
+    while (isSpecial(currentFrame) == false) {
         prevFrame();
     }
     updateAll(currentFrame);
@@ -54,7 +56,7 @@ function nextSpecialFrame() {
     $('#play').val("Play");
     timer.stop();
     currentFrame++;
-    while(isSpecial(currentFrame) == false) {
+    while (isSpecial(currentFrame) == false) {
         nextFrame();
     }
     updateAll(currentFrame);
@@ -96,19 +98,20 @@ function scrollHandler(e) {
 function binary_search_iterative(a, value) {
     var lo = 0, hi = a.length - 1, mid;
     while (lo <= hi) {
-        mid = Math.floor((lo+hi)/2);
-        if (a[mid] > value)
+        mid = Math.floor((lo + hi) / 2);
+        if (a[mid] > value) {
             hi = mid - 1;
-        else if (a[mid] < value)
+        } else if (a[mid] < value) {
             lo = mid + 1;
-        else
+        } else {
             return mid;
+        }
     }
     return null;
 }
 
 function isSpecial(frame) {
-    return binary_search_iterative(specialframes,frame) != null;
+    return binary_search_iterative(specialframes, frame) != null;
 }
 
 //https://code.google.com/p/jquery-timer/
@@ -117,13 +120,13 @@ var timer = $.timer(function() {
     if (currentFrame >= framecount) {
         updateAll(1);
     }
-    if(isSpecial(currentFrame)) {
+    if (isSpecial(currentFrame)) {
         specialframecounter += speed;
-        if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(),10) || 0)*1000) {
+        if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
             return;//should pause x seconds... 
         }
         else {
-            specialframecounter=0;
+            specialframecounter = 0;
         }
     }
     currentFrame++;
@@ -135,17 +138,17 @@ var timer = $.timer(function() {
 });
 
 //same as above, but backwards
-var playreverse = $.timer(function() {
+var playreverse = $.timer(function () {
     if (currentFrame <= 1) {
         updateAll(framecount);
     }
-    if(isSpecial(currentFrame)) {
+    if (isSpecial(currentFrame)) {
         specialframecounter += speed;
         if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(),10) || 0)*1000) {
             return;//should pause x seconds... 
         }
         else {
-            specialframecounter=0;
+            specialframecounter = 0;
         }
     }
     currentFrame--;
@@ -160,7 +163,7 @@ var playreverse = $.timer(function() {
 $('#play').click(function () {
     if ($('#play').val() == "Play") {
         $('#play').val("Pause");
-        if($('#forward').hasClass('dir-select')) {
+        if ($('#forward').hasClass('dir-select')) {
             timer.set({
                 time: speed,
                 autostart: true
@@ -171,7 +174,6 @@ $('#play').click(function () {
                 autostart: true
             });
         }
-        
     } else {
         $('#play').val("Play");
         timer.stop();
@@ -181,7 +183,7 @@ $('#play').click(function () {
 
 //Change directions on the fly.
 $('#reverse').click(function() {
-    if(timer.isActive) {
+    if (timer.isActive) {
         timer.stop();
         playreverse.set({
             time: speed,
@@ -191,7 +193,7 @@ $('#reverse').click(function() {
 });
 
 $('#forward').click(function() {
-    if(playreverse.isActive) {
+    if (playreverse.isActive) {
         playreverse.stop();
         timer.set({
             time: speed,
@@ -202,12 +204,12 @@ $('#forward').click(function() {
 
 
 //Changes playback speed from input, should work on the fly.
-$('#autoplayspeed').change(function() {
-    if($('#autoplayspeed').val() <= 0) {
+$('#autoplayspeed').change(function () {
+    if ($('#autoplayspeed').val() <= 0) {
         $('#autoplayspeed').val(1);
     }
     var newspeed = parseInt($('#autoplayspeed').val(), 10);
-    speed = (1/newspeed) * 1000;
+    speed = (1 / newspeed) * 1000;
     timer.set({
         time: speed,
         autoplay: true
