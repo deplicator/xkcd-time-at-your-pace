@@ -248,6 +248,7 @@ function slideshowLoaded(frame, img) {
 
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
+    var oldframe = currentFrame;
     currentFrame = frame;
     //startLoading(frame);
     if (frame > lastSeen()) {
@@ -274,6 +275,8 @@ function updateAllWithoutSlider(frame) {
         }
         preloadFrame(frame, slideshowLoaded);
     }
+    updatePreloadingIndicator(oldframe);
+    updatePreloadingIndicator(currentFrame);
 }
 
 function updateAll(frame) {

@@ -9,7 +9,7 @@ var notYetLoadedColor       = "grey";
 var loadingInProgressColor  = "blue";
 var loadingCompleteColor    = "black";
 var specialFrameBorderColor = "yellow";
-var currentFrameBorderColor = "red";
+var currentFrameBorderColor = "white";
 function initPreloadingStatus(maxImages) {
     var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
@@ -84,6 +84,25 @@ function preloadingError(frame) {
         $("#LoadingImage").html('Oh noes, something has gone wrong!');
     }
     markPreloadingFrame(frame, "red");
+}
+
+/*
+ * Update the Preloading Indicator to show the current status of the frame.
+ */
+function updatePreloadingIndicator(frame) {
+    if (preloadedImages[frame]) {
+        var img = preloadedImages[frame];
+        if (img.naturalWidth === 0 || img.naturalHeight === 0 || img.complete === false) {
+            //Image is still loading
+            preloadingInProgress(frame);
+        } else {
+            //Image is complete.
+            preloadingFinished(frame);
+        }
+    } else {
+        //Image has not yet been marked for preloading
+        markPreloadingFrame(frame, notYetLoadedColor);
+    }
 }
 
 function preloadingFinishedHandlerForFrame(frame) {
