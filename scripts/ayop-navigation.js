@@ -1,5 +1,5 @@
 /*jslint browser: true, sloppy: true, indent: 4, eqeq: true*/
-/*global $, updateAll, framecount, currentFrame, addWheelListener, slider, scrollhere, isSpecial:false */
+/*global $, updateAll, framecount, currentFrame, addWheelListener, slider, scrollhere, isSpecial, nextSpecial, prevSpecial:false */
 /*
  * Navigation
  * Handels auto play back, frame steps, keyboard input, slider, and scrolling.
@@ -45,21 +45,13 @@ function nextFrame() {
 function prevSpecialFrame() {
     $('#play').val("Play");
     timer.stop();
-    currentFrame--;
-    while (isSpecial(currentFrame) == false) {
-        prevFrame();
-    }
-    updateAll(currentFrame);
+    updateAll(prevSpecial(currentFrame));
 }
 
 function nextSpecialFrame() {
     $('#play').val("Play");
     timer.stop();
-    currentFrame++;
-    while (isSpecial(currentFrame) == false) {
-        nextFrame();
-    }
-    updateAll(currentFrame);
+    updateAll(nextSpecial(currentFrame));
 }
 
 
