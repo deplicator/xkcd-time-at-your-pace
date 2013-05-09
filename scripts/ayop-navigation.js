@@ -24,17 +24,23 @@ function lastFrame() {
     updateAll(framecount);
 }
 
-function prevFrame() {
-    $('#play').val("Play");
-    timer.stop();
+//Pass a true value to continue autoplay.
+function prevFrame(pause) {
+    if(!pause) {
+        $('#play').val("Play");
+        timer.stop();
+    }
     var nextslideindex = currentFrame - 1;
     nextslideindex = (nextslideindex < 1) ? framecount : (nextslideindex > framecount) ? 1 : nextslideindex;
     updateAll(nextslideindex);
 }
 
-function nextFrame() {
-    $('#play').val("Play");
-    timer.stop();
+//Pass a true value to continue autoplay.
+function nextFrame(pause) {
+    if(!pause) {
+        $('#play').val("Play");
+        timer.stop();
+    }
     var nextslideindex = currentFrame + 1;
     if (nextslideindex > framecount) {
         nextslideindex = 1;
@@ -78,16 +84,16 @@ function scrollHandler(e) {
     //Maybe we can use it to determine the speed, but for now we only scroll one frame.
     var delta = e.deltaY != 0 ? e.deltaY : (e.deltaX != 0 ? e.deltaX : 0);
     if (delta < 0) { //Up or left-Scroll
-        prevFrame();
+        prevFrame(true);
     } else if (delta > 0) { //Down or Right-Scroll
-        nextFrame();
+        nextFrame(true);
     }
     e.preventDefault();
 }
 
 
 //https://code.google.com/p/jquery-timer/
-//TODO: Changer timer to something usefule, like playforward.
+//TODO: Changer timer to something useful, like playforward.
 var timer = $.timer(function () {
     if (currentFrame >= framecount) {
         updateAll(1);
