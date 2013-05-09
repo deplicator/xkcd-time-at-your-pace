@@ -127,76 +127,79 @@ var playreverse = $.timer(function () {
     }
 });
 
-//Play-pause button start and stop auto play back and change button text.
-$('#play').click(function () {
-    if ($('#play').val() == "Play") {
-        $('#play').val("Pause");
-        if ($('#forward').hasClass('dir-select')) {
-            timer.set({
-                time: speed,
-                autostart: true
-            });
+
+$(document).ready(function () {
+    //Play-pause button start and stop auto play back and change button text.
+    $('#play').click(function () {
+        if ($('#play').val() == "Play") {
+            $('#play').val("Pause");
+            if ($('#forward').hasClass('dir-select')) {
+                timer.set({
+                    time: speed,
+                    autostart: true
+                });
+            } else {
+                playreverse.set({
+                    time: speed,
+                    autostart: true
+                });
+            }
         } else {
+            $('#play').val("Play");
+            timer.stop();
+            playreverse.stop();
+        }
+    });
+
+    //Change directions on the fly.
+    $('#reverse').click(function () {
+        if (timer.isActive) {
+            timer.stop();
             playreverse.set({
                 time: speed,
                 autostart: true
             });
         }
-    } else {
-        $('#play').val("Play");
-        timer.stop();
-        playreverse.stop();
-    }
-});
+    });
 
-//Change directions on the fly.
-$('#reverse').click(function () {
-    if (timer.isActive) {
-        timer.stop();
-        playreverse.set({
-            time: speed,
-            autostart: true
-        });
-    }
-});
+    $('#forward').click(function () {
+        if (playreverse.isActive) {
+            playreverse.stop();
+            timer.set({
+                time: speed,
+                autostart: true
+            });
+        }
+    });
 
-$('#forward').click(function () {
-    if (playreverse.isActive) {
-        playreverse.stop();
+
+    //Changes playback speed from input, should work on the fly.
+    $('#autoplayspeed').change(function () {
+        if ($('#autoplayspeed').val() <= 0) {
+            $('#autoplayspeed').val(1);
+        }
+        var newspeed = parseInt($('#autoplayspeed').val(), 10);
+        speed = (1 / newspeed) * 1000;
         timer.set({
             time: speed,
-            autostart: true
+            autoplay: true
         });
-    }
-});
-
-
-//Changes playback speed from input, should work on the fly.
-$('#autoplayspeed').change(function () {
-    if ($('#autoplayspeed').val() <= 0) {
-        $('#autoplayspeed').val(1);
-    }
-    var newspeed = parseInt($('#autoplayspeed').val(), 10);
-    speed = (1 / newspeed) * 1000;
-    timer.set({
-        time: speed,
-        autoplay: true
+        playreverse.set({
+            time: speed,
+            autoplay: true
+        });
     });
-    playreverse.set({
-        time: speed,
-        autoplay: true
-    });
+
+
+    /*
+     * Handlers
+     */
+    $('#first').click(firstFrame);
+    $('#last').click(lastFrame);
+    $('#previous').click(prevFrame);
+    $('#next').click(nextFrame);
+    $('#previous-special').click(prevSpecialFrame);
+    $('#next-special').click(nextSpecialFrame);
+    addWheelListener(slider, scrollHandler);
+    addWheelListener(scrollhere, scrollHandler);
 });
-
-
-/*
- * Handlers
- */
-$('#first').click(firstFrame);
-$('#last').click(lastFrame);
-$('#previous').click(prevFrame);
-$('#next').click(nextFrame);
-$('#previous-special').click(prevSpecialFrame);
-$('#next-special').click(nextSpecialFrame);
-addWheelListener(slider, scrollHandler);
-addWheelListener(scrollhere, scrollHandler);

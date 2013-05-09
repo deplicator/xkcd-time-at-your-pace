@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global $, BrowserDetect, ctx3, diff,addWheelListener, preloadFrame, updatePreloadingIndicator: false */
+/*global $, BrowserDetect, ctx3, diff,addWheelListener, preloadFrame, updatePreloadingIndicator, getLastSeen: false */
 
 //Fix console.log for IE
 if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -23,20 +23,6 @@ var currentFrame = 1;
 var initialframe;
 
 
-function lastSeen() {
-    var i, m;
-    var cookies = document.cookie.split(';');
-    for (i = 0; i < cookies.length; ++i) {
-        m = cookies[i].match(/^lastSeen=(.*)/);
-        if (m) {
-            return parseInt(m[1], 10);
-        }
-    }
-    return 0;
-}
-if (lastSeen() > 1) {
-    $('#lastSeen').show();
-}
 
 //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
 // Read a page's GET URL variables and return them as an associative array.
@@ -54,8 +40,8 @@ var vars = getUrlVars();
 if (vars.frame) {
     initialframe = parseInt(vars.frame, 10);
 } else {
-    if (lastSeen() > 1) {
-        initialframe = lastSeen();
+    if (getLastSeen() > 1) {
+        initialframe = getLastSeen();
     } else {
         initialframe = 1;
     }
@@ -220,18 +206,6 @@ $("#freezeframe").change(function () {
     updateAll(currentFrame);
 });
 
-$('#lastSeen').click(function () {
-    updateAll(lastSeen());
-});
-
-function startLoading(frame) {
-    $("#loading").show();
-}
-
-function finishedLoading() {
-    $("#loading").hide();
-}
-
 function slideshowLoaded(frame, img) {
     if (currentFrame == frame) {
         ctx3.drawImage(img, 0, 0);
@@ -243,11 +217,7 @@ function updateAllWithoutSlider(frame) {
     var oldframe = currentFrame;
     currentFrame = frame;
     //startLoading(frame);
-    if (frame > lastSeen()) {
-        var expire = new Date();
-        expire.setFullYear(expire.getFullYear() + 1);
-        document.cookie = 'lastSeen=' + frame + '; expires=' + expire.toGMTString();
-    }
+    updateLastSeen(frame);
 
     $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
 
