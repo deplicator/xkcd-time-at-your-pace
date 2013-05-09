@@ -1,5 +1,9 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global startLoading, finishedLoading, images, imageslen,isSpecial,specialframes, $, currentFrame: false */
+/*global images, imageslen,isSpecial,specialframes, $, currentFrame: false */
+//dependencys: jquery (for ready handler)
+// scroll1190.js: images, currentFrame
+// ayop-specialframes.js: isSpecial, specialframes
+// jquery
 
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
@@ -157,6 +161,15 @@ function preloadAll() {
         }
     }
 }
+
+function startLoading(frame) {
+    $("#loading").show();
+}
+
+function finishedLoading() {
+    $("#loading").hide();
+}
+
 /*
  * Method to be called, when the specified frame is requested to be shown NOW.
  * Will predict the next images and preload them also.

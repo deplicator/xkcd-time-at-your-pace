@@ -5,7 +5,20 @@
     <title>XKCD Time - at your own pace</title>
     <link rel="stylesheet" href="css/default.css">
     <script src="scripts/analytic.js"></script>
-    <script src="scripts/ayop-specialframes.js"></script>
+    <!-- Libs -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery.timer.js"></script>
+    <script src="scripts/html5slider.js"></script>
+    <script src="scripts/addWheelListener.js"></script>
+    <!--<script src="scripts/browserdetect.js"></script>-->
+
+    <!-- Scripts -->
+    <script src="scripts/ayop-lastseen.js"></script> <!-- no dependencys -->
+    <script src="scripts/ayop-specialframes.js"></script> <!-- top-level dependencys: jquery -->
+    <script src="scripts/ayop-preload.js"></script> <!-- top-level dependencys: jquery -->
+    <script src="scripts/ayop-navigation.js"></script> <!-- top-level dependencys: jquery -->
+    <script src="scripts/ayop-ui.js"></script> <!-- top-level dependencys: jquery -->
+
 </head>
 
 <body>
@@ -97,17 +110,7 @@
     <canvas id="canvas1" width="553" height="395" style="display: none"></canvas>
     <canvas id="canvas2" width="553" height="395" style="display: none"></canvas>
     
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/jquery.timer.js"></script>
-    <script src="scripts/browserdetect.js"></script>
-    <script src="scripts/html5slider.js"></script>
-    
-    <script src="scripts/ayop-preload.js"></script>
-    <script src="scripts/addWheelListener.js"></script>
-    <script src="scripts/imagediff.js"></script>
-    <script src="scripts/scroll1190.js"></script>
-    <script src="scripts/ayop-navigation.js"></script>
-    <script src="scripts/ayop-ui.js"></script>
-
+    <script src="scripts/imagediff.js"></script><!-- top-level dependencys: canvas1,2,3 loaded.  -->
+    <script src="scripts/scroll1190.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->
 <body>
 </html>
