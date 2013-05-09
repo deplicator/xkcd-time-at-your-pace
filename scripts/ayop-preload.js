@@ -49,20 +49,20 @@ function getFrameURL(frame) {
 }
 
 function markPreloadingFrame(frame, color) {
-    frame = frame - 1;
+    var frameMinusOne = frame - 1;
     preloadingStatusCtx.fillStyle = color;
     preloadingStatusCtx.fillRect(
-        (preloadingStatusRectSize * frame) % preloadingStatusWidth,
-        preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
+        (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth,
+        preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)),
         preloadingStatusRectSize,
         preloadingStatusRectSize
     );
 
-    if (isSpecial(frame+1)) {
+    if (isSpecial(frame)) {
         preloadingStatusCtx.strokeStyle = specialFrameColor;
         preloadingStatusCtx.strokeRect(
-            (preloadingStatusRectSize * frame) % preloadingStatusWidth,
-            preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
+            (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth,
+            preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)),
             preloadingStatusRectSize - 1, //Looks like this draws a rect with size+1
             preloadingStatusRectSize - 1
         );
