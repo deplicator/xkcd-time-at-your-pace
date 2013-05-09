@@ -100,8 +100,7 @@ var timer = $.timer(function () {
             specialframecounter = 0;
         }
     }
-    currentFrame++;
-    updateAll(currentFrame);
+    updateAll(currentFrame + 1);
     if (currentFrame >= framecount) {
         timer.stop();
         $('#play').val("Play");
@@ -121,8 +120,7 @@ var playreverse = $.timer(function () {
             specialframecounter = 0;
         }
     }
-    currentFrame--;
-    updateAll(currentFrame);
+    updateAll(currentFrame - 1);
     if (currentFrame <= 1) {
         playreverse.stop();
         $('#play').val("Play");
