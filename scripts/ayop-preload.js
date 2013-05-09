@@ -1,11 +1,15 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global assert, startLoading,finishedLoading, images, imageslen,isSpecial,specialframes, $: false */
+/*global startLoading, finishedLoading, images, imageslen,isSpecial,specialframes, $, currentFrame: false */
 
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
-var specialFrameColor = "yellow";
+var notYetLoadedColor       = "grey";
+var loadingInProgressColor  = "blue";
+var loadingCompleteColor    = "black";
+var specialFrameBorderColor = "yellow";
+var currentFrameBorderColor = "white";
 function initPreloadingStatus(maxImages) {
     var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
@@ -14,7 +18,7 @@ function initPreloadingStatus(maxImages) {
     preloadingStatusHeight = preloadingStatusRectSize * Math.floor(maxImages / (preloadingStatusWidth / preloadingStatusRectSize) + 1);
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
     preloadingStatusCtx.lineWidth = 1;
-    preloadingStatusCtx.fillStyle = "gray";
+    preloadingStatusCtx.fillStyle = notYetLoadedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
     preloadingStatusCtx.fillStyle = $("#funstuff").css('backgroundColor');
     preloadingStatusCtx.fillRect(
@@ -24,7 +28,7 @@ function initPreloadingStatus(maxImages) {
         preloadingStatusRectSize
     );
     for (i = 0; i < specialframes.length; i++) {
-        markPreloadingFrame(specialframes[i], "gray");
+        markPreloadingFrame(specialframes[i], notYetLoadedColor);
     }
 }
 $(document).ready(function () {
@@ -49,20 +53,20 @@ function getFrameURL(frame) {
 }
 
 function markPreloadingFrame(frame, color) {
-    frame = frame - 1;
+    var frameMinusOne = frame - 1;
     preloadingStatusCtx.fillStyle = color;
     preloadingStatusCtx.fillRect(
-        (preloadingStatusRectSize * frame) % preloadingStatusWidth,
-        preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
+        (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth,
+        preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)),
         preloadingStatusRectSize,
         preloadingStatusRectSize
     );
 
-    if (isSpecial(frame+1)) {
-        preloadingStatusCtx.strokeStyle = specialFrameColor;
+    if (isSpecial(frame) || currentFrame === frame) {
+        preloadingStatusCtx.strokeStyle = currentFrame === frame ? currentFrameBorderColor : specialFrameBorderColor;
         preloadingStatusCtx.strokeRect(
-            (preloadingStatusRectSize * frame) % preloadingStatusWidth,
-            preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
+            (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth + 0.5,
+            preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)) + 0.5,
             preloadingStatusRectSize - 1, //Looks like this draws a rect with size+1
             preloadingStatusRectSize - 1
         );
@@ -70,16 +74,35 @@ function markPreloadingFrame(frame, color) {
 }
 
 function preloadingInProgress(frame) {
-    markPreloadingFrame(frame, "blue");
+    markPreloadingFrame(frame, loadingInProgressColor);
 }
 function preloadingFinished(frame) {
-    markPreloadingFrame(frame, "black");
+    markPreloadingFrame(frame, loadingCompleteColor);
 }
 function preloadingError(frame) {
     if (frame == currentFrame) {
         $("#LoadingImage").html('Oh noes, something has gone wrong!');
     }
     markPreloadingFrame(frame, "red");
+}
+
+/*
+ * Update the Preloading Indicator to show the current status of the frame.
+ */
+function updatePreloadingIndicator(frame) {
+    if (preloadedImages[frame]) {
+        var img = preloadedImages[frame];
+        if (img.naturalWidth === 0 || img.naturalHeight === 0 || img.complete === false) {
+            //Image is still loading
+            preloadingInProgress(frame);
+        } else {
+            //Image is complete.
+            preloadingFinished(frame);
+        }
+    } else {
+        //Image has not yet been marked for preloading
+        markPreloadingFrame(frame, notYetLoadedColor);
+    }
 }
 
 function preloadingFinishedHandlerForFrame(frame) {
@@ -122,7 +145,7 @@ function predictFrames(frame) {
 }
 
 function preloadAll() {
-    var i;
+    var i, img;
     for (i = 1; i <= imageslen - 1; i++) {
         if (!preloadedImages[i]) {
             img = new Image();
