@@ -1,4 +1,4 @@
-/*jslint sloppy: true, plusplus: true */
+/*jslint browser: true, sloppy: true, plusplus: true */
 /*global $:false */
 var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 531, 537, 538, 562, 563,
                      564, 637, 638, 640, 641, 642, 659, 660, 661, 832, 833, 834, 835, 838, 855, 856,
@@ -12,11 +12,12 @@ var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 531, 
                      /*
  * Add the special-frames to the html
  */
-var sflen = specialframes.length, i;
-for (i = 0; i < sflen; i++) {
-    $('#textframelist').append('<li><a href="./?frame=' + specialframes[i] + '"><img src="./images/' + specialframes[i] + '.png" alt=""></a></li>');
-}
-
+$(document).ready(function () {
+    var sflen = specialframes.length, i;
+    for (i = 0; i < sflen; i++) {
+        $('#textframelist').append('<li><a href="./?frame=' + specialframes[i] + '"><img src="./images/' + specialframes[i] + '.png" alt=""></a></li>');
+    }
+});
 // Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
 function binary_search_iterative(a, value) {
     var lo = 0, hi = a.length - 1, mid;
