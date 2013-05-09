@@ -5,7 +5,11 @@ var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
-var specialFrameColor = "yellow";
+var notYetLoadedColor       = "grey";
+var loadingInProgressColor  = "blue";
+var loadingCompleteColor    = "black";
+var specialFrameBorderColor = "yellow";
+var currentFrameBorderColor = "red";
 function initPreloadingStatus(maxImages) {
     var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
@@ -14,7 +18,7 @@ function initPreloadingStatus(maxImages) {
     preloadingStatusHeight = preloadingStatusRectSize * Math.floor(maxImages / (preloadingStatusWidth / preloadingStatusRectSize) + 1);
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
     preloadingStatusCtx.lineWidth = 1;
-    preloadingStatusCtx.fillStyle = "gray";
+    preloadingStatusCtx.fillStyle = notYetLoadedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
     preloadingStatusCtx.fillStyle = $("#funstuff").css('backgroundColor');
     preloadingStatusCtx.fillRect(
@@ -24,7 +28,7 @@ function initPreloadingStatus(maxImages) {
         preloadingStatusRectSize
     );
     for (i = 0; i < specialframes.length; i++) {
-        markPreloadingFrame(specialframes[i], "gray");
+        markPreloadingFrame(specialframes[i], notYetLoadedColor);
     }
 }
 $(document).ready(function () {
@@ -58,8 +62,8 @@ function markPreloadingFrame(frame, color) {
         preloadingStatusRectSize
     );
 
-    if (isSpecial(frame)) {
-        preloadingStatusCtx.strokeStyle = specialFrameColor;
+    if (isSpecial(frame) || currentFrame === frame) {
+        preloadingStatusCtx.strokeStyle = currentFrame === frame ? currentFrameBorderColor : specialFrameBorderColor;
         preloadingStatusCtx.strokeRect(
             (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth + 0.5,
             preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)) + 0.5,
@@ -70,10 +74,10 @@ function markPreloadingFrame(frame, color) {
 }
 
 function preloadingInProgress(frame) {
-    markPreloadingFrame(frame, "blue");
+    markPreloadingFrame(frame, loadingInProgressColor);
 }
 function preloadingFinished(frame) {
-    markPreloadingFrame(frame, "black");
+    markPreloadingFrame(frame, loadingCompleteColor);
 }
 function preloadingError(frame) {
     if (frame == currentFrame) {
