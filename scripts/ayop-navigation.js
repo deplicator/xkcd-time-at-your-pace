@@ -116,16 +116,15 @@ function isSpecial(frame) {
 
 //https://code.google.com/p/jquery-timer/
 //TODO: Changer timer to something usefule, like playforward.
-var timer = $.timer(function() {
+var timer = $.timer(function () {
     if (currentFrame >= framecount) {
         updateAll(1);
     }
     if (isSpecial(currentFrame)) {
         specialframecounter += speed;
-        if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
+        if (specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
             return;//should pause x seconds... 
-        }
-        else {
+        } else {
             specialframecounter = 0;
         }
     }
@@ -144,10 +143,9 @@ var playreverse = $.timer(function () {
     }
     if (isSpecial(currentFrame)) {
         specialframecounter += speed;
-        if(specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(),10) || 0)*1000) {
+        if (specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
             return;//should pause x seconds... 
-        }
-        else {
+        } else {
             specialframecounter = 0;
         }
     }
@@ -182,7 +180,7 @@ $('#play').click(function () {
 });
 
 //Change directions on the fly.
-$('#reverse').click(function() {
+$('#reverse').click(function () {
     if (timer.isActive) {
         timer.stop();
         playreverse.set({
@@ -192,7 +190,7 @@ $('#reverse').click(function() {
     }
 });
 
-$('#forward').click(function() {
+$('#forward').click(function () {
     if (playreverse.isActive) {
         playreverse.stop();
         timer.set({
