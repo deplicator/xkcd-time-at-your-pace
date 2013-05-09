@@ -202,11 +202,10 @@ li {
 #funstuff {
     background: #D5DCE9;
     border-radius: 4px;
+    font-size: 10px;
     margin: 0 auto;
     padding: 0 0 3px 0;
     width: 901px;
-    font-size: 10px;
-
 }
 
 #funstuff h3 {
@@ -226,7 +225,7 @@ li {
 
 #funstuff #imgdiffopts {
     margin: 0 0 14px 11px;
-    width: 212px;
+    width: 220px;
 }
 
 #funstuff #preloadindicator {
@@ -273,7 +272,7 @@ li {
 
 /* Special Frames */
 #textframes {
-    background: #96A8C8;
+    background: #D5DCE9;
     border-radius: 4px;
     margin: 9px auto 50px;
     padding: 0 0 3px 0;
@@ -281,7 +280,10 @@ li {
 }
 
 #textframes h3{
+    background: #96A8C8;
     border-bottom: 1px dashed #222;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     padding: 10px;
