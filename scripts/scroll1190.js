@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global $, BrowserDetect, ctx3, diff,addWheelListener, preloadFrame: false */
+/*global $, BrowserDetect, ctx3, diff,addWheelListener, preloadFrame, updatePreloadingIndicator: false */
 
 //Fix console.log for IE
 if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -12,12 +12,6 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
  * give credit where it is due.
  */
 
-var specialframes = [52, 170, 175, 320, 403, 408, 414, 486, 487, 488, 490, 531, 537, 538, 562, 563,
-                     564, 637, 638, 640, 641, 642, 659, 660, 661, 832, 833, 834, 835, 838, 855, 856,
-                     857, 859, 860, 861, 862, 864, 865, 985, 1004, 1005, 1006, 1018, 1024, 1025, 
-                     1041, 1042, 1044, 1045, 1049, 1050, 1052, 1053, 1058, 1066, 1067, 1069, 1071, 
-                     1072, 1073, 1093, 1096, 1123, 1130, 1131, 1142, 1143, 1144, 1146, 1159, 1160, 
-                     1161, 1178, 1179, 1184];
 var images = [];
 var bitlydata = null;
 var imageslen = 0; //replacing imageslen with framecount
@@ -96,14 +90,6 @@ slider.oninput = function () {
     updateAllWithoutSlider(nextslideindex);
 };
 
-
-/*
- * Add the special-frames to the html
- */
-var sflen = specialframes.length;
-for (var i = 0; i < sflen; i++) {
-    $('#textframelist').append('<li><a href="./?frame='+specialframes[i]+'"><img src="./images/'+specialframes[i]+'.png" alt=""></a></li>');
-}
 
 /*
  * Loaded data.txt 
@@ -254,6 +240,7 @@ function slideshowLoaded(frame, img) {
 
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
+    var oldframe = currentFrame;
     currentFrame = frame;
     //startLoading(frame);
     if (frame > lastSeen()) {
@@ -280,6 +267,8 @@ function updateAllWithoutSlider(frame) {
         }
         preloadFrame(frame, slideshowLoaded);
     }
+    updatePreloadingIndicator(oldframe);
+    updatePreloadingIndicator(currentFrame);
 }
 
 function updateAll(frame) {
