@@ -25,8 +25,8 @@ function lastFrame() {
 }
 
 //Pass a true value to continue autoplay.
-function prevFrame(pause) {
-    if(!pause) {
+function prevFrame(nopause) {
+    if(!nopause) {
         $('#play').val("Play");
         timer.stop();
     }
@@ -36,8 +36,8 @@ function prevFrame(pause) {
 }
 
 //Pass a true value to continue autoplay.
-function nextFrame(pause) {
-    if(!pause) {
+function nextFrame(nopause) {
+    if(!nopause) {
         $('#play').val("Play");
         timer.stop();
     }
@@ -202,10 +202,24 @@ $(document).ready(function () {
      */
     $('#first').click(firstFrame);
     $('#last').click(lastFrame);
-    $('#previous').click(prevFrame);
-    $('#next').click(nextFrame);
+    $('#previous').click(function() {
+        prevFrame();
+    });
+    $('#next').click(function() {
+        nextFrame();
+    });
     $('#previous-special').click(prevSpecialFrame);
     $('#next-special').click(nextSpecialFrame);
     addWheelListener(slider, scrollHandler);
     addWheelListener(scrollhere, scrollHandler);
 });
+
+
+//This function is not called anywhere, testing only. Playback time is terribly inaccurate. My guess
+//it will vary on different computers if all the images are preloaded. Left here for fun.
+function timetoplay() {
+    var numspecialframes = specialframes.length;
+    var specialtime = numspecialframes * $('#PauseSpecialFrameAmount').val();
+    var ordinarytime = (framecount - numspecialframes) * speed / 1000;
+    return specialtime + ordinarytime + " seconds";
+}

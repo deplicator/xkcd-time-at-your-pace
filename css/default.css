@@ -52,22 +52,22 @@ li {
 .bluebutton {
     background: #96A8C8;
     border: 1px solid #2D323C;
-    background-image: -ms-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */ 
-    background-image: -moz-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(top, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to bottom, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */ 
+    background-image: -ms-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* IE10 Consumer Preview */ 
+    background-image: -moz-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* Mozilla Firefox */ 
+    background-image: -o-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* Opera */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #B6C2D8), color-stop(1, #96A8C8)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(to bottom, #B6C2D8 0%, #96A8C8 100%); /* W3C Markup, IE10 Release Preview */ 
 }
 
 .bluebutton:active {
     background: #96A8C8;
-    background-image: -ms-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* IE10 Consumer Preview */
-    background-image: -moz-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Mozilla Firefox */ 
-    background-image: -o-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Opera */ 
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #96A8C8), color-stop(1, #7886A0)); /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-linear-gradient(bottom, #96A8C8 0%, #7886A0 100%); /* Webkit (Chrome 11+) */ 
-    background-image: linear-gradient(to top, #96A8C8 0%, #7886A0 100%); /* W3C Markup, IE10 Release Preview */
+    background-image: -ms-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* IE10 Consumer Preview */
+    background-image: -moz-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* Mozilla Firefox */ 
+    background-image: -o-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* Opera */ 
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #B6C2D8), color-stop(1, #96A8C8)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(to top, #B6C2D8 0%, #96A8C8 100%); /* W3C Markup, IE10 Release Preview */
 }
 
 /* Top Controls */
@@ -245,6 +245,7 @@ li {
 }
 
 #funstuff #link {
+    border-bottom: 1px dashed #222;
     padding: 10px 0;
     text-align: center;
 }
@@ -254,11 +255,23 @@ li {
     width: 220px;
 }
 
+#funstuff #imgdiffopts p {
+    margin: 0 0 0 77px;
+}
+
+
+
 #funstuff #preloadindicator {
+    border-left: 1px dashed #222;
     float: right;
-    margin: -70px 13px 0 0;
-    text-align: center;
-    width: 600px;
+    margin: -83px 5px 2px 0;
+    padding: 0 0 0 38px;
+    width: 593px;
+}
+
+#funstuff #preloadindicator  p {
+    margin: 0 220px 0 0;
+    text-align: right;
 }
 
 #funstuff #preloadindicator #preloadAllButton {
@@ -279,6 +292,11 @@ li {
     left: 2px;
 }
 
+#funstuff #preloadindicator #preloadingStatus {
+    border: 1px solid #222;
+    float: right;
+    padding: 2px;
+}
 
 /* Special Frames */
 #textframes {

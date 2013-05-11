@@ -9,11 +9,11 @@ var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
-var notYetLoadedColor       = "grey";
-var loadingInProgressColor  = "blue";
-var loadingCompleteColor    = "black";
-var specialFrameBorderColor = "yellow";
-var currentFrameBorderColor = "white";
+var notYetLoadedColor       = "#808080";
+var loadingInProgressColor  = "#6082B6";
+var loadingCompleteColor    = "#222";
+var specialFrameBorderColor = "#FFFF00";
+var currentFrameBorderColor = "#00FF00";
 function initPreloadingStatus(maxImages) {
     var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {

@@ -1,18 +1,36 @@
 __NOTOC__
 
 ==Description==
-Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way.
+Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way. 
 
+We tried to make it fun too.
 
 ==Features==
 ===Navigation===
-Play button plays the frames at 10 frames per second and pauses for 2 seconds on Special Frames, both of these are adjustable with the text boxes next to the play/pause button.
+Play button plays the frames back at 10 frames per second pausing for 2 seconds on Special Frames, both of these are adjustable with text boxes next to the play/pause button. Higher speeds benefit from preloading images first. It should be noted frames per second is not accurate even if all frames are preloaded.
+
+Play works in reverse now too, just because it seemed like a good idea at the time.
 
 The 'step through frames' will navigate through the frames one at a time. If playing this will pause.
 
-The left and right arrow keys work the same as the 'step through frames' buttons.
+{| class="wikitable"
+|-
+| <nowiki>|<</nowiki> || Jump to First Frame
+|-
+| << || Previous Special Frame
+|-
+| < || Previous Frame
+|-
+| > || Next Frame
+|-
+| >> || Next Special Frame
+|-
+| <nowiki>>|</nowiki> || Jump to Last Frame
+|}
 
-Hovering over the image or slider and scrolling with the mouse wheel will navigate through the frames as well. Fun Fact: this was the motivating feature for the whole project.
+The left and right arrow keys work the same as the previous and next frame step through buttons.
+
+Hovering over the image or slider and scrolling with the mouse wheel will navigate through the frames as well. This will not pause playback. Fun Fact: this was the motivating feature for the whole project.
 
 ===Special Frames===
 Most special frames are frames with text. The auto play now pauses for a user specified amount of time on these frames.
@@ -41,7 +59,23 @@ A couple of examples:
  ?frame=162&framediff=126
 
 ===Preloading===
-[https://github.com/MaPePeR MaPePeR] has outdone himself by adding code that preloads images for quicker playback. Clicking "Preload All" twice will load every image in the comic.
+[https://github.com/MaPePeR MaPePeR] has outdone himself by adding code that preloads images for quicker playback. Clicking "Preload All" twice will load every image in the comic. The preloader also loads five frames ahead and three frames behind the current frame. In the preload indicator each frame is represented by 5 square pixels, the width is equal to 100 frames.
+
+{| class="wikitable"
+! Box Color !! Definition
+|-
+| Grey || Frame not loaded
+|-
+| Blue || Frame is loading
+|-
+| Black || Frame is loaded
+|-
+| Red || Something has gone wrong loading that frame
+|-
+| Yellow Border || Special Frame
+|-
+| Green Border || Current Frame
+|}
 
 ==Thanks==
 * Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (probably more than me now). It's been fun having someone so knowledgeable to work with.
