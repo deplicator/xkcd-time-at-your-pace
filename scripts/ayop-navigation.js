@@ -1,5 +1,5 @@
 /*jslint browser: true, sloppy: true, indent: 4, eqeq: true*/
-/*global $, updateAll, framecount, currentFrame, addWheelListener, slider, scrollhere, isSpecial, nextSpecial, prevSpecial:false */
+/*global $, updateAll, frameCount, currentFrame, addWheelListener, slider, scrollhere, isSpecial, nextSpecial, prevSpecial:false */
 /*
  * Navigation
  * Handels auto play back, frame steps, keyboard input, slider, and scrolling.
@@ -21,7 +21,7 @@ function firstFrame() {
 function lastFrame() {
     $('#play').val("Play");
     timer.stop();
-    updateAll(framecount);
+    updateAll(frameCount);
 }
 
 //Pass a true value to continue autoplay.
@@ -31,7 +31,7 @@ function prevFrame(nopause) {
         timer.stop();
     }
     var nextslideindex = currentFrame - 1;
-    nextslideindex = (nextslideindex < 1) ? framecount : (nextslideindex > framecount) ? 1 : nextslideindex;
+    nextslideindex = (nextslideindex < 1) ? frameCount : (nextslideindex > frameCount) ? 1 : nextslideindex;
     updateAll(nextslideindex);
 }
 
@@ -42,7 +42,7 @@ function nextFrame(nopause) {
         timer.stop();
     }
     var nextslideindex = currentFrame + 1;
-    if (nextslideindex > framecount) {
+    if (nextslideindex > frameCount) {
         nextslideindex = 1;
     }
     updateAll(nextslideindex);
@@ -95,7 +95,7 @@ function scrollHandler(e) {
 //https://code.google.com/p/jquery-timer/
 //TODO: Changer timer to something useful, like playforward.
 var timer = $.timer(function () {
-    if (currentFrame >= framecount) {
+    if (currentFrame >= frameCount) {
         updateAll(1);
     }
     if (isSpecial(currentFrame)) {
@@ -107,7 +107,7 @@ var timer = $.timer(function () {
         }
     }
     updateAll(currentFrame + 1);
-    if (currentFrame >= framecount) {
+    if (currentFrame >= frameCount) {
         timer.stop();
         $('#play').val("Play");
     }
@@ -116,7 +116,7 @@ var timer = $.timer(function () {
 //same as above, but backwards
 var playreverse = $.timer(function () {
     if (currentFrame <= 1) {
-        updateAll(framecount);
+        updateAll(frameCount);
     }
     if (isSpecial(currentFrame)) {
         specialframecounter += speed;
@@ -220,6 +220,6 @@ $(document).ready(function () {
 function timetoplay() {
     var numspecialframes = specialframes.length;
     var specialtime = numspecialframes * $('#PauseSpecialFrameAmount').val();
-    var ordinarytime = (framecount - numspecialframes) * speed / 1000;
+    var ordinarytime = (frameCount - numspecialframes) * speed / 1000;
     return specialtime + ordinarytime + " seconds";
 }

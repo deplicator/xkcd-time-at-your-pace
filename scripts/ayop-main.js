@@ -7,17 +7,10 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
     console.log = function () {};
 }
 
-/*
- * Makes most of the magic happen, I'm not the greatest coder and I've tried to
- * give credit where it is due.
- */
 
 var images = [];
-var bitlydata = null;
-var imageslen = 0; //replacing imageslen with framecount
-var framecount = 0; //were we calling it framecount or imagecount?
+var frameCount = 0;
 var scrollhere = document.getElementById("scrollhere");
-var slider = document.getElementById("slider");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 var currentFrame = 1;
 var initialframe;
@@ -37,7 +30,7 @@ function getUrlVars() {
     return vars;
 }
 var vars = getUrlVars();
-if (vars.frame) {
+if (vars.frame && !isNaN(vars.frame)) {
     initialframe = parseInt(vars.frame, 10);
 } else {
     if (getLastSeen() > 1) {
@@ -81,79 +74,65 @@ slider.oninput = function () {
  * Loaded data.txt 
  * Now we know how many images exists and can check the selected initialframe.
  */
-$.ajax({
-    url: "data.txt",
-    dataType: "text",
-    success: function (response) {
-        $("#LoadingImage").html('');
+// $.ajax({
+    // url: "./data/data.txt",
+    // dataType: "text",
+    // success: function (response) {
+        // $("#LoadingImage").html('');
         //console.log(response);
-        images = response.split('\n');
-        imageslen = images.length;
-        framecount = imageslen - 1;
-        slider.max = framecount;
-        if (initialframe >= imageslen) {
-            initialframe = framecount;
-        } else if (initialframe <= 1) {
-            initialframe = 1;
-        }
-        initPreloadingStatus(framecount);
-        updateAll(initialframe);
-    },
-    error: function () {
-        $("#LoadingImage").html('Oh noes, something has gone wrong!');
-    }
-});
+        // images = response.split('\n');
+        // imageslen = images.length;
+        // framecount = imageslen - 1;
+        // slider.max = framecount;
+        // if (initialframe >= imageslen) {
+            // initialframe = framecount;
+        // } else if (initialframe <= 1) {
+            // initialframe = 1;
+        // }
+        // initPreloadingStatus(framecount);
+        // updateAll(initialframe);
+    // },
+    // error: function () {
+        // $("#LoadingImage").html('Oh noes, something has gone wrong!');
+    // }
+// });
 
-$.ajax({
-    url: "bitlydata.txt",
-    daa: "text",
-    success: function (response) {
-        bitlydata = {};
-        var bitlylinks = response.split('\n'), breakitup, i;
-        for (i = bitlylinks.length - 1; i >= 0; i--) {
-            breakitup = bitlylinks[i].split(" ");
-            bitlydata[parseInt(breakitup[0], 10) || -1] = breakitup[1];
-        }
-        $('#link input').val(bitlydata[currentFrame]);
-    },
-    error: function () {
-        $("#LoadingImage").html('Oh noes, something has gone wrong!');
-    }
-
-});
-
-
-/* 
- * Get's short url from local source if available.
- * It should be noted the bitly links used here all go to geekwagon.net. Something to keep in mind
- * if anyone sets this up on another domain.
+/*
+ * Creates array of frame objects.
  */
-function getBitlyURL(frame) {
-    if (!bitlydata) {
-        $('#link input').val("Not yet loaded bitlydata.");
-        return;
-    }
-
-    if (frame > imageslen) {
-        frame = imageslen;
-    } else if (frame <= 1) {
-        frame = 1;
-    }
-    if (bitlydata[frame]) {
-        $('#link input').val(bitlydata[frame]);
-    } else {
-        $.ajax({
-            url: 'bitly.php?frame=' + frame,
-            dataType: "text",
-            success: function (response) {
-                $('#link input').val(response);
-            },
-            error: function () {
-                $("#LoadingImage").html('Oh noes, something has gone wrong!');
+var frameData = [];
+function getFrameData() {
+    $.ajax({
+        url: 'getFrameData.php',
+        dataType: "text",
+        success: function (response) {
+            var temp = response.split("\n");
+            frameCount = temp.length - 1;
+            for(i = 0; i < frameCount; i++) {
+                    var tempframe = temp[i].split("\t")
+                    frameData[i+1] = new Object(); //The +1 makes all the array elements line up with frame numbers for simple minded people like myself, frameData[0] is undefined.
+                    frameData[i+1].frame = tempframe[0];
+                    frameData[i+1].link = tempframe[1];
+                    frameData[i+1].llink = tempframe[2];
+                    frameData[i+1].blink = tempframe[3];
             }
-        });
-    }
+            if (initialframe >= frameCount) {
+                initialframe = frameCount;
+            } else if (initialframe <= 1) {
+                initialframe = 1;
+            }
+            initPreloadingStatus(frameCount);
+            updateAll(initialframe);
+            slider.max = frameCount;
+            $("#LoadingImage").html('');
+        },
+        error: function () {
+            $("#LoadingImage").html('Oh noes, something has gone wrong!');
+        }
+    });
 }
+
+getFrameData();
 
 /* 
  * Change how url is displayed in "link to this frame" text box.
@@ -164,7 +143,7 @@ function getBitlyURL(frame) {
  */
 function displayURL(frame, how, from) {
     if (how == 'short') {
-        getBitlyURL(frame);
+        $('#link input').val(frameData[(frame)].blink);
     } else if (how == 'long') {
         if (!from) {
             $('#link input').val(site + '/?frame=' + frame);
@@ -219,7 +198,7 @@ function updateAllWithoutSlider(frame) {
     //startLoading(frame);
     updateLastSeen(frame);
 
-    $('#frameNum').html('frame: ' + frame + ' / ' + (imageslen - 1));
+    $('#frameNum').html('frame: ' + frame + ' / ' + (frameCount));
 
     if (difftype == "prev") {
         diff();
@@ -245,3 +224,7 @@ function updateAll(frame) {
     slider.value = frame;
     updateAllWithoutSlider(frame);
 }
+
+$(document).ajaxComplete(function() {
+    updateAll(currentFrame);
+});

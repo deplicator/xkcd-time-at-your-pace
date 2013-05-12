@@ -77,8 +77,15 @@ A couple of examples:
 | Green Border || Current Frame
 |}
 
+==Guidelines==
+By no means written in stone, but because of the frame 1236/1237 oddity it was time to make some guidelines.
+
+* Distinct hashes can stay despite what the image shows.
+
+So far, no hash seems to have been intentionally repeated. Hashes that have repeated are usually do to an error on the serving end or in our script. New hashes almost always occur on the hour unless there is a server problem. Most of these oddities can be seen in the log file and be corrected manually. In the case of 1236/1237 everything was running as normal, no oddities in the log. In accordance with this guideline we just made up, for the time being, we're keeping it as it is.
+
 ==Thanks==
-* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (probably more than me now). It's been fun having someone so knowledgeable to work with.
+* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (more than me now). It's been fun having someone so knowledgeable to work with.
 * Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
 * Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 

@@ -1,6 +1,3 @@
-experiments/
-images/
+ignore/
+data/frames/
 config.php
-log.txt
-
-database.php

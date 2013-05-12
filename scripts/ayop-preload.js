@@ -51,9 +51,9 @@ $(document).ready(function () {
 
 function getFrameURL(frame) {
     //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
-    //return 'images/' + images[frame].replace(/.*\//, '');
-    return 'images/' + frame + '.png';
-    //return images[frame];  //Do not use! will break imagediff, because of cross-origin.
+    //return 'frames/' + frames[frame].replace(/.*\//, '');
+    return 'data/frames/' + frame + '.png';
+    //return frames[frame];  //Do not use! will break imagediff, because of cross-origin.
 }
 
 function markPreloadingFrame(frame, color) {
@@ -120,7 +120,7 @@ function preloadingErrorHandlerForFrame(frame) {
     };
 }
 function predictFrames(frame) {
-    var end = Math.min(frame + 5, imageslen - 1);
+    var end = Math.min(frame + 5, frameCount - 1);
     var img, i;
 
     //Preload 5 frames forwards.
@@ -150,7 +150,7 @@ function predictFrames(frame) {
 
 function preloadAll() {
     var i, img;
-    for (i = 1; i <= imageslen - 1; i++) {
+    for (i = 1; i <= frameCount; i++) {
         if (!preloadedImages[i]) {
             img = new Image();
             img.onload = preloadingFinishedHandlerForFrame(i);
