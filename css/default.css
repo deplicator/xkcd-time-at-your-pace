@@ -25,11 +25,6 @@ h2 {
     font-size: 18px;
 }
 
-h4 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-}
-
 a {
     color: #3E48D2;
     text-decoration: none;
@@ -133,8 +128,8 @@ li {
     position: absolute;
     top: 40px;
     width: 40px;
-    transform: skew(30deg,20deg);
-    -ms-transform: skew(30deg,20deg);
+    transform: skew(-18deg,0deg);
+    -ms-transform: skew(-18deg,0deg);
     -webkit-transform: skew(-18deg,0deg);
 }
 
@@ -214,13 +209,24 @@ li {
 }
 
 #vote {
-    display: none;
-
-    border: 1px solid;
+    color: #888;
+    padding: 1px;
     position: absolute;
-    right: -173px;
+    right: 623px;
     text-align: center;
-    top: 198px;
+    top: 0px;
+    width: 100px;
+}
+
+#vote h4 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    line-height: 13px;
+}
+
+#vote input {
+    height: 20px;
+    width: 30px;
 }
 
 
@@ -346,17 +352,9 @@ li {
     width: 40px;
 }
 
-
 .craparrow {
     margin: 0 13px;
 }
-
-
-
-
-
-
-
 
 /* The bottom */
 footer {
@@ -373,6 +371,10 @@ footer #credit {
     width: 650px;
 }
 
+footer p {
+    padding: 40px 0 0 0;
+}
+
 footer #note {
     display: none;
 }
@@ -383,7 +385,8 @@ footer #note {
 
 /* Now no one can accuse me of never using a repsonsive web design. */
 @media screen and (min-width: 2600px) {
-    #note {
+    footer #note {
         display: block;
+        padding: 3px 0 0 0;
     }
 }

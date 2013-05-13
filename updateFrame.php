@@ -17,11 +17,13 @@ $dblog = "./data/dblog.txt"; //Stores database exceptions.
 $json = "./data/linklist.js"; //Stores link to frames as json.
 
 $eventtime = date("Y-m-d\tH:i:s"); //Time when stuff happens.
-echo $eventtime . "\tRunning update script.\n";
+file_put_contents($log, $eventtime . "\tRunning update script.\n", FILE_APPEND);
+//echo $eventtime . "\tRunning update script.\n";
 
 function connectivityCheck($link) { //Check for link.
     if(is_null($link)) {
         return false;
+        file_put_contents($log, $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n", FILE_APPEND);
         echo $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n";
     } else {
         return true;
@@ -44,6 +46,7 @@ if(connectivityCheck($link)) {
 
         if($frameByCount != $frameByMax) {
             $recordCheck = false;
+            file_put_contents($log, $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n", FILE_APPEND);
             echo $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n";
         }
         
@@ -54,6 +57,7 @@ if(connectivityCheck($link)) {
         while($row = $STH->fetch()) {
             if($link == $row['link']) {
                 $repeatCheck = false;
+                file_put_contents($log, $eventtime . "\tCHECK FAIL - A link with hash " . $hash . " is already in the database.\n", FILE_APPEND);
                 echo $eventtime . "\tCHECK FAIL - A link with hash " . $hash . " is already in the database.\n";
                 break;
             }
@@ -71,6 +75,7 @@ if(connectivityCheck($link)) {
             $shortURL = substr($shortURL,$start,$end);
             $shortURL = str_replace('\\', '', $shortURL);
             file_put_contents($log, $eventtime . "\tCreated bitly link for frame " . $frame . ", (" . $shortURL . ").\n", FILE_APPEND);
+            echo $eventtime . "\tCreated bitly link for frame " . $frame . ", (" . $shortURL . ").\n";
             $blink = $shortURL;
 
             //Update database.
@@ -78,12 +83,18 @@ if(connectivityCheck($link)) {
             $data = [$frame, $link, $llink, $blink];
             $STH = $DBH->prepare("INSERT INTO frames (frame, link, llink, blink) value (?, ?, ?, ?)");
             $STH->execute($data);
+            
+            $STH = $DBH->prepare("INSERT INTO votes (frame, voteyes, voteno) value (?, ?, ?)");
+            $STH->execute(array($frame, 0, 0));
+            
+            file_put_contents($log, $eventtime . "\tRecord for frame " . $frame . " added to database.\n", FILE_APPEND);
             echo $eventtime . "\tRecord for frame " . $frame . " added to database.\n";
 
             //Local image copy check.
             $imageCheck = true; //local image copy check
             if(file_exists('./data/frames/'.$frame.'.png')) {
                 $imageCheck = false;
+                file_put_contents($log, $eventtime . "\tCHECK FAIL - An image named " . $frame . ".png is already in the frames folder.\n", FILE_APPEND);
                 echo $eventtime . "\tCHECK FAIL - An image named " . $frame . ".png is already in the frames folder.\n";
             }
 
@@ -100,11 +111,14 @@ if(connectivityCheck($link)) {
                 if(!empty($newImage)) {
                     imagepng($newImage, './data/frames/' . $frame . '.png');
                     if(file_exists('./data/frames/' . $frame . '.png')) { //Double check that it is actually there.
+                        file_put_contents($log, $eventtime . "\tSuccessful copy of " . $frame . ".png.\n", FILE_APPEND);
                         echo $eventtime . "\tSuccessful copy of " . $frame . ".png.\n";
                     } else {
+                        file_put_contents($log, $eventtime . "\tCOPY FAIL - Could not write " . $frame . ".png.\n", FILE_APPEND);
                         echo $eventtime . "\tCOPY FAIL - Could not write " . $frame . ".png.\n";
                     }
                 } else {
+                    file_put_contents($log, $eventtime . "\tCOPY FAIL - Nothing to write for " . $frame . ".png.\n", FILE_APPEND);
                     echo $eventtime . "\tCOPY FAIL - Nothing to write for " . $frame . ".png.\n";
                 }
             }
@@ -116,11 +130,13 @@ if(connectivityCheck($link)) {
             $fileCheck = true; //Check line number in file against current frame number. They should be the same.
             if(count($dataContents) != $frame) {
                 $fileCheck = false;
+                file_put_contents($log, $eventtime . "CHECK FAIL - data.txt count doesn't match database count.\n", FILE_APPEND);
                 echo $eventtime . "CHECK FAIL - data.txt count doesn't match database count.\n";
             }
 
             if($fileCheck) {
                 file_put_contents($data, "\n" . $link, FILE_APPEND);
+                file_put_contents($log, $eventtime . "\tSuccessfully added frame " . $frame . " link to data.txt.\n", FILE_APPEND);
                 echo $eventtime . "\tSuccessfully added frame " . $frame . " link to data.txt.\n";
             }
         }
@@ -130,5 +146,6 @@ if(connectivityCheck($link)) {
             file_put_contents($dblog, $errmsg, FILE_APPEND);
     }
 } else {
+    file_put_contents($log, $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n", FILE_APPEND);
     echo $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n";
 }

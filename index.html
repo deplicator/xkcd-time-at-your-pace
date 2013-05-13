@@ -56,9 +56,12 @@
         <input id="slider" type="range" min="1" step="1" name="framslider"></input>
         
         <div id="vote">
-            <h4>Nominate As Special Frame</h4>
-            <input id="yes" class="bluebutton" type="button" value="Yes" title="This frame please me.">
-            <input id="no" class="bluebutton" type="button" value="No" title="This frame has been incorrectly marked as special, or should never be special in any way.">
+            <h4>Special Frame<br>Nomination</h4>
+            <form id="voteForm">
+                <input id="yes" class="bluebutton" type="button" value="Yes" title="This frame please me.">
+                <input id="no" class="bluebutton" type="button" value="No" title="This frame has been incorrectly marked as special, or should never be special in any way.">
+            </form>
+            <p>Still experimental</p>
         </div>
     </div>
     
@@ -98,8 +101,8 @@
             <br>
             The code for this site is licensed <a href="http://geekwagon.net/ufl/license.txt">under a license I just made up</a> that lets you do whatever you want.
         </div>
-        <p id="note">Your screen is really wide.</p>
-        <a href="http://blog.geekwagon.net/search/label/xkcd1190">About This Project</a> | <a href="mailto:james@geekwagon.net" title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a href="http://geekwagon.net" title="Just some guy">Who am I?</a>
+        <p><a href="http://blog.geekwagon.net/search/label/xkcd1190">About This Project</a> | <a href="mailto:james@geekwagon.net" title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a href="http://geekwagon.net" title="Just some guy">Who am I?</a></p>
+        <p id="note">Your screen is wide.</p>
     </footer>
     
     <a href="https://github.com/deplicator/xkcdTime_atyourownpace">
@@ -111,5 +114,6 @@
     
     <script src="scripts/imagediff.js"></script><!-- top-level dependencys: canvas1,2,3 loaded.  -->
     <script src="scripts/ayop-main.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->
+    <script src="scripts/ayop-vote.js"></script>
 <body>
 </html>

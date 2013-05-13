@@ -1286,3 +1286,10 @@ http://imgs.xkcd.com/comics/time/1119987b0d0749c946d9b2a945d6aa14d6ccad4c3f0cd36
 http://imgs.xkcd.com/comics/time/a2000bbc898fd92e4870f98f435170d3299476d1f417652b3550c83ccfe754e8.png
 http://imgs.xkcd.com/comics/time/ef68921feea3b5a54c27e88bba872385ca0f97dea915b663b297428b548e6719.png
 http://imgs.xkcd.com/comics/time/314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a.png
+http://imgs.xkcd.com/comics/time/8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955.png
+http://imgs.xkcd.com/comics/time/c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6.png
+http://imgs.xkcd.com/comics/time/f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70.png
+http://imgs.xkcd.com/comics/time/f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6.png
+http://imgs.xkcd.com/comics/time/ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374.png
+http://imgs.xkcd.com/comics/time/5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183.png
+http://imgs.xkcd.com/comics/time/307d0ab90e91a2deca578fbd4aa3b89b4ca286305d17446f66aa0b4594da7a54.png

@@ -514,3 +514,186 @@
 2013-05-12	13:15:02	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
 2013-05-12	13:20:03	Running update script.
 2013-05-12	13:20:03	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:25:01	Running update script.
+2013-05-12	13:25:01	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:30:03	Running update script.
+2013-05-12	13:30:03	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:35:02	Running update script.
+2013-05-12	13:35:02	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:40:01	Running update script.
+2013-05-12	13:40:01	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:45:02	Running update script.
+2013-05-12	13:45:02	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:50:03	Running update script.
+2013-05-12	13:50:03	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	13:55:02	Running update script.
+2013-05-12	13:55:02	CHECK FAIL - A link with hash 314bff80ea3d34742680ce2bb39acfa26f18dac5310f81175b1c209dd5058a4a is already in the database.
+2013-05-12	14:00:02	Created bitly link for frame 1288, (http://bit.ly/10s6Pal).
+2013-05-12	14:00:02	Running update script.
+2013-05-12	14:00:02	Record for frame 1288 added to database.
+2013-05-12	14:00:02	Successful copy of 1288.png.
+2013-05-12	14:00:02	Successfully added frame 1288 link to data.txt.
+2013-05-12	14:05:02	Running update script.
+2013-05-12	14:05:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:10:02	Running update script.
+2013-05-12	14:10:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:13:14	Running update script.
+2013-05-12	14:13:14	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:15:02	Running update script.
+2013-05-12	14:15:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:20:02	Running update script.
+2013-05-12	14:20:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:25:01	Running update script.
+2013-05-12	14:25:01	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:30:02	Running update script.
+2013-05-12	14:30:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:35:02	Running update script.
+2013-05-12	14:35:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:40:01	Running update script.
+2013-05-12	14:40:01	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:45:01	Running update script.
+2013-05-12	14:45:01	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:50:03	Running update script.
+2013-05-12	14:50:03	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	14:55:02	Running update script.
+2013-05-12	14:55:02	CHECK FAIL - A link with hash 8340892d24dbbac474ef1d54256d54569b4dd0b1f7fe2582a7bbe1c286d63955 is already in the database.
+2013-05-12	15:00:02	Running update script.
+2013-05-12	15:00:02	Created bitly link for frame 1289, (http://bit.ly/17ipSMS).
+2013-05-12	15:00:02	Record for frame 1289 added to database.
+2013-05-12	15:00:02	Successful copy of 1289.png.
+2013-05-12	15:00:02	Successfully added frame 1289 link to data.txt.
+2013-05-12	15:05:02	Running update script.
+2013-05-12	15:05:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:10:02	Running update script.
+2013-05-12	15:10:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:15:02	Running update script.
+2013-05-12	15:15:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:20:02	Running update script.
+2013-05-12	15:20:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:25:02	Running update script.
+2013-05-12	15:25:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:30:02	Running update script.
+2013-05-12	15:30:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:35:02	Running update script.
+2013-05-12	15:35:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:40:02	Running update script.
+2013-05-12	15:40:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:45:01	Running update script.
+2013-05-12	15:45:01	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:50:03	Running update script.
+2013-05-12	15:50:03	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	15:55:02	Running update script.
+2013-05-12	15:55:02	CHECK FAIL - A link with hash c9a80e69696a3929459b3c1f7424979cf65dc59c2c2bdac6f2d58a6da1ce26c6 is already in the database.
+2013-05-12	16:00:03	Running update script.
+2013-05-12	16:00:03	Created bitly link for frame 1290, (http://bit.ly/16ssKXp).
+2013-05-12	16:00:03	Record for frame 1290 added to database.
+2013-05-12	16:00:03	Successful copy of 1290.png.
+2013-05-12	16:00:03	Successfully added frame 1290 link to data.txt.
+2013-05-12	16:05:02	Running update script.
+2013-05-12	16:05:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:10:02	Running update script.
+2013-05-12	16:10:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:15:02	Running update script.
+2013-05-12	16:15:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:20:02	Running update script.
+2013-05-12	16:20:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:25:02	Running update script.
+2013-05-12	16:25:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:30:02	Running update script.
+2013-05-12	16:30:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:35:02	Running update script.
+2013-05-12	16:35:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:40:02	Running update script.
+2013-05-12	16:40:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:45:02	Running update script.
+2013-05-12	16:45:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:50:02	Running update script.
+2013-05-12	16:50:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	16:55:02	Running update script.
+2013-05-12	16:55:02	CHECK FAIL - A link with hash f8414ac891bf281d52f6b7e6d53aaa4b241dff2c19ce04037f38c63e7b090c70 is already in the database.
+2013-05-12	17:00:02	Running update script.
+2013-05-12	17:00:02	Created bitly link for frame 1291, (http://bit.ly/15Dfb7T).
+2013-05-12	17:00:02	Record for frame 1291 added to database.
+2013-05-12	17:00:02	Successful copy of 1291.png.
+2013-05-12	17:00:02	Successfully added frame 1291 link to data.txt.
+2013-05-12	17:05:02	Running update script.
+2013-05-12	17:05:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:10:02	Running update script.
+2013-05-12	17:10:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:15:01	Running update script.
+2013-05-12	17:15:01	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:20:02	Running update script.
+2013-05-12	17:20:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:25:02	Running update script.
+2013-05-12	17:25:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:30:02	Running update script.
+2013-05-12	17:30:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:35:02	Running update script.
+2013-05-12	17:35:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:40:02	Running update script.
+2013-05-12	17:40:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:45:02	Running update script.
+2013-05-12	17:45:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:50:02	Running update script.
+2013-05-12	17:50:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	17:55:02	Running update script.
+2013-05-12	17:55:02	CHECK FAIL - A link with hash f40bf64971f8af84ec67c6316fd1fb7b30f8e7b41a4b19ddf45ba9106b7a05b6 is already in the database.
+2013-05-12	18:00:02	Running update script.
+2013-05-12	18:00:02	Created bitly link for frame 1292, (http://bit.ly/17W9lMm).
+2013-05-12	18:00:02	Record for frame 1292 added to database.
+2013-05-12	18:00:02	Successful copy of 1292.png.
+2013-05-12	18:00:02	Successfully added frame 1292 link to data.txt.
+2013-05-12	18:05:02	Running update script.
+2013-05-12	18:05:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:10:02	Running update script.
+2013-05-12	18:10:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:15:02	Running update script.
+2013-05-12	18:15:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:20:02	Running update script.
+2013-05-12	18:20:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:25:02	Running update script.
+2013-05-12	18:25:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:30:02	Running update script.
+2013-05-12	18:30:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:35:02	Running update script.
+2013-05-12	18:35:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:40:03	Running update script.
+2013-05-12	18:40:03	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:45:02	Running update script.
+2013-05-12	18:45:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:50:02	Running update script.
+2013-05-12	18:50:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	18:55:02	Running update script.
+2013-05-12	18:55:02	CHECK FAIL - A link with hash ec55527a6f3d65b546135bd4f7c61fe615ad03acdc25849f8343ffb8a0687374 is already in the database.
+2013-05-12	19:00:02	Running update script.
+2013-05-12	19:00:02	Created bitly link for frame 1293, (http://bit.ly/16sL2Yo).
+2013-05-12	19:00:02	Record for frame 1293 added to database.
+2013-05-12	19:00:02	Successful copy of 1293.png.
+2013-05-12	19:00:02	Successfully added frame 1293 link to data.txt.
+2013-05-12	19:05:01	Running update script.
+2013-05-12	19:05:01	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:10:02	Running update script.
+2013-05-12	19:10:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:15:02	Running update script.
+2013-05-12	19:15:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:20:02	Running update script.
+2013-05-12	19:20:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:25:02	Running update script.
+2013-05-12	19:25:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:30:02	Running update script.
+2013-05-12	19:30:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:35:02	Running update script.
+2013-05-12	19:35:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:40:01	Running update script.
+2013-05-12	19:40:01	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:45:02	Running update script.
+2013-05-12	19:45:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:50:02	Running update script.
+2013-05-12	19:50:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	19:55:02	Running update script.
+2013-05-12	19:55:02	CHECK FAIL - A link with hash 5cd39f0aa1f573cd4915e564c6ef3781fa5b6b2abe49a84d670ea5dec17f5183 is already in the database.
+2013-05-12	20:00:02	Running update script.
+2013-05-12	20:00:02	Created bitly link for frame 1294, (http://bit.ly/15DFvig).
+2013-05-12	20:00:02	Record for frame 1294 added to database.
+2013-05-12	20:00:02	Successful copy of 1294.png.
+2013-05-12	20:00:02	Successfully added frame 1294 link to data.txt.
