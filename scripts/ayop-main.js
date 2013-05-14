@@ -106,7 +106,6 @@ function getFrameData() {
         url: 'getFrameData.php',
         dataType: "json",
         success: function (response) {
-            console.log(response)
             frameData = response;
             frameCount = frameData.length - 1;
             if (initialframe >= frameCount) {

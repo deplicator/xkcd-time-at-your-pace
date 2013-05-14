@@ -1,4 +1,5 @@
 ignore/
 data/frames/
+data/cache.json
 config.php
 images/*
