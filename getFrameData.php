@@ -1,20 +1,30 @@
 <?php
-include('./config.php');
-header('Content-Type: text/plain');
+header("Content-Type: application/json", true);
 
+//Caching: http://www.theukwebdesigncompany.com/articles/php-caching.php
+$cachefile = "data/cache.json";
+$cachetime = 10 * 60; // 10 minutes
+// Serve from the cache if it is younger than $cachetime
+if (file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile))) {
+    readfile($cachefile);
+    exit;
+}
+ob_start(); // start the output buffer
+
+
+include('./config.php');
 //display what's in the frames table
 try {
     $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
             
-    $STH = $DBH->query("SELECT * FROM `frames`");
+    $STH = $DBH->query("SELECT frame, link, llink, blink FROM `frames`");
     $STH->setFetchMode(PDO::FETCH_ASSOC);
-    
+    echo "[{}";
     while($row = $STH->fetch()) {
-        echo $row['frame'] . "\t";
-        echo $row['link'] . "\t";
-        echo $row['llink'] . "\t";
-        echo $row['blink'] . "\n";
+        echo ",";
+        echo json_encode($row); //Warning: will only work, if column names and object-attribute names are consistent!
     }
+    echo "]";
 
 } catch(PDOException $e) {
     $dblog = "./data/dblog.txt"; //Stores database exceptions.
@@ -22,6 +32,14 @@ try {
     file_put_contents($dblog, $eventtime . "\t" . $e->getMessage() . "\n", FILE_APPEND);
 }
 
+
+$fp = fopen($cachefile, 'w'); 
+// save the contents of output buffer to the file
+fwrite($fp, ob_get_contents());
+// close the file
+fclose($fp); 
+// Send the output to the browser
+ob_end_flush(); 
 
 /*database: xkcd1190ayop
  *
@@ -41,3 +59,5 @@ try {
  *          number of pixels for each hexadecimal color found in frame
  *          this table could be huge, but cool
  */
+
+?>
