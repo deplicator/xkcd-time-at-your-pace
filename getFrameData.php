@@ -1,7 +1,18 @@
 <?php
-include('./config.php');
 header("Content-Type: application/json", true);
 
+//Caching: http://www.theukwebdesigncompany.com/articles/php-caching.php
+$cachefile = "data/cache.json";
+$cachetime = 10 * 60; // 10 minutes
+// Serve from the cache if it is younger than $cachetime
+if (file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile))) {
+    readfile($cachefile);
+    exit;
+}
+ob_start(); // start the output buffer
+
+
+include('./config.php');
 //display what's in the frames table
 try {
     $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
@@ -21,6 +32,14 @@ try {
     file_put_contents($dblog, $eventtime . "\t" . $e->getMessage() . "\n", FILE_APPEND);
 }
 
+
+$fp = fopen($cachefile, 'w'); 
+// save the contents of output buffer to the file
+fwrite($fp, ob_get_contents());
+// close the file
+fclose($fp); 
+// Send the output to the browser
+ob_end_flush(); 
 
 /*database: xkcd1190ayop
  *
