@@ -41,3 +41,5 @@ try {
  *          number of pixels for each hexadecimal color found in frame
  *          this table could be huge, but cool
  */
+
+?>
