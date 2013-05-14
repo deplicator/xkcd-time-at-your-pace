@@ -1,20 +1,19 @@
 <?php
 include('./config.php');
-header('Content-Type: text/plain');
+header("Content-Type: application/json", true);
 
 //display what's in the frames table
 try {
     $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
             
-    $STH = $DBH->query("SELECT * FROM `frames`");
+    $STH = $DBH->query("SELECT frame, link, llink, blink FROM `frames`");
     $STH->setFetchMode(PDO::FETCH_ASSOC);
-    
+    echo "[{}";
     while($row = $STH->fetch()) {
-        echo $row['frame'] . "\t";
-        echo $row['link'] . "\t";
-        echo $row['llink'] . "\t";
-        echo $row['blink'] . "\n";
+        echo ",";
+        echo json_encode($row); //Warning: will only work, if column names and object-attribute names are consistent!
     }
+    echo "]";
 
 } catch(PDOException $e) {
     $dblog = "./data/dblog.txt"; //Stores database exceptions.
