@@ -104,18 +104,10 @@ var frameData = [];
 function getFrameData() {
     $.ajax({
         url: 'getFrameData.php',
-        dataType: "text",
+        dataType: "json",
         success: function (response) {
-            var temp = response.split("\n");
-            frameCount = temp.length - 1;
-            for(i = 0; i < frameCount; i++) {
-                    var tempframe = temp[i].split("\t")
-                    frameData[i+1] = new Object(); //The +1 makes all the array elements line up with frame numbers for simple minded people like myself, frameData[0] is undefined.
-                    frameData[i+1].frame = tempframe[0];
-                    frameData[i+1].link = tempframe[1];
-                    frameData[i+1].llink = tempframe[2];
-                    frameData[i+1].blink = tempframe[3];
-            }
+            frameData = response;
+            frameCount = frameData.length - 1;
             if (initialframe >= frameCount) {
                 initialframe = frameCount;
             } else if (initialframe <= 1) {
