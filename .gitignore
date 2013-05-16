@@ -1,5 +1,3 @@
 ignore/
-data/frames/
-data/cache.json
+data/
 config.php
-images/*

@@ -14,7 +14,6 @@ $hash = substr(end(explode("/", $link)), 0, -4); //Parse only hash from link.
 
 $log = "./data/log.txt";
 $dblog = "./data/dblog.txt"; //Stores database exceptions.
-$json = "./data/linklist.js"; //Stores link to frames as json.
 
 $eventtime = date("Y-m-d\tH:i:s"); //Time when stuff happens.
 file_put_contents($log, $eventtime . "\tRunning update script.\n", FILE_APPEND);
@@ -23,8 +22,6 @@ file_put_contents($log, $eventtime . "\tRunning update script.\n", FILE_APPEND);
 function connectivityCheck($link) { //Check for link.
     if(is_null($link)) {
         return false;
-        file_put_contents($log, $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n", FILE_APPEND);
-        echo $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n";
     } else {
         return true;
     }
@@ -32,7 +29,7 @@ function connectivityCheck($link) { //Check for link.
 
 if(connectivityCheck($link)) {
     try {
-        $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);    
+        $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
 
         $recordCheck = true; //Check total records against highest frame number. They should be the same.
         
@@ -49,6 +46,28 @@ if(connectivityCheck($link)) {
             file_put_contents($log, $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n", FILE_APPEND);
             echo $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n";
         }
+        
+        //Checks our frame count with xkcd.mscha.org
+        @$mschaJson = file_get_contents("http://xkcd.mscha.org/time.json");
+        @$mschaJson = json_decode($mschaJson, true);
+        $outsideCheck = true; 
+        
+        if(connectivityCheck($mschaJson)) {
+            
+            $outsideFrame = (end($mschaJson)['frameNo']);
+            
+            if($frameByCount != $outsideFrame) {
+                $outsideCheck = false;
+                $msg = $eventtime . "\tCHECK FAIL - AYOP frame count does not match mscha.org.\n";
+                file_put_contents($log, $msg, FILE_APPEND);
+                echo $msg;
+            }
+        } else {
+            $msg = $eventtime . "\tCONNECTIVITY FAIL - Could not reach mscha.org.\n";
+            file_put_contents($log, $msg, FILE_APPEND);
+            echo $msg;
+        }
+        
         
         $repeatCheck = true; //Check current picture link against all past picture links. Should be unique.
         $sql = "SELECT `link` FROM `frames`";
@@ -146,6 +165,7 @@ if(connectivityCheck($link)) {
             file_put_contents($dblog, $errmsg, FILE_APPEND);
     }
 } else {
-    file_put_contents($log, $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n", FILE_APPEND);
-    echo $eventtime . "\tCHECK FAIL - Could not connect to xkcd.\n";
+    $msg = $eventtime . "\tCONNECTIVITY FAIL - Could not connect to xkcd.\n";
+    file_put_contents($log, $msg, FILE_APPEND);
+    echo $msg;
 }

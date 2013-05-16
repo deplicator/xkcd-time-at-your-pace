@@ -7,14 +7,13 @@ if (typeof console === "undefined" || typeof console.log === "undefined") {
     console.log = function () {};
 }
 
-
-var images = [];
+var frameData = [];
 var frameCount = 0;
+var frameInitial = 1;
+var currentFrame = 1;
+
 var scrollhere = document.getElementById("scrollhere");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
-var currentFrame = 1;
-var initialframe;
-
 
 
 //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
@@ -29,14 +28,15 @@ function getUrlVars() {
     }
     return vars;
 }
+
 var vars = getUrlVars();
 if (vars.frame && !isNaN(vars.frame)) {
-    initialframe = parseInt(vars.frame, 10);
+    frameInitial = parseInt(vars.frame, 10);
 } else {
     if (getLastSeen() > 1) {
-        initialframe = getLastSeen();
+        frameInitial = getLastSeen();
     } else {
-        initialframe = 1;
+        frameInitial = 1;
     }
 }
 
@@ -45,7 +45,7 @@ var difftype = "none";
 
 if (vars.framediff) {
     framediff = parseInt(vars.framediff, 10);
-    if (framediff == initialframe - 1) {
+    if (framediff == frameInitial - 1) {
         difftype = "prev";
         $("input[name='difftype'][value='prev']").attr("checked", "checked");
     } else {
@@ -71,36 +71,8 @@ slider.oninput = function () {
 
 
 /*
- * Loaded data.txt 
- * Now we know how many images exists and can check the selected initialframe.
- */
-// $.ajax({
-    // url: "./data/data.txt",
-    // dataType: "text",
-    // success: function (response) {
-        // $("#LoadingImage").html('');
-        //console.log(response);
-        // images = response.split('\n');
-        // imageslen = images.length;
-        // framecount = imageslen - 1;
-        // slider.max = framecount;
-        // if (initialframe >= imageslen) {
-            // initialframe = framecount;
-        // } else if (initialframe <= 1) {
-            // initialframe = 1;
-        // }
-        // initPreloadingStatus(framecount);
-        // updateAll(initialframe);
-    // },
-    // error: function () {
-        // $("#LoadingImage").html('Oh noes, something has gone wrong!');
-    // }
-// });
-
-/*
  * Creates array of frame objects.
  */
-var frameData = [];
 function getFrameData() {
     $.ajax({
         url: 'getFrameData.php',
@@ -108,13 +80,13 @@ function getFrameData() {
         success: function (response) {
             frameData = response;
             frameCount = frameData.length - 1;
-            if (initialframe >= frameCount) {
-                initialframe = frameCount;
-            } else if (initialframe <= 1) {
-                initialframe = 1;
+            if (frameInitial >= frameCount) {
+                frameInitial = frameCount;
+            } else if (frameInitial <= 1) {
+                frameInitial = 1;
             }
             initPreloadingStatus(frameCount);
-            updateAll(initialframe);
+            updateAll(frameInitial);
             slider.max = frameCount;
             $("#LoadingImage").html('');
         },

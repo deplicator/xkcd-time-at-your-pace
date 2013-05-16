@@ -17,13 +17,13 @@ The 'step through frames' will navigate through the frames one at a time. If pla
 |-
 | <nowiki>|<</nowiki> || Jump to First Frame
 |-
-| << || Previous Special Frame
+| <nowiki><<</nowiki> || Previous Special Frame
 |-
-| < || Previous Frame
+| <nowiki><</nowiki> || Previous Frame
 |-
-| > || Next Frame
+| <nowiki>></nowiki> || Next Frame
 |-
-| >> || Next Special Frame
+| <nowiki>>></nowiki> || Next Special Frame
 |-
 | <nowiki>>|</nowiki> || Jump to Last Frame
 |}
