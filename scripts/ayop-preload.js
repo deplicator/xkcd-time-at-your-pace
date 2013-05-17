@@ -256,5 +256,5 @@ function frameMouseClick(event) {
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
 
-    updateAllWithoutSlider(frame);
+    updateAll(frame);
 }
