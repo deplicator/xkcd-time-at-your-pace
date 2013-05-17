@@ -43,32 +43,11 @@ if(connectivityCheck($link)) {
 
         if($frameByCount != $frameByMax) {
             $recordCheck = false;
-            file_put_contents($log, $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n", FILE_APPEND);
-            echo $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n";
-        }
-        
-        //Checks our frame count with xkcd.mscha.org
-        @$mschaJson = file_get_contents("http://xkcd.mscha.org/time.json");
-        @$mschaJson = json_decode($mschaJson, true);
-        $outsideCheck = true; 
-        
-        if(connectivityCheck($mschaJson)) {
-            
-            $outsideFrame = (end($mschaJson)['frameNo']);
-            
-            if($frameByCount != $outsideFrame) {
-                $outsideCheck = false;
-                $msg = $eventtime . "\tCHECK FAIL - AYOP frame count does not match mscha.org.\n";
-                file_put_contents($log, $msg, FILE_APPEND);
-                echo $msg;
-            }
-        } else {
-            $msg = $eventtime . "\tCONNECTIVITY FAIL - Could not reach mscha.org.\n";
+            $msg = $eventtime . "\tCHECK FAIL - Frames table row count does not match max frame in database.\n";
             file_put_contents($log, $msg, FILE_APPEND);
             echo $msg;
         }
-        
-        
+
         $repeatCheck = true; //Check current picture link against all past picture links. Should be unique.
         $sql = "SELECT `link` FROM `frames`";
         $STH = $DBH->query($sql);
@@ -84,6 +63,27 @@ if(connectivityCheck($link)) {
 
         if($recordCheck && $repeatCheck && connectivityCheck($link)) {
             $frame = $frameByCount + 1;
+            
+            //Checks our frame count with xkcd.mscha.org
+            @$mschaJson = file_get_contents("http://xkcd.mscha.org/time.json");
+            @$mschaJson = json_decode($mschaJson, true);
+            $outsideCheck = true; 
+            
+            if(connectivityCheck($mschaJson)) {
+                
+                $outsideFrame = (end($mschaJson)['frameNo']);
+                
+                if($frame != $outsideFrame) {
+                    $outsideCheck = false;
+                    $msg = $eventtime . "\tCHECK FAIL - AYOP frame count does not match mscha.org (".$outsideFrame.").\n";
+                    file_put_contents($log, $msg, FILE_APPEND);
+                    echo $msg;
+                }
+            } else {
+                $msg = $eventtime . "\tCONNECTIVITY FAIL - Could not reach mscha.org.\n";
+                file_put_contents($log, $msg, FILE_APPEND);
+                echo $msg;
+            }
             
             //Create Bitly short link for new frame, site url used so the same bitly link is created in test environments.
             $ch = curl_init('http://api.bitly.com/v3/shorten?login=' . BITLY_LOGIN . '&apiKey=' . BITLY_API . '&longUrl=http://geekwagon.net/projects/xkcd1190/?frame=' . $frame);
@@ -149,8 +149,9 @@ if(connectivityCheck($link)) {
             $fileCheck = true; //Check line number in file against current frame number. They should be the same.
             if(count($dataContents) != $frame) {
                 $fileCheck = false;
-                file_put_contents($log, $eventtime . "CHECK FAIL - data.txt count doesn't match database count.\n", FILE_APPEND);
-                echo $eventtime . "CHECK FAIL - data.txt count doesn't match database count.\n";
+                $msg = $eventtime . "\tCHECK FAIL - data.txt count doesn't match database count.\n";
+                file_put_contents($log, $msg, FILE_APPEND);
+                echo $msg;
             }
 
             if($fileCheck) {
