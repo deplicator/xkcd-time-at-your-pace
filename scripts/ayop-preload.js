@@ -14,6 +14,8 @@ var loadingInProgressColor  = "#6082B6";
 var loadingCompleteColor    = "#222";
 var specialFrameBorderColor = "#FFFF00";
 var currentFrameBorderColor = "#00FF00";
+var mouseOverFrameBorderColor = "#0000FF";
+var mouseOverOldFrame = 0;
 function initPreloadingStatus(maxImages) {
     var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
@@ -34,6 +36,8 @@ function initPreloadingStatus(maxImages) {
     for (i = 0; i < specialframes.length; i++) {
         markPreloadingFrame(specialframes[i], notYetLoadedColor);
     }
+    preloadingStatus.addEventListener('click', frameMouseClick, false);
+    preloadingStatus.addEventListener('mousemove', frameMouseMove, false);
 }
 $(document).ready(function () {
     preloadingStatus = document.getElementById("preloadingStatus");
@@ -174,7 +178,7 @@ function finishedLoading() {
  * Method to be called, when the specified frame is requested to be shown NOW.
  * Will predict the next images and preload them also.
  * callback(frameNumber, Image-Object) will be called when the image is loaded.
- * Also this uses startLoading() and finishedLoading() to show the loading 
+ * Also this uses startLoading() and finishedLoading() to show the loading
  * indicator.
  * if doNotSignalFinishLoading is false it will not mark the loading as finished.
  */
@@ -222,4 +226,35 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
         preloadedImages[frame] = img;
     }
     predictFrames(frame);
+}
+
+function frameMouseMove(event) {
+    x = event.pageX - event.srcElement.offsetLeft,
+    y = event.pageY - event.srcElement.offsetTop;
+
+    frame = ( Math.floor(x / preloadingStatusRectSize)
+              + (Math.floor(y / preloadingStatusRectSize)
+                 * (preloadingStatusWidth / preloadingStatusRectSize)
+                 - 100));
+
+    if (frame == mouseOverOldFrame)
+        return;
+
+    updatePreloadingIndicator(mouseOverOldFrame);
+
+    mouseOverOldFrame = frame;
+
+    markPreloadingFrame(frame, mouseOverFrameBorderColor);
+}
+
+function frameMouseClick(event) {
+    x = event.pageX - event.srcElement.offsetLeft,
+    y = event.pageY - event.srcElement.offsetTop;
+
+    frame = ( Math.floor(x / preloadingStatusRectSize)
+              + (Math.floor(y / preloadingStatusRectSize)
+                 * (preloadingStatusWidth / preloadingStatusRectSize)
+                 - 100));
+
+    updateAllWithoutSlider(frame);
 }
