@@ -240,11 +240,13 @@ function frameMouseMove(event) {
     if (frame == mouseOverOldFrame)
         return;
 
-    updatePreloadingIndicator(mouseOverOldFrame);
+    if (mouseOverOldFrame < imageslen && mouseOverOldFrame > 0)
+        updatePreloadingIndicator(mouseOverOldFrame);
 
     mouseOverOldFrame = frame;
 
-    markPreloadingFrame(frame, mouseOverFrameBorderColor);
+    if (frame < imageslen && frame > 0)
+        markPreloadingFrame(frame, mouseOverFrameBorderColor);
 }
 
 function frameMouseClick(event) {
@@ -256,5 +258,6 @@ function frameMouseClick(event) {
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
 
-    updateAll(frame);
+    if (frame < imageslen && frame > 0)
+        updateAll(frame);
 }
