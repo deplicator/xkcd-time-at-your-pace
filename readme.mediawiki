@@ -96,7 +96,7 @@ XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://
 The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "awful" license].
 
 ==Some notes==
-Because I can't remember anything
+Because I can't remember anything.
 
 ===potential features===
 * more cookie options
@@ -110,6 +110,8 @@ Because I can't remember anything
 {| class="wikitable"
 |+ table: frames
 ! column !! description
+|-
+| update || timestamp of last time record was updated.
 |-
 | frame || frame number of image
 |-

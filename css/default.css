@@ -333,13 +333,14 @@ li {
     padding: 10px;
 }
 
-#specialframes .inside {
-    display: none;
+#specialframes p {
+    float: right;
+    font-size: 12px;
+    margin: -30px 10px 0 0;
 }
 
-#specialframes p {
-    font-size: 12px;
-    margin: 0 0 0 10px;
+#specialframes .inside {
+    display: none;
 }
 
 #specialframes ul {

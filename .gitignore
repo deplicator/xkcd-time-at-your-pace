@@ -1,3 +1,6 @@
 ignore/
-data/
+data/frames
+data/data.txt
+data/log.txt
+data/cache.json
 config.php
