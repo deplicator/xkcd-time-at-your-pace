@@ -11,6 +11,7 @@ var frameData = [];
 var frameCount = 0;
 var frameInitial = 1;
 var currentFrame = 1;
+var specialFrames = [];
 
 var scrollhere = document.getElementById("scrollhere");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
@@ -85,7 +86,7 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
-            initPreloadingStatus(frameCount);
+            //initPreloadingStatus(frameCount);
             updateAll(frameInitial);
             slider.max = frameCount;
             $("#LoadingImage").html('');
@@ -172,6 +173,17 @@ function slideshowLoaded(frame, img) {
     }
 }
 
+//If frameData object special is set to 1, add frame to array.
+function createSpecialFramesArray() {
+    for(i = 1; i < frameCount; i++) {
+        if(frameData[i].special == "1") {
+            specialFrames.push(i);
+        }
+    }
+    specialFrames.sort(function (a, b) {return a - b;});
+}
+
+
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
     var oldframe = currentFrame;
@@ -209,5 +221,7 @@ function updateAll(frame) {
 }
 
 $(document).ajaxComplete(function() {
+    createSpecialFramesArray();
+    initPreloadingStatus(frameCount);
     updateAll(currentFrame);
 });

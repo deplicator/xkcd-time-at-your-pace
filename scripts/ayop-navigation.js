@@ -251,7 +251,7 @@ $(document).ready(function () {
 //This function is not called anywhere, testing only. Playback time is terribly inaccurate. My guess
 //it will vary on different computers if all the images are preloaded. Left here for fun.
 function timetoplay() {
-    var numspecialframes = specialframes.length;
+    var numspecialframes = specialFrames.length;
     var specialtime = numspecialframes * $('#PauseSpecialFrameAmount').val();
     var ordinarytime = (frameCount - numspecialframes) * speed / 1000;
     return specialtime + ordinarytime + " seconds";

@@ -33,8 +33,8 @@ function initPreloadingStatus(maxImages) {
         preloadingStatusWidth -  (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusRectSize
     );
-    for (i = 0; i < specialframes.length; i++) {
-        markPreloadingFrame(specialframes[i], notYetLoadedColor);
+    for (i = 0; i < specialFrames.length; i++) {
+        markPreloadingFrame(specialFrames[i], notYetLoadedColor);
     }
     preloadingStatus.addEventListener('click', frameMouseClick, false);
     preloadingStatus.addEventListener('mousemove', frameMouseMove, false);
