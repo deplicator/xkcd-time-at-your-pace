@@ -192,9 +192,19 @@ li {
     text-align: center;
 }
 
-#frameNum {
+#framecount {
     float: right;
+    line-height: 13px;
     margin: 0 27px 0 0;
+    vertical-align: middle;
+}
+
+#framecount input {
+    height: 10px;
+    font-size: 10px;
+    margin: -2px 0 0 0;
+    text-align: right;
+    width: 39px;
 }
 
 #loading {

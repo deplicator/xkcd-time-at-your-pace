@@ -28,7 +28,7 @@
     <div id="controls">
         <div id="autoplay">
             <input id="play" class="bluebutton" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
-            <input id="reverse" class="direction bluebutton" type="button" value="<~" title="You can go backwards now, because why not?">
+            <input id="reverse" class="direction bluebutton" type="button" value="<~" title="You can go back wards now, because why not?">
             <input id="forward" class="direction bluebutton dir-select" type="button" value="~>">
             <p>Playback speed: <input id="autoplayspeed" type="number" min="0" step="5" max="100" value="10"> fps</p>
             <p>Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
@@ -51,7 +51,7 @@
                 <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
             </canvas>
         </div>
-        <span id="frameNum"></span>
+        <span id="framecount">frame: <input id="manualinput" type="text"> / <span id="totalframes"></span></span>
         <span id="loading">Loading...</span>
         <input id="slider" type="range" min="1" step="1" name="framslider"></input>
         
@@ -62,10 +62,14 @@
                 <input id="no" class="bluebutton" type="button" value="No" title="This frame has been incorrectly marked as special, or should never be special in any way.">
             </form>
             <p>Still experimental</p>
+            <a id="showvoteinfo">more info</a>
+            <div id="voteconfirm"></div>
+            <div id="voteinfo" class="hidden">
+                <p>All this is subject to change, but the idea is a more popular frame will become a special frame. Special frames are calculated and updated daily. There is a generous daily vote limit, and you can vote for or against a frame with as many votes as you have.</p>
+                
+            </div>
         </div>
     </div>
-    
-    
     
     <div id="funstuff">
         <h3><span class="craparrow">↓</span>Fun Stuff</h3>

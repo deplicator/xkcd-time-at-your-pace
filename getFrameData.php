@@ -16,8 +16,8 @@ include('./config.php');
 //display what's in the frames table
 try {
     $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
-            
-    $STH = $DBH->query("SELECT frame, link, llink, blink FROM `frames`");
+
+    $STH = $DBH->query("SELECT frame, link, llink, blink, special FROM `frames`");
     $STH->setFetchMode(PDO::FETCH_ASSOC);
     echo "[{}";
     while($row = $STH->fetch()) {
@@ -28,7 +28,6 @@ try {
 
 } catch(PDOException $e) {
     $dblog = "./data/dblog.txt"; //Stores database exceptions.
-    echo $eventtime . "\t" . $e->getMessage() . "\n";
     file_put_contents($dblog, $eventtime . "\t" . $e->getMessage() . "\n", FILE_APPEND);
 }
 

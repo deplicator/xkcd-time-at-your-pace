@@ -1,1 +1,2 @@
 	SQLSTATE[HY000] [2005] Unknown MySQL server host 'DB_HOST' (2)
+	SQLSTATE[HY000] [2005] Unknown MySQL server host 'DB_HOST' (115)

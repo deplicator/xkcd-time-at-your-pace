@@ -16,8 +16,7 @@ $log = "./data/log.txt";
 $dblog = "./data/dblog.txt"; //Stores database exceptions.
 
 $eventtime = date("Y-m-d\tH:i:s"); //Time when stuff happens.
-file_put_contents($log, $eventtime . "\tRunning update script.\n", FILE_APPEND);
-//echo $eventtime . "\tRunning update script.\n";
+file_put_contents($log, "\n" . $eventtime . "\tRunning update script.\n", FILE_APPEND);
 
 function connectivityCheck($link) { //Check for link.
     if(is_null($link)) {

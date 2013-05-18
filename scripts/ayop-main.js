@@ -162,7 +162,9 @@ function updateAllWithoutSlider(frame) {
     //startLoading(frame);
     updateLastSeen(frame);
 
-    $('#frameNum').html('frame: ' + frame + ' / ' + (frameCount));
+    $('#framecount input').val(frame);
+    $('#totalframes').html(frameCount);
+    
 
     if (difftype == "prev") {
         diff();

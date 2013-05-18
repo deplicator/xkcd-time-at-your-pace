@@ -2,12 +2,13 @@
 /*
  * Handles votes for or against special frames.
  */
+
 include('../config.php');
 
 if(isset($_REQUEST['frame'])) {
     $frame = $_REQUEST['frame'];
     $vote = $_REQUEST['vote'];
-    $votelimit = 5; //set low for testing
+    $votelimit = 10; //set low for testing
 
     try {
         $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_WRITE_USER, DB_WRITE_PASS);
@@ -24,7 +25,7 @@ if(isset($_REQUEST['frame'])) {
         if(intval($diff) > 0) {
             $STH = $DBH->prepare("UPDATE voters SET votes=1 WHERE `ip`=\"$ipaddress\"");
             $STH->execute(array($frame));
-            echo "Thanks for voting.";
+            echo 1;
             
         } else if($result['votes'] < $votelimit) {
             $STH = $DBH->prepare("UPDATE votes SET $vote=$vote+1 WHERE frame=?");
@@ -33,19 +34,51 @@ if(isset($_REQUEST['frame'])) {
             $STH = $DBH->prepare("INSERT INTO voters (votes, ip) VALUES (1, ?) ON DUPLICATE KEY UPDATE votes=votes+1");
             $STH->execute(array($ipaddress));
             
-            echo "Thanks for voting.";
+            echo 1;
         } else {
-            echo "You reached the daily vote limit of " . $votelimit . ". The time and dedication you've contributed will go unnoticed.";
+            echo 0;
         }
-
-
-        
 
     } catch(PDOException $e) {
         $dblog = "../data/dblog.txt"; //Stores database exceptions.
-        echo $eventtime . "\t" . $e->getMessage() . "\n";
-        file_put_contents($dblog, $eventtime . "\t" . $e->getMessage() . "\n", FILE_APPEND);
+        $msg = $eventtime . "\t" . $e->getMessage() . "\n";
+        file_put_contents($dblog, $msg, FILE_APPEND);
     }
 } else {
-    //display vote data
+    header("Content-Type: application/json", true);
+    try {
+        $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
+
+        $STH = $DBH->query("SELECT * FROM votes");
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        echo "[{}";
+        while($row = $STH->fetch()) {
+            echo ",";
+            echo json_encode($row); //Warning: will only work, if column names and object-attribute names are consistent!
+        }
+        echo "]";
+
+    } catch(PDOException $e) {
+        $dblog = "../data/dblog.txt"; //Stores database exceptions.
+        $msg = $eventtime . "\t" . $e->getMessage() . "\n";
+        file_put_contents($dblog, $msg, FILE_APPEND);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
