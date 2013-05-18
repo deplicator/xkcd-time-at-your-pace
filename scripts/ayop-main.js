@@ -113,7 +113,7 @@ function fetchHeader(url, wch) {
         return er.message;
     }
 }
-$('#sflastupdate').html(fetchHeader("http://homeserver/sandbox/xkcd1190db/data/sflist.txt",'Last-Modified'));
+$('#sflastupdate').html(fetchHeader(site + "/data/sflist.txt",'Last-Modified'));
 
 
 /* 

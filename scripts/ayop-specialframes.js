@@ -13,12 +13,12 @@
  * Add the special-frames to the html
  */
 //change this to happen when special frame panel is opened.
-$(document).ready(function () {
+function loadSpecialFramePanel(){
     var sflen = specialFrames.length, i;
     for (i = 0; i < sflen; i++) {
         $('#textframelist').append('<li><a href="./?frame=' + specialFrames[i] + '"><img src="./data/frames/' + specialFrames[i] + '.png" alt=""></a></li>');
     }
-});
+}
 
 // Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
 function binary_search_iterative(a, value) {

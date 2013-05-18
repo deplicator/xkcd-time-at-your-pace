@@ -29,6 +29,7 @@ $(document).ready(function () {
         $('#specialframes .inside').slideToggle('slow', function () {
             if ($('#specialframes h3 .craparrow').html() == rightArrow) {
                 $('#specialframes h3 .craparrow').html(downArrow);
+                loadSpecialFramePanel(); //might be cool if this didn't run on successive opens.
             } else {
                 $('#specialframes h3 .craparrow').html(rightArrow);
             }

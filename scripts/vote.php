@@ -8,7 +8,7 @@ include('../config.php');
 if(isset($_REQUEST['frame'])) {
     $frame = $_REQUEST['frame'];
     $vote = $_REQUEST['vote'];
-    $votelimit = 10; //set low for testing
+    $votelimit = 100; //set low for testing
 
     try {
         $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);

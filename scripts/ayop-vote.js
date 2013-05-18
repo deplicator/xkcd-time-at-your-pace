@@ -9,7 +9,6 @@ function castVote(frame, cast) {
         url: "./scripts/vote.php",
         data: "frame=" + currentFrame + "&vote=" + cast,
         success: function(data) {
-            console.log(data);
             $('#voteconfirm').fadeIn('fast');
             if(data == "success") {
                 if(cast == "voteyes") {

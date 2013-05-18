@@ -239,6 +239,20 @@ li {
     width: 30px;
 }
 
+#voteinfo {
+    position: absolute;
+    top: 0;
+    left: -160px;
+    right: 112px;
+    color: #222;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+#voteinfo p {
+    text-align: left;
+}
+
 
 /* The Fun Stuff */
 #funstuff {
