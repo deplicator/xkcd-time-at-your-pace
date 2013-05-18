@@ -17,7 +17,7 @@ include('./config.php');
 try {
     $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
 
-    $STH = $DBH->query("SELECT frame, link, llink, blink, special FROM `frames`");
+    $STH = $DBH->query("SELECT * FROM frames");
     $STH->setFetchMode(PDO::FETCH_ASSOC);
     echo "[{}";
     while($row = $STH->fetch()) {

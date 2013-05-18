@@ -9,14 +9,15 @@ function castVote(frame, cast) {
         url: "./scripts/vote.php",
         data: "frame=" + currentFrame + "&vote=" + cast,
         success: function(data) {
+            console.log(data);
             $('#voteconfirm').fadeIn('fast');
-            if(data == 1) {
+            if(data == "success") {
                 if(cast == "voteyes") {
                     $('#voteconfirm').html("Your vote for " + frame + " has been cast.");
                 } else if(cast == "voteno") {
                     $('#voteconfirm').html("You voted against " + frame + ".");
                 }
-            } if (data == 0) {
+            } else if (data == "fail") {
                 $('#voteconfirm').html("You've reached the daily vote limit. Your contribution to this cause will go unnoticed.");
             } else {
                 $('#voteconfirm').html("Something has failed. <a href=\"mailto:james@geekwagon?subject=your%20site%20failed%20and%20I%20was%20quick%20enough%20to%20click%20this!\">Click here quick</a>, before it's too late!");
