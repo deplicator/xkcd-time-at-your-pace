@@ -6,7 +6,7 @@ include('../config.php');
  * Flags frames as special or not. Optional second parameter set to true to unflag as special.
  */
 function makeSpecial($frame, $unmake = false) {
-    $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_WRITE_USER, DB_WRITE_PASS);
+    $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);
     $STH = $DBH->prepare("UPDATE frames SET special=? WHERE frame=?");
     if(!$unmake) {
         $STH->execute(array(1, $frame));
@@ -16,7 +16,7 @@ function makeSpecial($frame, $unmake = false) {
 }
 
 try {
-    $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
+    $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
 
     $STH = $DBH->query("SELECT * FROM votes");
     $STH->setFetchMode(PDO::FETCH_ASSOC);

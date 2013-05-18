@@ -28,7 +28,8 @@ function connectivityCheck($link) { //Check for link.
 
 if(connectivityCheck($link)) {
     try {
-        $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
+        //$DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
+        $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);
 
         $recordCheck = true; //Check total records against highest frame number. They should be the same.
         
@@ -85,7 +86,7 @@ if(connectivityCheck($link)) {
             }
             
             //Create Bitly short link for new frame, site url used so the same bitly link is created in test environments.
-            $ch = curl_init('http://api.bitly.com/v3/shorten?login=' . BITLY_LOGIN . '&apiKey=' . BITLY_API . '&longUrl=http://geekwagon.net/projects/xkcd1190/?frame=' . $frame);
+            $ch = curl_init('http://api.bitly.com/v3/shorten?login=' . BITLY_LOGIN . '&apiKey=' . BITLY_API . '&longUrl=' . LONG_URL . $frame);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $shortURL = curl_exec($ch);
             $start = strpos($shortURL, 'http:\/\/bit.ly\/');

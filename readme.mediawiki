@@ -94,3 +94,60 @@ So far, no hash seems to have been intentionally repeated. Hashes that have repe
 XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
 
 The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "awful" license].
+
+==Some notes==
+Because I can't remember anything
+
+===potential features===
+* more cookie options
+** Button to clear all cookeis
+** cookie to set which frame to show; newest, last seen, first
+** remember open or closed state of optional panels (fun stuff and special frames)
+
+===database===
+* database name: xkcd1190ayop
+
+{| class="wikitable"
+|+ table: frames
+! column !! description
+|-
+| frame || frame number of image
+|-
+| link || link to xkcd image
+|-
+| llink || link to local image
+|-
+| blink || bitly short url to frame
+|-
+| special || Boolean to mark frame as special
+|}
+
+{| class="wikitable"
+|+ table: votes
+! column !! description
+|-
+| frame || image frame (one to one)
+|-
+| voteyes || total votes in favor of special frame
+|-
+| voteno || total votes against special frame
+|}
+
+{| class="wikitable"
+|+ table: voters
+! column !! description
+|-
+| timestamp || last time vote was cast
+|-
+| ip || track voters by IP
+|-
+| votes || number of votes cast by IP
+|}
+
+{| class="wikitable"
+|+ table: pxstats
+! column !! description
+|-
+| frame || (one to many)
+|-
+|}

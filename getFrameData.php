@@ -15,7 +15,7 @@ ob_start(); // start the output buffer
 include('./config.php');
 //display what's in the frames table
 try {
-    $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
+    $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
 
     $STH = $DBH->query("SELECT frame, link, llink, blink, special FROM `frames`");
     $STH->setFetchMode(PDO::FETCH_ASSOC);
@@ -38,25 +38,4 @@ fwrite($fp, ob_get_contents());
 // close the file
 fclose($fp); 
 // Send the output to the browser
-ob_end_flush(); 
-
-/*database: xkcd1190ayop
- *
- * table:   frames
- * rows:    frame   frame number of image
- *          link    link to xkcd image
- *          llink   link to local image
- *          blink   link to bitly short url
- *
- * table:   votes
- * rows:    frame (one to one)
- *          voteyes yes votes for special frame
- *          voteno  no votes for special frame
- * 
- * table:   pxstats
- * rows:    frame (one to many)
- *          number of pixels for each hexadecimal color found in frame
- *          this table could be huge, but cool
- */
-
-?>
+ob_end_flush();

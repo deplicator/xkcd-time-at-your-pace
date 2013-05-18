@@ -11,7 +11,7 @@ if(isset($_REQUEST['frame'])) {
     $votelimit = 10; //set low for testing
 
     try {
-        $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_WRITE_USER, DB_WRITE_PASS);
+        $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);
         
         $ipaddress = $_SERVER["REMOTE_ADDR"];
         $STH = $DBH->query("SELECT `votes`, `timestamp` FROM `voters` WHERE `ip`=\"$ipaddress\"");
@@ -47,7 +47,7 @@ if(isset($_REQUEST['frame'])) {
 } else {
     header("Content-Type: application/json", true);
     try {
-        $DBH = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_READ_USER, DB_READ_PASS);
+        $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
 
         $STH = $DBH->query("SELECT * FROM votes");
         $STH->setFetchMode(PDO::FETCH_ASSOC);
