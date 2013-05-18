@@ -315,7 +315,7 @@ li {
 }
 
 /* Special Frames */
-#textframes {
+#specialframes {
     background: #D5DCE9;
     border-radius: 4px;
     margin: 9px auto 50px;
@@ -323,7 +323,7 @@ li {
     width: 901px;
 }
 
-#textframes h3{
+#specialframes h3{
     background: #96A8C8;
     border-bottom: 1px dashed #222;
     border-top-left-radius: 4px;
@@ -333,21 +333,31 @@ li {
     padding: 10px;
 }
 
-#textframes ul {
-    margin: 0 4px;
+#specialframes .inside {
     display: none;
 }
 
-#textframes li{
+#specialframes p {
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+#specialframes ul {
+    margin: 0 4px;
+}
+
+#specialframes ul li{
     list-style-type: none;
     display: inline;
     margin: 0;
 }
 
-#textframes img{
+#specialframes ul li img{
     width: 294px;
     padding: 1px;
 }
+
+
 
 #belowpic {
     font-size: 10px;

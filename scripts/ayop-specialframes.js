@@ -18,6 +18,7 @@ $(document).ready(function () {
         $('#textframelist').append('<li><a href="./?frame=' + specialframes[i] + '"><img src="./data/frames/' + specialframes[i] + '.png" alt=""></a></li>');
     }
 });
+
 // Thanks to jfriend00 on http://stackoverflow.com/questions/10264239/fastest-way-to-determine-if-an-element-is-in-a-sorted-array
 function binary_search_iterative(a, value) {
     var lo = 0, hi = a.length - 1, mid;
