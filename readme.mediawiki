@@ -32,12 +32,17 @@ The left and right arrow keys work the same as the previous and next frame step 
 
 Hovering over the image or slider and scrolling with the mouse wheel will navigate through the frames as well. This will not pause playback. Fun Fact: this was the motivating feature for the whole project.
 
-===Special Frames===
+There is also an input box below the comic that shows current frame (out of total frames). This input box can be changed and the comic will move to the current number.
+
+===Special Frames and Voting===
+Special frames are now selected by popular vote. The vote calculation is done daily, so new special frames won't show up right away. For a frame to attain special status it must receive a certain number of votes, and it must have a higher number of votes for it than against it. The exact numbers for this are still being determined.
+
 Most special frames are frames with text. The auto play now pauses for a user specified amount of time on these frames.
 
 There is a panel below the comic that can be opened to see all the special frames.
 
-This part is updated manually, so some of the latest special frames may not show up.
+It's arguable if anyone chooses to exploit this by making a lot of votes for a mundane frame this action would make this frame special because it was chosen as a mundane frame to exploit.
+
 
 ===Previous Frame Difference===
 Shows the new pixels in green and removed pixels in red when compared to previous frame.
@@ -85,8 +90,8 @@ By no means written in stone, but because of the frame 1236/1237 oddity it was t
 So far, no hash seems to have been intentionally repeated. Hashes that have repeated are usually do to an error on the serving end or in our script. New hashes almost always occur on the hour unless there is a server problem. Most of these oddities can be seen in the log file and be corrected manually. In the case of 1236/1237 everything was running as normal, no oddities in the log. In accordance with this guideline we just made up, for the time being, we're keeping it as it is.
 
 ==Thanks==
-* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (more than me now). It's been fun having someone so knowledgeable to work with.
-* Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
+* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (more than me now). It's been nice having someone so knowledgeable to work with.
+* Thanks to everyone who has contributed code, especially those that pointed out where things could be better (plenty of that going on).
 * Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
 
@@ -95,14 +100,25 @@ XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://
 
 The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "awful" license].
 
+If you feel compelled to give away money there is a donation link that will take you to one of a few donation pages (it's random).
+* [http://wikimediafoundation.org/wiki/Ways_to_Give Wikimedia Foundation] - knowledge without ads!
+* [https://support.worldwildlife.org/site/SPageServer?pagename=donate_to_charity&s_src=AWE1302GD914 World Wild Life] - For the animal lovers.
+* [http://worldwish.org/en/donate/index.php World Make a Wish] - because these guy do awesome things.
+* [http://store.xkcd.com/ xkcd store] - not a non-profit, but if you buy stuff from there comics will keep coming.
+I choose global organizations (sorry US Vets and NPR, I support you both), but the point is there are plenty of great people to give a little money to.
+
 ==Some notes==
 Because I can't remember anything.
+===Known bugs===
+* when click on vote button the preload indicator goes weird.
 
 ===potential features===
 * more cookie options
-** Button to clear all cookeis
+** Button to clear all cookies
 ** cookie to set which frame to show; newest, last seen, first
 ** remember open or closed state of optional panels (fun stuff and special frames)
+* mass frame vote feature
+** show past 24 frames and a yay or nay check box, submit all at once.
 
 ===database===
 * database name: xkcd1190ayop

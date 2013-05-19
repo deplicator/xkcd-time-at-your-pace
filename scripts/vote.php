@@ -8,7 +8,7 @@ include('../config.php');
 if(isset($_REQUEST['frame'])) {
     $frame = $_REQUEST['frame'];
     $vote = $_REQUEST['vote'];
-    $votelimit = 100; //set low for testing
+    $votelimit = 24; //could vote yay or nay on every frame for the past day (mass vote feature in the future).
 
     try {
         $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);
@@ -19,20 +19,25 @@ if(isset($_REQUEST['frame'])) {
 
         $datetime1 = new DateTime($result['timestamp']);
         $datetime2 = new DateTime("now");
+        $now = $datetime2->format('Y-m-d H:i:s');
         $interval = $datetime1->diff($datetime2);
-        $diff = $interval->format('%R%a days');
+        $daydiff = $interval->format('%d');
+        $hourdiff = $interval->format('%h');
         
-        if(intval($diff) > 0) {
-            $STH = $DBH->prepare("UPDATE voters SET votes=1 WHERE ip='$ipaddress'");
-            $STH->execute(array($frame));
+        echo intval($daydiff) . intval($hourdiff);
+        
+        if(intval($daydiff) > 0 || intval($hourdiff) > 22) {
+            $STH = $DBH->prepare("UPDATE voters SET timestamp=?, votes=? WHERE ip=?");
+            $STH->execute(array($now, 1, $ipaddress));
             echo "success";
             
         } else if($result['votes'] < $votelimit) {
             $STH = $DBH->prepare("UPDATE votes SET $vote=$vote+1 WHERE frame=?");
             $STH->execute(array($frame));
             
-            $STH = $DBH->prepare("INSERT INTO voters (votes, ip) VALUES (1, ?) ON DUPLICATE KEY UPDATE votes=votes+1");
-            $STH->execute(array($ipaddress));
+            $STH = $DBH->prepare("INSERT INTO voters (timestamp, votes, ip) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE votes=votes+1");
+            
+            $STH->execute(array($now, 1, $ipaddress));
             
             echo "success";
         } else {

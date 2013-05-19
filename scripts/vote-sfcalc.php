@@ -29,12 +29,12 @@ function makeSpecial($frame, $unmake = false) {
 function makeList() {
     try {
         $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
-        $STH = $DBH->query("SELECT frame, special FROM frames");
+        $STH = $DBH->query("SELECT frame FROM frames WHERE special=1");
         $STH->setFetchMode(PDO::FETCH_ASSOC);
         $file = "../data/sflist.txt";
-        file_put_contents($file, " ");
+        file_put_contents($file, "");
         while($row = $STH->fetch()) {
-            file_put_contents($file, $row, FILE_APPEND);
+            file_put_contents($file, $row['frame'] . "\n", FILE_APPEND);
         }
 
     } catch(PDOException $e) {
@@ -50,18 +50,18 @@ try {
     $STH = $DBH->query("SELECT * FROM votes");
     $STH->setFetchMode(PDO::FETCH_ASSOC);
 
-    $totalframes = 0;
-    $totalavg = 0;
-    while($row = $STH->fetch()) {
-        $totalframes += 1;
-        $totalavg += $row['voteyes'];
-    }
-
-    $avg = $totalavg/$totalframes;
+    //Calculates average yes votes of all frames, may not be neccessary because it creates an abusrdly low number.
+    // $totalframes = 0;
+    // $totalavg = 0;
+    // while($row = $STH->fetch()) {
+        // $totalframes += 1;
+        // $totalavg += $row['voteyes'];
+    // }
+    // $avg = $totalavg/$totalframes;
 
     $STH = $DBH->query("SELECT * FROM votes");
     while($row = $STH->fetch()) {
-        if($row['voteyes'] >= 5 && $row['voteyes'] >= $avg) { //frame should have 5 votes and be higher than the average across all frames to be special.
+        if($row['voteyes'] >= 5 /*&& $row['voteyes'] >= $avg*/) { //set to 5 for right now, should be more than the daily vote limit.
             makeSpecial($row['frame']);
             echo $row['frame'] . "\n";
         }
