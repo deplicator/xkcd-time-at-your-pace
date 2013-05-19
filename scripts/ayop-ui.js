@@ -35,4 +35,10 @@ $(document).ready(function () {
             }
         });
     });
+    
+    var donatelinks = ["https://support.worldwildlife.org/site/SPageServer?pagename=donate_to_charity&s_src=AWE1302GD914",
+                       "http://wikimediafoundation.org/wiki/Ways_to_Give",
+                       "http://worldwish.org/en/donate/index.php",
+                       "http://store.xkcd.com/"];
+    $('#donate').html("<a href=\"" + donatelinks[Math.floor(Math.random()*4)] + "\">Donate</a>");
 });
