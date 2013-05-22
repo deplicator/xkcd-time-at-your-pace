@@ -28,7 +28,7 @@ if(isset($_REQUEST['frame']) && isset($_REQUEST['vote'])) {
         $daydiff = $interval->format('%d');
         $hourdiff = $interval->format('%h');
         
-        echo intval($daydiff) . intval($hourdiff);
+        //echo intval($daydiff) . intval($hourdiff);
         
         if(intval($daydiff) > 0 || intval($hourdiff) > 22) {
             $STH = $DBH->prepare("UPDATE voters SET timestamp=?, votes=? WHERE ip=?");
