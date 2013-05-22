@@ -233,6 +233,22 @@ function frameMouseMove(event) {
     x = event.pageX - target.offsetLeft,
     y = event.pageY - target.offsetTop;
 
+    pad_left = parseInt($(target).css('border-width'), 10)
+             + parseInt($(target).css('padding-left'), 10)
+             + parseInt($(target).css('margin-left'), 10)
+             + 1;
+
+    pad_top = parseInt($(target).css('border-width'), 10)
+            + parseInt($(target).css('padding-top'), 10)
+            + parseInt($(target).css('margin-top'), 10)
+            + 1;
+
+    if (x <= pad_left || y <= pad_top) {
+        updatePreloadingIndicator(mouseOverOldFrame);
+        mouseOverOldFrame = 0;
+        return;
+    }
+
     frame = ( Math.floor(x / preloadingStatusRectSize)
               + (Math.floor(y / preloadingStatusRectSize)
                  * (preloadingStatusWidth / preloadingStatusRectSize)
