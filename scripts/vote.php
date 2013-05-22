@@ -5,9 +5,13 @@
 
 include('../config.php');
 
-if(isset($_REQUEST['frame'])) {
+if(isset($_REQUEST['frame']) && isset($_REQUEST['vote'])) {
     $frame = $_REQUEST['frame'];
     $vote = $_REQUEST['vote'];
+    if(($vote != "voteyes" && $vote != "voteno") || !is_numeric($frame)) {
+        echo "fail";
+        exit(0);
+    }
     $votelimit = 24; //could vote yay or nay on every frame for the past day (mass vote feature in the future).
 
     try {
