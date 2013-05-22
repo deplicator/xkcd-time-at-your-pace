@@ -229,8 +229,9 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
 }
 
 function frameMouseMove(event) {
-    x = event.pageX - event.srcElement.offsetLeft,
-    y = event.pageY - event.srcElement.offsetTop;
+    target = event.target || event.srcElement;
+    x = event.pageX - target.offsetLeft,
+    y = event.pageY - target.offsetTop;
 
     frame = ( Math.floor(x / preloadingStatusRectSize)
               + (Math.floor(y / preloadingStatusRectSize)
@@ -250,8 +251,9 @@ function frameMouseMove(event) {
 }
 
 function frameMouseClick(event) {
-    x = event.pageX - event.srcElement.offsetLeft,
-    y = event.pageY - event.srcElement.offsetTop;
+    target = event.target || event.srcElement;
+    x = event.pageX - target.offsetLeft,
+    y = event.pageY - target.offsetTop;
 
     frame = ( Math.floor(x / preloadingStatusRectSize)
               + (Math.floor(y / preloadingStatusRectSize)
