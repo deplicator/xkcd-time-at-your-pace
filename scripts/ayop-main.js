@@ -86,6 +86,7 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
+            createSpecialFramesArray();
             initPreloadingStatus(frameCount);
             slider.max = frameCount;
             updateAll(frameInitial);
