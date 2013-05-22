@@ -86,9 +86,9 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
-            //initPreloadingStatus(frameCount);
-            updateAll(frameInitial);
+            initPreloadingStatus(frameCount);
             slider.max = frameCount;
+            updateAll(frameInitial);
             $("#LoadingImage").html('');
         },
         error: function () {
@@ -219,9 +219,3 @@ function updateAll(frame) {
     slider.value = frame;
     updateAllWithoutSlider(frame);
 }
-
-$(document).ajaxComplete(function() {
-    createSpecialFramesArray();
-    initPreloadingStatus(frameCount);
-    updateAll(currentFrame);
-});
