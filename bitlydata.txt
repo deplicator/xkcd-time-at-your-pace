@@ -438,7 +438,6 @@
 438 http://bit.ly/ZTtdbX
 439 http://bit.ly/ZTtdbZ
 440 http://bit.ly/ZTtdc1
-440 http://bit.ly/ZTtdc1
 441 http://bit.ly/10WXryp
 442 http://bit.ly/ZTtfAE
 443 http://bit.ly/ZTtdc3
@@ -781,7 +780,6 @@
 780 http://bit.ly/XYloaR
 781 http://bit.ly/XYpb8n
 782 http://bit.ly/13pfBth
-782 http://bit.ly/13pfBth
 783 http://bit.ly/14HhEh5
 784 http://bit.ly/107TmnE
 785 http://bit.ly/107Zuw7
@@ -807,7 +805,6 @@
 805 http://bit.ly/13O22rx
 806 http://bit.ly/17JEGQt
 807 http://bit.ly/15C6Dx6
-807 http://bit.ly/15C6FVS
 808 http://bit.ly/11f7EFm
 809 http://bit.ly/11fgDGK
 810 http://bit.ly/15BAV2S
@@ -975,7 +972,6 @@
 972 http://bit.ly/10nBvcz
 973 http://bit.ly/ZLswHI
 974 http://bit.ly/12cPtPO
-974 http://bit.ly/12cPvaz
 975 http://bit.ly/ZZjlht
 976 http://bit.ly/17tEIh4
 977 http://bit.ly/12dy0Ha
@@ -1085,7 +1081,6 @@
 1081 http://bit.ly/10beE53
 1082 http://bit.ly/15fIk8U
 1083 http://bit.ly/10buNYk
-1083 http://bit.ly/10buPPP
 1084 http://bit.ly/16CuTPR
 1085 http://bit.ly/10y5WwC
 1086 http://bit.ly/18jXN6y
@@ -1321,8 +1316,6 @@
 1316 http://bit.ly/12vuIAD
 1317 http://bit.ly/11zLB1y
 1318 http://bit.ly/167Zup5
-1318 http://bit.ly/167Zup5
-1318 http://bit.ly/167Zup5
 1319 http://bit.ly/12qyDQo
 1320 http://bit.ly/127qyhY
 1321 http://bit.ly/12w8mPu
@@ -1334,7 +1327,6 @@
 1327 http://bit.ly/13XHtWs
 1328 http://bit.ly/13XSIhD
 1329 http://bit.ly/16wMTLL
-1330 http://bit.ly/16wViig
 1330 http://bit.ly/16wViig
 1331 http://bit.ly/14jXsh6
 1332 http://bit.ly/10Lyjxo
@@ -1383,7 +1375,6 @@
 1375 http://bit.ly/13o4D5B
 1376 http://bit.ly/YLHkUZ
 1377 http://bit.ly/183upAo
-1377 http://bit.ly/183upAo
 1378 http://bit.ly/18NmTLu
 1379 http://bit.ly/10ZHvZk
 1380 http://bit.ly/18NA0wf
@@ -1393,7 +1384,6 @@
 1384 http://bit.ly/10Tcnk7
 1385 http://bit.ly/13zDGiM
 1386 http://bit.ly/13zJokC
-1387 http://bit.ly/1056I5u
 1387 http://bit.ly/1056I5u
 1388 http://bit.ly/12F4BY4
 1389 http://bit.ly/12FbKYl
