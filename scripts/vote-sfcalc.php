@@ -2,6 +2,8 @@
 header("Content-Type: application/json", true);
 include('../config.php');
 
+//TODO: do not create a new PDO in every function
+//TODO: Remove this file, because it is obsoloete with 780bde7fa076d1bffb70dc5a20345fe458d3c538
 /*
  * Flags frames as special or not. Optional second parameter set to true to unflag as special.
  */
