@@ -17,7 +17,7 @@ include('./config.php');
 try {
     $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
 
-    $STH = $DBH->query("SELECT * FROM frames");
+    $STH = $DBH->query('SELECT frames.frame, link, llink, blink, (2 * voteyes > voteno && voteyes + voteno > 5) AS \'special\' FROM frames, votes WHERE frames.frame = votes.frame');
     $STH->setFetchMode(PDO::FETCH_ASSOC);
     echo "[{}";
     while($row = $STH->fetch()) {
