@@ -1,6 +1,8 @@
 ignore/
 data/frames
 data/data.txt
+data/dblog.txt
+data/old.bitlydata.txt
 data/log.txt
 data/cache.json
 config.php

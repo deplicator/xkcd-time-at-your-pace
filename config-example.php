@@ -17,3 +17,5 @@ define("DB_READ_PASS", "your read user password");
 define("BITLY_LOGIN",   "bitly Username");
 define("BITLY_API",     "bitly API Key");
 define("LONG_URL", "http://geekwagon.net/projects/xkcd1190/?frame="); //So local testing will create the same short url.
+
+?>
