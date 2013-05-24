@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, sloppy: true*/
-/*global $: false*/
+/*global $, loadSpecialFramePanel: false*/
 /*
  * User Interface cosmetics.
  */
@@ -25,11 +25,15 @@ $(document).ready(function () {
         });
     });
 
+    var specialFramesPanelLoaded = false;
     $('#specialframes h3').click(function () {
         $('#specialframes .inside').slideToggle('slow', function () {
             if ($('#specialframes h3 .craparrow').html() == rightArrow) {
                 $('#specialframes h3 .craparrow').html(downArrow);
-                loadSpecialFramePanel(); //might be cool if this didn't run on successive opens.
+                if (!specialFramesPanelLoaded) {
+                    loadSpecialFramePanel();
+                    specialFramesPanelLoaded = true;
+                }
             } else {
                 $('#specialframes h3 .craparrow').html(rightArrow);
             }
