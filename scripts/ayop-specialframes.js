@@ -1,5 +1,5 @@
-/*jslint browser: true, sloppy: true, plusplus: true */
-/*global $:false */
+/*jslint browser: true, sloppy: true, plusplus: true, vars: true */
+/*global $, preloadOneFrame, specialFrames:false */
 //var specialframes = [  52,  170,  175,  320,  403,  408,  414,  486,  487,  488,
 //                      490,  531,  537,  538,  562,  563,  564,  637,  638,  640,
 //                      641,  642,  659,  660,  661,  832,  833,  834,  835,  838,
@@ -20,10 +20,16 @@
  * Add the special-frames to the html
  */
 //change this to happen when special frame panel is opened.
-function loadSpecialFramePanel(){
+function loadSpecialFramePanel() {
     var sflen = specialFrames.length, i;
+    var noop = function () {};
+    var container = $('#textframelist');
+    var elem;
     for (i = 0; i < sflen; i++) {
-        $('#textframelist').append('<li><a href="./?frame=' + specialFrames[i] + '"><img src="./data/frames/' + specialFrames[i] + '.png" alt=""></a></li>');
+        //TODO: do that with less dom traversing stuff.
+        elem = $('<li><a href="./?frame=' + specialFrames[i] + '"></a></li>');
+        elem.children().first().prepend(preloadOneFrame(specialFrames[i], noop, true));
+        container.append(elem);
     }
 }
 

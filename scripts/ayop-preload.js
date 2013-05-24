@@ -181,8 +181,9 @@ function finishedLoading() {
  * Also this uses startLoading() and finishedLoading() to show the loading
  * indicator.
  * if doNotSignalFinishLoading is false it will not mark the loading as finished.
+ * this version will not predict any preloading
  */
-function preloadFrame(frame, callback, doNotSignalFinishLoading) {
+function preloadOneFrame(frame, callback, doNotSignalFinishLoading) {
     if (typeof frame !== "number") {
         throw "frame has to be a number";
     }
@@ -207,7 +208,6 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
             //Image is already loaded, so we can fire the onLoad handler now.
             callback(frame, img);
         }
-
     } else {
         //First time this image is requested.
         startLoading(frame);
@@ -225,6 +225,14 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
         img.src = getFrameURL(frame);
         preloadedImages[frame] = img;
     }
+    return img;
+}
+
+/*
+ * Same as preloadOneFrame but with prediction
+ */
+function preloadFrame(frame, callback, doNotSignalFinishLoading) {
+    preloadOneFrame(frame, callback, doNotSignalFinishLoading);
     predictFrames(frame);
 }
 
