@@ -13,13 +13,14 @@ ob_start(); // start the output buffer
 
 
 include('./config.php');
+$confobject = array('updatetime' => date(DATE_RFC822));
 //display what's in the frames table
 try {
     $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
 
     $STH = $DBH->query('SELECT frames.frame, link, llink, blink, (2 * voteyes > voteno && voteyes + voteno > 5) AS \'special\' FROM frames, votes WHERE frames.frame = votes.frame');
     $STH->setFetchMode(PDO::FETCH_ASSOC);
-    echo "[{}";
+    echo "[".json_encode($confobject);
     while($row = $STH->fetch()) {
         echo ",";
         echo json_encode($row); //Warning: will only work, if column names and object-attribute names are consistent!
