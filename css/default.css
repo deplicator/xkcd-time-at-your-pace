@@ -44,6 +44,14 @@ li {
     padding: 4px 0 0 0;
 }
 
+.hidden {
+    display: none;
+}
+
+.craparrow {
+    margin: 0 13px;
+}
+
 .bluebutton {
     background: #96A8C8;
     border: 1px solid #2D323C;
@@ -218,6 +226,8 @@ li {
     width: 600px;
 }
 
+
+/* vote section */
 #vote {
     color: #888;
     padding: 1px;
@@ -289,7 +299,12 @@ li {
     margin: 0 0 0 77px;
 }
 
-
+#funstuff #freezeframe {
+    height: 10px;
+    font-size: 10px;
+    margin: 0 0 0 5px;
+    width: 40px;
+}
 
 #funstuff #preloadindicator {
     border-left: 1px dashed #222;
@@ -347,12 +362,6 @@ li {
     padding: 10px;
 }
 
-#specialframes p {
-    float: right;
-    font-size: 12px;
-    margin: -30px 10px 0 0;
-}
-
 #specialframes .inside {
     display: none;
 }
@@ -372,24 +381,6 @@ li {
     padding: 1px;
 }
 
-
-
-#belowpic {
-    font-size: 10px;
-    margin: 0 25px;
-    text-align: left;
-}
-
-#freezeframe {
-    height: 10px;
-    font-size: 10px;
-    margin: 0 0 0 5px;
-    width: 40px;
-}
-
-.craparrow {
-    margin: 0 13px;
-}
 
 /* The bottom */
 footer {
@@ -414,9 +405,6 @@ footer #note {
     display: none;
 }
 
-.hidden {
-    display: none;
-}
 
 /* Now no one can accuse me of never using a repsonsive web design. */
 @media screen and (min-width: 2600px) {
