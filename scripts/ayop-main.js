@@ -87,7 +87,6 @@ function getFrameData() {
                 frameInitial = 1;
             }
             $('#sfcalcdate').html(response[0].updatetime);
-            console.log(response[0].updatetime);
             createSpecialFramesArray();
             initPreloadingStatus(frameCount);
             slider.max = frameCount;
@@ -173,11 +172,12 @@ function createSpecialFramesArray() {
 function updateAllWithoutSlider(frame) {
     var oldframe = currentFrame;
     currentFrame = frame;
-    //startLoading(frame);
     updateLastSeen(frame);
 
     $('#framecount input').val(frame);
     $('#totalframes').html(frameCount);
+    $('#yay').html(frameData[frame].yes);
+    $('#nay').html(frameData[frame].no);
     
 
     if (difftype == "prev") {

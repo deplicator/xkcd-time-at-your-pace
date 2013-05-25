@@ -15,12 +15,12 @@ $(document).ready(function () {
     var rightArrow = '\u2192', downArrow = '\u2193';
     
     //Toggeling boxes below comic.
-    $('#funstuff h3').click(function () {
-        $('#funstuff .inside').slideToggle('slow', function () {
-            if ($('#funstuff h3 .craparrow').html() == rightArrow) {
-                $('#funstuff h3 .craparrow').html(downArrow);
+    $('#framedata h3').click(function () {
+        $('#framedata .inside').slideToggle('slow', function () {
+            if ($('#framedata h3 .craparrow').html() == rightArrow) {
+                $('#framedata h3 .craparrow').html(downArrow);
             } else {
-                $('#funstuff h3 .craparrow').html(rightArrow);
+                $('#framedata h3 .craparrow').html(rightArrow);
             }
         });
     });

@@ -12,16 +12,16 @@ function castVote(frame, cast) {
             $('#voteconfirm').fadeIn('fast');
             if(data == "success") {
                 if(cast == "voteyes") {
-                    $('#voteconfirm').html("Your vote for " + frame + " has been cast.");
+                    $('#voteconfirm').append("<li>Your vote for " + frame + " has been cast.</li>");
                 } else if(cast == "voteno") {
-                    $('#voteconfirm').html("You voted against " + frame + ".");
+                    $('#voteconfirm').append("<li>You voted against " + frame + ".</li>");
                 }
             } else if (data == "fail") {
-                $('#voteconfirm').html("You've reached the daily vote limit. Your contribution to this cause will go unnoticed.");
+                $('#voteconfirm').append("<li>You've reached the daily vote limit. Your contribution to this cause will go unnoticed.</li>");
             } else {
-                $('#voteconfirm').html("Something has failed. <a href=\"mailto:james@geekwagon?subject=your%20site%20failed%20and%20I%20was%20quick%20enough%20to%20click%20this!\">Click here quick</a>, before it's too late!");
+                $('#voteconfirm').append("<li>Something has failed. <a href=\"mailto:james@geekwagon?subject=your%20site%20failed%20and%20I%20was%20quick%20enough%20to%20click%20this!\">Click here quick</a>, before it's too late!</li>");
             }
-            $('#voteconfirm').delay(5000).fadeOut('slow');
+            $('#voteconfirm li').delay(5000).fadeOut('slow');
         }
     });
     return false; // avoid to execute the actual submit of the form.

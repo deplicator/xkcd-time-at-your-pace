@@ -249,7 +249,18 @@ li {
     width: 30px;
 }
 
-#voteinfo {
+#vote #voteconfirm {
+    list-style-type: none;
+}
+
+#vote #voteconfirm li{
+    background: #FFFFE0;
+    border: 1px solid;
+    margin: 1px;;
+    padding: 2px;
+}
+
+#vote #voteinfo {
     position: absolute;
     top: 0;
     left: -160px;
@@ -259,13 +270,13 @@ li {
     line-height: 17px;
 }
 
-#voteinfo p {
+#vote #voteinfo p {
     text-align: left;
 }
 
 
-/* The Fun Stuff */
-#funstuff {
+/* Frame Data Panel*/
+#framedata {
     background: #D5DCE9;
     border-radius: 4px;
     font-size: 10px;
@@ -274,7 +285,7 @@ li {
     width: 901px;
 }
 
-#funstuff h3 {
+#framedata h3 {
     background: #96A8C8;
     border-bottom: 1px dashed #222;
     border-top-left-radius: 4px;
@@ -284,66 +295,89 @@ li {
     padding: 10px;
 }
 
-#funstuff #link {
-    border-bottom: 1px dashed #222;
+/* Sub Componets of Frame Data */
+#framedata .framedata-sub {
+    float: left;
     padding: 10px 0;
     text-align: center;
 }
 
-#funstuff #imgdiffopts {
-    margin: 0 0 14px 11px;
-    width: 220px;
+/* Share Link */
+#framedata #link {
+    border-bottom: 1px dashed #222;
+    border-right: 1px dashed;
+    width: 500px;
 }
 
-#funstuff #imgdiffopts p {
-    margin: 0 0 0 77px;
+#framedata #link #showlong {
+    margin: 0 0 0 328px;
 }
 
-#funstuff #freezeframe {
+/* Vote Data */
+#votedata {
+    border-bottom: 1px dashed #222;
+    height: 55px;
+    width: 400px;
+}
+
+
+/* Image Difference */
+#framedata #imgdiffopts {
+    clear: left;
+    width: 260px;
+}
+
+#framedata #imgdiffopts p {
+    padding: 7px 0 0 10px;
+    text-align: left;
+}
+
+#framedata #imgdiffopts input {
+    margin: -4px 0 0 0;
+}
+
+#framedata #imgdiffopts #freezeframe {
     height: 10px;
     font-size: 10px;
-    margin: 0 0 0 5px;
     width: 40px;
 }
 
-#funstuff #preloadindicator {
+/* Preload Indicator */
+#framedata #preloadindicator {
     border-left: 1px dashed #222;
-    float: right;
-    margin: -83px 5px 2px 0;
-    padding: 0 0 0 38px;
-    width: 593px;
+    padding: 10px 0 0 0;
+    width: 638px;
 }
 
-#funstuff #preloadindicator  p {
-    margin: 0 220px 0 0;
-    text-align: right;
-}
-
-#funstuff #preloadindicator #preloadAllButton {
+#framedata #preloadindicator #preloadAllButton {
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0px #666;
-    float: left;
     font-weight: 700;
     height: 31px;
-    position: relative;
-    top: 24px;
-    width: 82px;
+    margin: 13px 0 0 0!important;
+    width: 90px;
 }
 
-#funstuff #preloadindicator #preloadAllButton:active {
+#framedata #preloadindicator #preloadAllButton:active {
     position: relative;
     box-shadow: none;
-    top: 26px;
+    top: 2px;
     left: 2px;
 }
 
-#funstuff #preloadindicator #preloadingStatus {
+#framedata #preloadindicator #preloadingStatus {
     border: 1px solid #222;
-    float: right;
     padding: 2px;
 }
 
-/* Special Frames */
+#framedata #preloadindicator #pli-legend {
+    height: 80px;
+    float: right;
+    padding: 10px 90px 10px 0;
+}
+
+
+/* Special Frames Panel */
 #specialframes {
     background: #D5DCE9;
     border-radius: 4px;

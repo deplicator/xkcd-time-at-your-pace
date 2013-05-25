@@ -81,6 +81,14 @@ A couple of examples:
 | Green Border || Current Frame
 |}
 
+===Mobile Version===
+There is now a simplified mobile version at http://geekwagon.net/projects/xkcd1190/mobile. In theory mobile devices should be redirected.
+
+Note: Frame difference isn't set up to work in the mobile version, but frame difference links will still take you to the selected frame.
+
+===Old Version===
+The old, pre-database version is still up and running at http://geekwagon.net/projects/xkcd1190_old. It now runs frame updates every 10 minutes instead of 5, but it will not be maintained.
+
 ==Guidelines==
 By no means written in stone, but because of the frame 1236/1237 oddity it was time to make some guidelines.
 
@@ -91,7 +99,7 @@ So far, no hash seems to have been intentionally repeated. Hashes that have repe
 ==Thanks==
 * Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (more than me now). It's been nice having someone so knowledgeable to work with.
 * Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
-* Thanks to [https://github.com/kormoc kormoc] for the preload indicator.
+* Thanks to [https://github.com/kormoc Rob Smith] for the preload indicator.
 * Thanks to the other contributors who have helped me keep up with special frames (it's getting to be a long list).
 * Thanks to everyone who has pointed out buggs, errors, feature requests, and so on; you've helped make this site better!
 * Thanks for the positive feedback I've gotten from this project. It's been fun to work on a project people appreciate.
@@ -109,10 +117,12 @@ If you feel compelled to give away money there is a donation link that will take
 * [http://store.xkcd.com/ xkcd store] - not a non-profit, but if you buy stuff from there comics will keep coming.
 I choose global organizations (sorry US Vets and NPR, I support you both), but the point is there are plenty of great people to give a little money to.
 
+<hr>
+
 ==Some notes==
 Because I can't remember anything.
 ===Known bugs===
-* when click on vote button the preload indicator goes weird.
+* Sometimes when clicking on a vote button the preload indicator goes weird.
 
 ===potential features===
 * more cookie options
@@ -120,6 +130,7 @@ Because I can't remember anything.
 ** cookie to set which frame to show; newest, last seen, first
 ** remember open or closed state of optional panels (fun stuff and special frames)
 * vote feature
+** vote panel (like fun stuff and special frames).
 ** mass vote - show past 24 frames and a yay or nay check box, submit all at once.
 ** lock voting on older frames when some criteria is met.
 ** show daily votes per user (this done my IP, so it might be interesting in coffee shops).
@@ -167,12 +178,4 @@ Because I can't remember anything.
 | ip || track voters by IP
 |-
 | votes || number of votes cast by IP
-|}
-
-{| class="wikitable"
-|+ table: pxstats
-! column !! description
-|-
-| frame || (one to many)
-|-
 |}

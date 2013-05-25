@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global images, imageslen,isSpecial,specialframes, $, currentFrame: false */
+/*global images, frameCount,isSpecial,specialframes, $, currentFrame: false */
 //dependencys: jquery (for ready handler)
 // scroll1190.js: images, currentFrame
 // ayop-specialframes.js: isSpecial, specialframes
@@ -26,7 +26,7 @@ function initPreloadingStatus(maxImages) {
     preloadingStatusCtx.lineWidth = 1;
     preloadingStatusCtx.fillStyle = notYetLoadedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
-    preloadingStatusCtx.fillStyle = $("#funstuff").css('backgroundColor');
+    preloadingStatusCtx.fillStyle = $("#framedata").css('backgroundColor');
     preloadingStatusCtx.fillRect(
         (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusHeight - preloadingStatusRectSize,
@@ -271,12 +271,12 @@ function frameMouseMove(event) {
     if (frame == mouseOverOldFrame)
         return;
 
-    if (mouseOverOldFrame < imageslen && mouseOverOldFrame > 0)
+    if (mouseOverOldFrame < frameCount && mouseOverOldFrame > 0)
         updatePreloadingIndicator(mouseOverOldFrame);
 
     mouseOverOldFrame = frame;
 
-    if (frame < imageslen && frame > 0)
+    if (frame < frameCount && frame > 0)
         markPreloadingFrame(frame, mouseOverFrameBorderColor);
 }
 

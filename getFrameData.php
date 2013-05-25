@@ -20,8 +20,9 @@ try {
     // Debating combining votes table with frames table, but I'm inclined to keep them seperate so
     // we're not writing to the frames table as much. Started discuccion with issue #57.
     $STH = $DBH->query('
-        SELECT frames.frame, link, llink, blink, 
-        (2 * voteyes > voteno && voteyes + voteno > 15) AS \'special\' 
+        SELECT frames.frame, link, llink, blink,
+        votes.voteyes AS \'yes\', votes.voteno AS \'no\',
+        (2 * voteyes > voteno && voteyes + voteno > 15) AS \'special\'
         FROM frames, votes 
         WHERE frames.frame = votes.frame');
     $STH->setFetchMode(PDO::FETCH_ASSOC);
