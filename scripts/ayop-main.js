@@ -86,7 +86,8 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
-            $('#sflastupdate').html(response[0].updatetime);
+            $('#sfcalcdate').html(response[0].updatetime);
+            console.log(response[0].updatetime);
             createSpecialFramesArray();
             initPreloadingStatus(frameCount);
             slider.max = frameCount;

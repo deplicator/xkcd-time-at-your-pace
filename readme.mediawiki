@@ -1,9 +1,8 @@
 __NOTOC__
 
 ==Description==
-Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way. 
+Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a fun and navigable way.
 
-We tried to make it fun too.
 
 ==Features==
 ===Navigation===
@@ -91,8 +90,11 @@ So far, no hash seems to have been intentionally repeated. Hashes that have repe
 
 ==Thanks==
 * Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (more than me now). It's been nice having someone so knowledgeable to work with.
-* Thanks to everyone who has contributed code, especially those that pointed out where things could be better (plenty of that going on).
-* Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
+* Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
+* Thanks to [https://github.com/kormoc kormoc] for the preload indicator.
+* Thanks to the other contributors who have helped me keep up with special frames (it's getting to be a long list).
+* Thanks to everyone who has pointed out buggs, errors, feature requests, and so on; you've helped make this site better!
+* Thanks for the positive feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
 
 ==A Friendly Reminder==
@@ -117,8 +119,13 @@ Because I can't remember anything.
 ** Button to clear all cookies
 ** cookie to set which frame to show; newest, last seen, first
 ** remember open or closed state of optional panels (fun stuff and special frames)
-* mass frame vote feature
-** show past 24 frames and a yay or nay check box, submit all at once.
+* vote feature
+** mass vote - show past 24 frames and a yay or nay check box, submit all at once.
+** lock voting on older frames when some criteria is met.
+** show daily votes per user (this done my IP, so it might be interesting in coffee shops).
+* frame stats panel
+** Show how many yay and nay votes a frame has.
+** Show locked/unlocked vote status
 
 ===database===
 * database name: xkcd1190ayop

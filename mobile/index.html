@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<!--mobile index.html-->
+<head>
+    <meta charset="utf-8">
+    <title>xkcd Time - at your own pace</title>
+    <link rel="stylesheet" href="../css/mobile.css">
+    <script src="../scripts/analytic.js"></script>
+    <!-- Libs -->
+    <script src="../scripts/jquery.js"></script>
+
+    <!-- Scripts -->
+    <script src="../scripts/ayop-lastseen.js"></script> <!-- no dependencys -->
+    <script src="../scripts/ayop-specialframes.js"></script> <!-- no dependencys -->
+</head>
+
+<body>
+    <header>
+        <h1>xkcd 1190 - <a href="http://www.xkcd.com/1190/" title="Link to original">Time</a></h1>
+        <h2>at your own pace - mobile</h2>
+        <h2 id="mobilemsg"></h2>
+    </header>
+    <div id="LoadingImage">loading</div>
+    <div id="tehmainevent">        
+        <div id="scrollhere"></div>
+        <span id="framecount">frame: <input id="manualinput" type="text"> / <span id="totalframes"></span></span>
+    </div>
+     <div id="controls">
+        <div id="step">
+            <input id="first" class="bluebutton" type="button" value="|<" title="First Frame">
+            <input id="previous-special" class="bluebutton" type="button" value="<<" title="Previous Special Frame">
+            <input id="previous" class="bluebutton" type="button" value="<" title="Previous Frame">
+            <input id="next" class="bluebutton" type="button" value=">" title="Next Frame">
+            <input id="next-special" class="bluebutton" type="button" value=">>" title="Next Special Frame">
+            <input id="last" class="bluebutton" type="button" value=">|" title="Newest Frame">
+        </div>
+    </div>
+    <footer>
+        <p>xkcd is licensed by <a href="http://www.xkcd.com/about/">Randall Munroe</a> under a <a href="http://www.xkcd.com/license.html">Creative Commons Attribution-NonCommercial 2.5 License</a>, please give credit where it is due (because he's a cool guy as far as I can tell from being a regular reader of his comic).</p>
+        <p>The code for this site is licensed <a href="http://geekwagon.net/ufl/license.txt">under a license I just made up</a> that lets you do whatever you want.</p>
+        <p><a href="http://blog.geekwagon.net/search/label/xkcd1190">About This Project</a> | <a href="mailto:james@geekwagon.net" title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a></p>
+    </footer>
+    
+    <script src="../scripts/ayop-mobile.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->
+<body>
+</html>

@@ -362,6 +362,12 @@ li {
     padding: 10px;
 }
 
+#specialframes p {
+    float: right;
+    font-size: 12px;
+    margin: 4px 10px 0 0;
+}
+
 #specialframes .inside {
     display: none;
 }
