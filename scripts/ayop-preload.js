@@ -38,6 +38,8 @@ function initPreloadingStatus(maxImages) {
     }
     preloadingStatus.addEventListener('click', frameMouseClick, false);
     preloadingStatus.addEventListener('mousemove', frameMouseMove, false);
+    preloadingStatus.addEventListener('mouseleave', frameMouseMove, false);
+    preloadingStatus.addEventListener('mouseout', frameMouseMove, false);
 }
 $(document).ready(function () {
     preloadingStatus = document.getElementById("preloadingStatus");
@@ -251,7 +253,11 @@ function frameMouseMove(event) {
             + parseInt($(target).css('margin-top'), 10)
             + 1;
 
-    if (x <= pad_left || y <= pad_top) {
+    if (x <= pad_left
+        || x >= preloadingStatusWidth + pad_left
+        || y <= pad_top
+        || y >= preloadingStatusHeight + pad_top
+        ) {
         updatePreloadingIndicator(mouseOverOldFrame);
         mouseOverOldFrame = 0;
         return;
@@ -270,7 +276,7 @@ function frameMouseMove(event) {
 
     mouseOverOldFrame = frame;
 
-    if (frame < frameCount && frame > 0)
+    if (frame < imageslen && frame > 0)
         markPreloadingFrame(frame, mouseOverFrameBorderColor);
 }
 
@@ -283,6 +289,7 @@ function frameMouseClick(event) {
               + (Math.floor(y / preloadingStatusRectSize)
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
-    if (frame < frameCount && frame > 0)
+
+    if (frame < imageslen && frame > 0)
         updateAll(frame);
 }
