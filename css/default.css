@@ -320,6 +320,18 @@ li {
     width: 400px;
 }
 
+#votedata p {
+    font-size: 13px;
+}
+
+#votedata #debated {
+    color: rgb(209, 37, 37);
+    float: right;
+    font-size: 14px;
+    font-weight: 700;
+    margin: -36px 31px 0 0;
+}
+
 
 /* Image Difference */
 #framedata #imgdiffopts {

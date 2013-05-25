@@ -130,7 +130,6 @@ Because I can't remember anything.
 ** cookie to set which frame to show; newest, last seen, first
 ** remember open or closed state of optional panels (fun stuff and special frames)
 * vote feature
-** vote panel (like fun stuff and special frames).
 ** mass vote - show past 24 frames and a yay or nay check box, submit all at once.
 ** lock voting on older frames when some criteria is met.
 ** show daily votes per user (this done my IP, so it might be interesting in coffee shops).

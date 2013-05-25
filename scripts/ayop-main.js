@@ -179,6 +179,11 @@ function updateAllWithoutSlider(frame) {
     $('#yay').html(frameData[frame].yes);
     $('#nay').html(frameData[frame].no);
     
+    //hot debate?
+    $('#debated').addClass('hidden');
+    if(frameData[frame].no >= 5 && frameData[frame].yes > (frameData[frame].no / 1.9)) {
+        $('#debated').removeClass('hidden');
+    }
 
     if (difftype == "prev") {
         diff();
