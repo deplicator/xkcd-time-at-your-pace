@@ -86,6 +86,7 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
+            $('#sflastupdate').html(response[0].updatetime);
             createSpecialFramesArray();
             initPreloadingStatus(frameCount);
             slider.max = frameCount;
@@ -98,24 +99,6 @@ function getFrameData() {
     });
 }
 getFrameData();
-
-//I'm open to better ways to do this.
-//http://stackoverflow.com/questions/2313620/is-it-possible-to-retrieve-the-last-modified-date-of-a-file-using-javascript
-function fetchHeader(url, wch) {
-    try {
-        var req=new XMLHttpRequest();
-        req.open("HEAD", url, false);
-        req.send(null);
-        if(req.status== 200){
-            return req.getResponseHeader(wch);
-        }
-        else return false;
-    } catch(er) {
-        return er.message;
-    }
-}
-$('#sflastupdate').html(fetchHeader(site + "/data/sflist.txt",'Last-Modified'));
-
 
 /* 
  * Change how url is displayed in "link to this frame" text box.

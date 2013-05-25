@@ -181,8 +181,9 @@ function finishedLoading() {
  * Also this uses startLoading() and finishedLoading() to show the loading
  * indicator.
  * if doNotSignalFinishLoading is false it will not mark the loading as finished.
+ * this version will not predict any preloading
  */
-function preloadFrame(frame, callback, doNotSignalFinishLoading) {
+function preloadOneFrame(frame, callback, doNotSignalFinishLoading) {
     if (typeof frame !== "number") {
         throw "frame has to be a number";
     }
@@ -207,7 +208,6 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
             //Image is already loaded, so we can fire the onLoad handler now.
             callback(frame, img);
         }
-
     } else {
         //First time this image is requested.
         startLoading(frame);
@@ -225,12 +225,37 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
         img.src = getFrameURL(frame);
         preloadedImages[frame] = img;
     }
+    return img;
+}
+
+/*
+ * Same as preloadOneFrame but with prediction
+ */
+function preloadFrame(frame, callback, doNotSignalFinishLoading) {
+    preloadOneFrame(frame, callback, doNotSignalFinishLoading);
     predictFrames(frame);
 }
 
 function frameMouseMove(event) {
-    x = event.pageX - event.srcElement.offsetLeft,
-    y = event.pageY - event.srcElement.offsetTop;
+    target = event.target || event.srcElement;
+    x = event.pageX - target.offsetLeft,
+    y = event.pageY - target.offsetTop;
+
+    pad_left = parseInt($(target).css('border-width'), 10)
+             + parseInt($(target).css('padding-left'), 10)
+             + parseInt($(target).css('margin-left'), 10)
+             + 1;
+
+    pad_top = parseInt($(target).css('border-width'), 10)
+            + parseInt($(target).css('padding-top'), 10)
+            + parseInt($(target).css('margin-top'), 10)
+            + 1;
+
+    if (x <= pad_left || y <= pad_top) {
+        updatePreloadingIndicator(mouseOverOldFrame);
+        mouseOverOldFrame = 0;
+        return;
+    }
 
     frame = ( Math.floor(x / preloadingStatusRectSize)
               + (Math.floor(y / preloadingStatusRectSize)
@@ -250,14 +275,14 @@ function frameMouseMove(event) {
 }
 
 function frameMouseClick(event) {
-    x = event.pageX - event.srcElement.offsetLeft,
-    y = event.pageY - event.srcElement.offsetTop;
+    target = event.target || event.srcElement;
+    x = event.pageX - target.offsetLeft,
+    y = event.pageY - target.offsetTop;
 
     frame = ( Math.floor(x / preloadingStatusRectSize)
               + (Math.floor(y / preloadingStatusRectSize)
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
-    
     if (frame < frameCount && frame > 0)
         updateAll(frame);
 }
