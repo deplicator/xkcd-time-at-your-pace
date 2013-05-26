@@ -4,7 +4,9 @@
  * User Interface cosmetics.
  */
 
- //load past frames
+var panels = $.cookie('ayop-panel');
+
+//load past frames
 function loadPastPanel(num, container) {
     var sflen = specialFrames.length, i;
     var noop = function () {};
@@ -19,6 +21,13 @@ function loadPastPanel(num, container) {
 }
 
 $(document).ready(function () {
+    
+    if(panels[0] == '0') {
+        $('#framedata .inside').hide('fast', function() {
+            $('#framedata h3 .craparrow').html(rightArrow);
+        });
+    }
+    
     //Play back direction buttons.
     $('.direction').click(function () {
         if (!$(this).hasClass('dir-select')) {
@@ -28,7 +37,7 @@ $(document).ready(function () {
     
     var rightArrow = '\u2192', downArrow = '\u2193';
     
-    //Toggeling panales below comic.
+    //Toggeling panels below comic.
     var specialFramesPanelLoaded = false;
     var pastDayPanelLoaded = false;
     var pastWeekPanelLoaded = false;
@@ -37,7 +46,14 @@ $(document).ready(function () {
             //l2transversedom
             if ($(this).parent().children('h3').children('.craparrow').html() == rightArrow) {
                 $(this).parent().children('h3').children('.craparrow').html(downArrow);
-                if($(this).parent().attr('id') == 'specialframes' && !specialFramesPanelLoaded) {
+                if($(this).parent().attr('id') == 'framedata') {
+                    $.cookie('ayop-panel', [0]);
+                    panels[0] = 0;
+                
+                
+                
+                    
+                } else if($(this).parent().attr('id') == 'specialframes' && !specialFramesPanelLoaded) {
                     loadSpecialFramePanel();
                     specialFramesPanelLoaded = true;
                 } else if($(this).parent().attr('id') == 'pastday' && !specialFramesPanelLoaded) {
@@ -47,9 +63,11 @@ $(document).ready(function () {
                     loadPastPanel(168, '#past-weekframelist');
                     pastWeekPanelLoaded = true;
                 }
-
             } else {
                 $(this).parent().children('h3').children('.craparrow').html(rightArrow);
+                if($(this).parent().attr('id') == 'framedata') {
+                    $.cookie('ayop-panel', [1]);
+                }
             }
         });
     });
