@@ -1,25 +1,45 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global assert, startLoading,finishedLoading, images, imageslen, $: false */
+/*global images, frameCount,isSpecial,specialframes, $, currentFrame: false */
+//dependencys: jquery (for ready handler)
+// scroll1190.js: images, currentFrame
+// ayop-specialframes.js: isSpecial, specialframes
+// jquery
 
 var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
-var preloadingStatusRectSize = 4;
+var preloadingStatusRectSize = 5;
+var notYetLoadedColor       = "#808080";
+var loadingInProgressColor  = "#6082B6";
+var loadingCompleteColor    = "#222";
+var specialFrameBorderColor = "#FFFF00";
+var currentFrameBorderColor = "#00FF00";
+var mouseOverFrameBorderColor = "#0000FF";
+var mouseOverOldFrame = 0;
 function initPreloadingStatus(maxImages) {
+    var i;
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
         throw "ERROR: Rect size does not equally divide width";
     }
     preloadingStatusHeight = preloadingStatusRectSize * Math.floor(maxImages / (preloadingStatusWidth / preloadingStatusRectSize) + 1);
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
-    preloadingStatusCtx.fillStyle = "gray";
+    preloadingStatusCtx.lineWidth = 1;
+    preloadingStatusCtx.fillStyle = notYetLoadedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
-    preloadingStatusCtx.fillStyle = "white";
+    preloadingStatusCtx.fillStyle = $("#framedata").css('backgroundColor');
     preloadingStatusCtx.fillRect(
         (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusHeight - preloadingStatusRectSize,
         preloadingStatusWidth -  (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusRectSize
     );
+    for (i = 0; i < specialFrames.length; i++) {
+        markPreloadingFrame(specialFrames[i], notYetLoadedColor);
+    }
+    preloadingStatus.addEventListener('click', frameMouseClick, false);
+    preloadingStatus.addEventListener('mousemove', frameMouseMove, false);
+    preloadingStatus.addEventListener('mouseleave', frameMouseMove, false);
+    preloadingStatus.addEventListener('mouseout', frameMouseMove, false);
 }
 $(document).ready(function () {
     preloadingStatus = document.getElementById("preloadingStatus");
@@ -37,33 +57,62 @@ $(document).ready(function () {
 
 function getFrameURL(frame) {
     //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
-    //return 'images/' + images[frame].replace(/.*\//, '');
-    return 'images/' + frame + '.png';
-    //return images[frame];  //Do not use! will break imagediff, because of cross-origin.
+    //return 'frames/' + frames[frame].replace(/.*\//, '');
+    return 'data/frames/' + frame + '.png';
+    //return frames[frame];  //Do not use! will break imagediff, because of cross-origin.
 }
 
 function markPreloadingFrame(frame, color) {
-    frame = frame - 1;
+    var frameMinusOne = frame - 1;
     preloadingStatusCtx.fillStyle = color;
     preloadingStatusCtx.fillRect(
-        (preloadingStatusRectSize * frame) % preloadingStatusWidth,
-        preloadingStatusRectSize * Math.floor(frame / (preloadingStatusWidth / preloadingStatusRectSize)),
+        (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth,
+        preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)),
         preloadingStatusRectSize,
         preloadingStatusRectSize
     );
+
+    if (isSpecial(frame) || currentFrame === frame) {
+        preloadingStatusCtx.strokeStyle = currentFrame === frame ? currentFrameBorderColor : specialFrameBorderColor;
+        preloadingStatusCtx.strokeRect(
+            (preloadingStatusRectSize * frameMinusOne) % preloadingStatusWidth + 0.5,
+            preloadingStatusRectSize * Math.floor(frameMinusOne / (preloadingStatusWidth / preloadingStatusRectSize)) + 0.5,
+            preloadingStatusRectSize - 1, //Looks like this draws a rect with size+1
+            preloadingStatusRectSize - 1
+        );
+    }
 }
 
 function preloadingInProgress(frame) {
-    markPreloadingFrame(frame, "blue");
+    markPreloadingFrame(frame, loadingInProgressColor);
 }
 function preloadingFinished(frame) {
-    markPreloadingFrame(frame, "black");
+    markPreloadingFrame(frame, loadingCompleteColor);
 }
 function preloadingError(frame) {
     if (frame == currentFrame) {
         $("#LoadingImage").html('Oh noes, something has gone wrong!');
     }
     markPreloadingFrame(frame, "red");
+}
+
+/*
+ * Update the Preloading Indicator to show the current status of the frame.
+ */
+function updatePreloadingIndicator(frame) {
+    if (preloadedImages[frame]) {
+        var img = preloadedImages[frame];
+        if (img.naturalWidth === 0 || img.naturalHeight === 0 || img.complete === false) {
+            //Image is still loading
+            preloadingInProgress(frame);
+        } else {
+            //Image is complete.
+            preloadingFinished(frame);
+        }
+    } else {
+        //Image has not yet been marked for preloading
+        markPreloadingFrame(frame, notYetLoadedColor);
+    }
 }
 
 function preloadingFinishedHandlerForFrame(frame) {
@@ -77,7 +126,7 @@ function preloadingErrorHandlerForFrame(frame) {
     };
 }
 function predictFrames(frame) {
-    var end = Math.min(frame + 5, imageslen - 1);
+    var end = Math.min(frame + 5, frameCount - 1);
     var img, i;
 
     //Preload 5 frames forwards.
@@ -106,8 +155,8 @@ function predictFrames(frame) {
 }
 
 function preloadAll() {
-    var i;
-    for (i = 1; i <= imageslen - 1; i++) {
+    var i, img;
+    for (i = 1; i <= frameCount; i++) {
         if (!preloadedImages[i]) {
             img = new Image();
             img.onload = preloadingFinishedHandlerForFrame(i);
@@ -118,15 +167,25 @@ function preloadAll() {
         }
     }
 }
+
+function startLoading(frame) {
+    $("#loading").show();
+}
+
+function finishedLoading() {
+    $("#loading").hide();
+}
+
 /*
  * Method to be called, when the specified frame is requested to be shown NOW.
  * Will predict the next images and preload them also.
  * callback(frameNumber, Image-Object) will be called when the image is loaded.
- * Also this uses startLoading() and finishedLoading() to show the loading 
+ * Also this uses startLoading() and finishedLoading() to show the loading
  * indicator.
  * if doNotSignalFinishLoading is false it will not mark the loading as finished.
+ * this version will not predict any preloading
  */
-function preloadFrame(frame, callback, doNotSignalFinishLoading) {
+function preloadOneFrame(frame, callback, doNotSignalFinishLoading) {
     if (typeof frame !== "number") {
         throw "frame has to be a number";
     }
@@ -151,7 +210,6 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
             //Image is already loaded, so we can fire the onLoad handler now.
             callback(frame, img);
         }
-
     } else {
         //First time this image is requested.
         startLoading(frame);
@@ -169,5 +227,68 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
         img.src = getFrameURL(frame);
         preloadedImages[frame] = img;
     }
+    return img;
+}
+
+/*
+ * Same as preloadOneFrame but with prediction
+ */
+function preloadFrame(frame, callback, doNotSignalFinishLoading) {
+    preloadOneFrame(frame, callback, doNotSignalFinishLoading);
     predictFrames(frame);
+}
+
+function frameMouseMove(event) {
+    target = event.target || event.srcElement;
+    x = event.pageX - target.offsetLeft,
+    y = event.pageY - target.offsetTop;
+
+    pad_left = parseInt($(target).css('border-width'), 10)
+             + parseInt($(target).css('padding-left'), 10)
+             + parseInt($(target).css('margin-left'), 10)
+             + 1;
+
+    pad_top = parseInt($(target).css('border-width'), 10)
+            + parseInt($(target).css('padding-top'), 10)
+            + parseInt($(target).css('margin-top'), 10)
+            + 1;
+
+    if (x <= pad_left
+        || x >= preloadingStatusWidth + pad_left
+        || y <= pad_top
+        || y >= preloadingStatusHeight + pad_top
+        ) {
+        updatePreloadingIndicator(mouseOverOldFrame);
+        mouseOverOldFrame = 0;
+        return;
+    }
+
+    frame = ( Math.floor(x / preloadingStatusRectSize)
+              + (Math.floor(y / preloadingStatusRectSize)
+                 * (preloadingStatusWidth / preloadingStatusRectSize)
+                 - 100));
+
+    if (frame == mouseOverOldFrame)
+        return;
+
+    if (mouseOverOldFrame < frameCount && mouseOverOldFrame > 0)
+        updatePreloadingIndicator(mouseOverOldFrame);
+
+    mouseOverOldFrame = frame;
+
+    if (frame < frameCount && frame > 0)
+        markPreloadingFrame(frame, mouseOverFrameBorderColor);
+}
+
+function frameMouseClick(event) {
+    target = event.target || event.srcElement;
+    x = event.pageX - target.offsetLeft,
+    y = event.pageY - target.offsetTop;
+
+    frame = ( Math.floor(x / preloadingStatusRectSize)
+              + (Math.floor(y / preloadingStatusRectSize)
+                 * (preloadingStatusWidth / preloadingStatusRectSize)
+                 - 100));
+    if (frame < frameCount && frame > 0)
+        updateAll(frame);
 }

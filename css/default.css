@@ -25,18 +25,6 @@ h2 {
     font-size: 18px;
 }
 
-h3 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    padding: 10px;
-}
-
-h4 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    padding: 10px 0 0 0;
-}
-
 a {
     color: #3E48D2;
     text-decoration: none;
@@ -56,11 +44,39 @@ li {
     padding: 4px 0 0 0;
 }
 
+.hidden {
+    display: none;
+}
 
-/* Controls */
+.craparrow {
+    margin: 0 13px;
+}
+
+.bluebutton {
+    background: #96A8C8;
+    border: 1px solid #2D323C;
+    background-image: -ms-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* IE10 Consumer Preview */ 
+    background-image: -moz-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* Mozilla Firefox */ 
+    background-image: -o-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* Opera */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #B6C2D8), color-stop(1, #96A8C8)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(to bottom, #B6C2D8 0%, #96A8C8 100%); /* W3C Markup, IE10 Release Preview */ 
+}
+
+.bluebutton:active {
+    background: #96A8C8;
+    background-image: -ms-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* IE10 Consumer Preview */
+    background-image: -moz-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* Mozilla Firefox */ 
+    background-image: -o-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* Opera */ 
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #B6C2D8), color-stop(1, #96A8C8)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(bottom, #B6C2D8 0%, #96A8C8 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(to top, #B6C2D8 0%, #96A8C8 100%); /* W3C Markup, IE10 Release Preview */
+}
+
+/* Top Controls */
 #controls {
     margin: 0 auto;
-    width: 550px;
+    width: 700px;
 }
 
 #controls #autoplay {
@@ -68,10 +84,11 @@ li {
     border: 1px solid #96A8C8;
     border-left: none;
     border-radius: 7px;
+    box-shadow: 2px 2px 5px 0px #666;
     float: left;
     font-size: 11px;
     height: 45px;
-    margin: 12px 0 0 58px;
+    margin: 17px 0 0 19px;
     padding: 0 5px;
     position: relative;
     width: 286px;
@@ -88,11 +105,10 @@ li {
     height: 13px;
     font-size: 12px;
     margin: -2px 0 0 0;
+    width: 50px;
 }
 
 #controls #autoplay #play {
-    background: #96A8C8;
-    border: 1px solid #222;
     border-radius: 40px;
     font-weight: 700;
     float: left;
@@ -103,17 +119,64 @@ li {
     width: 60px;
 }
 
+#controls #autoplay #play:hover {
+    box-shadow: 0 0 10px blue;
+}
+
+#controls #autoplay #play:active {
+    box-shadow: 0 0 20px blue;
+}
+
+#controls #autoplay #reverse,
+#controls #autoplay #forward {
+    border-radius: 0px;
+    float: left;
+    height: 20px;
+    left: -26px;
+    position: absolute;
+    top: 40px;
+    width: 40px;
+    transform: skew(-18deg,0deg);
+    -ms-transform: skew(-18deg,0deg);
+    -webkit-transform: skew(-18deg,0deg);
+}
+
+#controls #autoplay #forward {
+    left: 17px;
+}
+
+/* toggle direction playing */
+.dir-select {
+    box-shadow: 0 0 5px blue;
+    font-weight: 700;
+}
+
 #controls #step {
     border-left: 1px dashed #222;
     float: right;
     font-size: 11px;
     height: 70px;
-    padding: 0 20px;
+    padding: 0 20px 13px;
+}
+
+#controls #step p {
+    text-align: center;
 }
 
 #controls #step input{
-    width: 60px;
-    height: 35px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px 0px #666;
+    font-weight: 700;
+    height: 32px;
+    margin: 0 2px 0 0!important;
+    width: 48px;
+}
+
+#controls #step input:active {
+    position: relative;
+    box-shadow: none;
+    top: 2px;
+    left: 2px;
 }
 
 #controls #mousewheel {
@@ -125,10 +188,54 @@ li {
 }
 
 
+/* Comic */
 #tehmainevent {
+    font-size: 10px;
+    position: relative;
     margin: auto;
     width: 600px;
+}
+
+.normal-glow {
+    box-shadow:         0px 0px 20px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow:    0px 0px 20px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+}
+
+.special-glow {
+    box-shadow:         0px 0px 20px rgba(255, 255, 0, 0.7);
+    -moz-box-shadow:    0px 0px 20px rgba(255, 255, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 255, 0, 0.7);
+}
+
+.debated-glow {
+    box-shadow:         0px 0px 20px rgba(255, 0, 0, 0.7);
+    -moz-box-shadow:    0px 0px 20px rgba(255, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.7);
+}
+
+#scrollhere {
     text-align: center;
+}
+
+#framecount {
+    float: right;
+    line-height: 13px;
+    margin: 6px 27px 0 0;
+    vertical-align: middle;
+}
+
+#framecount input {
+    height: 10px;
+    font-size: 10px;
+    margin: -2px 0 0 0;
+    text-align: right;
+    width: 39px;
+}
+
+#loading {
+    float: right;
+    margin: 0 4px 0 0;
 }
 
 #slider{
@@ -137,37 +244,196 @@ li {
     width: 600px;
 }
 
-#ffslider  {
-    margin: 25px auto 25px;
+
+/* vote section */
+#vote {
+    color: #888;
+    padding: 1px;
+    position: absolute;
+    right: 623px;
+    text-align: center;
+    top: 0px;
+    width: 100px;
 }
 
-#link {
-    width: 600px;
-}
-
-#link span {
-    font-size: 11px;
-}
-
-#small {
-    margin: 0 0 0 10px;
-    font-size: 10px;
-}
-
-#interest span {
+#vote h4 {
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
+    line-height: 13px;
 }
 
-#interest li {
+#vote input {
+    height: 20px;
+    width: 30px;
+}
+
+#vote #voteconfirm {
     list-style-type: none;
 }
 
-#credit {
-    float: left;
-    text-align: left;
-    width: 650px;
+#vote #voteconfirm li{
+    background: #FFFFE0;
+    border: 1px solid;
+    margin: 1px;;
+    padding: 2px;
 }
 
+#vote #voteinfo {
+    position: absolute;
+    top: 0;
+    left: -160px;
+    right: 112px;
+    color: #222;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+#vote #voteinfo p {
+    text-align: left;
+}
+
+
+/* Frame Data Panel*/
+.openingpanel {
+    background: #D5DCE9;
+    font-size: 10px;
+    margin: -3px auto;
+    padding: 0 0 3px 0;
+    width: 900px;
+}
+
+.openingpanel h3 {
+    background: #96A8C8;
+    border-bottom: 1px dashed #222;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+}
+
+/* Sub Componets of Frame Data */
+#framedata .framedata-sub {
+    float: left;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Share Link */
+#framedata #link {
+    border-bottom: 1px dashed #222;
+    border-right: 1px dashed;
+    height: 55px;
+    width: 498px;
+}
+
+#framedata #link #showlong {
+    margin: 0 0 0 328px;
+}
+
+/* Vote Data */
+#votedata {
+    border-bottom: 1px dashed #222;
+    height: 55px;
+    width: 400px;
+}
+
+#votedata p {
+    font-size: 13px;
+}
+
+#votedata #debated {
+    color: rgb(209, 37, 37);
+    float: right;
+    font-size: 14px;
+    font-weight: 700;
+    margin: -36px 31px 0 0;
+}
+
+
+/* Image Difference */
+#framedata #imgdiffopts {
+    clear: left;
+    width: 260px;
+}
+
+#framedata #imgdiffopts p {
+    padding: 7px 0 0 10px;
+    text-align: left;
+}
+
+#framedata #imgdiffopts input {
+    margin: -4px 0 0 0;
+}
+
+#framedata #imgdiffopts #freezeframe {
+    height: 10px;
+    font-size: 10px;
+    width: 40px;
+}
+
+/* Preload Indicator */
+#framedata #preloadindicator {
+    border-left: 1px dashed #222;
+    padding: 10px 0 0 0;
+    width: 638px;
+}
+
+#framedata #preloadindicator #preloadAllButton {
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px 0px #666;
+    font-weight: 700;
+    height: 31px;
+    margin: 13px 0 0 0!important;
+    width: 90px;
+}
+
+#framedata #preloadindicator #preloadAllButton:active {
+    position: relative;
+    box-shadow: none;
+    top: 2px;
+    left: 2px;
+}
+
+#framedata #preloadindicator #preloadingStatus {
+    border: 1px solid #222;
+    padding: 2px;
+}
+
+#framedata #preloadindicator #pli-legend {
+    height: 80px;
+    float: right;
+    padding: 10px 90px 10px 0;
+}
+
+
+/* Special Frames Panel */
+#specialframes p {
+    float: right;
+    font-size: 12px;
+    margin: 4px 10px 0 0;
+}
+
+.frames .inside {
+    display: none;
+}
+
+.frames ul {
+    padding: 5px;
+}
+
+.frames ul li{
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+}
+
+.frames ul li img{
+    height: 210px;
+    padding: 1px;
+    width: 294px;
+}
+
+
+/* The bottom */
 footer {
     clear: both;
     font-family: 'Open Sans', sans-serif;
@@ -176,72 +442,25 @@ footer {
     text-align: right;
 }
 
-#note {
-    display: none;
-}
-
-#textframes {
-    background: #96A8C8;
-    margin: 20px auto 50px;
-    padding: 0 0 3px 0;
-    width: 901px;
-}
-
-#textframes h3{
-    background: url('expand_arrow_down.png') no-repeat left;
-    margin: 0 0 0 10px;
-    padding-left: 24px;
-}
-
-#textframes ul {
-    margin: 0 4px;
-    display: none;
-}
-
-#textframes li{
-    list-style-type: none;
-    display: inline;
-    margin: 0;
-}
-
-#textframes img{
-    width: 294px;
-    padding: 1px;
-}
-
-#belowpic {
-    font-size: 10px;
-    margin: 0 25px;
+footer #credit {
+    float: left;
     text-align: left;
+    width: 650px;
 }
 
-#freezeframe {
-    height: 10px;
-    font-size: 10px;
-    margin: 0 0 0 5px;
-    width: 40px;
+footer p {
+    padding: 40px 0 0 0;
 }
 
-#frameNum {
-    float: right;
-    margin: -45px 0 0 0;
-}
-
-#LoadingIndicator {
-    float: right;
-    margin: -31px 0 0 0;
-}
-
-#scrollhere {
-    height: 398px;
-}
-
-.hidden {
+footer #note {
     display: none;
 }
 
+
+/* Now no one can accuse me of never using a repsonsive web design. */
 @media screen and (min-width: 2600px) {
-    #note {
+    footer #note {
         display: block;
+        padding: 3px 0 0 0;
     }
 }

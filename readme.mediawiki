@@ -1,19 +1,47 @@
 __NOTOC__
 
 ==Description==
-Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a navigable way.
+Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a fun and navigable way.
 
 
 ==Features==
-===Auto Play===
-Plays the frames at 10 frames per second and pauses for 2 seconds on Special Frames, both of these are adjustable with the text boxes next to the play/pause button.
+===Navigation===
+Play button plays the frames back at 10 frames per second pausing for 2 seconds on Special Frames, both of these are adjustable with text boxes next to the play/pause button. Higher speeds benefit from preloading images first. It should be noted frames per second is not accurate even if all frames are preloaded.
 
-===Special Frames===
+Play works in reverse now too, just because it seemed like a good idea at the time.
+
+The 'step through frames' will navigate through the frames one at a time. If playing this will pause.
+
+{| class="wikitable"
+|-
+| <nowiki>|<</nowiki> || Jump to First Frame
+|-
+| <nowiki><<</nowiki> || Previous Special Frame
+|-
+| <nowiki><</nowiki> || Previous Frame
+|-
+| <nowiki>></nowiki> || Next Frame
+|-
+| <nowiki>>></nowiki> || Next Special Frame
+|-
+| <nowiki>>|</nowiki> || Jump to Last Frame
+|}
+
+The left and right arrow keys work the same as the previous and next frame step through buttons.
+
+Hovering over the image or slider and scrolling with the mouse wheel will navigate through the frames as well. This will not pause playback. Fun Fact: this was the motivating feature for the whole project.
+
+There is also an input box below the comic that shows current frame (out of total frames). This input box can be changed and the comic will move to the current number.
+
+===Special Frames and Voting===
+Special frames are now selected by popular vote. The vote calculation is done daily, so new special frames won't show up right away. For a frame to attain special status it must receive a certain number of votes, and it must have a higher number of votes for it than against it. The exact numbers for this are still being determined.
+
 Most special frames are frames with text. The auto play now pauses for a user specified amount of time on these frames.
 
 There is a panel below the comic that can be opened to see all the special frames.
 
-This part is updated manually, so some of the latest special frames may not show up.
+It's arguable if anyone chooses to exploit this by making a lot of votes for a mundane frame this action would make this frame special because it was chosen as a mundane frame to exploit.
+
 
 ===Previous Frame Difference===
 Shows the new pixels in green and removed pixels in red when compared to previous frame.
@@ -35,15 +63,118 @@ A couple of examples:
  ?frame=162&framediff=126
 
 ===Preloading===
-[https://github.com/MaPePeR MaPePeR] has outdone himself by adding code that preloads images for quicker playback. Clicking "Preload All" twice will load every image in the comic.
+[https://github.com/MaPePeR MaPePeR] has outdone himself by adding code that preloads images for quicker playback. Clicking "Preload All" twice will load every image in the comic. The preloader also loads five frames ahead and three frames behind the current frame. In the preload indicator each frame is represented by 5 square pixels, the width is equal to 100 frames.
+
+{| class="wikitable"
+! Box Color !! Definition
+|-
+| Grey || Frame not loaded
+|-
+| Blue || Frame is loading
+|-
+| Black || Frame is loaded
+|-
+| Red || Something has gone wrong loading that frame
+|-
+| Yellow Border || Special Frame
+|-
+| Green Border || Current Frame
+|}
+
+===Mobile Version===
+There is now a simplified mobile version at http://geekwagon.net/projects/xkcd1190/mobile. In theory mobile devices should be redirected.
+
+Note: Frame difference isn't set up to work in the mobile version, but frame difference links will still take you to the selected frame.
+
+===Old Version===
+The old, pre-database version is still up and running at http://geekwagon.net/projects/xkcd1190_old. It now runs frame updates every 10 minutes instead of 5, but it will not be maintained.
+
+==Guidelines==
+By no means written in stone, but because of the frame 1236/1237 oddity it was time to make some guidelines.
+
+* Distinct hashes can stay despite what the image shows.
+
+So far, no hash seems to have been intentionally repeated. Hashes that have repeated are usually do to an error on the serving end or in our script. New hashes almost always occur on the hour unless there is a server problem. Most of these oddities can be seen in the log file and be corrected manually. In the case of 1236/1237 everything was running as normal, no oddities in the log. In accordance with this guideline we just made up, for the time being, we're keeping it as it is.
 
 ==Thanks==
-* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (probably more than me now). It's been fun having someone so knowledgeable to work with.
+* Big thanks to [https://github.com/MaPePeR MaPePeR] for contributing code (more than me now). It's been nice having someone so knowledgeable to work with.
 * Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
-* Thanks for the feedback I've gotten from this project. It's been fun to work on a project people appreciate.
+* Thanks to [https://github.com/kormoc Rob Smith] for the preload indicator.
+* Thanks to the other contributors who have helped me keep up with special frames (it's getting to be a long list).
+* Thanks to everyone who has pointed out buggs, errors, feature requests, and so on; you've helped make this site better!
+* Thanks for the positive feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
 
 ==A Friendly Reminder==
 XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
 
 The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "awful" license].
+
+If you feel compelled to give away money there is a donation link that will take you to one of a few donation pages (it's random).
+* [http://wikimediafoundation.org/wiki/Ways_to_Give Wikimedia Foundation] - knowledge without ads!
+* [https://support.worldwildlife.org/site/SPageServer?pagename=donate_to_charity&s_src=AWE1302GD914 World Wild Life] - For the animal lovers.
+* [http://worldwish.org/en/donate/index.php World Make a Wish] - because these guy do awesome things.
+* [http://store.xkcd.com/ xkcd store] - not a non-profit, but if you buy stuff from there comics will keep coming.
+I choose global organizations (sorry US Vets and NPR, I support you both), but the point is there are plenty of great people to give a little money to.
+
+<hr>
+
+==Some notes==
+Because I can't remember anything.
+===Known bugs===
+* Sometimes when clicking on a vote button the preload indicator goes weird.
+
+===potential features===
+* more cookie options
+** Button to clear all cookies
+** cookie to set which frame to show; newest, last seen, first
+** remember open or closed state of optional panels (fun stuff and special frames)
+* vote feature
+** mass vote - show past 24 frames and a yay or nay check box, submit all at once.
+** lock voting on older frames when some criteria is met.
+** show daily votes per user (this done my IP, so it might be interesting in coffee shops).
+* frame stats panel
+** Show how many yay and nay votes a frame has.
+** Show locked/unlocked vote status
+
+===database===
+* database name: xkcd1190ayop
+
+{| class="wikitable"
+|+ table: frames
+! column !! description
+|-
+| update || timestamp of last time record was updated.
+|-
+| frame || frame number of image
+|-
+| link || link to xkcd image
+|-
+| llink || link to local image
+|-
+| blink || bitly short url to frame
+|-
+| special || Boolean to mark frame as special
+|}
+
+{| class="wikitable"
+|+ table: votes
+! column !! description
+|-
+| frame || image frame (one to one)
+|-
+| voteyes || total votes in favor of special frame
+|-
+| voteno || total votes against special frame
+|}
+
+{| class="wikitable"
+|+ table: voters
+! column !! description
+|-
+| timestamp || last time vote was cast
+|-
+| ip || track voters by IP
+|-
+| votes || number of votes cast by IP
+|}
