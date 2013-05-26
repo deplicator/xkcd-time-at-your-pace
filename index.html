@@ -55,7 +55,7 @@
         </div>
         <span id="framecount">frame: <input id="manualinput" type="text"> / <span id="totalframes"></span></span>
         <span id="loading">Loading...</span>
-        <input id="slider" type="range" min="1" step="1" name="framslider"></input>
+        <input id="slider" type="range" min="1" step="1" name="framslider">
         
         <div id="vote">
             <h4>Special Frame<br>Nomination</h4>
@@ -72,7 +72,7 @@
         </div>
     </div>
     
-    <div id="framedata">
+    <div id="framedata" class="openingpanel">
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
             <div id="link" class="framedata-sub">
@@ -106,11 +106,27 @@
         </div>
     </div>
 
-    <div id="specialframes">
+    <div id="specialframes" class="openingpanel frames">
         <p>Special frames last calculated on <span id="sfcalcdate"></span></p>
         <h3><span class="craparrow">→</span>Special Frames</h3>
         <div class="inside">
             <ul id="textframelist">
+            </ul>
+        </div>
+    </div>
+    
+    <div id="pastday" class="openingpanel frames">
+        <h3><span class="craparrow">→</span>Past Day (24 Frames)</h3>
+        <div class="inside">
+            <ul id="pastday-framelist">
+            </ul>
+        </div>
+    </div>
+    
+    <div id="pastweek" class="openingpanel frames">
+        <h3><span class="craparrow">→</span>Past Week (168 Frames)</h3>
+        <div class="inside">
+            <ul id="past-weekframelist">
             </ul>
         </div>
     </div>
@@ -136,5 +152,5 @@
     <script src="scripts/imagediff.js"></script><!-- top-level dependencys: canvas1,2,3 loaded.  -->
     <script src="scripts/ayop-main.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->
     <script src="scripts/ayop-vote.js"></script>
-<body>
+</body>
 </html>

@@ -22,7 +22,7 @@ try {
     $STH = $DBH->query('
         SELECT frames.frame, link, llink, blink,
         votes.voteyes AS \'yes\', votes.voteno AS \'no\',
-        (2 * voteyes > voteno && voteyes + voteno > 15) AS \'special\'
+        (2 * voteyes > voteno && voteyes + voteno > 10) AS \'special\'
         FROM frames, votes 
         WHERE frames.frame = votes.frame');
     $STH->setFetchMode(PDO::FETCH_ASSOC);

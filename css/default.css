@@ -276,20 +276,17 @@ li {
 
 
 /* Frame Data Panel*/
-#framedata {
+.openingpanel {
     background: #D5DCE9;
-    border-radius: 4px;
     font-size: 10px;
-    margin: 0 auto;
+    margin: -3px auto;
     padding: 0 0 3px 0;
-    width: 901px;
+    width: 900px;
 }
 
-#framedata h3 {
+.openingpanel h3 {
     background: #96A8C8;
     border-bottom: 1px dashed #222;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     padding: 10px;
@@ -306,7 +303,8 @@ li {
 #framedata #link {
     border-bottom: 1px dashed #222;
     border-right: 1px dashed;
-    width: 500px;
+    height: 55px;
+    width: 498px;
 }
 
 #framedata #link #showlong {
@@ -390,47 +388,30 @@ li {
 
 
 /* Special Frames Panel */
-#specialframes {
-    background: #D5DCE9;
-    border-radius: 4px;
-    margin: 9px auto 50px;
-    padding: 0 0 3px 0;
-    width: 901px;
-}
-
-#specialframes h3{
-    background: #96A8C8;
-    border-bottom: 1px dashed #222;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    padding: 10px;
-}
-
 #specialframes p {
     float: right;
     font-size: 12px;
     margin: 4px 10px 0 0;
 }
 
-#specialframes .inside {
+.frames .inside {
     display: none;
 }
 
-#specialframes ul {
-    margin: 0 4px;
+.frames ul {
+    padding: 5px;
 }
 
-#specialframes ul li{
+.frames ul li{
     list-style-type: none;
     display: inline;
     margin: 0;
 }
 
-#specialframes ul li img{
-    width: 294px;
+.frames ul li img{
+    height: 210px;
     padding: 1px;
+    width: 294px;
 }
 
 
