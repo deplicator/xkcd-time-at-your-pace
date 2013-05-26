@@ -179,10 +179,16 @@ function updateAllWithoutSlider(frame) {
     $('#yay').html(frameData[frame].yes);
     $('#nay').html(frameData[frame].no);
     
-    //hot debate?
+    //hot debate and make it glow
     $('#debated').addClass('hidden');
+    $('#canvas3').removeClass('special-glow debated-glow');
     if(frameData[frame].no >= 5 && frameData[frame].yes > (frameData[frame].no / 1.9)) {
         $('#debated').removeClass('hidden');
+        $('#canvas3').addClass('debated-glow');
+    } else if(isSpecial(frame)) {
+        $('#canvas3').addClass('special-glow');
+    } else {
+        $('#canvas3').addClass('normal-glow');
     }
 
     if (difftype == "prev") {

@@ -196,6 +196,24 @@ li {
     width: 600px;
 }
 
+.normal-glow {
+    box-shadow:         0px 0px 20px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow:    0px 0px 20px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+}
+
+.special-glow {
+    box-shadow:         0px 0px 20px rgba(255, 255, 0, 0.7);
+    -moz-box-shadow:    0px 0px 20px rgba(255, 255, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 255, 0, 0.7);
+}
+
+.debated-glow {
+    box-shadow:         0px 0px 20px rgba(255, 0, 0, 0.7);
+    -moz-box-shadow:    0px 0px 20px rgba(255, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.7);
+}
+
 #scrollhere {
     text-align: center;
 }
@@ -203,7 +221,7 @@ li {
 #framecount {
     float: right;
     line-height: 13px;
-    margin: 0 27px 0 0;
+    margin: 6px 27px 0 0;
     vertical-align: middle;
 }
 
