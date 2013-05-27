@@ -408,7 +408,7 @@ li {
 
 
 /* Special Frames Panel */
-#framedata p {
+#framedata .openingpanelrightext {
     float: right;
     font-size: 12px;
     margin: 4px 10px 0 0;
