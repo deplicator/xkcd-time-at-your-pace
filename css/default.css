@@ -53,6 +53,7 @@ li {
 }
 
 .bluebutton {
+    cursor:pointer;cursor:hand;
     background: #96A8C8;
     border: 1px solid #2D323C;
     background-image: -ms-linear-gradient(top, #B6C2D8 0%, #96A8C8 100%); /* IE10 Consumer Preview */ 
@@ -303,6 +304,7 @@ li {
 }
 
 .openingpanel h3 {
+    cursor: pointer; cursor: hand;
     background: #96A8C8;
     border-bottom: 1px dashed #222;
     font-family: 'Open Sans', sans-serif;
