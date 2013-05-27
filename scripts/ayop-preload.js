@@ -289,6 +289,6 @@ function frameMouseClick(event) {
               + (Math.floor(y / preloadingStatusRectSize)
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
-    if (frame < frameCount && frame > 0)
+    if (frame <= frameCount && frame > 0)
         updateAll(frame);
 }
