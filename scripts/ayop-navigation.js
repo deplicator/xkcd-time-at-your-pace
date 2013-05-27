@@ -198,7 +198,7 @@ $(document).ready(function () {
     });
     
     //Changes frame as number is typed in frame
-    $('#manualinput').keyup(function() {
+    $('#manualinput').keyup(function(event) {
 
 		//Doesn't allow letters in the text box
 		//http://stackoverflow.com/questions/995183/how-to-allow-only-numeric-0-9-in-html-inputbox-using-jquery

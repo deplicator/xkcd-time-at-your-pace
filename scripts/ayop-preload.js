@@ -276,7 +276,7 @@ function frameMouseMove(event) {
 
     mouseOverOldFrame = frame;
 
-    if (frame < frameCount && frame > 0)
+    if (frame <= frameCount && frame > 0)
         markPreloadingFrame(frame, mouseOverFrameBorderColor);
 }
 
