@@ -22,7 +22,7 @@ function loadPastPanel(num, container) {
 
 $(document).ready(function () {
     
-    if(panels[0] == '0') {
+    if(panels == 'closed') {
         $('#framedata .inside').hide('fast', function() {
             $('#framedata h3 .craparrow').html(rightArrow);
         });
@@ -47,12 +47,7 @@ $(document).ready(function () {
             if ($(this).parent().children('h3').children('.craparrow').html() == rightArrow) {
                 $(this).parent().children('h3').children('.craparrow').html(downArrow);
                 if($(this).parent().attr('id') == 'framedata') {
-                    $.cookie('ayop-panel', [0]);
-                    panels[0] = 0;
-                
-                
-                
-                    
+                    $.cookie('ayop-panel', 'open');
                 } else if($(this).parent().attr('id') == 'specialframes' && !specialFramesPanelLoaded) {
                     loadSpecialFramePanel();
                     specialFramesPanelLoaded = true;
@@ -66,7 +61,7 @@ $(document).ready(function () {
             } else {
                 $(this).parent().children('h3').children('.craparrow').html(rightArrow);
                 if($(this).parent().attr('id') == 'framedata') {
-                    $.cookie('ayop-panel', [1]);
+                    $.cookie('ayop-panel', 'closed');
                 }
             }
         });
