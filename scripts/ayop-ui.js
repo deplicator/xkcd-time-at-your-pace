@@ -20,7 +20,16 @@ function loadPastPanel(num, container) {
     }
 }
 
+//Select all text in a text input
+function textSelect() {
+	$(this).select();
+}
+
+
 $(document).ready(function () {
+    $('#manualinput').click(textSelect);
+    $('#actuallink').click(textSelect);
+    $('#freezeframe').click(textSelect);
     
     if(panels == 'closed') {
         $('#framedata .inside').hide('fast', function() {
