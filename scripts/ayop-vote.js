@@ -33,11 +33,11 @@ function castVote(frame, cast) {
     return false; // avoid to execute the actual submit of the form.
 }
 
-$("#vote #yes").click(function() {
+$("#yes.vote").click(function() {
     castVote(currentFrame, "voteyes");
 });
 
-$("#vote #no").click(function() {
+$("#no.vote").click(function() {
     castVote(currentFrame, "voteno");
 });
 
@@ -49,5 +49,4 @@ $('#showvoteinfo').click(function() {
         $('#showvoteinfo').html("</a>more info</a>");
         $('#voteinfo').addClass('hidden');
     }
-    
 });

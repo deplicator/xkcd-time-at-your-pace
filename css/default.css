@@ -48,6 +48,10 @@ li {
     display: none;
 }
 
+.notvisible {
+    visibility: hidden;
+}
+
 .craparrow {
     margin: 0 13px;
 }
@@ -332,10 +336,9 @@ li {
 }
 
 /* Vote Data */
-#votedata {
-    border-bottom: 1px dashed #222;
-    height: 55px;
-    width: 400px;
+#framedata #votedata {
+    clear: left;
+    width: 260px;
 }
 
 #votedata p {
@@ -344,17 +347,28 @@ li {
 
 #votedata #debated {
     color: rgb(209, 37, 37);
-    float: right;
     font-size: 14px;
     font-weight: 700;
-    margin: -36px 31px 0 0;
 }
 
+#votedata #voteinfo {
+    font-size: 10px;
+    /*line-height: 17px;*/
+    text-align: left;
+}
+#votedata .vote {
+    cursor: pointer;cursor: hand;
+}
 
 /* Image Difference */
-#framedata #imgdiffopts {
-    clear: left;
-    width: 260px;
+#imgdiffopts {
+    border-bottom: 1px dashed #222;
+    height: 55px;
+    width: 400px;
+}
+#imgdiffopts div {
+    width: 250px;
+    margin: 0 auto;
 }
 
 #framedata #imgdiffopts p {

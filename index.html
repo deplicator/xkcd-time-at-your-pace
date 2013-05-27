@@ -62,17 +62,7 @@
         <input id="slider" type="range" min="1" step="1" name="framslider">
         
         <div id="vote">
-            <h4>Special Frame<br>Nomination</h4>
-            <form id="voteForm">
-                <input id="yes" class="bluebutton" type="button" value="Yes" title="This frame please me.">
-                <input id="no" class="bluebutton" type="button" value="No" title="This frame has been incorrectly marked as special, or should never be special in any way.">
-            </form>
-            <p>Still experimental</p>
-            <a id="showvoteinfo">more info</a>
             <ul id="voteconfirm"></ul>
-            <div id="voteinfo" class="hidden">
-                <p>This is still experimental, but the idea is a more popular frame will become a special frame. There is about a 10 minute delay in special frame calculation. There is a generous daily vote limit (24 last time I looked), and you can vote for or against a frame.</p>
-            </div>
         </div>
     </div>
     
@@ -85,17 +75,22 @@
                 <input id="actuallink" type="text" size="65" readonly><br>
                 <div id="showlong"><input id="urlCheckBox" type="checkbox">show long url</div>
             </div>
-            <div id="votedata" class="framedata-sub">
-                <h4>Vote Data</h4>
-                <p>Yes: <span id="yay"></span></p>
-                <p>No: <span id="nay"></span></p>
-                <span id="debated" class="hidden">Debated Frame!</span>
-            </div>
             <div id="imgdiffopts" class="framedata-sub">
                 <h4>Image Difference</h4>
-                <p><input name="difftype" value="none" type="radio" checked/>Normal</p>
-                <p><input name="difftype" value="prev" type="radio"/>Previous Frame Difference</p>
-                <p><input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/></p>
+                <div>
+                    <p><input name="difftype" value="none" type="radio" checked/>Normal</p>
+                    <p><input name="difftype" value="prev" type="radio"/>Previous Frame Difference</p>
+                    <p><input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/></p>
+                </div>
+            </div>
+            <div id="votedata" class="framedata-sub">
+                <h4>Special Frame Nomination</h4><a id="showvoteinfo">more info</a>
+                <p>Yes: <span id="yay"></span> <a id="yes" class="vote" title="This frame please me.">+1</a></p>
+                <p>No: <span id="nay"></span> <a id="no" class="vote" title="This frame has been incorrectly marked as special, or should never be special in any way.">+1</a></p>
+                <span id="debated" class="notvisible">Debated Frame!</span>
+                <div id="voteinfo" class="hidden">
+                    <p>This is still experimental, but the idea is a more popular frame will become a special frame. There is about a 10 minute delay in special frame calculation. There is a generous daily vote limit (24 last time I looked), and you can vote for or against a frame.</p>
+                </div>
             </div>
             <div id="preloadindicator" class="framedata-sub">
                 <h4>Preload Indicator</h4>
