@@ -140,6 +140,7 @@ $(document).ready(function () {
     $('#play').click(function () {
         if ($('#play').val() == "Play") {
             $('#play').val("Pause");
+            $('#vote').hide('fast');
             if ($('#forward').hasClass('dir-select')) {
                 timer.set({
                     time: speed,
@@ -152,6 +153,7 @@ $(document).ready(function () {
                 });
             }
         } else {
+            $('#vote').show('fast');
             $('#play').val("Play");
             timer.stop();
             playreverse.stop();
