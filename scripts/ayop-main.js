@@ -86,12 +86,12 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
-            $('#sfcalcdate').html(response[0].updatetime);
             createSpecialFramesArray();
             initPreloadingStatus(frameCount);
             slider.max = frameCount;
             updateAll(frameInitial);
             $("#LoadingImage").html('');
+            $('#sfcalcdate').html(new Date(response[0].updatetime).toLocaleString());
         },
         error: function () {
             $("#LoadingImage").html('Oh noes, something has gone wrong!');
