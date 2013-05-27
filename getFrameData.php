@@ -13,7 +13,7 @@ if (file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile))) {
 ob_start(); // start the output buffer
 
 include('./config.php');
-$confobject = array('updatetime' => date(DATE_RFC822));
+$confobject = array('updatetime' => date(DATE_W3C));
 //display what's in the frames table
 try {
     $DBH = new PDO(PDO_CONNECTION, DB_READ_USER, DB_READ_PASS);
