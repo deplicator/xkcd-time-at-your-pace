@@ -223,7 +223,7 @@ $(document).ready(function () {
         } else if(manualinput > frameCount) {
             updateAll(frameCount);
         } else {
-            updateAll(parseInt(manualinput));
+            updateAll(parseInt(manualinput) | 1);
         }
     });    
 
