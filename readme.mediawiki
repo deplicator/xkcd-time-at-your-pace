@@ -82,7 +82,7 @@ A couple of examples:
 |}
 
 ===Mobile Version===
-There is now a simplified mobile version at http://geekwagon.net/projects/xkcd1190/mobile. In theory mobile devices should be redirected.
+There is now a simplified mobile version at [http://geekwagon.net/projects/xkcd1190/mobile]. In theory mobile devices should be redirected.
 
 Note: Frame difference isn't set up to work in the mobile version, but frame difference links will still take you to the selected frame.
 
