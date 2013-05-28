@@ -292,7 +292,9 @@ li {
     font-size: 12px;
     line-height: 17px;
 }
-
+#showvoteinfo {
+    cursor: pointer; cursor: hand;
+}
 #vote #voteinfo p {
     text-align: left;
 }
