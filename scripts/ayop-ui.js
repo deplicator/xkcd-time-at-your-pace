@@ -22,7 +22,8 @@ function loadPastPanel(num, container) {
 
 //Function to select the contents of any element
 //http://aktuell.de.selfhtml.org/artikel/javascript/textauswahl/#markieren-funktion (german source)
-function selectElementContent(elem) {
+function selectElementContent() {
+    var elem = this;
     if (document.selection && document.selection.createRange) {
         var textRange = document.selection.createRange();
         textRange.moveToElementText(elem);
@@ -38,13 +39,13 @@ function selectElementContent(elem) {
 
 //Select all text in a text input
 function textSelect() {
-    selectElementContent(this);
+    $(this).select();
 }
 
 
 $(document).ready(function () {
     $('#manualinput').click(textSelect);
-    $('#actuallink').click(textSelect);
+    $('#actuallink').click(selectElementContent);
     $('#freezeframe').click(textSelect);
     
     if(panels == 'closed') {
