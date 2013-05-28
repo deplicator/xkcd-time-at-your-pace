@@ -30,7 +30,7 @@ function selectElementContent() {
         textRange.select();
     } else if (document.createRange && window.getSelection) {
         var range = document.createRange();
-        range.selectNode(elem);
+        range.selectNodeContents(elem);
         var selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
