@@ -86,12 +86,12 @@ function getFrameData() {
             } else if (frameInitial <= 1) {
                 frameInitial = 1;
             }
-            $('#sfcalcdate').html(response[0].updatetime);
             createSpecialFramesArray();
             initPreloadingStatus(frameCount);
             slider.max = frameCount;
             updateAll(frameInitial);
             $("#LoadingImage").html('');
+            $('#sfcalcdate').html(new Date(response[0].updatetime).toLocaleString());
         },
         error: function () {
             $("#LoadingImage").html('Oh noes, something has gone wrong!');
@@ -180,10 +180,10 @@ function updateAllWithoutSlider(frame) {
     $('#nay').html(frameData[frame].no);
     
     //hot debate and make it glow
-    $('#debated').addClass('hidden');
+    $('#debated').addClass('notvisible');
     $('#canvas3').removeClass('special-glow debated-glow');
     if(frameData[frame].no >= 5 && frameData[frame].yes > (frameData[frame].no / 1.9)) {
-        $('#debated').removeClass('hidden');
+        $('#debated').removeClass('notvisible');
         $('#canvas3').addClass('debated-glow');
     } else if(isSpecial(frame)) {
         $('#canvas3').addClass('special-glow');

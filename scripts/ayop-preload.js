@@ -14,6 +14,7 @@ var loadingInProgressColor  = "#6082B6";
 var loadingCompleteColor    = "#222";
 var specialFrameBorderColor = "#FFFF00";
 var currentFrameBorderColor = "#00FF00";
+var notYetReleasedColor     = undefined; //Will be set when GUI is loaded.
 var mouseOverFrameBorderColor = "#0000FF";
 var mouseOverOldFrame = 0;
 function initPreloadingStatus(maxImages) {
@@ -26,7 +27,8 @@ function initPreloadingStatus(maxImages) {
     preloadingStatusCtx.lineWidth = 1;
     preloadingStatusCtx.fillStyle = notYetLoadedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
-    preloadingStatusCtx.fillStyle = $("#framedata").css('backgroundColor');
+    notYetReleasedColor = $("#framedata").css('backgroundColor');
+    preloadingStatusCtx.fillStyle = notYetReleasedColor;
     preloadingStatusCtx.fillRect(
         (preloadingStatusRectSize * maxImages) % preloadingStatusWidth,
         preloadingStatusHeight - preloadingStatusRectSize,
@@ -109,6 +111,8 @@ function updatePreloadingIndicator(frame) {
             //Image is complete.
             preloadingFinished(frame);
         }
+    } else if (frame >= frameCount) {
+        markPreloadingFrame(frame, notYetReleasedColor);
     } else {
         //Image has not yet been marked for preloading
         markPreloadingFrame(frame, notYetLoadedColor);

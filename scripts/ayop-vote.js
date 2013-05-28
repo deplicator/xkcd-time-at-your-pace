@@ -12,9 +12,15 @@ function castVote(frame, cast) {
             $('#voteconfirm').fadeIn('fast');
             if(data == "success") {
                 if(cast == "voteyes") {
+                    frameData[frame].yes = parseInt(frameData[frame].yes) + 1; //Change local data. A refresh will loose these, but they will come back.
                     $('#voteconfirm').append("<li>Your vote for " + frame + " has been cast.</li>");
                 } else if(cast == "voteno") {
+                    frameData[frame].no = parseInt(frameData[frame].no) + 1; 
                     $('#voteconfirm').append("<li>You voted against " + frame + ".</li>");
+                }
+                if (currentFrame == frame) {
+                    $('#yay').html(frameData[frame].yes);
+                    $('#nay').html(frameData[frame].no);
                 }
             } else if (data == "fail") {
                 $('#voteconfirm').append("<li>You've reached the daily vote limit. Your contribution to this cause will go unnoticed.</li>");
@@ -27,11 +33,11 @@ function castVote(frame, cast) {
     return false; // avoid to execute the actual submit of the form.
 }
 
-$("#vote #yes").click(function() {
+$("#yes.vote").click(function() {
     castVote(currentFrame, "voteyes");
 });
 
-$("#vote #no").click(function() {
+$("#no.vote").click(function() {
     castVote(currentFrame, "voteno");
 });
 
@@ -43,5 +49,4 @@ $('#showvoteinfo').click(function() {
         $('#showvoteinfo').html("</a>more info</a>");
         $('#voteinfo').addClass('hidden');
     }
-    
 });
