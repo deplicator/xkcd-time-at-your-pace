@@ -330,6 +330,14 @@ li {
     height: 55px;
     width: 498px;
 }
+#actuallink {
+    margin: 2px 5px 0 5px;
+    border: 1px solid grey;
+    padding: 2px 0 2px 0;
+    background-color: white;
+    text-align: left;
+    font-size: 12px;
+}
 
 #framedata #link #showlong {
     margin: 0 0 0 328px;
