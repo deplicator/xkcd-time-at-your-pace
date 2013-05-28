@@ -91,7 +91,9 @@ function getFrameData() {
             slider.max = frameCount;
             updateAll(frameInitial);
             $("#LoadingImage").html('');
-            $('#sfcalcdate').html(new Date(response[0].updatetime).toLocaleString());
+            $('#sfcalcdate')
+                .html(new Date(response[0].updatetime).toLocaleString())
+                .attr('title', "Original Timestamp: " + response[0].updatetime);
         },
         error: function () {
             $("#LoadingImage").html('Oh noes, something has gone wrong!');
