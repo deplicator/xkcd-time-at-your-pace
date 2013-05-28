@@ -77,9 +77,9 @@ function diff(frame) {
     }
 
     if (compareFrame < 1) {
-        img1loaded = true;
-        ctx1.fillStyle = "white";
-        ctx1.fillRect(0, 0, c1.width, c1.height);
+        img2loaded = true;
+        ctx2.fillStyle = "white";
+        ctx2.fillRect(0, 0, c2.width, c2.height);
     } else {
         preloadFrame(compareFrame, image2preloaded, false);
     }
