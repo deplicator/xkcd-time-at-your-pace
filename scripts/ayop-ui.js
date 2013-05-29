@@ -20,15 +20,32 @@ function loadPastPanel(num, container) {
     }
 }
 
+//Function to select the contents of any element
+//http://aktuell.de.selfhtml.org/artikel/javascript/textauswahl/#markieren-funktion (german source)
+function selectElementContent() {
+    var elem = this;
+    if (document.selection && document.selection.createRange) {
+        var textRange = document.selection.createRange();
+        textRange.moveToElementText(elem);
+        textRange.select();
+    } else if (document.createRange && window.getSelection) {
+        var range = document.createRange();
+        range.selectNodeContents(elem);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+
 //Select all text in a text input
 function textSelect() {
-	$(this).select();
+    $(this).select();
 }
 
 
 $(document).ready(function () {
     $('#manualinput').click(textSelect);
-    $('#actuallink').click(textSelect);
+    $('#actuallink').click(selectElementContent);
     $('#freezeframe').click(textSelect);
     
     if(panels == 'closed') {

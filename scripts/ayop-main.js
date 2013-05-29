@@ -91,7 +91,9 @@ function getFrameData() {
             slider.max = frameCount;
             updateAll(frameInitial);
             $("#LoadingImage").html('');
-            $('#sfcalcdate').html(new Date(response[0].updatetime).toLocaleString());
+            $('#sfcalcdate')
+                .html(new Date(response[0].updatetime).toLocaleString())
+                .attr('title', "Original Timestamp: " + response[0].updatetime);
         },
         error: function () {
             $("#LoadingImage").html('Oh noes, something has gone wrong!');
@@ -109,12 +111,12 @@ getFrameData();
  */
 function displayURL(frame, how, from) {
     if (how == 'short') {
-        $('#link input').val(frameData[(frame)].blink);
+        $('#actuallink').text(frameData[(frame)].blink);
     } else if (how == 'long') {
         if (!from) {
-            $('#link input').val(site + '/?frame=' + frame);
+            $('#actuallink').text(site + '/?frame=' + frame);
         } else {
-            $('#link input').val(site + '/?frame=' + frame + '&framediff=' + from);
+            $('#actuallink').text(site + '/?frame=' + frame + '&framediff=' + from);
         }
     }
 }
