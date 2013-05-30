@@ -77,10 +77,10 @@ $(document).ready(function () {
                 } else if($(this).parent().attr('id') == 'specialframes' && !specialFramesPanelLoaded) {
                     loadSpecialFramePanel();
                     specialFramesPanelLoaded = true;
-                } else if($(this).parent().attr('id') == 'pastday' && !specialFramesPanelLoaded) {
+                } else if($(this).parent().attr('id') == 'pastday' && !pastDayPanelLoaded) {
                     loadPastPanel(24, '#pastday-framelist');
                     pastDayPanelLoaded = true;
-                } else if($(this).parent().attr('id') == 'pastweek' && !specialFramesPanelLoaded) {
+                } else if($(this).parent().attr('id') == 'pastweek' && !pastWeekPanelLoaded) {
                     loadPastPanel(168, '#past-weekframelist');
                     pastWeekPanelLoaded = true;
                 }
