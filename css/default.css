@@ -321,6 +321,33 @@ li {
     cursor: pointer;
 }
 
+#vote {
+    color: #888;
+    padding: 1px;
+    position: absolute;
+    right: 623px;
+    text-align: center;
+    top: 0px;
+    width: 100px;
+}
+
+#vote h4 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    line-height: 13px;
+}
+
+#vote #voteconfirm {
+    list-style-type: none;
+}
+
+#vote #voteconfirm li{
+    background: #FFFFE0;
+    border: 1px solid;
+    margin: 1px;;
+    padding: 2px;
+}
+
 /* Image Difference */
 #imgdiffopts {
     border-bottom: 1px dashed #222;
