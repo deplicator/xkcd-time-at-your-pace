@@ -34,13 +34,15 @@ Hovering over the image or slider and scrolling with the mouse wheel will naviga
 There is also an input box below the comic that shows current frame (out of total frames). This input box can be changed and the comic will move to the current number.
 
 ===Special Frames and Voting===
-Special frames are now selected by popular vote. The vote calculation is done daily, so new special frames won't show up right away. For a frame to attain special status it must receive a certain number of votes, and it must have a higher number of votes for it than against it. The exact numbers for this are still being determined.
+Special frames are now selected by popular vote. The vote calculation is done automaticly, but new special frames won't show up right away (about a 10 minute delay). For a frame to attain special status it must receive a certain number of votes, and it must have a higher number of votes for it than against it. The exact numbers for this are still being determined.
 
-Most special frames are frames with text. The auto play now pauses for a user specified amount of time on these frames.
+Most special frames are frames with text. The auto play pauses on special frames, so vote for frames you'd want to pause on.
 
 There is a panel below the comic that can be opened to see all the special frames.
 
 It's arguable if anyone chooses to exploit this by making a lot of votes for a mundane frame this action would make this frame special because it was chosen as a mundane frame to exploit.
+
+'''Debated Frames''' are frames that have recieved a number of both yes and no votes.
 
 
 ===Previous Frame Difference===
@@ -127,11 +129,12 @@ Because I can't remember anything.
 ===potential features===
 * more cookie options
 ** Button to clear all cookies
-** cookie to set which frame to show; newest, last seen, first
-** remember open or closed state of optional panels (fun stuff and special frames)
+** cookie to set which frame to show; newest, last seen, or first.
+** Remember open or closed state of optional panels (frame data and multi frame views).
 * vote feature
 ** mass vote - show past 24 frames and a yay or nay check box, submit all at once.
-** lock voting on older frames when some criteria is met.
+** lock voting on frames when a number of votes is met.
+** lock voting on frames over a particular age.
 ** show daily votes per user (this done my IP, so it might be interesting in coffee shops).
 * frame stats panel
 ** Show how many yay and nay votes a frame has.
