@@ -3,6 +3,7 @@ __NOTOC__
 ==Description==
 Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a fun and navigable way.
 
+The most recent [https://github.com/deplicator/xkcdTime_atyourownpace/tags tag] is what it on the website.
 
 ==Features==
 ===Navigation===
@@ -118,6 +119,20 @@ If you feel compelled to give away money there is a donation link that will take
 * [http://worldwish.org/en/donate/index.php World Make a Wish] - because these guy do awesome things.
 * [http://store.xkcd.com/ xkcd store] - not a non-profit, but if you buy stuff from there comics will keep coming.
 I choose global organizations (sorry US Vets and NPR, I support you both), but the point is there are plenty of great people to give a little money to.
+
+<hr>
+
+==Change Log==
+{| class="wikitable sortable"
+|-
+! Date !! Version !! Description
+|-
+| 2013-05-30 || 2.1.something || Started keeping a change log and added tags.
+|-
+| past || 2.0 || Moved to a database.
+|-
+| farther back || 1.0 || Made a website.
+|}
 
 <hr>
 
