@@ -112,6 +112,7 @@ var timer = $.timer(function () {
     if (currentFrame >= frameCount) {
         timer.stop();
         $('#play').val("Play");
+        $('.vote').show('fast');
     }
 });
 
@@ -132,6 +133,7 @@ var playreverse = $.timer(function () {
     if (currentFrame <= 1) {
         playreverse.stop();
         $('#play').val("Play");
+        $('.vote').show('fast');
     }
 });
 
@@ -141,6 +143,8 @@ $(document).ready(function () {
         if ($('#play').val() == "Play") {
             $('#play').val("Pause");
             $('.vote').hide('fast');
+            //Ensure, that we will not pause on the current Frame
+            specialframecounter =  (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000 + 100;
             if ($('#forward').hasClass('dir-select')) {
                 timer.set({
                     time: speed,
@@ -200,40 +204,6 @@ $(document).ready(function () {
     });
     
     
-    function jumpToManualInput() {
-        var manualinput = $('#manualinput').val();
-        if (manualinput < 1) {
-            updateAll(1);
-        } else if (manualinput > frameCount) {
-            updateAll(frameCount);
-        } else {
-            updateAll(parseInt(manualinput, 10) || 1);
-        }
-    }
-
-    //Changes frame as number is typed in frame
-    $('#manualinput').keyup(function(event) {
-
-		//Doesn't allow letters in the text box
-		//http://stackoverflow.com/questions/995183/how-to-allow-only-numeric-0-9-in-html-inputbox-using-jquery
-		if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
-             // Allow: Ctrl+A
-            (event.keyCode == 65 && event.ctrlKey === true) || 
-             // Allow: home, end, left, right
-            (event.keyCode >= 35 && event.keyCode <= 39)) {
-                 // let it happen, don't do anything
-                 return;
-        } else if (event.keyCode == 13) { //Enter
-            jumpToManualInput();
-        }
-        else {
-            // Ensure that it is a number and stop the keypress
-            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
-                event.preventDefault(); 
-            }
-        }
-    }).blur(jumpToManualInput);
-
 
 
     /*
