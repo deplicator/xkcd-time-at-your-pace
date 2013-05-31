@@ -143,6 +143,8 @@ $(document).ready(function () {
         if ($('#play').val() == "Play") {
             $('#play').val("Pause");
             $('.vote').hide('fast');
+            //Ensure, that we will not pause on the current Frame
+            specialframecounter =  (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000 + 100;
             if ($('#forward').hasClass('dir-select')) {
                 timer.set({
                     time: speed,
