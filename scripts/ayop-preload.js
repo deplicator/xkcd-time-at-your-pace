@@ -146,7 +146,7 @@ function predictFrames(frame) {
         }
     }
     //Preload 3 frames backwards.
-    for (i = frame - 1; i >= Math.max(frame - 3, 1); i--) {
+    for (i = frame - 1; i >= Math.max(frame - 5, 1); i--) {
         if (!preloadedImages[i]) {
             img = new Image();
             img.onload = preloadingFinishedHandlerForFrame(i);
