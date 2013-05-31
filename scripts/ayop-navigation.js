@@ -112,6 +112,7 @@ var timer = $.timer(function () {
     if (currentFrame >= frameCount) {
         timer.stop();
         $('#play').val("Play");
+        $('.vote').show('fast');
     }
 });
 
@@ -132,6 +133,7 @@ var playreverse = $.timer(function () {
     if (currentFrame <= 1) {
         playreverse.stop();
         $('#play').val("Play");
+        $('.vote').show('fast');
     }
 });
 
