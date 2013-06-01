@@ -169,6 +169,25 @@ function createSpecialFramesArray() {
     specialFrames.sort(function (a, b) {return a - b;});
 }
 
+//TODO: move it to the right script file.
+function disableButton(jqueryButton) {
+    if (!jqueryButton.attr('disabled')) {
+        jqueryButton.attr('disabled', 'disabled');
+    }
+}
+function enableButton(jqueryButton) {
+    if (jqueryButton.attr('disabled')) {
+        jqueryButton.removeAttr('disabled');
+    }
+}
+
+function setButtonEnabled(jqueryButton, enabled) {
+    if (enabled) {
+        enableButton(jqueryButton);
+    } else {
+        disableButton(jqueryButton);
+    }
+}
 
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
@@ -180,6 +199,12 @@ function updateAllWithoutSlider(frame) {
     $('#totalframes').html(frameCount);
     $('#yay').html(frameData[frame].yes);
     $('#nay').html(frameData[frame].no);
+    setButtonEnabled($('#first'), currentFrame > 1);
+    setButtonEnabled($('#previous-special'), specialFrames[0] < currentFrame);
+    setButtonEnabled($('#previous'), currentFrame > 1);
+    setButtonEnabled($('#next'), currentFrame < frameCount);
+    setButtonEnabled($('#next-special'), currentFrame < specialFrames[specialFrames.length - 1]);
+    setButtonEnabled($('#last'), currentFrame < frameCount);
     
     //hot debate and make it glow
     $('#debated').addClass('notvisible');
