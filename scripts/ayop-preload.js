@@ -9,14 +9,15 @@ var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
-var notYetLoadedColor       = "#808080";
-var loadingInProgressColor  = "#6082B6";
-var loadingCompleteColor    = "#222";
-var specialFrameBorderColor = "#FFFF00";
-var currentFrameBorderColor = "#00FF00";
-var notYetReleasedColor     = undefined; //Will be set when GUI is loaded.
-var mouseOverFrameBorderColor = "#0000FF";
-var errorColor = "#FF0000";
+var notYetLoadedColor              = "#808080";
+var loadingInProgressColor         = "#6082B6";
+var loadingCompleteColor           = "#222";
+var specialFrameBorderColor        = "#FFFF00";
+var currentFrameBorderColor        = "#00FF00";
+var currentCompareFrameBorderColor = "#FF00FF";
+var notYetReleasedColor            = undefined; //Will be set when GUI is loaded.
+var mouseOverFrameBorderColor      = "#0000FF";
+var errorColor                     = "#FF0000";
 var mouseOverOldFrame = 0;
 var mouseOverCurrentFrame = 0;
 function initPreloadingStatus(maxImages) {
@@ -313,6 +314,10 @@ function setupContext(frame) {
     if (currentFrame === frame) {
         // Current frame
         preloadingStatusCtx.strokeStyle = currentFrameBorderColor;
+    }
+    else if (currentCompareFrame === frame) {
+        // Current compare frame
+        preloadingStatusCtx.strokeStyle = currentCompareFrameBorderColor;
     }
     else if (isSpecial(frame)) {
         // Not current frame, but special frame
