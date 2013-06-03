@@ -9,15 +9,15 @@ var preloadedImages = {};
 var preloadingStatus, preloadingStatusCtx;
 var preloadingStatusHeight, preloadingStatusWidth = 500;
 var preloadingStatusRectSize = 5;
-var notYetLoadedColor              = "#808080";
-var loadingInProgressColor         = "#6082B6";
-var loadingCompleteColor           = "#222";
-var specialFrameBorderColor        = "#FFFF00";
-var currentFrameBorderColor        = "#00FF00";
-var currentCompareFrameBorderColor = "#FF00FF";
-var notYetReleasedColor            = undefined; //Will be set when GUI is loaded.
-var mouseOverFrameBorderColor      = "#0000FF";
-var errorColor                     = "#FF0000";
+var notYetLoadedColor              = undefined; // These...
+var loadingInProgressColor         = undefined;
+var loadingCompleteColor           = undefined;
+var specialFrameBorderColor        = undefined;
+var currentFrameBorderColor        = undefined;
+var currentCompareFrameBorderColor = undefined;
+var notYetReleasedColor            = undefined;
+var mouseOverFrameBorderColor      = undefined;  // will all be set when the GUI is loaded,
+var errorColor                     = undefined;  // in fetchColors()
 var mouseOverOldFrame = 0;
 var mouseOverCurrentFrame = 0;
 function initPreloadingStatus(maxImages) {
@@ -29,6 +29,7 @@ function initPreloadingStatus(maxImages) {
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
     preloadingStatusCtx.lineWidth = 1;
     notYetReleasedColor = $("#framedata").css('backgroundColor');
+    fetchColors();
     // Draw the "not yet released" background
     preloadingStatusCtx.fillStyle = notYetReleasedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
@@ -54,6 +55,18 @@ $(document).ready(function () {
     });
 });
 
+function fetchColors() {
+    var legendSvg = document.querySelectorAll("#pli-legend")[0].contentDocument;
+    notYetLoadedColor = legendSvg.querySelectorAll("#fill_notloaded")[0].attributes["fill"].value;
+    loadingInProgressColor =  legendSvg.querySelectorAll("#fill_loading")[0].attributes["fill"].value;
+    loadingCompleteColor =  legendSvg.querySelectorAll("#fill_loaded")[0].attributes["fill"].value;
+    mouseOverFrameBorderColor =  legendSvg.querySelectorAll("#fill_cursor")[0].attributes["fill"].value;
+    specialFrameBorderColor =  legendSvg.querySelectorAll("#stroke_special")[0].attributes["stroke"].value;
+    currentFrameBorderColor =  legendSvg.querySelectorAll("#stroke_current")[0].attributes["stroke"].value;
+    currentCompareFrameBorderColor =  legendSvg.querySelectorAll("#stroke_compare")[0].attributes["stroke"].value;
+    errorColor = legendSvg.querySelectorAll("#fill_error")[0].attributes["fill"].value;
+    console.log("Not yet loaded color is " + loadingInProgressColor);
+}
 
 function getFrameURL(frame) {
     //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.

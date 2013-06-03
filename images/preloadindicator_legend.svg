@@ -7,28 +7,31 @@
 	preserveAspectRatio="xMinYMin meet"
 	viewBox="0 0 600 175">
 
-	<rect x="10" y="10" width="30" height="30" fill="#808080" />
+	<!-- Note: All the rectangles have IDs so that ayop-preload.js:fetchColors()
+		can get the colors from this svg document instead of having to repeat them -->
+	
+	<rect x="10" y="10" width="30" height="30" fill="#808080" id="fill_notloaded"/>
 	<text x="45" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame not loaded</text>
 
-	<rect x="10" y="50" width="30" height="30" fill="#6082B6" />
+	<rect x="10" y="50" width="30" height="30" fill="#6082B6" id="fill_loading"/>
 	<text x="45" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame loading</text>
 
-	<rect x="10" y="90" width="30" height="30" fill="#222" />
+	<rect x="10" y="90" width="30" height="30" fill="#020202" id="fill_loaded"/>
 	<text x="45" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame loaded</text>
 
-	<rect x="10" y="130" width="30" height="30" fill="#0000FF" />
+	<rect x="10" y="130" width="30" height="30" fill="#0000FF" id="fill_cursor"/>
 	<text x="45" y="145" text-anchor="left" dominant-baseline="middle" font-size="130%">Cursor position</text>
 
 
-	<rect x="247.5" y="12.5" width="25" height="25" fill="#222" stroke="#FFFF00" stroke-width="5" />
+	<rect x="247.5" y="12.5" width="25" height="25" fill="#222" stroke="#FFFF00" stroke-width="5" id="stroke_special"/>
 	<text x="280" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Special Frame</text>
 
-	<rect x="247.5" y="52.5" width="25" height="25" fill="#222" stroke="#00FF00" stroke-width="5" />
+	<rect x="247.5" y="52.5" width="25" height="25" fill="#222" stroke="#00FF00" stroke-width="5" id="stroke_current"/>
 	<text x="280" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Frame</text>
 
-	<rect x="247.5" y="92.5" width="25" height="25" fill="#222" stroke="#FF00FF" stroke-width="5" />
+	<rect x="247.5" y="92.5" width="25" height="25" fill="#222" stroke="#FF00FF" stroke-width="5" id="stroke_compare"/>
 	<text x="280" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Compare Frame</text>
 
-	<rect x="245" y="130" width="30" height="30" fill="#FF0000" />
+	<rect x="245" y="130" width="30" height="30" fill="#FF0000" id="fill_error"/>
 	<text x="280" y="145" text-anchor="left" dominant-baseline="middle" font-size="130%">Error</text>
 </svg>
