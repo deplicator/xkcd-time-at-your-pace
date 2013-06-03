@@ -65,7 +65,6 @@ function fetchColors() {
     currentFrameBorderColor =  legendSvg.querySelectorAll("#stroke_current")[0].attributes["stroke"].value;
     currentCompareFrameBorderColor =  legendSvg.querySelectorAll("#stroke_compare")[0].attributes["stroke"].value;
     errorColor = legendSvg.querySelectorAll("#fill_error")[0].attributes["fill"].value;
-    console.log("Not yet loaded color is " + loadingInProgressColor);
 }
 
 function getFrameURL(frame) {
