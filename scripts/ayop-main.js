@@ -11,6 +11,7 @@ var frameData = [];
 var frameCount = 0;
 var frameInitial = 1;
 var currentFrame = 1;
+var currentCompareFrame = 0;
 var specialFrames = [];
 
 var scrollhere = document.getElementById("scrollhere");
@@ -192,6 +193,7 @@ function setButtonEnabled(jqueryButton, enabled) {
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
     var oldframe = currentFrame;
+    var oldCompareFrame = currentCompareFrame;
     currentFrame = frame;
     updateLastSeen(frame);
 
@@ -220,13 +222,15 @@ function updateAllWithoutSlider(frame) {
 
     if (difftype == "prev") {
         diff();
-        displayURL(frame, 'long', frame - 1);
-        $('#freezeframe').val(frame - 1);
+        currentCompareFrame = frame - 1;
+        displayURL(frame, 'long', currentCompareFrame);
+        $('#freezeframe').val(currentCompareFrame);
     } else if (difftype == "freeze") {
-        var from = parseInt($('#freezeframe').val(), 10);
-        diff(from);
-        displayURL(frame, 'long', from);
+        currentCompareFrame = parseInt($('#freezeframe').val(), 10);
+        diff(currentCompareFrame);
+        displayURL(frame, 'long', currentCompareFrame);
     } else {
+        currentCompareFrame = 0;
         if (!$('#urlCheckBox').is(':checked')) {
             displayURL(frame, 'short');
         } else {
@@ -236,6 +240,8 @@ function updateAllWithoutSlider(frame) {
     }
     updatePreloadingIndicator(oldframe);
     updatePreloadingIndicator(currentFrame);
+    updatePreloadingIndicator(oldCompareFrame);
+    updatePreloadingIndicator(currentCompareFrame);
 }
 
 function updateAll(frame) {

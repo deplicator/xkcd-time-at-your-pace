@@ -100,7 +100,11 @@
                 </canvas>
                 <div>
                     <input id="preloadAllButton" class="bluebutton" type="button" value="Preload all!"/>
-                    <img id="pli-legend" src="images/preloadindicator_legend.png" alt="Preload Indicator Legend">
+                    <object id="pli-legend" data="images/preloadindicator_legend.svg" type="image/svg+xml" alt="Preload Indicator Legend">
+                        Preload indicator legend. Grey means not loaded, light blue loading, black loaded, dark blue cursor position.
+                        Yellow border means special frame, green border current frame, magenta border current compare frame.
+                        Red means error.
+                    </object> <!-- Warning: <object ... /> doesn't work! -->
                 </div>
             </div>
             <div style="clear: both;"></div>
