@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+ 
+<svg xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+	version="1.1" baseProfile="full"
+	preserveAspectRatio="xMinYMin meet"
+	viewBox="0 0 600 175">
+
+	<rect x="10" y="10" width="30" height="30" fill="#808080" />
+	<text x="45" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame not loaded</text>
+
+	<rect x="10" y="50" width="30" height="30" fill="#6082B6" />
+	<text x="45" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame loading</text>
+
+	<rect x="10" y="90" width="30" height="30" fill="#222" />
+	<text x="45" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame loaded</text>
+
+	<rect x="10" y="130" width="30" height="30" fill="#0000FF" />
+	<text x="45" y="145" text-anchor="left" dominant-baseline="middle" font-size="130%">Cursor position</text>
+
+
+	<rect x="247.5" y="12.5" width="25" height="25" fill="#222" stroke="#FFFF00" stroke-width="5" />
+	<text x="280" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Special Frame</text>
+
+	<rect x="247.5" y="52.5" width="25" height="25" fill="#222" stroke="#00FF00" stroke-width="5" />
+	<text x="280" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Frame</text>
+
+	<rect x="247.5" y="92.5" width="25" height="25" fill="#222" stroke="#FF00FF" stroke-width="5" />
+	<text x="280" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Compare Frame</text>
+
+	<rect x="245" y="130" width="30" height="30" fill="#FF0000" />
+	<text x="280" y="145" text-anchor="left" dominant-baseline="middle" font-size="130%">Error</text>
+</svg>
