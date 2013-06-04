@@ -238,15 +238,15 @@ function frameMouseMove(event) {
     x = event.pageX - target.offsetLeft,
     y = event.pageY - target.offsetTop;
 
-    // prepend zero to catch empty strings, because parseInt("", 10) is NaN
-    pad_left = parseInt("0" + $(target).css('border-width'), 10)
-             + parseInt("0" + $(target).css('padding-left'), 10)
-             + parseInt("0" + $(target).css('margin-left'), 10)
+    // "|| 0" to protect against empty strings (parseInt("", 10) = NaN)
+    pad_left = (parseInt($(target).css('border-width'), 10) || 0)
+             + (parseInt($(target).css('padding-left'), 10) || 0)
+             + (parseInt($(target).css('margin-left'), 10) || 0)
              + 1;
 
-    pad_top = parseInt("0" + $(target).css('border-width'), 10)
-            + parseInt("0" + $(target).css('padding-top'), 10)
-            + parseInt("0" + $(target).css('margin-top'), 10)
+    pad_top = (parseInt($(target).css('border-width'), 10) || 0)
+            + (parseInt($(target).css('padding-top'), 10) || 0)
+            + (parseInt($(target).css('margin-top'), 10) || 0)
             + 1;
 
     if (x <= pad_left
