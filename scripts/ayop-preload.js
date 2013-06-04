@@ -266,7 +266,7 @@ function frameMouseMove(event) {
     if (mouseOverCurrentFrame == mouseOverOldFrame)
         return;
 
-    if (mouseOverOldFrame < frameCount && mouseOverOldFrame > 0)
+    if (mouseOverOldFrame <= frameCount && mouseOverOldFrame > 0)
         updatePreloadingIndicator(mouseOverOldFrame);
 
     mouseOverOldFrame = mouseOverCurrentFrame;
