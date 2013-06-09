@@ -48,16 +48,13 @@ var difftype = "none";
 if (vars.framediff) {
     framediff = parseInt(vars.framediff, 10);
     if (framediff == frameInitial - 1) {
-        difftype = "prev";
-        $("input[name='difftype'][value='prev']").attr("checked", "checked");
+        changeDiffType("prev", true);
     } else {
-        difftype = "freeze";
-        $("#freezeframe").prop('disabled', false);
-        $("input[name='difftype'][value='freeze']").attr("checked", "checked");
+        changeDiffType("freeze", true);
     }
-    $("#urlCheckBox").prop('disabled', difftype != "none");
     $('#freezeframe').val(framediff);
 } else {
+    changeDiffType("none", true);
     framediff = 1;
 }
 
@@ -131,10 +128,12 @@ $('#urlCheckBox').click(function () {
     }
 });
 
-
-$("input[name='difftype']").change(function () {
-    difftype = $(this).val();
-    $("#freezeframe").prop('disabled', difftype != "freeze");
+function changeDiffType(newdifftype, updateRadioButtons) {
+    if (['none', 'freeze', 'prev'].indexOf(newdifftype) < 0) { //Array does not contain
+        throw "Wrong difftype";
+    }
+    difftype = newdifftype;
+    $("#freezeframe").prop('disabled', newdifftype != "freeze");
     //difftype!=none=>freeze or prev selected => we only allow long url
     $("#urlCheckBox").prop('disabled', difftype != "none");
     if (difftype == "freeze") {
@@ -145,6 +144,12 @@ $("input[name='difftype']").change(function () {
     } else {
         $("#freezeframe").val("");
     }
+    if (updateRadioButtons) {
+        $("input[name='difftype'][value='" + difftype + "']").attr("checked", "checked");
+    }
+}
+$("input[name='difftype']").change(function () {
+    changeDiffType($(this).val());
     updateAll(currentFrame);
 });
 
