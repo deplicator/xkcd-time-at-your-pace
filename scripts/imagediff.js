@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true */
-/*global finishedLoading, currentFrame, preloadFrame: false */
+/*global finishedLoading, currentFrame, preloadFrame, preloadOneFrame: false */
 /*
  * based on http://pastebin.com/cWxA6EDR
  * No idea who to give credit to, but thanks.
@@ -81,7 +81,7 @@ function diff(frame) {
         ctx2.fillStyle = "white";
         ctx2.fillRect(0, 0, c2.width, c2.height);
     } else {
-        preloadFrame(compareFrame, image2preloaded, false);
+        preloadOneFrame(compareFrame, image2preloaded, false);
     }
 
     preloadFrame(currentFrame, image1preloaded, false);
