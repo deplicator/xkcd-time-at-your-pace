@@ -1,5 +1,5 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
-/*global images, frameCount,isSpecial,specialframes, $, currentFrame: false */
+/*global images, frameCount,isSpecial,specialframes, $, currentFrame, changeDiffType: false */
 //dependencys: jquery (for ready handler)
 // scroll1190.js: images, currentFrame
 // ayop-specialframes.js: isSpecial, specialframes
@@ -288,8 +288,23 @@ function frameMouseClick(event) {
               + (Math.floor(y / preloadingStatusRectSize)
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
-    if (mouseOverCurrentFrame <= frameCount && mouseOverCurrentFrame > 0)
-        updateAll(mouseOverCurrentFrame);
+    if (mouseOverCurrentFrame <= frameCount && mouseOverCurrentFrame > 0) {
+        if (event.altKey) {
+            //Alt Key modifier => we want to move the compareFrame
+            if (mouseOverCurrentFrame == currentFrame) {
+                changeDiffType("none", true);
+// For now i assume, that if someone alt-clicks the preloadindicator he/she does want to have a freeze-compare.                
+//            } else if(mouseOverCurrentFrame == currentFrame - 1) {
+//                changeDiffType("prev", true);
+            } else {
+                changeDiffType("freeze", true);
+                $("#freezeframe").val(mouseOverCurrentFrame);
+            }
+            updateAll(currentFrame);
+        } else {
+            updateAll(mouseOverCurrentFrame);
+        }
+    }
 }
 
 // Sets fillStyle and strokeStyle of preloadingStatusCtx for the frame.
