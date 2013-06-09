@@ -289,7 +289,7 @@ function frameMouseClick(event) {
                  * (preloadingStatusWidth / preloadingStatusRectSize)
                  - 100));
     if (mouseOverCurrentFrame <= frameCount && mouseOverCurrentFrame > 0) {
-        if (event.altKey) {
+        if (event.altKey || event.ctrlKey) {
             //Alt Key modifier => we want to move the compareFrame
             if (mouseOverCurrentFrame == currentFrame) {
                 changeDiffType("none", true);
