@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../scripts/jquery.js"></script>
+        <script src="../scripts/jquery.tablesorter.min.js"></script>
+        <style>
+            #display,
+            #display th,
+            #display td {
+                border: 1px solid;
+                font-family: "courier new";
+                font-size: 12px;
+            }
+            
+            #display th {
+                min-width: 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <table id="display">
+                <thead>
+                    <tr>
+                        <th>When</th>
+                        <th>Type</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+        <script>
+            function getLog() {
+                $.ajax({
+                    url: "log.php?when='2013-06-09'",
+                    dataType: "json",
+                    async: false,
+                    success: function(data) {
+                        var loglen = data.length;
+                        for(i = 0; i < loglen; i++) {
+                            $("#display tbody").append("<tr><td>"+data[i].timestamp+"</td><td>"+
+                                data[i].type+"</td><td>"
+                                +data[i].msg+"</td></tr>");
+                        }
+                    }
+                });
+            }
+            
+            $(document).ready(function() {
+                getLog();
+                $("#display").tablesorter({sortList: [[0,1]]}); 
+            
+            }); 
+            
+            
+        </script>
+    </body>
+</html>

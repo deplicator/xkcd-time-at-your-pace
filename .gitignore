@@ -4,5 +4,6 @@ data/data.txt
 data/dblog.txt
 data/old.bitlydata.txt
 data/log.txt
+data/log2.txt
 data/cache.json
 config.php
