@@ -9,7 +9,10 @@ include('config.php');
 
 $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);
 
+$findFrame = $DBH->prepare('SELECT * FROM frames WHERE frame = ?');
 $insertFrame = $DBH->prepare('INSERT INTO Frames (`update`, `frame`, `link`, `llink`, `blink`, `special`) VALUES (FROM_UNIXTIME(?), ?, ?, ?, ?, ?)');
+$findVote = $DBH->prepare('SELECT * FROM votes WHERE frame = ?');
+$insertVote = $DBH->prepare('INSERT INTO votes (`frame`, `voteyes`, `voteno`) VALUES (?, 0, 0)');
 
 $frames = json_decode(file_get_contents("http://xkcd.mscha.org/time.json"), true);
 
@@ -45,9 +48,8 @@ foreach ($frames as $frame) {
 		chmod($frame['path'], 0444);
 	}
 	
-	$sh = $DBH->prepare('SELECT * FROM frames WHERE frame = ?');
-	$sh->execute(array($frame['frameNo']));
-	$res = $sh->fetch(PDO::FETCH_ASSOC);
+	$findFrame->execute(array($frame['frameNo']));
+	$res = $findFrame->fetch(PDO::FETCH_ASSOC);
 	
 	if (!$res) {
 		echo "Inserting... ";
@@ -59,6 +61,16 @@ foreach ($frames as $frame) {
 					  $frame['blink'],
 					  $frame['special']);
 		$res = $insertFrame->execute($data);
+	}
+	
+	$findVote->execute(array($frame['frameNo']));
+	$res = $findVote->fetch(PDO::FETCH_ASSOC);
+	
+	if (!$res) {
+		echo "Votes... ";
+		
+		$data = array($frame['frameNo']);
+		$res = $insertVote->execute($data);
 	}
 }
 
