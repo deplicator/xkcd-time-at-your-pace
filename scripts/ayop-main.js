@@ -98,7 +98,7 @@ function getFrameData() {
         }
     });
 }
-getFrameData();
+$(function(){ getFrameData(); });
 
 /* 
  * Change how url is displayed in "link to this frame" text box.
