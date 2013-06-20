@@ -196,3 +196,19 @@ Because I can't remember anything.
 |-
 | votes || number of votes cast by IP
 |}
+
+===Requirements===
+ * PHP 5.4+
+ * Database (MySQL)
+ * php-curl
+ * php-gd
+ 
+===Local Setup===
+
+ * Copy config-example.php to config.php and set database values correctly.
+ * Import data/xkcd1190ayop_2013-06-02.sql into the database
+ * mkdir data/frames
+ * php downloadFrames.php
+ * Cron php updateFrame.php every 30 minutes
+ * chmod 777 data/cache.json
+ 
