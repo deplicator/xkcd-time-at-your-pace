@@ -38,6 +38,10 @@ function isSpecial(frame) {
     return binary_search_iterative(specialFrames, frame) >= 0;
 }
 
+function isDebated(frame) {
+    return frameData[frame].no >= 5 && frameData[frame].yes > (frameData[frame].no / 1.9);
+}
+
 function nextSpecial(frame) {
     var result = binary_search_iterative(specialFrames, frame);
     result = result >= 0 ? result + 1 : -1 * (result + 1);

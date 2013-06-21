@@ -104,7 +104,7 @@ So far, no hash seems to have been intentionally repeated. Hashes that have repe
 * Thanks to [https://github.com/aschrab Aaron Schrab] gave you cookies that take you to the last frame viewed.
 * Thanks to [https://github.com/kormoc Rob Smith] for the preload indicator.
 * Thanks to the other contributors who have helped me keep up with special frames (it's getting to be a long list).
-* Thanks to everyone who has pointed out buggs, errors, feature requests, and so on; you've helped make this site better!
+* Thanks to everyone who has pointed out bugs, errors, feature requests, and so on; you've helped make this site better!
 * Thanks for the positive feedback I've gotten from this project. It's been fun to work on a project people appreciate.
 
 
@@ -196,3 +196,19 @@ Because I can't remember anything.
 |-
 | votes || number of votes cast by IP
 |}
+
+===Requirements===
+ * PHP 5.4+
+ * Database (MySQL)
+ * php-curl
+ * php-gd
+ 
+===Local Setup===
+
+ * Copy config-example.php to config.php and set database values correctly.
+ * Import data/xkcd1190ayop_2013-06-02.sql into the database
+ * mkdir data/frames
+ * php downloadFrames.php
+ * Cron php updateFrame.php every 30 minutes
+ * chmod 777 data/cache.json
+ 
