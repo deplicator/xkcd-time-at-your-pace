@@ -62,6 +62,7 @@ function fetchColors() {
     loadingCompleteColor =  legendSvg.querySelectorAll("#fill_loaded")[0].attributes["fill"].value;
     mouseOverFrameBorderColor =  legendSvg.querySelectorAll("#fill_cursor")[0].attributes["fill"].value;
     specialFrameBorderColor =  legendSvg.querySelectorAll("#stroke_special")[0].attributes["stroke"].value;
+    debatedFrameBorderColor = legendSvg.querySelectorAll("#fill_error")[0].attributes["fill"].value;
     currentFrameBorderColor =  legendSvg.querySelectorAll("#stroke_current")[0].attributes["stroke"].value;
     currentCompareFrameBorderColor =  legendSvg.querySelectorAll("#stroke_compare")[0].attributes["stroke"].value;
     errorColor = legendSvg.querySelectorAll("#fill_error")[0].attributes["fill"].value;
@@ -352,7 +353,12 @@ function setupContext(frame) {
     }
     else if (isSpecial(frame)) {
         // Not current frame, but special frame
-        preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
+        if (isDebated(frame)) {
+            preloadingStatusCtx.strokeStyle = debatedFrameBorderColor;
+        }
+        else {
+            preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
+        }
     }
     else {
         // Neither current nor special frame

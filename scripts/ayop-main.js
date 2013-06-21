@@ -216,7 +216,7 @@ function updateAllWithoutSlider(frame) {
     //hot debate and make it glow
     $('#debated').addClass('notvisible');
     $('#canvas3').removeClass('special-glow debated-glow');
-    if(frameData[frame].no >= 5 && frameData[frame].yes > (frameData[frame].no / 1.9)) {
+    if(isDebated(frame)) {
         $('#debated').removeClass('notvisible');
         $('#canvas3').addClass('debated-glow');
     } else if(isSpecial(frame)) {
