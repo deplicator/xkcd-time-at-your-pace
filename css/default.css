@@ -225,6 +225,36 @@ li {
     text-align: center;
 }
 
+@media only screen
+and (min-width : 1201px) {
+    #autoplay {
+        position: absolute !important;
+        float: none !important;
+        left: 1em;
+        top: 100px;
+        width: 280px !important;
+        z-index: 10;
+    }
+    
+    #step {
+        position: absolute !important;
+        float: none !important;
+        right: .5em;
+        top: 140px;
+        padding: 0px !important;
+        background: #EAEEF4;
+        border: 1px solid #96A8C8 !important;
+        border-radius: 7px;
+        box-shadow: 2px 2px 5px 0px #666;
+        padding-bottom: 2em !important;
+        z-index: 10;
+    }
+    
+    #controls {
+        width: 0px !important;
+        height: 0px !important;
+    }
+}
 
 /* Comic */
 #tehmainevent {
@@ -276,12 +306,28 @@ li {
     margin: 0 4px 0 0;
 }
 
-#slider{
-    height: 70px;
-    margin: 5px auto;
-    width: 600px;
+#actuallink {
+    border: 1px solid grey;
+    padding: 2px .5em 2px .5em;
+    margin-top: 4px;
+    background-color: white;
+    text-align: left;
+    font-size: 12px;
+    float: left;
 }
 
+#showlong {
+    height: 14px;
+    text-align: right;
+    float: right;
+    margin-right: 2em;
+    margin-top: 4px;
+}
+
+#slider {
+    height: 70px;
+    margin: 5px auto;
+}
 
 /* Frame Data Panel*/
 .openingpanel {
@@ -301,6 +347,10 @@ li {
     padding: 10px;
 }
 
+#framedata {
+    margin-top: 30px;
+}
+
 /* Sub Componets of Frame Data */
 #framedata .framedata-sub {
     float: left;
@@ -314,14 +364,6 @@ li {
     border-right: 1px dashed;
     height: 55px;
     width: 498px;
-}
-#actuallink {
-    margin: 2px 5px 0 5px;
-    border: 1px solid grey;
-    padding: 2px 0 2px 0;
-    background-color: white;
-    text-align: left;
-    font-size: 12px;
 }
 
 #framedata #link #showlong {
@@ -381,11 +423,26 @@ li {
     padding: 2px;
 }
 
+@media only screen
+and (min-width : 1201px) {
+    #votedata {
+        position: absolute;
+        left: 59px;
+        top: 200px;
+        background: #EAEEF4;
+        border: 1px solid #96A8C8;
+        border-radius: 7px;
+        box-shadow: 2px 2px 5px 0px #666;
+    }
+}
+
 /* Image Difference */
 #imgdiffopts {
     border-bottom: 1px dashed #222;
+    border-right: 1px dashed #222;
     height: 55px;
-    width: 400px;
+    width: 260px;
+    float: left;
 }
 #imgdiffopts div {
     width: 250px;
@@ -405,6 +462,20 @@ li {
     height: 10px;
     font-size: 10px;
     width: 40px;
+}
+
+@media only screen
+and (min-width : 1201px) {
+    #imgdiffopts {
+        position: absolute;
+        right: .5em;
+        top: 250px;
+        width: 315px;
+        background: #EAEEF4;
+        border: 1px solid #96A8C8;
+        border-radius: 7px;
+        box-shadow: 2px 2px 5px 0px #666;
+    }
 }
 
 /* Preload Indicator */
@@ -440,7 +511,6 @@ li {
     float: right;
     padding: 10px 90px 10px 0;
 }
-
 
 /* Special Frames Panel */
 #framedata .openingpanelrightext {
@@ -501,3 +571,4 @@ footer #note {
         padding: 3px 0 0 0;
     }
 }
+
