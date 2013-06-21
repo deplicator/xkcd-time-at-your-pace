@@ -26,12 +26,12 @@
 	<rect x="247.5" y="12.5" width="25" height="25" fill="#222" stroke="#FFFF00" stroke-width="5" id="stroke_special"/>
 	<text x="280" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Special Frame</text>
 
-	<rect x="247.5" y="52.5" width="25" height="25" fill="#222" stroke="#00FF00" stroke-width="5" id="stroke_current"/>
-	<text x="280" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Frame</text>
+	<rect x="247.5" y="52.5" width="25" height="25" fill="#222" stroke="#FF0000" stroke-width="5" id="stroke_debated"/>
+	<text x="280" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Debated Frame</text>
+    
+	<rect x="247.5" y="92.5" width="25" height="25" fill="#222" stroke="#00FF00" stroke-width="5" id="stroke_current"/>
+	<text x="280" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Frame</text>
 
-	<rect x="247.5" y="92.5" width="25" height="25" fill="#222" stroke="#FF00FF" stroke-width="5" id="stroke_compare"/>
-	<text x="280" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Compare Frame</text>
-
-	<rect x="245" y="130" width="30" height="30" fill="#FF0000" id="fill_error"/>
-	<text x="280" y="145" text-anchor="left" dominant-baseline="middle" font-size="130%">Error</text>
+	<rect x="247.5" y="132.5" width="25" height="25" fill="#222" stroke="#FF00FF" stroke-width="5" id="stroke_compare"/>
+	<text x="280" y="145" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Compare Frame</text>
 </svg>

@@ -17,7 +17,6 @@ var currentFrameBorderColor        = undefined;
 var currentCompareFrameBorderColor = undefined;
 var notYetReleasedColor            = undefined;
 var mouseOverFrameBorderColor      = undefined;  // will all be set when the GUI is loaded,
-var errorColor                     = undefined;  // in fetchColors()
 var mouseOverOldFrame = 0;
 var mouseOverCurrentFrame = 0;
 function initPreloadingStatus(maxImages) {
@@ -62,10 +61,9 @@ function fetchColors() {
     loadingCompleteColor =  legendSvg.querySelectorAll("#fill_loaded")[0].attributes["fill"].value;
     mouseOverFrameBorderColor =  legendSvg.querySelectorAll("#fill_cursor")[0].attributes["fill"].value;
     specialFrameBorderColor =  legendSvg.querySelectorAll("#stroke_special")[0].attributes["stroke"].value;
-    debatedFrameBorderColor = legendSvg.querySelectorAll("#fill_error")[0].attributes["fill"].value;
+    debatedFrameBorderColor = legendSvg.querySelectorAll("#stroke_debated")[0].attributes["stroke"].value;
     currentFrameBorderColor =  legendSvg.querySelectorAll("#stroke_current")[0].attributes["stroke"].value;
     currentCompareFrameBorderColor =  legendSvg.querySelectorAll("#stroke_compare")[0].attributes["stroke"].value;
-    errorColor = legendSvg.querySelectorAll("#fill_error")[0].attributes["fill"].value;
 }
 
 function getFrameURL(frame) {
@@ -327,10 +325,6 @@ function setupContext(frame) {
             if (img.naturalWidth === 0 || img.naturalHeight === 0 || img.complete === false) {
                 // Frame not yet loaded
                 preloadingStatusCtx.fillStyle = loadingInProgressColor;
-            }
-            else if (img === null) {
-                // Error
-                preloadingStatusCtx.fillStyle = errorColor;
             }
             else {
                 // Frame loaded
