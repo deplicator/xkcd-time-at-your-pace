@@ -40,14 +40,14 @@
             <p>Pause special Frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
         </div>
         <div id="step">
-            <p>Step through frames</p>
+            <p>Step through frames (or use arrow keys)</p>
             <input id="first" class="bluebutton" type="button" value="|<" title="First Frame">
             <input id="previous-special" class="bluebutton" type="button" value="<<" title="Previous Special Frame">
             <input id="previous" class="bluebutton" type="button" value="<" title="Previous Frame">
             <input id="next" class="bluebutton" type="button" value=">" title="Next Frame">
             <input id="next-special" class="bluebutton" type="button" value=">>" title="Next Special Frame">
             <input id="last" class="bluebutton" type="button" value=">|" title="Newest Frame">
-            <p>or arrow keys</p>
+            <p><input id="slider" type="range" min="1" step="1" name="framslider" style="width: 100%;"></p>
         </div>
         <p id="mousewheel">Mouse Wheel: Hover over image and scroll down to move forward, up to move back.</p>
     </div>
@@ -59,7 +59,8 @@
         </div>
         <span id="framecount">frame: <input id="manualinput" type="text"> / <span id="totalframes"></span></span>
         <span id="loading">Loading...</span>
-        <input id="slider" type="range" min="1" step="1" name="framslider">
+        <span id="actuallink"></span>
+        <span id="showlong"><input id="urlCheckBox" type="checkbox">long url</span>
         
         <div id="vote">
             <ul id="voteconfirm"></ul>
@@ -70,11 +71,6 @@
         <p class="openingpanelrightext">last calculated on <span id="sfcalcdate"></span></p>
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
-            <div id="link" class="framedata-sub">
-                <h4 title="Links directly to this frame.">Share Link</h4>
-                <p id="actuallink"></p><br>
-                <div id="showlong"><input id="urlCheckBox" type="checkbox">show long url</div>
-            </div>
             <div id="imgdiffopts" class="framedata-sub">
                 <h4>Image Difference</h4>
                 <div>

@@ -21,10 +21,11 @@ try {
     // we're not writing to the frames table as much. Started discuccion with issue #57.
     $STH = $DBH->query('
         SELECT frames.frame, link, llink, blink,
-        votes.voteyes AS \'yes\', votes.voteno AS \'no\',
+        IFNULL(votes.voteyes, 0) AS \'yes\', IFNULL(votes.voteno, 0) AS \'no\',
         (2 * voteyes > voteno && voteyes + voteno > 10) AS \'special\'
-        FROM frames, votes 
-        WHERE frames.frame = votes.frame');
+        FROM frames
+		LEFT JOIN votes
+		ON votes.frame = frames.frame');
     $STH->setFetchMode(PDO::FETCH_ASSOC);
     echo "[".json_encode($confobject);
     while($row = $STH->fetch()) {
