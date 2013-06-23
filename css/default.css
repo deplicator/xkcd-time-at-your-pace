@@ -15,7 +15,7 @@ header {
 }
 
 @media only screen
-and (max-width : 1200px) {
+and (max-width : 80em) {
     header {
         text-align: center;
     }
@@ -26,7 +26,7 @@ and (max-width : 1200px) {
 }
 
 @media only screen
-and (min-width : 1201px) {
+and (min-width : 80em) {
     header {
         float: left;
     }
@@ -193,7 +193,7 @@ li {
     border-left: 1px dashed #222;
     float: right;
     font-size: 11px;
-    height: 70px;
+    height: 75px;
     padding: 0 20px 13px;
 }
 
@@ -201,7 +201,7 @@ li {
     text-align: center;
 }
 
-#controls #step input{
+#controls #step input[type=button] {
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0px #666;
     font-weight: 700;
@@ -217,6 +217,10 @@ li {
     left: 2px;
 }
 
+#slider {
+
+}
+
 #controls #mousewheel {
     border-top: 1px dashed #222;
     clear: both;
@@ -226,7 +230,7 @@ li {
 }
 
 @media only screen
-and (min-width : 1201px) {
+and (min-width : 80em) {
     #autoplay {
         position: absolute !important;
         float: none !important;
@@ -309,7 +313,7 @@ and (min-width : 1201px) {
 #actuallink {
     border: 1px solid grey;
     padding: 2px .5em 2px .5em;
-    margin-top: 4px;
+    margin: 4px 0 0 -38px;
     background-color: white;
     text-align: left;
     font-size: 12px;
@@ -324,10 +328,7 @@ and (min-width : 1201px) {
     margin-top: 4px;
 }
 
-#slider {
-    height: 70px;
-    margin: 5px auto;
-}
+
 
 /* Frame Data Panel*/
 .openingpanel {
@@ -424,7 +425,7 @@ and (min-width : 1201px) {
 }
 
 @media only screen
-and (min-width : 1201px) {
+and (min-width : 80em) {
     #votedata {
         position: absolute;
         left: 59px;
@@ -465,7 +466,7 @@ and (min-width : 1201px) {
 }
 
 @media only screen
-and (min-width : 1201px) {
+and (min-width : 80em) {
     #imgdiffopts {
         position: absolute;
         right: .5em;
