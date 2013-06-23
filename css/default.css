@@ -1,4 +1,5 @@
 @import url(reset.min.css);
+@import url(wide-screen.css);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
 
@@ -15,7 +16,7 @@ header {
 }
 
 @media only screen
-and (max-width : 80em) {
+and (max-width : 81em) {
     header {
         text-align: center;
     }
@@ -23,16 +24,6 @@ and (max-width : 80em) {
     header h1, header h2 {
         display: inline-block;
     }
-}
-
-@media only screen
-and (min-width : 80em) {
-    header {
-        float: left;
-    }
-}
-
-content {
 }
 
 h1 {
@@ -229,36 +220,6 @@ li {
     text-align: center;
 }
 
-@media only screen
-and (min-width : 80em) {
-    #autoplay {
-        position: absolute !important;
-        float: none !important;
-        left: 1em;
-        top: 100px;
-        width: 280px !important;
-        z-index: 10;
-    }
-    
-    #step {
-        position: absolute !important;
-        float: none !important;
-        right: .5em;
-        top: 140px;
-        padding: 0px !important;
-        background: #EAEEF4;
-        border: 1px solid #96A8C8 !important;
-        border-radius: 7px;
-        box-shadow: 2px 2px 5px 0px #666;
-        padding-bottom: 2em !important;
-        z-index: 10;
-    }
-    
-    #controls {
-        width: 0px !important;
-        height: 0px !important;
-    }
-}
 
 /* Comic */
 #tehmainevent {
@@ -424,18 +385,6 @@ and (min-width : 80em) {
     padding: 2px;
 }
 
-@media only screen
-and (min-width : 80em) {
-    #votedata {
-        position: absolute;
-        left: 59px;
-        top: 200px;
-        background: #EAEEF4;
-        border: 1px solid #96A8C8;
-        border-radius: 7px;
-        box-shadow: 2px 2px 5px 0px #666;
-    }
-}
 
 /* Image Difference */
 #imgdiffopts {
@@ -465,19 +414,6 @@ and (min-width : 80em) {
     width: 40px;
 }
 
-@media only screen
-and (min-width : 80em) {
-    #imgdiffopts {
-        position: absolute;
-        right: .5em;
-        top: 250px;
-        width: 315px;
-        background: #EAEEF4;
-        border: 1px solid #96A8C8;
-        border-radius: 7px;
-        box-shadow: 2px 2px 5px 0px #666;
-    }
-}
 
 /* Preload Indicator */
 #framedata #preloadindicator {
