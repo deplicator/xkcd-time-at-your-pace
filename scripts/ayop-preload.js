@@ -253,7 +253,6 @@ function frameMouseMove(event) {
         || y <= pad_top
         || y >= preloadingStatusHeight + pad_top
         ) {
-        console.log("Updating old frame " + mouseOverOldFrame);
         var oldFrame = mouseOverOldFrame;
         mouseOverOldFrame = mouseOverCurrentFrame = 0;
         if (oldFrame >= 1 && oldFrame <= frameCount)
