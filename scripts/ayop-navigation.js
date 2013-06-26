@@ -63,16 +63,27 @@ function nextSpecialFrame() {
 
 /*
  * Keyboard inputs
- * TODO: Modifier keys to skip to special frames and first and last might be neat. Example:
- *       ctrl+right arrow move to next special frame
- *       ctrl+shift+right arrow move to last frame
  */
 $(document).keydown(function (e) {
 	if(!($("#manualinput").is(":focus"))) {
 		if (e.which == 37) { //left-key-pressed
-			prevFrame();
+			if(e.ctrlKey && e.shiftKey) {
+				firstFrame();
+			} else if(e.ctrlKey) {
+				prevSpecialFrame();
+			} else {
+				prevFrame();
+			}
+			e.preventDefault();
 		} else if (e.which == 39) { //right-key-pressed
-			nextFrame();
+			if(e.ctrlKey && e.shiftKey) {
+				lastFrame();
+			} else if(e.ctrlKey) {
+				nextSpecialFrame();
+			} else {
+				nextFrame();
+			}
+			e.preventDefault();
 		}
 	}
 });

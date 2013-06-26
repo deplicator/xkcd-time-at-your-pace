@@ -10,7 +10,7 @@ include('config.php');
 $DBH = new PDO(PDO_CONNECTION, DB_WRITE_USER, DB_WRITE_PASS);
 
 $findFrame = $DBH->prepare('SELECT * FROM frames WHERE frame = ?');
-$insertFrame = $DBH->prepare('INSERT INTO Frames (`update`, `frame`, `link`, `llink`, `blink`, `special`) VALUES (FROM_UNIXTIME(?), ?, ?, ?, ?, ?)');
+$insertFrame = $DBH->prepare('INSERT INTO frames (`update`, `frame`, `link`, `llink`, `blink`, `special`) VALUES (FROM_UNIXTIME(?), ?, ?, ?, ?, ?)');
 $findVote = $DBH->prepare('SELECT * FROM votes WHERE frame = ?');
 $insertVote = $DBH->prepare('INSERT INTO votes (`frame`, `voteyes`, `voteno`) VALUES (?, 0, 0)');
 
@@ -61,6 +61,8 @@ foreach ($frames as $frame) {
 					  $frame['blink'],
 					  $frame['special']);
 		$res = $insertFrame->execute($data);
+        $err = $DBH->errorInfo();
+        var_dump($err);
 	}
 	
 	$findVote->execute(array($frame['frameNo']));
