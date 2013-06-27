@@ -61,8 +61,6 @@ foreach ($frames as $frame) {
 					  $frame['blink'],
 					  $frame['special']);
 		$res = $insertFrame->execute($data);
-        $err = $DBH->errorInfo();
-        var_dump($err);
 	}
 	
 	$findVote->execute(array($frame['frameNo']));
