@@ -29,10 +29,18 @@ function drawDiffImage() {
         var color2 = data1[i];
         var color1 = data2[i];
 
-        //TODO: Fix for Grey Images
-        data3[i]     = color1 == color2 ? color1 : (color1 < color2 ? 0xFF : 0x00);
-        data3[i + 1] = color1 == color2 ? color1 : (color1 > color2 ? 0xFF : 0x00);
-        data3[i + 2] = color1 == color2 ? color1 : 0x00;
+        // A couple algorithms for how to color grayscale changes
+        
+        // Simple linear scale, 1 unit gray change = 1 unit green/red change
+        /* var bkgnd = 0xFF - Math.abs(color1 - color2); */
+
+        // Inverse square root - emphasizes small changes
+        // at the cost of lumping together bigger changes
+        var bkgnd = 0xFF * (1 - Math.sqrt(Math.abs(color1 - color2)/0xFF));
+
+        data3[i]     = color1 == color2 ? color1 : (color1 < color2 ? 0xFF : bkgnd);
+        data3[i + 1] = color1 == color2 ? color1 : (color1 > color2 ? 0xFF : bkgnd);
+        data3[i + 2] = color1 == color2 ? color1 : bkgnd;
         data3[i + 3] = 0xFF;
     }
 
