@@ -38,9 +38,9 @@ function drawDiffImage() {
         // at the cost of lumping together bigger changes
         var bkgnd = 0xFF * (1 - Math.sqrt(Math.abs(color1 - color2)/0xFF));
 
-        data3[i]     = color1 == color2 ? color1 : (color1 < color2 ? 0xFF : bkgnd);
-        data3[i + 1] = color1 == color2 ? color1 : (color1 > color2 ? 0xFF : bkgnd);
-        data3[i + 2] = color1 == color2 ? color1 : bkgnd;
+        data3[i]     = color1 == color2 ? color1 : (color1 < color2 ? color2 : bkgnd * (color2/0xFF) );
+        data3[i + 1] = color1 == color2 ? color1 : (color1 > color2 ? color1 : bkgnd * (color1/0xFF) );
+        data3[i + 2] = color1 == color2 ? color1 : bkgnd * (color1/0xFF);
         data3[i + 3] = 0xFF;
     }
 
