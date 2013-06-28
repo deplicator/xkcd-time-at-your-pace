@@ -278,9 +278,12 @@ function frameMouseMove(event) {
 }
 
 function frameMouseClick(event) {
-    target = event.target || event.srcElement;
-    x = event.pageX - target.offsetLeft,
-    y = event.pageY - target.offsetTop;
+    var target = event.target || event.srcElement;
+    // x = event.pageX - target.offsetLeft,
+    // y = event.pageY - target.offsetTop;
+    var rect = preloadingStatus.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
 
     mouseOverCurrentFrame = ( Math.floor(x / preloadingStatusRectSize)
               + (Math.floor(y / preloadingStatusRectSize)
