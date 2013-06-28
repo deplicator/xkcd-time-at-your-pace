@@ -201,7 +201,7 @@ li {
     width: 48px;
 }
 
-#controls #step input:active {
+#controls #step input[type=button]:active {
     position: relative;
     box-shadow: none;
     top: 2px;
