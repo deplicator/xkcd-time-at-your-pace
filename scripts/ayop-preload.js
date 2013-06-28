@@ -33,7 +33,7 @@ function initPreloadingStatus(maxImages) {
     preloadingStatusCtx.fillStyle = notYetReleasedColor;
     preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
     // Update all frames
-    for (i = 0; i < maxImages; i++) {
+    for (i = 0; i <= maxImages; i++) {
         updatePreloadingIndicator(i);
     }
     preloadingStatus.addEventListener('click', frameMouseClick, false);
@@ -120,7 +120,7 @@ function preloadingErrorHandlerForFrame(frame) {
     };
 }
 function predictFrames(frame) {
-    var end = Math.min(frame + 5, frameCount - 1);
+    var end = Math.min(frame + 5, frameCount);
     var img, i;
 
     //Preload 5 frames forwards.
