@@ -34,7 +34,13 @@ function binary_search_iterative(a, value) {
     return -(lo + 1);
 }
 
-function isSpecial(frame) {
+function isSpecial(frame, includeDebated) {
+    if (typeof includeDebated === "undefined") {
+        includeDebated = true;
+    }
+    if (!includeDebated && isDebated(frame)) {
+        return false;
+    }
     return binary_search_iterative(specialFrames, frame) >= 0;
 }
 
@@ -42,14 +48,28 @@ function isDebated(frame) {
     return frameData[frame].no >= 5 && frameData[frame].yes > (frameData[frame].no / 1.9);
 }
 
-function nextSpecial(frame) {
+function nextSpecial(frame, includeDebated) {
+    if (typeof includeDebated === "undefined") {
+        includeDebated = true;
+    }
     var result = binary_search_iterative(specialFrames, frame);
     result = result >= 0 ? result + 1 : -1 * (result + 1);
-    return specialFrames[result % specialFrames.length];
+    var nextFrame = specialFrames[result % specialFrames.length];
+    if (!includeDebated && isDebated(nextFrame)) {
+        return nextSpecial(nextFrame, includeDebated);
+    }
+    return nextFrame;
 }
 
-function prevSpecial(frame) {
+function prevSpecial(frame, includeDebated) {
+    if (typeof includeDebated === "undefined") {
+        includeDebated = true;
+    }
     var result = binary_search_iterative(specialFrames, frame);
     result = result >= 0 ? result - 1 : -1 * (result + 1) - 1;
-    return specialFrames[(result + specialFrames.length) % specialFrames.length];
+    var prevFrame = specialFrames[(result + specialFrames.length) % specialFrames.length];
+    if (!includeDebated && isDebated(prevFrame)) {
+        return nextSpecial(prevFrame, includeDebated);
+    }
+    return prevFrame;
 }
