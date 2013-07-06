@@ -119,27 +119,14 @@ if(connectivityCheck($link)) {
 
             //Update frame folder.
             if($imageCheck) {
+				$fp = fopen('./data/frames/' . $frame . '.png', 'w');
                 $ch = curl_init();
                 curl_setopt ($ch, CURLOPT_URL, $link);
-                curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 0);
-                $fileContents = curl_exec($ch);
-                $newImage = imagecreatefromstring($fileContents);
-                curl_close($ch);
-                
-                if(!empty($newImage)) {
-                    imagepng($newImage, './data/frames/' . $frame . '.png');
-                    if(file_exists('./data/frames/' . $frame . '.png')) { //Double check that it is actually there.
-                        file_put_contents($log, $eventtime . "\tSuccessful copy of " . $frame . ".png.\n", FILE_APPEND);
-                        echo $eventtime . "\tSuccessful copy of " . $frame . ".png.\n";
-                    } else {
-                        file_put_contents($log, $eventtime . "\tCOPY FAIL - Could not write " . $frame . ".png.\n", FILE_APPEND);
-                        echo $eventtime . "\tCOPY FAIL - Could not write " . $frame . ".png.\n";
-                    }
-                } else {
-                    file_put_contents($log, $eventtime . "\tCOPY FAIL - Nothing to write for " . $frame . ".png.\n", FILE_APPEND);
-                    echo $eventtime . "\tCOPY FAIL - Nothing to write for " . $frame . ".png.\n";
-                }
+                curl_setopt($ch, CURLOPT_FILE, $fp);
+                $data = curl_exec($ch);
+				curl_close($ch);
+				fclose($fp);
+				chmod('./data/frames/' . $frame . '.png', 0444);
             }
 
             //Update data.txt file, for old times sake.
