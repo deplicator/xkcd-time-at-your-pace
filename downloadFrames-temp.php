@@ -3,7 +3,6 @@
  * downloadFrames.php
  * Downloads frames from the public site to mirror locally, using http://xkcd.mscha.org/ data.
  * Converts from mscha to geekwagon numbers where needed.
- * Temporarily removed database updating--Sorry if that screws things up for others.
  */
 
 header('Content-Type: text/plain');
