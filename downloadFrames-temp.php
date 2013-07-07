@@ -1,8 +1,8 @@
 <?php
 /* 
  * downloadFrames.php
- * Downloads frames from the public site to mirror locally, using http://xkcd.mscha.org/ data.
- * Converts from mscha to geekwagon numbers where needed.
+ * Downloads frames from http://xkcd.mscha.org.
+ * Converts frame numers from mscha to geekwagon where needed.
  */
 
 header('Content-Type: text/plain');
@@ -24,7 +24,6 @@ if (!$frames)
 foreach ($frames as $frame) {
     $skip = false;
     
-    
     // Ugh, ensure it's a int, some frames end in an a?
     //$frame['frameNo'] += 0;
 
@@ -41,13 +40,13 @@ foreach ($frames as $frame) {
         $frame['hash'] = 1;
     }
 
-    //Deals with "apocryphal" frames of 256-258.
+    //Special Case - Deals with "apocryphal" frames of 256-258.
     if ($frame['frameNo'] == "256a" || $frame['frameNo'] == "257a" || $frame['frameNo'] == "258a") {
         $skip = true;
         echo "Intentionally skipped!";
     }
     
-    //Meteor frames.
+    //Special Case - Meteor frames.
     if ($frame['frameNo'] == "2440a") {
         $frame['path'] = "./data/frames/2441.png";
     }
@@ -67,7 +66,7 @@ foreach ($frames as $frame) {
         $frame['path'] = "./data/frames/2445.png";
     }
     
-    //All frames after meteor shifted by 5.
+    //Special Case - All frames after meteor shifted by 5.
     if ($frame['frameNo'] >= "2441") {
         $newFrameNo = intval($frame['frameNo']) + 5;
         $frame['path'] = "./data/frames/" . $newFrameNo . ".png";
