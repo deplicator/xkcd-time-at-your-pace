@@ -233,25 +233,15 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
 }
 
 function frameMouseMove(event) {
-    target = event.target || event.srcElement;
-    x = event.pageX - target.offsetLeft,
-    y = event.pageY - target.offsetTop;
+    var target = event.target || event.srcElement;
+    var rect = preloadingStatus.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
 
-    // "|| 0" to protect against empty strings (parseInt("", 10) = NaN)
-    pad_left = (parseInt($(target).css('border-width'), 10) || 0)
-             + (parseInt($(target).css('padding-left'), 10) || 0)
-             + (parseInt($(target).css('margin-left'), 10) || 0)
-             + 1;
-
-    pad_top = (parseInt($(target).css('border-width'), 10) || 0)
-            + (parseInt($(target).css('padding-top'), 10) || 0)
-            + (parseInt($(target).css('margin-top'), 10) || 0)
-            + 1;
-
-    if (x <= pad_left
-        || x >= preloadingStatusWidth + pad_left
-        || y <= pad_top
-        || y >= preloadingStatusHeight + pad_top
+    if (x <= 0
+        || x >= preloadingStatusWidth + 0
+        || y <= 0
+        || y >= preloadingStatusHeight + 0
         ) {
         var oldFrame = mouseOverOldFrame;
         mouseOverOldFrame = mouseOverCurrentFrame = 0;
@@ -279,8 +269,6 @@ function frameMouseMove(event) {
 
 function frameMouseClick(event) {
     var target = event.target || event.srcElement;
-    // x = event.pageX - target.offsetLeft,
-    // y = event.pageY - target.offsetTop;
     var rect = preloadingStatus.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;

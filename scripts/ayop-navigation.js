@@ -51,13 +51,13 @@ function nextFrame(nopause) {
 function prevSpecialFrame() {
     $('#play').val("Play");
     timer.stop();
-    updateAll(prevSpecial(currentFrame));
+    updateAll(prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
 function nextSpecialFrame() {
     $('#play').val("Play");
     timer.stop();
-    updateAll(nextSpecial(currentFrame));
+    updateAll(nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
 
@@ -111,14 +111,13 @@ var timer = $.timer(function () {
     if (currentFrame >= frameCount) {
         updateAll(1);
     }
-    if (isSpecial(currentFrame)) {
+    if (isSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))) {
         specialframecounter += speed;
         if (specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
             return;//should pause x seconds... 
-        } else {
-            specialframecounter = 0;
         }
     }
+    specialframecounter = 0;
     updateAll(currentFrame + 1);
     if (currentFrame >= frameCount) {
         timer.stop();
@@ -132,7 +131,7 @@ var playreverse = $.timer(function () {
     if (currentFrame <= 1) {
         updateAll(frameCount);
     }
-    if (isSpecial(currentFrame)) {
+    if (isSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))) {
         specialframecounter += speed;
         if (specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
             return;//should pause x seconds... 
