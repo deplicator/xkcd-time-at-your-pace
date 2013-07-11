@@ -47,3 +47,4 @@ fwrite($fp, ob_get_contents());
 fclose($fp); 
 // Send the output to the browser
 ob_end_flush();
+?>

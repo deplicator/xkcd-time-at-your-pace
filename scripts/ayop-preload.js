@@ -24,7 +24,7 @@ function initPreloadingStatus(maxImages) {
     if (preloadingStatusWidth % preloadingStatusRectSize != 0) {
         throw "ERROR: Rect size does not equally divide width";
     }
-    preloadingStatusHeight = preloadingStatusRectSize * Math.floor(maxImages / (preloadingStatusWidth / preloadingStatusRectSize) + 1);
+    preloadingStatusHeight = preloadingStatusRectSize * Math.ceil(maxImages / (preloadingStatusWidth / preloadingStatusRectSize));
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
     preloadingStatusCtx.lineWidth = 1;
     notYetReleasedColor = $("#framedata").css('backgroundColor');
@@ -232,28 +232,46 @@ function preloadFrame(frame, callback, doNotSignalFinishLoading) {
     predictFrames(frame);
 }
 
-function frameMouseMove(event) {
-    var target = event.target || event.srcElement;
+/*
+ * Calculates the frame in the preload indicator that corresponds to given mouse coordinates.
+ * The coordinates are absolute, i.e. *not* relative to the preload indicator.
+ *
+ * Returns -1 if the coordinates don't correspond to a frame or the frame number (1-based) otherwise.
+ */
+function coordinatesToFrame(mouseX, mouseY) {
     var rect = preloadingStatus.getBoundingClientRect();
-    var x = event.clientX - rect.left;
-    var y = event.clientY - rect.top;
+    var x = mouseX - rect.left - 3; // 3 appears to be the width of the border around the frames
+    var y = mouseY - rect.top - 3;
 
     if (x <= 0
-        || x >= preloadingStatusWidth + 0
+        || x >= preloadingStatusWidth
         || y <= 0
-        || y >= preloadingStatusHeight + 0
+        || y >= preloadingStatusHeight
         ) {
+        return -1;
+    }
+
+    var ret=( Math.ceil(x / preloadingStatusRectSize)       // dont ask me why it's ceil here
+             + (Math.floor(y / preloadingStatusRectSize)    // and floor here, but this works
+                * (preloadingStatusWidth / preloadingStatusRectSize)));
+    
+    // console.log("Mapped "+x+","+y+" to "+ret); // debug code
+    return ret;
+}
+
+function frameMouseMove(event) {
+    var target = event.target || event.srcElement;
+    var mouseOverFrame = coordinatesToFrame(event.clientX, event.clientY);
+    
+    if(mouseOverFrame < 0) {
         var oldFrame = mouseOverOldFrame;
         mouseOverOldFrame = mouseOverCurrentFrame = 0;
         if (oldFrame >= 1 && oldFrame <= frameCount)
-                updatePreloadingIndicator(oldFrame);
+            updatePreloadingIndicator(oldFrame);
         return;
     }
 
-    mouseOverCurrentFrame = ( Math.floor(x / preloadingStatusRectSize)
-              + (Math.floor(y / preloadingStatusRectSize)
-                 * (preloadingStatusWidth / preloadingStatusRectSize)
-                 - 100));
+    mouseOverCurrentFrame = mouseOverFrame;
     
     if (mouseOverCurrentFrame == mouseOverOldFrame)
         return;
@@ -269,14 +287,9 @@ function frameMouseMove(event) {
 
 function frameMouseClick(event) {
     var target = event.target || event.srcElement;
-    var rect = preloadingStatus.getBoundingClientRect();
-    var x = event.clientX - rect.left;
-    var y = event.clientY - rect.top;
+    var mouseOverFrame = coordinatesToFrame(event.clientX, event.clientY);
 
-    mouseOverCurrentFrame = ( Math.floor(x / preloadingStatusRectSize)
-              + (Math.floor(y / preloadingStatusRectSize)
-                 * (preloadingStatusWidth / preloadingStatusRectSize)
-                 - 100));
+    mouseOverCurrentFrame = mouseOverFrame;
     if (mouseOverCurrentFrame <= frameCount && mouseOverCurrentFrame > 0) {
         if (event.altKey || event.ctrlKey) {
             //Alt Key modifier => we want to move the compareFrame
