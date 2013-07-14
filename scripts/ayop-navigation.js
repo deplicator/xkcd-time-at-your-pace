@@ -13,22 +13,19 @@ var speed = 100; //.1 seconds per frame (10fps) default for autoplay start.
  * No parameters, work as expected.
  */
 function firstFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(1);
 }
 
 function lastFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(frameCount);
 }
 
 //Pass a true value to continue autoplay.
 function prevFrame(nopause) {
     if(!nopause) {
-        $('#play').val("Play");
-        timer.stop();
+        pause();
     }
     var nextslideindex = currentFrame - 1;
     nextslideindex = (nextslideindex < 1) ? frameCount : (nextslideindex > frameCount) ? 1 : nextslideindex;
@@ -38,8 +35,7 @@ function prevFrame(nopause) {
 //Pass a true value to continue autoplay.
 function nextFrame(nopause) {
     if(!nopause) {
-        $('#play').val("Play");
-        timer.stop();
+        pause();
     }
     var nextslideindex = currentFrame + 1;
     if (nextslideindex > frameCount) {
@@ -49,14 +45,12 @@ function nextFrame(nopause) {
 }
 
 function prevSpecialFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
 function nextSpecialFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
