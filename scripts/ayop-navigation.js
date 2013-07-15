@@ -13,22 +13,19 @@ var speed = 100; //.1 seconds per frame (10fps) default for autoplay start.
  * No parameters, work as expected.
  */
 function firstFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(1);
 }
 
 function lastFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(frameCount);
 }
 
 //Pass a true value to continue autoplay.
 function prevFrame(nopause) {
     if(!nopause) {
-        $('#play').val("Play");
-        timer.stop();
+        pause();
     }
     var nextslideindex = currentFrame - 1;
     nextslideindex = (nextslideindex < 1) ? frameCount : (nextslideindex > frameCount) ? 1 : nextslideindex;
@@ -38,8 +35,7 @@ function prevFrame(nopause) {
 //Pass a true value to continue autoplay.
 function nextFrame(nopause) {
     if(!nopause) {
-        $('#play').val("Play");
-        timer.stop();
+        pause();
     }
     var nextslideindex = currentFrame + 1;
     if (nextslideindex > frameCount) {
@@ -49,14 +45,12 @@ function nextFrame(nopause) {
 }
 
 function prevSpecialFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
 function nextSpecialFrame() {
-    $('#play').val("Play");
-    timer.stop();
+    pause();
     updateAll(nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
@@ -147,30 +141,56 @@ var playreverse = $.timer(function () {
     }
 });
 
+/*
+ * Pause playback, rename play button, show vote buttons.
+ *
+ * This is safe to call several times.
+ */
+function pause() {
+    // Pause playback
+    timer.stop();
+    playreverse.stop();
+    // Rename play button
+    $('#play').val("Play");
+    // Show vote buttons
+    $('.vote').show('fast');
+}
+
+/*
+ * Unpause/start playback, rename play button, hide vote buttons.
+ * Also makes sure that the playback timers don't pause on the current frame because it's special.
+ *
+ * This is safe to call several times; if the playback is currently "semi-paused" for a special frame,
+ * this will continue immediately.
+ */
+function unpause() {
+    // Prevent the timers to pause on the current frame
+    specialframecounter =  (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000 + 100;
+    // Unpause/start playback
+    if ($('#forward').hasClass('dir-select')) {
+        timer.set({
+            time: speed,
+            autostart: true
+        });
+    } else {
+        playreverse.set({
+            time: speed,
+            autostart: true
+        });
+    }
+    // Rename play button
+    $('#play').val("Pause");
+    // Hide vote buttons
+    $('.vote').hide('fast');
+}
+
 $(document).ready(function () {
     //Play-pause button start and stop auto play back and change button text.
     $('#play').click(function () {
         if ($('#play').val() == "Play") {
-            $('#play').val("Pause");
-            $('.vote').hide('fast');
-            //Ensure, that we will not pause on the current Frame
-            specialframecounter =  (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000 + 100;
-            if ($('#forward').hasClass('dir-select')) {
-                timer.set({
-                    time: speed,
-                    autostart: true
-                });
-            } else {
-                playreverse.set({
-                    time: speed,
-                    autostart: true
-                });
-            }
+            unpause();
         } else {
-            $('.vote').show('fast');
-            $('#play').val("Play");
-            timer.stop();
-            playreverse.stop();
+            pause();
         }
     });
 
