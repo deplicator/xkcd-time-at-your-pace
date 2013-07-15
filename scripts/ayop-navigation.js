@@ -54,6 +54,16 @@ function nextSpecialFrame() {
     updateAll(nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
+function prevDebatedFrame() {
+    pause();
+    updateAll(prevDebated(currentFrame));
+}
+
+function nextDebatedFrame() {
+    pause();
+    updateAll(nextDebated(currentFrame));
+}
+
 
 /*
  * Keyboard inputs
