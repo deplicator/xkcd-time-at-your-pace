@@ -69,7 +69,7 @@ function prevSpecial(frame, includeDebated) {
     result = result >= 0 ? result - 1 : -1 * (result + 1) - 1;
     var prevFrame = specialFrames[(result + specialFrames.length) % specialFrames.length];
     if (!includeDebated && isDebated(prevFrame)) {
-        return nextSpecial(prevFrame, includeDebated);
+        return prevSpecial(prevFrame, includeDebated);
     }
     return prevFrame;
 }
