@@ -69,27 +69,31 @@ function nextDebatedFrame() {
  * Keyboard inputs
  */
 $(document).keydown(function (e) {
-	if(!($("#manualinput").is(":focus"))) {
-		if (e.which == 37) { //left-key-pressed
-			if(e.ctrlKey && e.shiftKey) {
-				firstFrame();
-			} else if(e.ctrlKey) {
-				prevSpecialFrame();
-			} else {
-				prevFrame();
-			}
-			e.preventDefault();
-		} else if (e.which == 39) { //right-key-pressed
-			if(e.ctrlKey && e.shiftKey) {
-				lastFrame();
-			} else if(e.ctrlKey) {
-				nextSpecialFrame();
-			} else {
-				nextFrame();
-			}
-			e.preventDefault();
-		}
+    if(!($("#manualinput").is(":focus"))) {
+	if (e.which == 37) { //left-key-pressed
+	    if(e.ctrlKey && e.shiftKey) {
+		firstFrame();
+	    } else if(e.ctrlKey) {
+		prevSpecialFrame();
+	    } else if(e.shiftKey) {
+		prevDebatedFrame();
+	    } else {
+		prevFrame();
+	    }
+	    e.preventDefault();
+	} else if (e.which == 39) { //right-key-pressed
+	    if(e.ctrlKey && e.shiftKey) {
+		lastFrame();
+	    } else if(e.ctrlKey) {
+		nextSpecialFrame();
+	    } else if(e.shiftKey) {
+		nextDebatedFrame();
+	    } else {
+		nextFrame();
+	    }
+	    e.preventDefault();
 	}
+    }
 });
 
 
