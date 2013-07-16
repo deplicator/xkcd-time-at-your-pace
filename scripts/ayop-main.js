@@ -195,6 +195,19 @@ function setButtonEnabled(jqueryButton, enabled) {
     }
 }
 
+function updateButtons() {
+    setButtonEnabled($('#first'), currentFrame > 1);
+    setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
+		     < currentFrame); // prevSpecial underflows if there are no more previous special frames
+    setButtonEnabled($('#previous'), currentFrame > 1);
+    setButtonEnabled($('#next'), currentFrame < frameCount);
+    setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
+		     > currentFrame); // nextSpecial overflows if there are no more next special frames
+    setButtonEnabled($('#last'), currentFrame < frameCount);
+}
+$('#PauseDebatedFrames').change(updateButtons); // if the only previous/next special frames are debated ones, 
+                                                // changes here have to disable/enable the previous/next-special buttons
+
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
     var oldframe = currentFrame;
@@ -206,12 +219,7 @@ function updateAllWithoutSlider(frame) {
     $('#totalframes').html(frameCount);
     $('#yay').html(frameData[frame].yes);
     $('#nay').html(frameData[frame].no);
-    setButtonEnabled($('#first'), currentFrame > 1);
-    setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')) < currentFrame); // prevSpecial underflows if there are no more previous special frames
-    setButtonEnabled($('#previous'), currentFrame > 1);
-    setButtonEnabled($('#next'), currentFrame < frameCount);
-    setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')) > currentFrame); // nextSpecial overflows if there are no more next special frames
-    setButtonEnabled($('#last'), currentFrame < frameCount);
+    updateButtons(); // updates first, previous-special, previous, next, next-special, last
     
     //hot debate and make it glow
     $('#debated').addClass('notvisible');
