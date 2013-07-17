@@ -54,32 +54,46 @@ function nextSpecialFrame() {
     updateAll(nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
 }
 
+function prevDebatedFrame() {
+    pause();
+    updateAll(prevDebated(currentFrame));
+}
+
+function nextDebatedFrame() {
+    pause();
+    updateAll(nextDebated(currentFrame));
+}
+
 
 /*
  * Keyboard inputs
  */
 $(document).keydown(function (e) {
-	if(!($("#manualinput").is(":focus"))) {
-		if (e.which == 37) { //left-key-pressed
-			if(e.ctrlKey && e.shiftKey) {
-				firstFrame();
-			} else if(e.ctrlKey) {
-				prevSpecialFrame();
-			} else {
-				prevFrame();
-			}
-			e.preventDefault();
-		} else if (e.which == 39) { //right-key-pressed
-			if(e.ctrlKey && e.shiftKey) {
-				lastFrame();
-			} else if(e.ctrlKey) {
-				nextSpecialFrame();
-			} else {
-				nextFrame();
-			}
-			e.preventDefault();
-		}
-	}
+    if(!($("#manualinput").is(":focus"))) {
+        if (e.which == 37) { //left-key-pressed
+            if(e.ctrlKey && e.shiftKey) {
+                firstFrame();
+            } else if(e.ctrlKey) {
+                prevSpecialFrame();
+            } else if(e.shiftKey) {
+                prevDebatedFrame();
+            } else {
+                prevFrame();
+            }
+            e.preventDefault();
+        } else if (e.which == 39) { //right-key-pressed
+            if(e.ctrlKey && e.shiftKey) {
+                lastFrame();
+            } else if(e.ctrlKey) {
+                nextSpecialFrame();
+            } else if(e.shiftKey) {
+                nextDebatedFrame();
+            } else {
+                nextFrame();
+            }
+            e.preventDefault();
+        }
+    }
 });
 
 
@@ -100,8 +114,7 @@ function scrollHandler(e) {
 
 
 //https://code.google.com/p/jquery-timer/
-//TODO: Changer timer to something useful, like playforward.
-var timer = $.timer(function () {
+var playforward = $.timer(function () {
     if (currentFrame >= frameCount) {
         updateAll(1);
     }
@@ -114,7 +127,7 @@ var timer = $.timer(function () {
     specialframecounter = 0;
     updateAll(currentFrame + 1);
     if (currentFrame >= frameCount) {
-        timer.stop();
+        playforward.stop();
         $('#play').val("Play");
         $('.vote').show('fast');
     }
@@ -148,7 +161,7 @@ var playreverse = $.timer(function () {
  */
 function pause() {
     // Pause playback
-    timer.stop();
+    playforward.stop();
     playreverse.stop();
     // Rename play button
     $('#play').val("Play");
@@ -168,7 +181,7 @@ function unpause() {
     specialframecounter =  (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000 + 100;
     // Unpause/start playback
     if ($('#forward').hasClass('dir-select')) {
-        timer.set({
+        playforward.set({
             time: speed,
             autostart: true
         });
@@ -196,8 +209,8 @@ $(document).ready(function () {
 
     //Change directions on the fly.
     $('#reverse').click(function () {
-        if (timer.isActive) {
-            timer.stop();
+        if (playforward.isActive) {
+            playforward.stop();
             playreverse.set({
                 time: speed,
                 autostart: true
@@ -208,7 +221,7 @@ $(document).ready(function () {
     $('#forward').click(function () {
         if (playreverse.isActive) {
             playreverse.stop();
-            timer.set({
+            playforward.set({
                 time: speed,
                 autostart: true
             });
@@ -223,7 +236,7 @@ $(document).ready(function () {
         }
         var newspeed = parseInt($('#autoplayspeed').val(), 10);
         speed = (1 / newspeed) * 1000;
-        timer.set({
+        playforward.set({
             time: speed,
             autoplay: true
         });

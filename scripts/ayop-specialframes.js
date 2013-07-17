@@ -69,7 +69,27 @@ function prevSpecial(frame, includeDebated) {
     result = result >= 0 ? result - 1 : -1 * (result + 1) - 1;
     var prevFrame = specialFrames[(result + specialFrames.length) % specialFrames.length];
     if (!includeDebated && isDebated(prevFrame)) {
-        return nextSpecial(prevFrame, includeDebated);
+        return prevSpecial(prevFrame, includeDebated);
+    }
+    return prevFrame;
+}
+
+function nextDebated(frame) {
+    var result = binary_search_iterative(specialFrames, frame);
+    result = result >= 0 ? result + 1 : -1 * (result + 1);
+    var nextFrame = specialFrames[result % specialFrames.length];
+    if (!isDebated(nextFrame)) {
+        return nextDebated(nextFrame);
+    }
+    return nextFrame;
+}
+
+function prevDebated(frame) {
+    var result = binary_search_iterative(specialFrames, frame);
+    result = result >= 0 ? result - 1 : -1 * (result + 1) - 1;
+    var prevFrame = specialFrames[(result + specialFrames.length) % specialFrames.length];
+    if (!isDebated(prevFrame)) {
+        return prevDebated(prevFrame);
     }
     return prevFrame;
 }
