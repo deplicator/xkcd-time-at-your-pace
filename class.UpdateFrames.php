@@ -268,8 +268,9 @@ class UpdateFrames {
                     );
             $this->db->insert("log", $insert);
         } else {
-            $newImage = imagecreatefromstring($this->image);
-            imagepng($newImage, $newImageloc);
+            $imgHandle = fopen($newImageloc, "wb");
+            fwrite($imgHandle, $this->image);
+            fclose($imgHandle);
             if(file_exists($newImageloc) && filesize($newImageloc) != 0) {
                 $insert = array(
                             "type" => "Success",
