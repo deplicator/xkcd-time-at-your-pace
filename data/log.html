@@ -19,6 +19,12 @@
     </head>
     <body>
         <div>
+            <p>Show from day: 
+                <input id="differentday" type="text">
+                <input id="differentdayb" type="submit" value="go">
+            </p>
+        </div>
+        <div>
             <table id="display">
                 <thead>
                     <tr>
@@ -34,9 +40,21 @@
 
 
         <script>
-            function getLog() {
+            function getLog(showday) {
+                $("#display tbody").html('');
+                if (showday) {
+                    var thisyear = showday.slice(0,4);
+                    var thismonth = showday.slice(5,7);
+                    var thisdate = showday.slice(8,10);
+                } else {
+                    var today = new Date();
+                    var thisyear = today.getFullYear();
+                    var thismonth = today.getMonth() + 1;
+                    var thisdate = today.getDate();
+                } 
+
                 $.ajax({
-                    url: "log.php?when='2013-06-09'",
+                    url: "log.php?when='" + thisyear + "-" + thismonth + "-" + thisdate + "'",
                     dataType: "json",
                     async: false,
                     success: function(data) {
@@ -53,7 +71,10 @@
             $(document).ready(function() {
                 getLog();
                 $("#display").tablesorter({sortList: [[0,1]]}); 
-            
+                
+                $("#differentdayb").click(function () {
+                    getLog($("#differentday").val());
+                });
             }); 
             
             
