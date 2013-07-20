@@ -1,7 +1,7 @@
 __NOTOC__
 
 ==Description==
-Displays [http://www.xkcd.com/1190/ XKCD 1190 Time] in a fun and navigable way.
+Displays [http://www.xkcd.com/1190/ xkcd 1190 Time] in a fun and navigable way.
 
 The most recent [https://github.com/deplicator/xkcdTime_atyourownpace/tags tag] is what it on the website.
 
@@ -112,7 +112,7 @@ The meteor strike happened at an off hour, but these were new hashes and still m
 
 
 ==A Friendly Reminder==
-XKCD is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
+xkcd is licensed by [http://www.xkcd.com/about/ Randall Munroe] under a [http://www.xkcd.com/license.html Creative Commons Attribution-NonCommercial 2.5 License], so please give credit where it is due (because he's a cool guy as far as I know from being a regular reader of his comic).
 
 The code here, on the other hand, has [http://geekwagon.net/ufl/license.txt an "awful" license].
 
