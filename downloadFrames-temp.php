@@ -75,7 +75,7 @@ foreach ($frames as $frame) {
     if (!file_exists($frame['path']) && !$skip) {
         echo "Downloading... ";
         $fp = fopen($frame['path'], 'w');
-        $ch = curl_init($frame['downloadedUrl']);
+        $ch = curl_init($frame['xkcdUrl']);
         curl_setopt($ch, CURLOPT_FILE, $fp);
         $data = curl_exec($ch);
         curl_close($ch);
