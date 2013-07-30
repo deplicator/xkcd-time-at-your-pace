@@ -69,7 +69,11 @@ function fetchColors() {
 function getFrameURL(frame) {
     //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
     //return 'frames/' + frames[frame].replace(/.*\//, '');
-    return 'data/frames/' + frame + '.png';
+    if (frame == 1) {
+        return 'data/frames/' + frame + '.png';;
+    } else {
+        return frameData[frame].link;
+    }
     //return frames[frame];  //Do not use! will break imagediff, because of cross-origin.
 }
 

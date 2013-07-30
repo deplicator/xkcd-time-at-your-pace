@@ -20,7 +20,7 @@ try {
     // Debating combining votes table with frames table, but I'm inclined to keep them seperate so
     // we're not writing to the frames table as much. Started discuccion with issue #57.
     $STH = $DBH->query('
-        SELECT frames.frame, blink,
+        SELECT frames.frame, blink, link,
         IFNULL(votes.voteyes, 0) AS \'yes\', IFNULL(votes.voteno, 0) AS \'no\',
         (2 * voteyes > voteno && voteyes + voteno > 10) AS \'special\'
         FROM frames
