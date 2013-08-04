@@ -69,7 +69,7 @@ function fetchColors() {
 function getFrameURL(frame) {
     //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
     //return 'frames/' + frames[frame].replace(/.*\//, '');
-    if (frame == 1) {
+    if (frame == 1 || diffEngine) {
         return 'data/frames/' + frame + '.png';;
     } else {
         return frameData[frame].link;

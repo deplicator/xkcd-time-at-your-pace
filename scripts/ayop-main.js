@@ -13,6 +13,7 @@ var frameInitial = 1;
 var currentFrame = 1;
 var currentCompareFrame = 0;
 var specialFrames = [];
+var diffEngine = false;
 
 var scrollhere = document.getElementById("scrollhere");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
@@ -44,8 +45,11 @@ if (vars.frame && !isNaN(vars.frame)) {
 
 var framediff;
 var difftype = "none";
-
+$("#diffEngineControls").hide();
 if (vars.framediff) {
+    diffEngine = true;
+    $("#turnOnDiffEngine").hide();
+    $("#diffEngineControls").show();
     framediff = parseInt(vars.framediff, 10);
     if (framediff == frameInitial - 1) {
         changeDiffType("prev", true);

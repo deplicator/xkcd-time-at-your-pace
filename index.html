@@ -73,13 +73,15 @@
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
             <div id="imgdiffopts" class="framedata-sub">
-                <!--<h4>Image Difference</h4>-->
-                <h4 style="color: red;">Due to an unexpected increase in traffic, image difference is down (it will be back soon).</h4>
-                <!--<div>
+                <h4>Image Difference</h4>
+                <div id="turnOnDiffEngine">
+                    <a href="index.html?frame=2&framediff=1">Turn on Image Difference</a>
+                </div>
+                <div id="diffEngineControls">
                     <p><input name="difftype" value="none" type="radio" checked/>Normal</p>
                     <p><input name="difftype" value="prev" type="radio"/>Previous Frame Difference</p>
                     <p><input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/></p>
-                </div>-->
+                </div>
             </div>
             <div id="votedata" class="framedata-sub">
                 <h4>Special Frame Nomination</h4>
@@ -163,8 +165,8 @@
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="./images/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
     </a>
 
-    <canvas id="canvas1" width="553" height="395" style="display: none"></canvas>
-    <canvas id="canvas2" width="553" height="395" style="display: none"></canvas>
+    <canvas id="canvas1" width="553" height="395" <!--style="display: none-->"></canvas>
+    <canvas id="canvas2" width="553" height="395" <!--style="display: none-->"></canvas>
     
     <script src="scripts/imagediff.js"></script><!-- top-level dependencys: canvas1,2,3 loaded.  -->
     <script src="scripts/ayop-main.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->

@@ -46,10 +46,13 @@ There is a panel below the comic that can be opened to see all the special frame
 '''Debated Frames''' are frames that have recieved a number of both yes and no votes.
 
 
-===Previous Frame Difference===
+===Image Difference===
+When the site started getting a level of traffic that was hard for the server to handle, the images were changed to pull from xkcd.com instead of the local frame data. This causes problems with cross domain contamination of the canvas elements. For now image difference has been changed so that if the frameDiff url variable is found it will pull images from the local server and work as expected.
+
+====Previous Frame Diffrence====
 Shows the new pixels in green and removed pixels in red when compared to previous frame.
 
-===Image Difference From Frame===
+====Image Difference From Frame====
 Same as above, except shows difference from a chosen frame.
 
 ===Share Links===
