@@ -92,6 +92,13 @@ $(document).keydown(function (e) {
                 nextFrame();
             }
             e.preventDefault();
+        } else if (e.which == 32) { //space-bar-pressed
+            if($('#play').val() == "Play") {
+              unpause();
+            } else {
+              pause();
+            }
+            e.preventDefault();
         }
     }
 });
