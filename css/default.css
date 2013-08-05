@@ -116,7 +116,6 @@ li {
     box-shadow: 2px 2px 5px 0px #666;
     float: left;
     font-size: 11px;
-    height: 58px;
     margin: 17px 0 0 19px;
     padding: 0 15px;
     position: relative;
@@ -391,7 +390,6 @@ li {
 #imgdiffopts {
     border-bottom: 1px dashed #222;
     border-right: 1px dashed #222;
-    height: 55px;
     width: 260px;
     float: left;
 }
