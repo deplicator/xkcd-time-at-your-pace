@@ -45,7 +45,7 @@ function isSpecial(frame, includeDebated) {
 }
 
 function isDebated(frame) {
-    return frameData[frame].no >= 5 && parseInt(frameData[frame].yes)/(parseInt(frameData[frame].yes)+parseInt(frameData[frame].no)) <= 0.8;
+    return frameData[frame].no >= 5 && parseInt(frameData[frame].yes)/(parseInt(frameData[frame].yes)+parseInt(frameData[frame].no)) <= 0.6;
 }
 
 function nextSpecial(frame, includeDebated) {
