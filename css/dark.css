@@ -1,0 +1,197 @@
+/* Splarc / /u/SomePostMan 2013
+ * http://userstyles.org/styles/90900/xkcd-time-geekwagon-aubronwood-darkened
+ * Licenced under CC BY-NC 3.0
+ *
+ * This version is identical to the original css, with the following exceptions:
+ *  - Removed original header and replaced with this one
+ *  - Removed Aubronwood style
+ *  - Removed moz-document-domain wrapper
+ *  - Corrected indentation (original: two spaces; here: four spaces)
+ * 
+ * Again, this file is licensed under CC BY-NC 3.0; it is specifically *not*
+ * licensed under the Universal Forfeit License.
+ */
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+/* Cleanup
+ *****************************************/
+
+header h2, /* "at your own pace */
+#mousewheel,
+#showlong,
+#actuallink
+{display:none!important;}
+
+/* Global
+ *****************************************/
+
+html,
+body
+{
+    background-color: rgba(6%,6%,6%,1.0)!important;
+    background-image: none!important;
+}
+
+body * {
+    background-color: transparent!important;
+    color: rgba(72%,72%,72%,1.0)!important;
+    border-color: rgba(100%,100%,100%,0.07)!important;
+    font-family: Verdana!important;
+}
+
+/* Header/top stuff
+ *****************************************/
+
+header h1 {
+    visibility: hidden!important;
+}
+header h1 a {
+    visibility: visible!important;
+    font-family: Lucida Sans, Calibri, sans-serif!important;
+    font-style: italic!important;
+    color: rgba(26%,26%,26%,1.0)!important;
+    text-align: center!important;
+    display: block!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    position: relative!important;
+    left: -14px!important;
+}
+header h1 a:before {
+/*content: "xkcd 1190 - "!important;*/
+}  
+
+body > a[href*="github"] {
+    opacity: 0.1!important;
+    transition: 0.4s 0.35s!important;
+}
+body > a[href*="github"]:hover {
+    opacity: 1.0!important;
+}
+
+/* Layout & style
+ *****************************************/
+
+/* tehmainevent is overlapping the controls */
+#autoplay,
+#step {
+    position: relative!important;
+    z-index: 10!important;
+}
+
+#controls {
+    width: 740px!important;
+}
+#autoplay {
+    margin-top: 0px!important;
+    height: 75px!important;
+    width: 300px!important;
+    padding: 12px!important;
+    box-shadow: none!important;
+    border-radius: 7px!important;
+    border: 1px solid rgba(100%,100%,100%,0.07)!important;
+}
+#autoplay #reverse,
+#autoplay #forward
+{
+    transform: none!important;
+    border-radius: 4px!important;
+    top: 65px!important;
+}
+#autoplay #play {
+    top: 15px!important;
+}
+
+#step {
+    height: 85px!important;
+    border: 1px solid rgba(100%,100%,100%,0.07)!important;
+    border-radius: 7px!important;
+}
+#step p {
+    opacity: 0.35!important;
+    margin-bottom: 5px!important;
+}
+
+/** /
+    #step:before {
+    color: transparent;
+    content: "Mouse Wheel: Hover over image and scroll down to move forward, up to move back."!important;
+    }
+    #step:hover * {
+    color: rgba(45%,45%,45%,1.0)!important;
+    }
+    /**/
+
+/* Input/Controls stuff
+ *****************************************/
+
+#autoplay input,
+#step input:not(#slider),
+input#manualinput,
+#framecount,
+#framedata input
+{
+    background-image: none!important;
+    background-color: rgba(14%,14%,14%,1.0)!important;
+    border-color: rgba(100%,100%,100%,0.07)!important;
+    box-shadow: none!important;
+    color: rgba(72%,72%,72%,1.0)!important;
+}
+#autoplay input:not([class*="button"]),
+input#manualinput,
+#framecount,
+#framedata input:not([class*="button"])
+{
+    color: black!important;
+    opacity: 0.5!important;
+}
+
+/* lots of specificity requirements up in this shizzle */
+#autoplay input.bluebutton:hover,
+#step input.bluebutton:hover,
+#step input#first.bluebutton:hover,
+#step input#previous-special.bluebutton:hover,
+#step input#previous.bluebutton:hover,
+#step input#next.bluebutton:hover,
+#step input#next-special.bluebutton:hover,
+#step input#last.bluebutton:hover,
+#framedata input.bluebutton:hover
+{
+    color: rgba(150,168,200,1.0)!important;
+}
+
+#framecount {
+    position: relative!important;
+    top: 200px!important;
+    float: none!important;
+    max-width: 200px!important;
+    display: block!important;
+    margin: auto!important;
+    text-align: center!important;
+    padding: 1em 2em!important;
+    border-radius: 12px!important;
+}
+
+/* The main event!
+ *****************************************/
+
+#tehmainevent {
+    position: relative!important;
+    top: 50px!important;
+}
+
+canvas {
+    box-shadow: 0px 0px 15px 0px rgba(100%,100%,100%,0.4)!important;
+    -webkit-box-shadow: 0px 0px 22.5px 0px rgba(100%,100%,100%,0.4)!important;
+}
+
+/* Extra stuff at bottom
+ *****************************************/
+
+#framedata {
+    margin-top: 300px!important;
+    background-color: rgba(50%,50%,50%,0.14)!important;
+    padding: 2em!important;
+    border-radius: 12px!important;
+}
