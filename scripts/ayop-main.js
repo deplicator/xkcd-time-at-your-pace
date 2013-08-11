@@ -183,7 +183,7 @@ function toggleTheme() {
     } else {
 	// remove CSS
         var allLinks = document.getElementsByTagName("link");
-        for (var i = allLinks.length - 1; i >= 0; i++) {
+        for (var i = allLinks.length - 1; i >= 0; i--) {
             var currentLink = allLinks[i];
             if (currentLink && currentLink.getAttribute("href") == filename) {
                 currentLink.parentNode.removeChild(currentLink);
