@@ -1,6 +1,6 @@
-/* Splarc / /u/SomePostMan 2013
+/* Splark / /u/SomePostMan 2013
  * http://userstyles.org/styles/90900/xkcd-time-geekwagon-aubronwood-darkened
- * Licenced under CC BY-NC 3.0
+ * Licenced under CC0 - Public domain
  *
  * This version is identical to the original css, with the following exceptions:
  *  - Removed original header and replaced with this one
@@ -8,8 +8,8 @@
  *  - Removed moz-document-domain wrapper
  *  - Corrected indentation (original: two spaces; here: four spaces)
  * 
- * Again, this file is licensed under CC BY-NC 3.0; it is specifically *not*
- * licensed under the Universal Forfeit License.
+ * Again, this file is licensed under CC0 - Public domain; it is specifically
+ * *not* licensed under the Universal Forfeit License.
  */
 
 @namespace url(http://www.w3.org/1999/xhtml);
