@@ -29,23 +29,26 @@
         border: none!important;
     }
 
-    #votedata {
-        position: absolute;
-        left: -131px;
-        top: -373px;
+    .widescreen-separate {
+	position: absolute;
         background: #EAEEF4;
-        border: 1px solid #96A8C8;
+        border: 1px solid #96A8C8!important; /* !important needed to override dashed border in default.css */
         border-radius: 7px;
         box-shadow: 2px 2px 5px 0px #666;
     }
 
+    #votedata {
+        left: -131px;
+        top: -373px;
+    }
+
     #imgdiffopts {
-        position: absolute;
         right: -145px;
         top: -250px;
-        background: #EAEEF4;
-        border: 1px solid #96A8C8!important;
-        border-radius: 7px;
-        box-shadow: 2px 2px 5px 0px #666;
+    }
+
+    #themes {
+	right: -145px;
+	top: -325px;
     }
 }
