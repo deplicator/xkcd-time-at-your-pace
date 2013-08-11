@@ -193,6 +193,7 @@ function toggleTheme() {
     }
 }
 $("#themes label input").click(toggleTheme);
+$("#themes label input").each(toggleTheme);
 
 function slideshowLoaded(frame, img) {
     if (currentFrame == frame) {
