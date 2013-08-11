@@ -163,6 +163,37 @@ $("#freezeframe").change(function () {
     updateAll(currentFrame);
 });
 
+/* 
+ * Handler for the "themes" checkboxes.
+ *
+ * One handler fits all, as long as the following rules are followed:
+ *   - The checkbox should be an input inside a label inside the #themes div
+ *   - Its value should be the name of the stylesheet (without "css/" prefix)
+ * If these rules are followed, then additional themes can be added without even changing this file!
+ */
+function toggleTheme() {
+    var filename = "css/" + this.value;
+    if (this.checked) {
+	// add CSS
+        var fileref = document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", filename);
+        document.getElementsByTagName("head")[0].appendChild(fileref);
+    } else {
+	// remove CSS
+        var allLinks = document.getElementsByTagName("link");
+        for (var i = allLinks.length - 1; i >= 0; i++) {
+            var currentLink = allLinks[i];
+            if (currentLink && currentLink.getAttribute("href") == filename) {
+                currentLink.parentNode.removeChild(currentLink);
+                break;
+            }
+        }
+    }
+}
+$("#themes label input").click(toggleTheme);
+
 function slideshowLoaded(frame, img) {
     if (currentFrame == frame) {
         ctx3.drawImage(img, 0, 0);
@@ -202,11 +233,11 @@ function setButtonEnabled(jqueryButton, enabled) {
 function updateButtons() {
     setButtonEnabled($('#first'), currentFrame > 1);
     setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
-		     < currentFrame); // prevSpecial underflows if there are no more previous special frames
+                     < currentFrame); // prevSpecial underflows if there are no more previous special frames
     setButtonEnabled($('#previous'), currentFrame > 1);
     setButtonEnabled($('#next'), currentFrame < frameCount);
     setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
-		     > currentFrame); // nextSpecial overflows if there are no more next special frames
+                     > currentFrame); // nextSpecial overflows if there are no more next special frames
     setButtonEnabled($('#last'), currentFrame < frameCount);
 }
 $('#PauseDebatedFrames').change(updateButtons); // if the only previous/next special frames are debated ones, 

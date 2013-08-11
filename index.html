@@ -72,8 +72,14 @@
         <p class="openingpanelrightext">last calculated on <span id="sfcalcdate"></span></p>
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
-            <div id="themes" class="framedata-sub widescreen-separate">
-                <label><input name="darktheme" value="darktheme" type="checkbox"/>Use dark theme</label>
+            <div id="themes" class="framedata-sub widescreen-separate"> <!-- Event handler in scripts/ayop-main.js  -->
+                <label><input name="darktheme" value="dark.css" type="checkbox"/>Use dark theme</label>
+                <!--
+                    To add more themes, follow these rules:
+                      - Put a checkbox input inside a label, like above
+                      - Use the CSS file name as its value
+                    That's all! Event handlers are automatically added.
+		  -->
             </div>
             <div id="imgdiffopts" class="framedata-sub widescreen-separate">
                 <h4>Image Difference</h4>
