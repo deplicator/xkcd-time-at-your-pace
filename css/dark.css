@@ -2,12 +2,9 @@
  * http://userstyles.org/styles/90900/xkcd-time-geekwagon-aubronwood-darkened
  * Licenced under CC0 - Public domain
  *
- * This version is identical to the original css, with the following exceptions:
- *  - Removed original header and replaced with this one
- *  - Removed Aubronwood style
- *  - Removed moz-document-domain wrapper
- *  - Corrected indentation (original: two spaces; here: four spaces)
- * 
+ * You can view the differences between this version and the original css on git
+ * (http://github.com/deplicator/xkcdTime_atyourownpace)
+ *
  * Again, this file is licensed under CC0 - Public domain; it is specifically
  * *not* licensed under the Universal Forfeit License.
  */
@@ -17,11 +14,11 @@
 /* Cleanup
  *****************************************/
 
-header h2, /* "at your own pace */
+/*header h2, /* "at your own pace 
 #mousewheel,
 #showlong,
 #actuallink
-{display:none!important;}
+{display:none!important;}*/
 
 /* Global
  *****************************************/
@@ -43,20 +40,20 @@ body * {
 /* Header/top stuff
  *****************************************/
 
-header h1 {
+/*header h1 {
     visibility: hidden!important;
-}
+}*/
 header h1 a {
-    visibility: visible!important;
+    /*visibility: visible!important;*/
     font-family: Lucida Sans, Calibri, sans-serif!important;
     font-style: italic!important;
     color: rgba(26%,26%,26%,1.0)!important;
-    text-align: center!important;
+    /*text-align: center!important;
     display: block!important;
     margin-left: auto!important;
     margin-right: auto!important;
     position: relative!important;
-    left: -14px!important;
+    left: -14px!important;*/
 }
 header h1 a:before {
 /*content: "xkcd 1190 - "!important;*/
@@ -74,16 +71,16 @@ body > a[href*="github"]:hover {
  *****************************************/
 
 /* tehmainevent is overlapping the controls */
-#autoplay,
+/*#autoplay,
 #step {
     position: relative!important;
     z-index: 10!important;
-}
+}*/
 
-#controls {
+/*#controls {
     width: 740px!important;
-}
-#autoplay {
+}*/
+/*#autoplay {
     margin-top: 0px!important;
     height: 75px!important;
     width: 300px!important;
@@ -91,26 +88,26 @@ body > a[href*="github"]:hover {
     box-shadow: none!important;
     border-radius: 7px!important;
     border: 1px solid rgba(100%,100%,100%,0.07)!important;
-}
-#autoplay #reverse,
+}*/
+/*#autoplay #reverse,
 #autoplay #forward
 {
     transform: none!important;
     border-radius: 4px!important;
     top: 65px!important;
-}
-#autoplay #play {
+}*/
+/*#autoplay #play {
     top: 15px!important;
-}
+}*/
 
-#step {
+/*#step {
     height: 85px!important;
     border: 1px solid rgba(100%,100%,100%,0.07)!important;
     border-radius: 7px!important;
-}
+}*/
 #step p {
     opacity: 0.35!important;
-    margin-bottom: 5px!important;
+    /*margin-bottom: 5px!important;*/
 }
 
 /** /
@@ -161,7 +158,7 @@ input#manualinput,
     color: rgba(150,168,200,1.0)!important;
 }
 
-#framecount {
+/*#framecount {
     position: relative!important;
     top: 200px!important;
     float: none!important;
@@ -171,15 +168,15 @@ input#manualinput,
     text-align: center!important;
     padding: 1em 2em!important;
     border-radius: 12px!important;
-}
+}*/
 
 /* The main event!
  *****************************************/
 
-#tehmainevent {
+/*#tehmainevent {
     position: relative!important;
     top: 50px!important;
-}
+}*/
 
 canvas {
     box-shadow: 0px 0px 15px 0px rgba(100%,100%,100%,0.4)!important;
@@ -190,8 +187,8 @@ canvas {
  *****************************************/
 
 #framedata {
-    margin-top: 300px!important;
+    /*margin-top: 300px!important;*/
     background-color: rgba(50%,50%,50%,0.14)!important;
-    padding: 2em!important;
+    /*padding: 2em!important;*/
     border-radius: 12px!important;
 }
