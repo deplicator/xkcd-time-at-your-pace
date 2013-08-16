@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
      xkcd Time: at your own pace logo
-     by MaPePeR
-     https://gist.github.com/MaPePeR/6251587
+     originally by MaPePeR
+
+     You can view the differences between this version and the original file on git
+     (http://github.com/deplicator/xkcdTime_atyourownpace)
 -->
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -270,72 +272,25 @@
          inkscape:connector-curvature="0" />
     </pattern>
   </defs>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="988"
-     id="namedview351"
-     showgrid="false"
-     inkscape:zoom="4.7407407"
-     inkscape:cx="57.914061"
-     inkscape:cy="55.851637"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg2"
-     inkscape:snap-bbox="true">
-    <inkscape:grid
-       type="xygrid"
-       id="grid6018"
-       empspacing="5"
-       visible="true"
-       enabled="true"
-       snapvisiblegridlinesonly="true" />
-  </sodipodi:namedview>
-  <title
-     id="title4" />
   <!-- default stroke -->
   <path
-     sodipodi:nodetypes="ccccc"
-     inkscape:connector-curvature="0"
-     d="m 99.5,91.379888 -99.0000005,0 L 50.000084,8.6201125 m 0,0 L 99.5,91.379888"
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99999994000000003;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019000000040;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     id="path6016" />
-  <rect
-     style="stroke:none;fill:url(#pattern6514)"
-     width="105"
-     height="105"
-     x="105"
-     y="-5"
-     id="rect6517" />
-  <path
-     id="path6519"
+     id="pyramid_bricks"
      style="fill:url(#pattern6521);fill-opacity:1;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
      d="m 99.5,91.379888 -99.0000005,0 L 50.000084,8.6201125 m 0,0 L 99.5,91.379888"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="ccccc" />
-  <path
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     inkscape:connector-curvature="0"
-     id="path294"
-     d="m 65.261447,48.276534 c 0,8.135808 -6.832864,14.729775 -15.261363,14.729775 -8.428496,0 -15.261363,-6.593967 -15.261363,-14.729775 0,-8.135811 6.832867,-14.731401 15.261363,-14.731401 8.428499,0 15.261363,6.59559 15.261363,14.731401 z" />
-  <path
-     style="fill:none;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     inkscape:connector-curvature="0"
-     id="path349"
-     d="M 50.000084,48.276534 60.828771,42.241022" />
-  <path
-     style="fill:none;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     inkscape:connector-curvature="0"
-     id="path338"
-     d="m 50.000084,48.276534 -5.414341,-3.01857" />
+  <circle
+     style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="clock_circle"
+     cx="50" cy="48" r="15" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="hand_minutes"
+     x1="50" y1="48" x2="61" y2="42" />
+  <line
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="hand_hours"
+     x1="50" y1="48" x2="45" y2="45" />
 </svg>
 <!-- bounding box -->
 
