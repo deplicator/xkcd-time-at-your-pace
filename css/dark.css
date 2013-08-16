@@ -140,7 +140,7 @@ input#manualinput,
 #framecount,
 #framedata input:not([class*="button"])
 {
-    color: black!important;
+    /*color: black!important;*/
     opacity: 0.5!important;
 }
 
