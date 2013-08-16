@@ -304,7 +304,7 @@
      x="50" y="82.5"
      font-family="Droid Serif"
      font-size="9"
-     style="fill:none;fill-opacity:1;stroke:#FFFFFF;stroke-width:5px;stroke-linecap:butt;stroke-linejoin:miter;stroke:opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#FFFFFF;stroke-width:3.75px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
      text-anchor="middle">At your own pace</text>
   <text
      id="text_foreground"
