@@ -272,25 +272,44 @@
          inkscape:connector-curvature="0" />
     </pattern>
   </defs>
-  <!-- default stroke -->
+
   <path
      id="pyramid_bricks"
      style="fill:url(#pattern6521);fill-opacity:1;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
      d="m 99.5,91.379888 -99.0000005,0 L 50.000084,8.6201125 m 0,0 L 99.5,91.379888"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="ccccc" />
-  <circle
-     style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     id="clock_circle"
-     cx="50" cy="48" r="15" />
-  <line
-     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     id="hand_minutes"
-     x1="50" y1="48" x2="61" y2="42" />
-  <line
-     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     id="hand_hours"
-     x1="50" y1="48" x2="45" y2="45" />
-</svg>
-<!-- bounding box -->
 
+  <circle
+     id="clock_circle"
+     cx="50" cy="48" r="15"
+     style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+
+  <line
+     id="hand_minutes"
+     x1="50" y1="48" x2="61" y2="42"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+  <line
+     id="hand_hours"
+     x1="50" y1="48" x2="45" y2="45"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+
+  <!-- The text is included twice:
+       * the first time, the text is invisible, and only its stroke is painted in white;
+       * the second time, the text is visible (without a stroke).
+       Combined, this gives the text a white "outline" which makes it easier to read agains the brick background.
+  -->
+  <text
+     id="text_background"
+     x="50" y="82.5"
+     font-family="Droid Serif"
+     font-size="9"
+     style="fill:none;fill-opacity:1;stroke:#FFFFFF;stroke-width:5px;stroke-linecap:butt;stroke-linejoin:miter;stroke:opacity:1"
+     text-anchor="middle">At your own pace</text>
+  <text
+     id="text_foreground"
+     x="50" y="82.5"
+     font-family="Droid Serif"
+     font-size="9"
+     text-anchor="middle">At your own pace</text>
+</svg>
