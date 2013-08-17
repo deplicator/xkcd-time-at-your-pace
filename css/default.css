@@ -302,7 +302,6 @@ li {
 .openingpanel h3 {
     cursor: pointer; cursor: hand;
     background: #96A8C8;
-    border-bottom: 1px dashed #222;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     padding: 10px;
@@ -313,11 +312,12 @@ li {
     margin-top: 30px;
 }
 
-/* Sub Componets of Frame Data */
+/* Sub Components of Frame Data */
 #framedata .framedata-sub {
     float: left;
     padding: 10px 0;
     text-align: center;
+    width: 260px;
 }
 
 /* Share Link */
@@ -335,7 +335,6 @@ li {
 /* Vote Data */
 #framedata #votedata {
     clear: left;
-    width: 260px;
 }
 
 #votedata p {
@@ -386,12 +385,20 @@ li {
 }
 
 
+/* Themes */
+#themes {
+    border-bottom: 1px dashed #222;
+    border-right: 1px dashed #222;
+    float: left;
+}
+
+
 /* Image Difference */
 #imgdiffopts {
     border-bottom: 1px dashed #222;
     border-right: 1px dashed #222;
-    width: 260px;
     float: left;
+    clear: left;
 }
 #imgdiffopts div {
     width: 250px;
