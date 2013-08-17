@@ -170,19 +170,49 @@ $("#freezeframe").change(function () {
  *   - The checkbox should be an input inside a label inside the #themes div
  *   - Its value should be the name of the stylesheet (without "css/" prefix)
  * If these rules are followed, then additional themes can be added without even changing this file!
+ *
+ * Arguments:
+ *   - filename: The filename of the css stylesheet to toggle.
+ *   - enable: true to enable the stylesheet, false to disable it.
  */
-function toggleTheme() {
-    var filename = "css/" + this.value;
-    if (this.checked) {
-	// add CSS
+function toggleTheme(filename, enable) {
+    if (enable) {
+        // add CSS to index.html
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
         fileref.setAttribute("href", filename);
         document.getElementsByTagName("head")[0].appendChild(fileref);
+        // add CSS to ayop-logo.svg
+        filename = "../" + filename; // ayop-logo.svg is in the images subfolder
+        var svgDocument = document.getElementById("ayop_logo").contentDocument;
+        if (svgDocument == null) {
+            setTimeout(function () { toggleTheme(filename, enable); }, 10);
+            return;
+        }
+        fileref = svgDocument.createElementNS("http://www.w3.org/1999/xhtml", "link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", filename);
+        svgDocument.getElementsByTagName("defs")[0].appendChild(fileref);
     } else {
-	// remove CSS
+        // remove CSS from index.html
         var allLinks = document.getElementsByTagName("link");
+        for (var i = allLinks.length - 1; i >= 0; i--) {
+            var currentLink = allLinks[i];
+            if (currentLink && currentLink.getAttribute("href") == filename) {
+                currentLink.parentNode.removeChild(currentLink);
+                break;
+            }
+        }
+        // remove CSS from ayop-logo.svg
+        filename = "../" + filename; // ayop-logo.svg is in the images subfolder
+        var svgDocument = document.getElementById("ayop_logo").contentDocument;
+        if (svgDocument == null) {
+            setTimeout(function () { toggleTheme(filename, enable); }, 10);
+            return;
+        }
+        allLinks = svgDocument.getElementsByTagName("link");
         for (var i = allLinks.length - 1; i >= 0; i--) {
             var currentLink = allLinks[i];
             if (currentLink && currentLink.getAttribute("href") == filename) {
@@ -192,8 +222,10 @@ function toggleTheme() {
         }
     }
 }
-$("#themes label input").click(toggleTheme);
-$("#themes label input").each(toggleTheme);
+$("#themes label input").click(function() {
+    toggleTheme("css/" + this.value, this.checked);
+});
+$("#themes label input").click();
 
 function slideshowLoaded(frame, img) {
     if (currentFrame == frame) {
