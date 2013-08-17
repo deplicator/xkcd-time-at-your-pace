@@ -7,6 +7,7 @@
      (http://github.com/deplicator/xkcdTime_atyourownpace)
 -->
 <svg
+   onload="setClock()"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -21,7 +22,7 @@
    width="100"
    height="100"
    viewBox="0 0 100 100"
-   id="svg2"
+   id="ayop-logo"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="xkcd_ayop_logo_triangle_clock_in_tip.svg">
   <metadata
@@ -285,6 +286,8 @@
      cx="50" cy="48" r="15"
      style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
 
+  <!-- clock hands: center 50,48 -->
+  <!-- second hand: radius 14 -->
 <!--
   <line
      id="hand_seconds"
@@ -299,9 +302,10 @@
       repeatCount="indefinite" />
   </line>
 -->
+  <!-- minute hand: radius 10 -->
   <line
      id="hand_minutes"
-     x1="50" y1="48" x2="61" y2="42"
+     x1="50" y1="48" x2="58" y2="42"
      style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0">
     <animateTransform
       attributeName="transform"
@@ -311,9 +315,10 @@
       dur="60min"
       repeatCount="indefinite" />
   </line>
+  <!-- hour hand: radius 5 -->
   <line
      id="hand_hours"
-     x1="50" y1="48" x2="45" y2="45"
+     x1="50" y1="48" x2="47" y2="44"
      style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.8;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0">
     <animateTransform
       attributeName="transform"
@@ -342,4 +347,45 @@
      font-family="Droid Serif"
      font-size="9"
      text-anchor="middle">At your own pace</text>
+  <script type="text/javascript"><![CDATA[
+      /**
+	* Set the clock hands.
+	*
+	* This script will set the clock hands to the current time each time it is run.
+	* It supports the hour, minute, and second hands and any combination of them;
+	* i. e., it is not necessary to modify this script if any these hands are commented out or in.
+	*/
+      function setClock() {
+	  var currentTime = new Date();
+	  var handHours = document.querySelectorAll("#hand_hours")[0];
+	  var handMinutes = document.querySelectorAll("#hand_minutes")[0];
+	  var handSeconds = document.querySelectorAll("#hand_seconds")[0];
+	  var cx = parseInt(handHours.getAttribute("x1") || handMinutes.getAttribute("x1") || handSeconds.getAttribute("x1"));
+	  var cy = parseInt(handHours.getAttribute("y1") || handMinutes.getAttribute("y1") || handSeconds.getAttribute("y1"));
+	  function getRad(degrees) {
+	      return degrees * (Math.PI / 180);
+	  }
+	  if (handSeconds) {
+	      var rad = getRad(currentTime.getSeconds() * 6);
+	      handSeconds.setAttribute("x2",
+				       cx + (14 * Math.sin(rad)));
+	      handSeconds.setAttribute("y2",
+				       cy - (14 * Math.cos(rad)));
+	  }
+	  if (handMinutes) {
+	      var rad = getRad(currentTime.getMinutes() * 6);
+	      handMinutes.setAttribute("x2",
+       				       cx + (10 * Math.sin(rad)));
+	      handMinutes.setAttribute("y2",
+				       cy - (10 * Math.cos(rad)));
+	  }
+	  if (handHours) {
+	      var rad = getRad(currentTime.getHours() * 30);
+	      handHours.setAttribute("x2",
+				     cx + (6 * Math.sin(rad)));
+	      handHours.setAttribute("y2",
+				     cy - (6 * Math.cos(rad)));
+	  }
+      }
+  ]]></script>
 </svg>
