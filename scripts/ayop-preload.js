@@ -67,12 +67,12 @@ $(document).ready(function () {
 function fetchColors(callback) {
     var legendSvg = document.querySelectorAll("#pli-legend")[0].contentDocument;
     if (legendSvg == null) {
-	// SVG document isn't ready yet
-	if (callback && callback != null) {
-	    // try again
-	    setTimeout(fetchColors, 10);
-	}
-	return false;
+        // SVG document isn't ready yet
+        if (callback && callback != null) {
+            // try again
+            setTimeout(fetchColors, 10);
+        }
+        return false;
     }
     notYetLoadedColor = legendSvg.querySelectorAll("#fill_notloaded")[0].attributes["fill"].value;
     loadingInProgressColor =  legendSvg.querySelectorAll("#fill_loading")[0].attributes["fill"].value;

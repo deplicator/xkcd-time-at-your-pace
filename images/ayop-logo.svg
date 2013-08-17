@@ -38,7 +38,6 @@
   </metadata>
   <defs
      id="defs353">
-<!--    <link href="../css/dark.css" type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml" /> -->
     <style id="style_common" type="text/css"><![CDATA[
         line.hand {
             fill: none;
@@ -397,43 +396,43 @@
      text-anchor="middle">At your own pace</text>
   <script type="text/javascript"><![CDATA[
       /**
-	* Set the clock hands.
-	*
-	* This script will set the clock hands to the current time each time it is run.
-	* It supports the hour, minute, and second hands and any combination of them;
-	* i. e., it is not necessary to modify this script if any these hands are commented out or in.
-	*/
+        * Set the clock hands.
+        *
+        * This script will set the clock hands to the current time each time it is run.
+        * It supports the hour, minute, and second hands and any combination of them;
+        * i. e., it is not necessary to modify this script if any these hands are commented out or in.
+        */
       function setClock() {
-	  var currentTime = new Date();
-	  var handHours = document.querySelectorAll("#hand_hours")[0];
-	  var handMinutes = document.querySelectorAll("#hand_minutes")[0];
-	  var handSeconds = document.querySelectorAll("#hand_seconds")[0];
-	  var cx = parseInt(handHours.getAttribute("x1") || handMinutes.getAttribute("x1") || handSeconds.getAttribute("x1"));
-	  var cy = parseInt(handHours.getAttribute("y1") || handMinutes.getAttribute("y1") || handSeconds.getAttribute("y1"));
-	  function getRad(degrees) {
-	      return degrees * (Math.PI / 180);
-	  }
-	  if (handSeconds) {
-	      var rad = getRad(currentTime.getSeconds() * 6);
-	      handSeconds.setAttribute("x2",
-				       cx + (14 * Math.sin(rad)));
-	      handSeconds.setAttribute("y2",
-				       cy - (14 * Math.cos(rad)));
-	  }
-	  if (handMinutes) {
-	      var rad = getRad(currentTime.getMinutes() * 6);
-	      handMinutes.setAttribute("x2",
-       				       cx + (10 * Math.sin(rad)));
-	      handMinutes.setAttribute("y2",
-				       cy - (10 * Math.cos(rad)));
-	  }
-	  if (handHours) {
-	      var rad = getRad(currentTime.getHours() * 30);
-	      handHours.setAttribute("x2",
-				     cx + (6 * Math.sin(rad)));
-	      handHours.setAttribute("y2",
-				     cy - (6 * Math.cos(rad)));
-	  }
+          var currentTime = new Date();
+          var handHours = document.querySelectorAll("#hand_hours")[0];
+          var handMinutes = document.querySelectorAll("#hand_minutes")[0];
+          var handSeconds = document.querySelectorAll("#hand_seconds")[0];
+          var cx = parseInt(handHours.getAttribute("x1") || handMinutes.getAttribute("x1") || handSeconds.getAttribute("x1"));
+          var cy = parseInt(handHours.getAttribute("y1") || handMinutes.getAttribute("y1") || handSeconds.getAttribute("y1"));
+          function getRad(degrees) {
+              return degrees * (Math.PI / 180);
+          }
+          if (handSeconds) {
+              var rad = getRad(currentTime.getSeconds() * 6);
+              handSeconds.setAttribute("x2",
+                                       cx + (14 * Math.sin(rad)));
+              handSeconds.setAttribute("y2",
+                                       cy - (14 * Math.cos(rad)));
+          }
+          if (handMinutes) {
+              var rad = getRad(currentTime.getMinutes() * 6);
+              handMinutes.setAttribute("x2",
+                                       cx + (10 * Math.sin(rad)));
+              handMinutes.setAttribute("y2",
+                                       cy - (10 * Math.cos(rad)));
+          }
+          if (handHours) {
+              var rad = getRad(currentTime.getHours() * 30);
+              handHours.setAttribute("x2",
+                                     cx + (6 * Math.sin(rad)));
+              handHours.setAttribute("y2",
+                                     cy - (6 * Math.cos(rad)));
+          }
       }
   ]]></script>
 </svg>

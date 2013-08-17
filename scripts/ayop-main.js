@@ -189,19 +189,19 @@ function addCss(someDocument, filename, parent) {
 function removeCss(someDocument, filename, parent) {
     var elements;
     if (parent == null || parent == undefined) {
-	elements = [someDocument];
+        elements = [someDocument];
     }
     else {
-	elements = someDocument.getElementsByTagName(parent);
+        elements = someDocument.getElementsByTagName(parent);
     }
     for (var i = 0; i < elements.length; i++) {
-	var allLinks = elements[i].getElementsByTagName("link");
-	for (var j = allLinks.length - 1; j >= 0; j--) {
+        var allLinks = elements[i].getElementsByTagName("link");
+        for (var j = allLinks.length - 1; j >= 0; j--) {
             var currentLink = allLinks[j];
             if (currentLink && currentLink.getAttribute("href") == filename) {
-		currentLink.parentNode.removeChild(currentLink);
+                currentLink.parentNode.removeChild(currentLink);
             }
-	}
+        }
     }
 }
 
@@ -220,26 +220,26 @@ function removeCss(someDocument, filename, parent) {
 function toggleTheme(filename, enable) {
     if (enable) {
         // add CSS to index.html
-	addCss(document, filename, "head");
+        addCss(document, filename, "head");
         // add CSS to ayop-logo.svg
-	var svgDocument = document.getElementById("ayop_logo").contentDocument;
-	if (svgDocument == null) {
-	    // SVG document isn't ready yet, try again
-	    setTimeout(function () { toggleTheme(filename, enable); }, 10);
+        var svgDocument = document.getElementById("ayop_logo").contentDocument;
+        if (svgDocument == null) {
+            // SVG document isn't ready yet, try again
+            setTimeout(function () { toggleTheme(filename, enable); }, 10);
             return;
         }
-	addCss(svgDocument, "../" + filename, "defs");
+        addCss(svgDocument, "../" + filename, "defs");
     } else {
         // remove CSS from index.html
-	removeCss(document, filename, "head");
+        removeCss(document, filename, "head");
         // remove CSS from ayop-logo.svg
-	var svgDocument = document.getElementById("ayop_logo").contentDocument;
-	if (svgDocument == null) {
-	    // SVG document isn't ready yet, try again
-	    setTimeout(function () { toggleTheme(filename, enable); }, 10);
+        var svgDocument = document.getElementById("ayop_logo").contentDocument;
+        if (svgDocument == null) {
+            // SVG document isn't ready yet, try again
+            setTimeout(function () { toggleTheme(filename, enable); }, 10);
             return;
         }
-	removeCss(svgDocument, "../" + filename, "defs");
+        removeCss(svgDocument, "../" + filename, "defs");
     }
 }
 $("#themes label input").click(function() {
