@@ -163,6 +163,48 @@ $("#freezeframe").change(function () {
     updateAll(currentFrame);
 });
 
+
+/*
+ * Adds a CSS stylesheet to a document.
+ *
+ * - someDocument: typically document or someElement.contentDocument
+ * - filename: filename of the stylesheet
+ * - parent: type of parent element, typically head for HTML documents or defs for SVG documents
+ */
+function addCss(someDocument, filename, parent) {
+    var fileref = someDocument.createElementNS("http://www.w3.org/1999/xhtml","link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
+    fileref.setAttribute("href", filename);
+    someDocument.getElementsByTagName(parent)[0].appendChild(fileref);
+}
+
+/*
+ * Removes a CSS stylesheet from a document.
+ *
+ * - someDocument: typically document or someElement.contentDocument
+ * - filename: exact filename of the stylesheet
+ * - parent: optional: type of parent element, speeds up search of elements when used
+ */
+function removeCss(someDocument, filename, parent) {
+    var elements;
+    if (parent == null || parent == undefined) {
+	elements = [someDocument];
+    }
+    else {
+	elements = someDocument.getElementsByTagName(parent);
+    }
+    for (var i = 0; i < elements.length; i++) {
+	var allLinks = elements[i].getElementsByTagName("link");
+	for (var j = allLinks.length - 1; j >= 0; j--) {
+            var currentLink = allLinks[j];
+            if (currentLink && currentLink.getAttribute("href") == filename) {
+		currentLink.parentNode.removeChild(currentLink);
+            }
+	}
+    }
+}
+
 /* 
  * Handler for the "themes" checkboxes.
  *
@@ -178,48 +220,26 @@ $("#freezeframe").change(function () {
 function toggleTheme(filename, enable) {
     if (enable) {
         // add CSS to index.html
-        var fileref = document.createElement("link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", filename);
-        document.getElementsByTagName("head")[0].appendChild(fileref);
+	addCss(document, filename, "head");
         // add CSS to ayop-logo.svg
-        filename = "../" + filename; // ayop-logo.svg is in the images subfolder
-        var svgDocument = document.getElementById("ayop_logo").contentDocument;
-        if (svgDocument == null) {
-            setTimeout(function () { toggleTheme(filename, enable); }, 10);
+	var svgDocument = document.getElementById("ayop_logo").contentDocument;
+	if (svgDocument == null) {
+	    // SVG document isn't ready yet, try again
+	    setTimeout(function () { toggleTheme(filename, enable); }, 10);
             return;
         }
-        fileref = svgDocument.createElementNS("http://www.w3.org/1999/xhtml", "link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", filename);
-        svgDocument.getElementsByTagName("defs")[0].appendChild(fileref);
+	addCss(svgDocument, "../" + filename, "defs");
     } else {
         // remove CSS from index.html
-        var allLinks = document.getElementsByTagName("link");
-        for (var i = allLinks.length - 1; i >= 0; i--) {
-            var currentLink = allLinks[i];
-            if (currentLink && currentLink.getAttribute("href") == filename) {
-                currentLink.parentNode.removeChild(currentLink);
-                break;
-            }
-        }
+	removeCss(document, filename, "head");
         // remove CSS from ayop-logo.svg
-        filename = "../" + filename; // ayop-logo.svg is in the images subfolder
-        var svgDocument = document.getElementById("ayop_logo").contentDocument;
-        if (svgDocument == null) {
-            setTimeout(function () { toggleTheme(filename, enable); }, 10);
+	var svgDocument = document.getElementById("ayop_logo").contentDocument;
+	if (svgDocument == null) {
+	    // SVG document isn't ready yet, try again
+	    setTimeout(function () { toggleTheme(filename, enable); }, 10);
             return;
         }
-        allLinks = svgDocument.getElementsByTagName("link");
-        for (var i = allLinks.length - 1; i >= 0; i--) {
-            var currentLink = allLinks[i];
-            if (currentLink && currentLink.getAttribute("href") == filename) {
-                currentLink.parentNode.removeChild(currentLink);
-                break;
-            }
-        }
+	removeCss(svgDocument, "../" + filename, "defs");
     }
 }
 $("#themes label input").click(function() {
