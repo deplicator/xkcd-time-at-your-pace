@@ -412,22 +412,27 @@
           function getRad(degrees) {
               return degrees * (Math.PI / 180);
           }
+          var degSec = currentTime.getSeconds() * 6;
+          var degMin = currentTime.getMinutes() * 6
+                       + degSec / (360 / 6);
+          var degHour = currentTime.getHours() * 30
+                        + degMin / (360 / 30);
           if (handSeconds) {
-              var rad = getRad(currentTime.getSeconds() * 6);
+              var rad = getRad(degSec);
               handSeconds.setAttribute("x2",
                                        cx + (14 * Math.sin(rad)));
               handSeconds.setAttribute("y2",
                                        cy - (14 * Math.cos(rad)));
           }
           if (handMinutes) {
-              var rad = getRad(currentTime.getMinutes() * 6);
+              var rad = getRad(degMin);
               handMinutes.setAttribute("x2",
                                        cx + (10 * Math.sin(rad)));
               handMinutes.setAttribute("y2",
                                        cy - (10 * Math.cos(rad)));
           }
           if (handHours) {
-              var rad = getRad(currentTime.getHours() * 30);
+              var rad = getRad(degHour);
               handHours.setAttribute("x2",
                                      cx + (6 * Math.sin(rad)));
               handHours.setAttribute("y2",
