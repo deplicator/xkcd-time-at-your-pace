@@ -28,18 +28,19 @@ function initPreloadingStatus(maxImages) {
     $('#preloadingStatus').attr('height', preloadingStatusHeight);
     preloadingStatusCtx.lineWidth = 1;
     notYetReleasedColor = $("#framedata").css('backgroundColor');
-    fetchColors();
-    // Draw the "not yet released" background
-    preloadingStatusCtx.fillStyle = notYetReleasedColor;
-    preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
-    // Update all frames
-    for (i = 0; i <= maxImages; i++) {
-        updatePreloadingIndicator(i);
-    }
-    preloadingStatus.addEventListener('click', frameMouseClick, false);
-    preloadingStatus.addEventListener('mousemove', frameMouseMove, false);
-    preloadingStatus.addEventListener('mouseleave', frameMouseMove, false);
-    preloadingStatus.addEventListener('mouseout', frameMouseMove, false);
+    fetchColors(function() { // callback called when colors successfully fetched
+        // Draw the "not yet released" background
+        preloadingStatusCtx.fillStyle = notYetReleasedColor;
+        preloadingStatusCtx.fillRect(0, 0, preloadingStatusWidth, preloadingStatusHeight);
+        // Update all frames
+        for (i = 0; i <= maxImages; i++) {
+            updatePreloadingIndicator(i);
+        }
+        preloadingStatus.addEventListener('click', frameMouseClick, false);
+        preloadingStatus.addEventListener('mousemove', frameMouseMove, false);
+        preloadingStatus.addEventListener('mouseleave', frameMouseMove, false);
+        preloadingStatus.addEventListener('mouseout', frameMouseMove, false);
+    });
 }
 $(document).ready(function () {
     preloadingStatus = document.getElementById("preloadingStatus");
@@ -54,8 +55,25 @@ $(document).ready(function () {
     });
 });
 
-function fetchColors() {
+/*
+ * Fetch the preload indicator colors from the legend SVG.
+ *
+ * It is possible that the SVG document isn't ready yet. In that case, the function will return false; otherwise, it will return true.
+ *
+ * Arguments:
+ *   - callback: optional: If given, fetchColors will retry on its own if the SVG document isn't ready and call this callback on success; otherwise, it will just return false and thus pass the responsibility to retry to the caller.
+ *     The retry occurs asynchronously; i. e., all code that depends on correct execution of this method should be placed in the callback instead of after the method call.
+ */
+function fetchColors(callback) {
     var legendSvg = document.querySelectorAll("#pli-legend")[0].contentDocument;
+    if (legendSvg == null) {
+        // SVG document isn't ready yet
+        if (callback && callback != null) {
+            // try again
+            setTimeout(fetchColors, 10);
+        }
+        return false;
+    }
     notYetLoadedColor = legendSvg.querySelectorAll("#fill_notloaded")[0].attributes["fill"].value;
     loadingInProgressColor =  legendSvg.querySelectorAll("#fill_loading")[0].attributes["fill"].value;
     loadingCompleteColor =  legendSvg.querySelectorAll("#fill_loaded")[0].attributes["fill"].value;
@@ -64,6 +82,8 @@ function fetchColors() {
     debatedFrameBorderColor = legendSvg.querySelectorAll("#stroke_debated")[0].attributes["stroke"].value;
     currentFrameBorderColor =  legendSvg.querySelectorAll("#stroke_current")[0].attributes["stroke"].value;
     currentCompareFrameBorderColor =  legendSvg.querySelectorAll("#stroke_compare")[0].attributes["stroke"].value;
+    callback();
+    return true;
 }
 
 function getFrameURL(frame) {

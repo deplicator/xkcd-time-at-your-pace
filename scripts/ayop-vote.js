@@ -25,7 +25,7 @@ function castVote(frame, cast) {
             } else if (data == "fail") {
                 $('#voteconfirm').append("<li>You've reached the daily vote limit. Your contribution to this cause will go unnoticed.</li>");
             } else {
-                $('#voteconfirm').append("<li>Something has failed. <a href=\"mailto:james@geekwagon?subject=your%20site%20failed%20and%20I%20was%20quick%20enough%20to%20click%20this!\">Click here quick</a>, before it's too late!</li>");
+                $('#voteconfirm').append("<li>Something has failed. <a href=\"mailto:james@geekwagon.net?subject=your%20site%20failed%20and%20I%20was%20quick%20enough%20to%20click%20this!\">Click here quick</a>, before it's too late!</li>");
             }
             $('#voteconfirm li').delay(5000).fadeOut('slow');
         }
