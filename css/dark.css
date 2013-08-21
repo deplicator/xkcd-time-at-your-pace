@@ -9,7 +9,11 @@
  * *not* licensed under the Universal Forfeit License.
  */
 
-@namespace url(http://www.w3.org/1999/xhtml);
+/*
+ #########################################
+ index.html
+ #########################################
+*/
 
 /* Cleanup
  *****************************************/
@@ -191,4 +195,26 @@ canvas {
     background-color: rgba(50%,50%,50%,0.14)!important;
     /*padding: 2em!important;*/
     border-radius: 12px!important;
+}
+
+/*
+ #########################################
+ images/ayop-logo.svg
+ #########################################
+*/
+
+line.hand {
+    stroke: #ffffff; 
+}
+
+#clock_circle {
+    fill: #000000;
+    stroke: #ffffff;
+}
+
+#text_background {
+    stroke: #000000;
+}
+#text_foreground {
+    stroke: #ffffff;
 }
