@@ -218,3 +218,10 @@ line.hand {
 #text_foreground {
     stroke: #ffffff;
 }
+
+line.brick_line {
+    stroke: #666666;
+}
+#pyramid {
+    stroke: #AAAAAA;
+}
