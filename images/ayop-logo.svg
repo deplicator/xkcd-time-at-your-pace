@@ -8,36 +8,15 @@
 -->
 <svg
    onload="setClock()"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    x="0px"
    y="0px"
    width="100"
    height="100"
    viewBox="0 0 100 100"
-   id="ayop-logo"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="xkcd_ayop_logo_triangle_clock_in_tip.svg">
-  <metadata
-     id="metadata355">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs353">
+   id="ayop-logo">
+  <defs>
     <style id="style_common" type="text/css"><![CDATA[
         line.hand {
             fill: none;
@@ -48,7 +27,6 @@
             stroke-dasharray: none;
             stroke-dashoffset: 0;
         }
-
         #clock_circle {
             stroke-width: 1;
             stroke-linecap: round;
@@ -67,6 +45,24 @@
             stroke-linejoin: round;
             stroke-opacity: 1;
         }
+
+        line.brick_line {
+            stroke-width: 0.2; /* note that the pattern containing the line is scaled by (currently) 2.3 */
+            stroke-linecap: square;
+            stroke-linejoin: miter;
+            stroke-miterlimit: 8.8;
+            stroke-opacity: 1;
+            stroke-dasharray: none;
+        }
+        #pyramid {
+            stroke-width: 1;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-miterlimit: 8.8;
+            stroke-opacity: 1;
+            stroke-dasharray: none;
+            stroke-dashoffset: 0;
+        }
     ]]></style>
     <style id="style_default" type="text/css"><![CDATA[
         line.hand {
@@ -76,6 +72,7 @@
             fill: #ffffff;
             stroke: #000000;
         }
+
         #text_background {
             stroke: #ffffff;
         }
@@ -83,267 +80,59 @@
             stroke: #000000;
             stroke-width: .75;
         }
+
+        line.brick_line {
+            fill: none;
+            stroke: #000000;
+        }
+        #pyramid {
+            stroke: #000000;
+        }
     ]]></style>
     <pattern
-       inkscape:collect="always"
-       xlink:href="#pattern6514"
-       id="pattern6521"
-       patternTransform="matrix(0.97795274,0,0,0.9739349,105.72018,8.0390625)" />
-    <clipPath
-       id="clip25">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path275"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip24">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path264"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip23">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path253"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip22">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path242"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip21">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path231"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip20">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path220"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip19">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path209"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip18">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path198"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip17">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path187"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip16">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path176"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip15">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path165"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip14">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path154"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip13">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path143"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip12">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path132"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip11">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path121"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip10">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path110"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip9">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path99"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip8">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path88"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip7">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path77"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip6">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path66"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip5">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path55"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip4">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path44"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip3">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path33"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip2">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path22"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip1">
-      <path
-         d="m 42,8 0,550 685,0 0,-550 z"
-         id="path11"
-         inkscape:connector-curvature="0" />
-    </clipPath>
-    <clipPath
-       id="clip31">
-      <path
-         inkscape:connector-curvature="0"
-         id="path343"
-         d="m 42,8 0,550 685,0 0,-550 z" />
-    </clipPath>
-    <clipPath
-       id="clip30">
-      <path
-         inkscape:connector-curvature="0"
-         id="path332"
-         d="m 42,8 0,550 685,0 0,-550 z" />
-    </clipPath>
-    <clipPath
-       id="clip29">
-      <path
-         inkscape:connector-curvature="0"
-         id="path321"
-         d="m 42,8 0,550 685,0 0,-550 z" />
-    </clipPath>
-    <clipPath
-       id="clip28">
-      <path
-         inkscape:connector-curvature="0"
-         id="path310"
-         d="m 42,8 0,550 685,0 0,-550 z" />
-    </clipPath>
-    <clipPath
-       id="clip27">
-      <path
-         inkscape:connector-curvature="0"
-         id="path299"
-         d="m 42,8 0,550 685,0 0,-550 z" />
-    </clipPath>
-    <clipPath
-       id="clip26">
-      <path
-         inkscape:connector-curvature="0"
-         id="path288"
-         d="m 42,8 0,550 685,0 0,-550 z" />
-    </clipPath>
-    <pattern
-       patternUnits="userSpaceOnUse"
-       width="105"
-       height="105"
-       patternTransform="translate(105,-5)"
-       id="pattern6514">
-      <path
-         d="m 100,100 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 100,81 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 100,62 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 M 100,47.749997 100,52.5 l 4.75,0 m -4.75,-9.500004 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 M 100,9.749993 l 0,4.75 4.75,0 M 100,4.999992 l -4.75,0 0,4.750001 9.5,0 M 100,0.249992 l 0,4.75 4.75,0 M 90.5,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 90.5,81 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 90.5,62 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.500003 0,4.750003 4.75,0 m -4.75,-9.500004 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 M 81,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 81,90.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 81,81 l -4.75,0 0,4.75 9.5,0 M 81,76.25 81,81 85.75,81 M 81,71.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 81,62 l -4.75,0 0,4.75 9.5,0 M 81,57.25 81,62 85.75,62 M 81,52.5 l -4.75,0 0,4.75 9.5,0 M 81,47.749997 81,52.5 l 4.75,0 M 81,42.999996 l -4.75,0 0,4.750001 9.5,0 M 81,38.249996 l 0,4.75 4.75,0 M 81,33.499995 l -4.75,0 0,4.750001 9.5,0 M 81,28.749995 l 0,4.75 4.75,0 M 81,23.999994 l -4.75,0 0,4.750001 9.5,0 M 81,19.249994 l 0,4.75 4.75,0 M 81,14.499993 l -4.75,0 0,4.750001 9.5,0 M 81,9.749993 l 0,4.75 4.75,0 M 81,4.999992 l -4.75,0 0,4.750001 9.5,0 M 81,0.249992 l 0,4.75 4.75,0 M 71.5,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 71.5,81 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 71.5,62 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.500003 0,4.750003 4.75,0 m -4.75,-9.500004 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 M 62,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 62,90.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 62,81 l -4.75,0 0,4.75 9.5,0 M 62,76.25 62,81 66.75,81 M 62,71.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 62,62 l -4.75,0 0,4.75 9.5,0 M 62,57.25 62,62 66.75,62 M 62,52.5 l -4.75,0 0,4.75 9.5,0 M 62,47.749997 62,52.5 l 4.75,0 M 62,42.999996 l -4.75,0 0,4.750001 9.5,0 M 62,38.249996 l 0,4.75 4.75,0 M 62,33.499995 l -4.75,0 0,4.750001 9.5,0 M 62,28.749995 l 0,4.75 4.75,0 M 62,23.999994 l -4.75,0 0,4.750001 9.5,0 M 62,19.249994 l 0,4.75 4.75,0 M 62,14.499993 l -4.75,0 0,4.750001 9.5,0 M 62,9.749993 l 0,4.75 4.75,0 M 62,4.999992 l -4.75,0 0,4.750001 9.5,0 M 62,0.249992 l 0,4.75 4.75,0 M 52.5,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 52.5,81 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 52.5,62 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.500003 0,4.750003 4.75,0 m -4.75,-9.500004 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 M 43,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 43,90.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 43,81 l -4.75,0 0,4.75 9.5,0 M 43,76.25 43,81 47.75,81 M 43,71.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 43,62 l -4.75,0 0,4.75 9.5,0 M 43,57.25 43,62 47.75,62 M 43,52.5 l -4.75,0 0,4.75 9.5,0 M 43,47.749997 43,52.5 l 4.75,0 M 43,42.999996 l -4.75,0 0,4.750001 9.5,0 M 43,38.249996 l 0,4.75 4.75,0 M 43,33.499995 l -4.75,0 0,4.750001 9.5,0 M 43,28.749995 l 0,4.75 4.75,0 M 43,23.999994 l -4.75,0 0,4.750001 9.5,0 M 43,19.249994 l 0,4.75 4.75,0 M 43,14.499993 l -4.75,0 0,4.750001 9.5,0 M 43,9.749993 l 0,4.75 4.75,0 M 43,4.999992 l -4.75,0 0,4.750001 9.5,0 M 43,0.249992 l 0,4.75 4.75,0 M 33.5,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 33.5,81 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 33.5,62 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.500003 0,4.750003 4.75,0 m -4.75,-9.500004 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 M 24,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 24,90.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 24,81 l -4.75,0 0,4.75 9.5,0 M 24,76.25 24,81 28.75,81 M 24,71.5 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 24,62 l -4.75,0 0,4.75 9.5,0 M 24,57.25 24,62 28.75,62 M 24,52.5 l -4.75,0 0,4.75 9.5,0 M 24,47.749997 24,52.5 l 4.75,0 M 24,42.999996 l -4.75,0 0,4.750001 9.5,0 M 24,38.249996 l 0,4.75 4.75,0 M 24,33.499995 l -4.75,0 0,4.750001 9.5,0 M 24,28.749995 l 0,4.75 4.75,0 M 24,23.999994 l -4.75,0 0,4.750001 9.5,0 M 24,19.249994 l 0,4.75 4.75,0 M 24,14.499993 l -4.75,0 0,4.750001 9.5,0 M 24,9.749993 l 0,4.75 4.75,0 M 24,4.999992 l -4.75,0 0,4.750001 9.5,0 M 24,0.249992 l 0,4.75 4.75,0 M 14.5,100 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 14.5,81 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 M 14.5,62 l -4.75,0 0,4.75 9.5,0 m -4.75,-9.5 0,4.75 4.75,0 m -4.75,-9.5 -4.75,0 0,4.75 9.5,0 m -4.75,-9.500003 0,4.750003 4.75,0 m -4.75,-9.500004 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 m -4.75,-9.500001 -4.75,0 0,4.750001 9.5,0 m -4.75,-9.500001 0,4.75 4.75,0 M 5,100 l -4.75,0 0,4.75 9.5,0 M 5,95.25 5,100 9.75,100 M 5,90.5 l -4.75,0 0,4.75 9.5,0 M 5,85.75 l 0,4.75 4.75,0 M 5,81 l -4.75,0 0,4.75 9.5,0 M 5,76.25 5,81 9.75,81 M 5,71.5 l -4.75,0 0,4.75 9.5,0 M 5,66.75 l 0,4.75 4.75,0 M 5,62 l -4.75,0 0,4.75 9.5,0 M 5,57.25 5,62 9.75,62 M 5,52.5 l -4.75,0 0,4.75 9.5,0 M 5,47.749997 5,52.5 l 4.75,0 M 5,42.999996 l -4.75,0 0,4.750001 9.5,0 M 5,38.249996 l 0,4.75 4.75,0 M 5,33.499995 l -4.75,0 0,4.750001 9.5,0 M 5,28.749995 l 0,4.75 4.75,0 M 5,23.999994 l -4.75,0 0,4.750001 9.5,0 M 5,19.249994 l 0,4.75 4.75,0 M 5,14.499993 l -4.75,0 0,4.750001 9.5,0 M 5,9.749993 l 0,4.75 4.75,0 M 5,4.999992 l -4.75,0 0,4.750001 9.5,0 M 5,0.249992 l 0,4.75 4.75,0 m -4.75,0 -4.75,0 0,4.750001 9.5,0 M 5,0.249992 l 0,4.75 4.75,0"
-         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none"
-         id="use6269"
-         inkscape:connector-curvature="0" />
+        id="pyramid_bricks"
+        patternUnits="userSpaceOnUse"
+        x="0.74" y="0.7" width="4" height="4" patternTransform="scale(2.3)">
+      <!--
+          The bricks are drawn with five lines (top line, bottom line,
+          top part of right line, left line, bottom part of right line),
+          so that no lines lie on the border of the pattern.
+      -->
+      <line class="brick_line"
+            x1="0" y1="1" x2="4" y2="1" />
+      <line class="brick_line"
+            x1="0" y1="3" x2="4" y2="3" />
+      <line class="brick_line"
+            x1="3" y1="0" x2="3" y2="1" />
+      <line class="brick_line"
+            x1="1" y1="1" x2="1" y2="3" />
+      <line class="brick_line"
+            x1="3" y1="3" x2="3" y2="4" />
     </pattern>
   </defs>
 
   <path
-     id="pyramid_bricks"
-     style="fill:url(#pattern6521);fill-opacity:1;stroke:#000000;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8.80000019;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-     d="m 99.5,91.379888 -99.0000005,0 L 50.000084,8.6201125 m 0,0 L 99.5,91.379888"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccc" />
+     id="pyramid"
+     style="fill:url(#pyramid_bricks);fill-opacity:1"
+     d="M 0,86.6 L 50,0 L 100,86.6 Z" />
 
   <circle
      id="clock_circle"
-     cx="50" cy="48" r="15" />
+     cx="50" cy="40" r="15" />
 
-  <!-- clock hands: center 50,48 -->
+  <!-- clock hands: center 50,40 -->
   <!-- second hand: radius 14 -->
 <!--
   <line
      id="hand_seconds"
      class="hand"
-     x1="50" y1="48" x2="50" y2="34"
+     x1="50" y1="40" x2="50" y2="26"
      style="stroke-width:.5">
     <animateTransform
       attributeName="transform"
       type="rotate"
-      from="0 50 48"
-      to="360 50 48"
+      from="0 50 40"
+      to="360 50 40"
       dur="60s"
       repeatCount="indefinite" />
   </line>
@@ -352,13 +141,13 @@
   <line
      id="hand_minutes"
      class="hand"
-     x1="50" y1="48" x2="58" y2="42"
+     x1="50" y1="40" x2="58" y2="34"
      style="stroke-width:1">
     <animateTransform
       attributeName="transform"
       type="rotate"
-      from="0 50 48"
-      to="360 50 48"
+      from="0 50 40"
+      to="360 50 40"
       dur="60min"
       repeatCount="indefinite" />
   </line>
@@ -366,13 +155,13 @@
   <line
      id="hand_hours"
      class="hand"
-     x1="50" y1="48" x2="47" y2="44"
+     x1="50" y1="40" x2="47" y2="36"
      style="stroke-width:1">
     <animateTransform
       attributeName="transform"
       type="rotate"
-      from="0 50 48"
-      to="360 50 48"
+      from="0 50 40"
+      to="360 50 40"
       dur="12h"
       repeatCount="indefinite" />
   </line>
@@ -384,13 +173,13 @@
   -->
   <text
      id="text_background"
-     x="50" y="82.5"
+     x="50" y="74.5"
      font-family="Droid Serif"
      font-size="9"
      text-anchor="middle">At your own pace</text>
   <text
      id="text_foreground"
-     x="50" y="82.5"
+     x="50" y="74.5"
      font-family="Droid Serif"
      font-size="9"
      text-anchor="middle">At your own pace</text>
