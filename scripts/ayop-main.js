@@ -245,7 +245,6 @@ function toggleTheme(filename, enable) {
 $("#themes label input").click(function() {
     toggleTheme("css/" + this.value, this.checked);
 });
-$("#themes label input").click();
 
 function slideshowLoaded(frame, img) {
     if (currentFrame == frame) {
