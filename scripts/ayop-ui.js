@@ -168,4 +168,11 @@ $(document).ready(function () {
                        "http://worldwish.org/en/donate/index.php",
                        "http://store.xkcd.com/"];
     $('#donate').html("<a href=\"" + donatelinks[Math.floor(Math.random()*4)] + "\">Donate</a>");
+
+    // switch "Pause special frames" unit text between "seconds" and "second"
+    $('#PauseSpecialFrameAmount').change(function() {
+        var secondsElement = this.parentNode.childNodes[2];
+        secondsElement.nodeValue = this.value == 1 ? ' second' : ' seconds';
+    });
+    $('#PauseSpecialFrameAmount').change(); // fire one to fix the text in case the browser remembered a "1" value
 });
