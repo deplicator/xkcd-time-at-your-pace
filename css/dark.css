@@ -210,6 +210,10 @@ input#manualinput,
     border-radius: 12px!important;
 }
 
+#preloadindicator {
+    border-left: none!important;
+}
+
 /*
  #########################################
  images/ayop-logo.svg
