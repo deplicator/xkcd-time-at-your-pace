@@ -44,6 +44,11 @@ function isSpecial(frame, includeDebated) {
     return binary_search_iterative(specialFrames, frame) >= 0;
 }
 
+/**
+ * Warning: This function should always be used together with isSpecial(frame) (above).
+ * It only checks that the ratio of yes answers is below a certain point, and returns true even for utterly boring frames.
+ * (For usage examples, see updateAllWithoutSlider() (ayop-main.js) and setupContext() (ayop-preload.js)).
+ */
 function isDebated(frame) {
     return frameData[frame].no >= 5 && parseInt(frameData[frame].yes)/(parseInt(frameData[frame].yes)+parseInt(frameData[frame].no)) <= 0.6;
 }

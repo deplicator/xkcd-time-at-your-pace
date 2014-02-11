@@ -310,12 +310,14 @@ function updateAllWithoutSlider(frame) {
     
     //hot debate and make it glow
     $('#debated').addClass('notvisible');
-    $('#canvas3').removeClass('special-glow debated-glow');
-    if(isDebated(frame)) {
-        $('#debated').removeClass('notvisible');
-        $('#canvas3').addClass('debated-glow');
-    } else if(isSpecial(frame)) {
-        $('#canvas3').addClass('special-glow');
+    $('#canvas3').removeClass('special-glow debated-glow normal-glow');
+    if(isSpecial(frame)) {
+        if(isDebated(frame)) {
+            $('#debated').removeClass('notvisible');
+            $('#canvas3').addClass('debated-glow');
+        } else {
+            $('#canvas3').addClass('special-glow');
+        }
     } else {
         $('#canvas3').addClass('normal-glow');
     }
