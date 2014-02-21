@@ -69,26 +69,31 @@ $(document).ready(function () {
     var pastWeekPanelLoaded = false;
     $('.openingpanel h3').click(function () {
         $(this).siblings('.inside').slideToggle('slow', function () {
-            //l2transversedom
-            if ($(this).parent().children('h3').children('.craparrow').html() == rightArrow) {
-                $(this).parent().children('h3').children('.craparrow').html(downArrow);
-                if($(this).parent().attr('id') == 'framedata') {
-                    $.cookie('ayop-panel', 'open');
-                } else if($(this).parent().attr('id') == 'specialframes' && !specialFramesPanelLoaded) {
-                    loadSpecialFramePanel();
-                    specialFramesPanelLoaded = true;
-                } else if($(this).parent().attr('id') == 'pastday' && !pastDayPanelLoaded) {
-                    loadPastPanel(24, '#pastday-framelist');
-                    pastDayPanelLoaded = true;
-                } else if($(this).parent().attr('id') == 'pastweek' && !pastWeekPanelLoaded) {
-                    loadPastPanel(168, '#past-weekframelist');
-                    pastWeekPanelLoaded = true;
+            try {
+                //l2transversedom
+                if ($(this).parent().children('h3').children('.craparrow').html() == rightArrow) {
+                    $(this).parent().children('h3').children('.craparrow').html(downArrow);
+                    if($(this).parent().attr('id') == 'framedata') {
+                        $.cookie('ayop-panel', 'open');
+                    } else if($(this).parent().attr('id') == 'specialframes' && !specialFramesPanelLoaded) {
+                        loadSpecialFramePanel();
+                        specialFramesPanelLoaded = true;
+                    } else if($(this).parent().attr('id') == 'pastday' && !pastDayPanelLoaded) {
+                        loadPastPanel(24, '#pastday-framelist');
+                        pastDayPanelLoaded = true;
+                    } else if($(this).parent().attr('id') == 'pastweek' && !pastWeekPanelLoaded) {
+                        loadPastPanel(168, '#past-weekframelist');
+                        pastWeekPanelLoaded = true;
+                    }
+                } else {
+                    $(this).parent().children('h3').children('.craparrow').html(rightArrow);
+                    if($(this).parent().attr('id') == 'framedata') {
+                        $.cookie('ayop-panel', 'closed');
+                    }
                 }
-            } else {
-                $(this).parent().children('h3').children('.craparrow').html(rightArrow);
-                if($(this).parent().attr('id') == 'framedata') {
-                    $.cookie('ayop-panel', 'closed');
-                }
+            } catch (e) {
+                // ignore, but catch
+                // when this error isn't caught, subsequent slideToggles won't work.
             }
         });
     });
@@ -163,4 +168,11 @@ $(document).ready(function () {
                        "http://worldwish.org/en/donate/index.php",
                        "http://store.xkcd.com/"];
     $('#donate').html("<a href=\"" + donatelinks[Math.floor(Math.random()*4)] + "\">Donate</a>");
+
+    // switch "Pause special frames" unit text between "seconds" and "second"
+    $('#PauseSpecialFrameAmount').change(function() {
+        var secondsElement = this.parentNode.childNodes[2];
+        secondsElement.nodeValue = this.value == 1 ? ' second' : ' seconds';
+    });
+    $('#PauseSpecialFrameAmount').change(); // fire one to fix the text in case the browser remembered a "1" value
 });

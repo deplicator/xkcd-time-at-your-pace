@@ -182,9 +182,22 @@ input#manualinput,
     top: 50px!important;
 }*/
 
-canvas {
-    box-shadow: 0px 0px 15px 0px rgba(100%,100%,100%,0.4)!important;
-    -webkit-box-shadow: 0px 0px 22.5px 0px rgba(100%,100%,100%,0.4)!important;
+.normal-glow {
+    box-shadow:         0px 0px 20px rgba(255, 255, 255, 0.3);
+    -moz-box-shadow:    0px 0px 20px rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+.special-glow {
+    box-shadow:         0px 0px 20px rgba(216, 166, 0, 0.3);
+    -moz-box-shadow:    0px 0px 20px rgba(216, 166, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 20px rgba(216, 166, 0, 0.3);
+}
+
+.debated-glow {
+    box-shadow:         0px 0px 20px rgba(255, 0, 0, 0.3);
+    -moz-box-shadow:    0px 0px 20px rgba(255, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.3);
 }
 
 /* Extra stuff at bottom
@@ -195,6 +208,10 @@ canvas {
     background-color: rgba(50%,50%,50%,0.14)!important;
     /*padding: 2em!important;*/
     border-radius: 12px!important;
+}
+
+#preloadindicator {
+    border-left: none!important;
 }
 
 /*
