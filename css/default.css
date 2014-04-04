@@ -117,16 +117,16 @@ li {
     float: left;
     font-size: 11px;
     margin: 17px 0 0 19px;
-    padding: 0 15px;
+    padding: 0px 0px 0px 40px;
     position: relative;
-    width: 286px;
+    width: 250px;
 }
 
 #controls #autoplay p {
     float: right;
     padding: 4px 0 0 0;
     text-align: left;
-    width: 236px;
+    width: 220px;
 }
 
 #controls #autoplay input {
