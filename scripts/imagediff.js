@@ -6,10 +6,10 @@
  */
 
 var c1 = document.getElementById("canvas1");
-var ctx1 = c1.getContext("2d");
+var ctx1 = c1.getContext("2d", { willReadFrequently: true });
 
 var c2 = document.getElementById("canvas2");
-var ctx2 = c2.getContext("2d");
+var ctx2 = c2.getContext("2d", { willReadFrequently: true });
 
 var c3 = document.getElementById("canvas3");
 var ctx3 = c3.getContext("2d");
@@ -30,7 +30,7 @@ function drawDiffImage() {
         var color1 = data2[i];
 
         // A couple algorithms for how to color grayscale changes
-        
+
         // Simple linear scale, 1 unit gray change = 1 unit green/red change
         /* var bkgnd = 0xFF - Math.abs(color1 - color2); */
 
