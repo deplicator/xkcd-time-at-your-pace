@@ -76,7 +76,7 @@ slider.oninput = function () {
  * Creates array of frame objects.
  */
 function getFrameData() {
-    $.getJSON("scripts/current-data.json", function(json) {
+    $.getJSON("data/frame-details.json", function(json) {
         frameData = json;
         frameCount = frameData.length - 1;
         if (frameInitial >= frameCount) {
