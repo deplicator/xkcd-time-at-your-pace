@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>xkcd Time - at your own pace</title>
     <link rel="stylesheet" href="css/default.css">
     <script src="scripts/analytic.js"></script>
     <script src="scripts/detectmobile.js"></script>
-    
+
     <!-- Libs -->
     <script src="scripts/jquery.js"></script>
     <script src="scripts/jquery.cookie.js"></script>
@@ -25,13 +26,16 @@
 <body>
     <header>
         <h1>xkcd 1190 - <a href="http://www.xkcd.com/1190/" title="Link to original">Time</a></h1>
-        <div style="float: left; text-align: center;"> <!-- float makes the div be only as wide as its content; text-align centers the logo (which is the narrower of the two children of the div). -->
-          <h2>at your own pace</h2>
-          <object id="ayop_logo" data="images/ayop-logo.svg" type="image/svg+xml" alt="At Your Own Pace logo" style="position: relative; top: 10px">
-              The xkcd Time - At Your Own Pace logo:
-              The Eye Of Providence with a clock instead of the eye in the upper part of the pyramid and the text "at your own pace" in the lower part of the pyramid.
-              The clock is animated and shows the current time.
-          </object> <!-- Warning: <object ... /> doesn't work! -->
+        <div style="float: left; text-align: center;">
+            <!-- float makes the div be only as wide as its content; text-align centers the logo (which is the narrower of the two children of the div). -->
+            <h2>at your own pace</h2>
+            <object id="ayop_logo" data="images/ayop-logo.svg" type="image/svg+xml" alt="At Your Own Pace logo"
+                style="position: relative; top: 10px">
+                The xkcd Time - At Your Own Pace logo:
+                The Eye Of Providence with a clock instead of the eye in the upper part of the pyramid and the text "at
+                your own pace" in the lower part of the pyramid.
+                The clock is animated and shows the current time.
+            </object> <!-- Warning: <object ... /> doesn't work! -->
         </div>
         <!--[if lte IE 9]>
         <h2 style="color: red;" title="Any other browser than this one is the way to go.">This website is not designed to work with Internet Explorer 9 and below.<br>There are <a href="http://www.google.com/chrome">many</a> <a href="http://www.mozilla.org/en-US/firefox/new/">other</a> <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">browsers</a> to check out.</h2>
@@ -40,11 +44,14 @@
     <div id="LoadingImage">loading</div>
     <div id="controls">
         <div id="autoplay">
-            <input id="play" class="bluebutton" type="button" value="Play" title="You can scroll while it's playing for the nerdiest of instant replays">
-            <input id="reverse" class="direction bluebutton" type="button" value="<~" title="You can go backwards now, because why not?">
+            <input id="play" class="bluebutton" type="button" value="Play"
+                title="You can scroll while it's playing for the nerdiest of instant replays">
+            <input id="reverse" class="direction bluebutton" type="button" value="<~"
+                title="You can go backwards now, because why not?">
             <input id="forward" class="direction bluebutton dir-select" type="button" value="~>">
             <p>Playback speed: <input id="autoplayspeed" type="number" min="0" step="5" max="100" value="10"> fps</p>
-            <p>Pause special frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20" value="2"> seconds</p>
+            <p>Pause special frames: <input id="PauseSpecialFrameAmount" type="number" min="0" step="1" max="20"
+                    value="2"> seconds</p>
             <p>Pause on debated frames: <input id="PauseDebatedFrames" type="checkbox"></p>
         </div>
         <div id="step">
@@ -59,7 +66,7 @@
         </div>
         <p id="mousewheel">Mouse Wheel: Hover over image and scroll down to move forward, up to move back.</p>
     </div>
-    <div id="tehmainevent">        
+    <div id="tehmainevent">
         <div id="scrollhere">
             <canvas id="canvas3" width="553" height="395">
                 <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
@@ -69,24 +76,22 @@
         <span id="loading">Loading...</span>
         <span id="actuallink"></span>
         <span id="showlong"><input id="urlCheckBox" type="checkbox">long url</span>
-        
+
         <div id="vote">
             <ul id="voteconfirm"></ul>
         </div>
     </div>
-    
+
     <div id="framedata" class="openingpanel">
         <p class="openingpanelrightext">last calculated on <span id="sfcalcdate"></span></p>
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
             <div id="themes" class="framedata-sub widescreen-separate"> <!-- Event handler in scripts/ayop-main.js  -->
-                <label><input name="darktheme" value="dark.css" type="checkbox"/>Use dark theme</label>
-                <!--
-                    To add more themes, follow these rules:
+                <label><input name="darktheme" value="dark.css" type="checkbox" />Use dark theme</label>
+                <!-- To add more themes, follow these rules:
                       - Put a checkbox input inside a label, like above
                       - Use the CSS file name as its value
-                    That's all! Event handlers are automatically added.
-		  -->
+                     That's all! Event handlers are automatically added. -->
             </div>
             <div id="imgdiffopts" class="framedata-sub widescreen-separate">
                 <h4>Image Difference</h4>
@@ -94,19 +99,20 @@
                     <a href="index.html?frame=2&framediff=1">Turn on Image Difference</a>
                 </div>
                 <div id="diffEngineControls">
-                    <p><input name="difftype" value="none" type="radio" checked/>Normal</p>
-                    <p><input name="difftype" value="prev" type="radio"/>Previous Frame Difference</p>
-                    <p><input name="difftype" value="freeze" type="radio"/>Image Difference From Frame<input id="freezeframe" type="text"/></p>
+                    <p><input name="difftype" value="none" type="radio" checked />Normal</p>
+                    <p><input name="difftype" value="prev" type="radio" />Previous Frame Difference</p>
+                    <p><input name="difftype" value="freeze" type="radio" />Image Difference From Frame<input
+                            id="freezeframe" type="text" /></p>
                 </div>
             </div>
             <div id="votedata" class="framedata-sub widescreen-separate">
                 <h4>Special Frame Nomination</h4>
-                <p>Yes: <span id="yay"></span> <a id="yes" class="vote" title="This frame pleases me.">+1</a></p>
-                <p>No: <span id="nay"></span> <a id="no" class="vote" title="This frame has been incorrectly marked as special, or should never be special in any way.">+1</a></p>
+                <p>Yes: <span id="yay"></span></p>
+                <p>No: <span id="nay"></span></p>
                 <span id="debated" class="notvisible">Debated Frame!</span>
                 <div id="voteinfo">
-                    <p>Vote "yes" on frames that should be paused at during auto playback, and "no" for frames that should not be paused on.</p>
-                    <p>More information about voting and other features can be found on <a href="https://github.com/deplicator/xkcdTime_atyourownpace/blob/master/readme.mediawiki">the GitHub readme</a>.</p>
+                    <p>Voting is no longer available now that this is a static website, but the data
+                        is still available for viewing.</p>
                 </div>
             </div>
             <div id="preloadindicator" class="framedata-sub">
@@ -115,10 +121,13 @@
                     <a href="http://youtu.be/-E4fm4Wqego?t=1m29s" title="I see the irony.">Are you from the past?</a>
                 </canvas>
                 <div>
-                    <input id="preloadAllButton" class="bluebutton" type="button" value="Preload all!"/>
-                    <object id="pli-legend" data="images/preloadindicator_legend.svg" type="image/svg+xml" alt="Preload Indicator Legend">
-                        Preload indicator legend. Grey means not loaded, light blue loading, black loaded, dark blue cursor position.
-                        Yellow border means special frame, green border current frame, magenta border current compare frame.
+                    <input id="preloadAllButton" class="bluebutton" type="button" value="Preload all!" />
+                    <object id="pli-legend" data="images/preloadindicator_legend.svg" type="image/svg+xml"
+                        alt="Preload Indicator Legend">
+                        Preload indicator legend. Grey means not loaded, light blue loading, black loaded, dark blue
+                        cursor position.
+                        Yellow border means special frame, green border current frame, magenta border current compare
+                        frame.
                         Red means error.
                     </object> <!-- Warning: <object ... /> doesn't work! -->
                 </div>
@@ -131,8 +140,10 @@
         <h3><span class="craparrow">→</span>More about xkcd Time</h3>
         <div class="inside">
             <ul>
-                <li><a href="http://xkcd.com/1190">xkcd Time</a> - Just in case you missed the link at the top of the page.</li>
-                <li><a href="http://www.explainxkcd.com/wiki/index.php?title=1190:_Time">Explain xkcd's entry for Time</a></li>
+                <li><a href="http://xkcd.com/1190">xkcd Time</a> - Just in case you missed the link at the top of the
+                    page.</li>
+                <li><a href="http://www.explainxkcd.com/wiki/index.php?title=1190:_Time">Explain xkcd's entry for
+                        Time</a></li>
                 <li><a href="http://xkcd.mscha.org">mscha.org</a> - Thanks for being a great source!</li>
                 <li><a href="http://xkcd.aubronwood.com">xkcd.aubronwood.com</a></li>
                 <li><a href="http://xkcd-time.wikia.com/wiki/XKCD_Time_Wiki">xkcd Time Wiki</a></li>
@@ -140,8 +151,7 @@
             </ul>
         </div>
     </div>
-    
-    
+
     <div id="specialframes" class="openingpanel frames">
         <h3><span class="craparrow">→</span>Special Frames</h3>
         <div class="inside">
@@ -149,7 +159,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div id="pastday" class="openingpanel frames">
         <h3><span class="craparrow">→</span>Past Day (24 Frames)</h3>
         <div class="inside">
@@ -157,7 +167,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div id="pastweek" class="openingpanel frames">
         <h3><span class="craparrow">→</span>Past Week (168 Frames)</h3>
         <div class="inside">
@@ -168,24 +178,33 @@
 
     <footer>
         <div id="credit">
-            xkcd is licensed by <a href="http://www.xkcd.com/about/">Randall Munroe</a> under a <a href="http://www.xkcd.com/license.html">Creative Commons Attribution-NonCommercial 2.5 License</a>, please give credit where it is due (because he's a cool guy as far as I can tell from being a regular reader of his comic).<br>
+            xkcd is licensed by <a href="http://www.xkcd.com/about/">Randall Munroe</a> under a <a
+                href="http://www.xkcd.com/license.html">Creative Commons Attribution-NonCommercial 2.5 License</a>,
+            please give credit where it is due (because he's a cool guy as far as I can tell from being a regular reader
+            of his comic).<br>
             <br>
-            The code for this site is licensed <a href="http://geekwagon.net/ufl/license.txt">under a license I just made up</a> that lets you do whatever you want.<br>
+            The code for this site is licensed <a href="http://geekwagon.net/ufl/license.txt">under a license I just
+                made up</a> that lets you do whatever you want.<br>
             <span id="donate" title="Probably not what you think."></span>
         </div>
-        <p><a href="http://blog.geekwagon.net/search/label/xkcd1190">About This Project</a> | <a href="mailto:james@geekwagon.net" title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a href="http://geekwagon.net" title="Just some guy">Who am I?</a></p>
+        <p><a href="http://blog.geekwagon.net/search/label/xkcd1190">About This Project</a> | <a
+                href="mailto:james@geekwagon.net"
+                title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a
+                href="http://geekwagon.net" title="Just some guy">Who am I?</a></p>
         <p id="note">Your screen is wide.</p>
     </footer>
-    
+
     <a href="https://github.com/deplicator/xkcdTime_atyourownpace">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="./images/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="./images/forkme_right_gray_6d6d6d.png"
+            alt="Fork me on GitHub">
     </a>
 
     <canvas id="canvas1" width="553" height="395" style="display: none"></canvas>
     <canvas id="canvas2" width="553" height="395" style="display: none"></canvas>
-    
+
     <script src="scripts/imagediff.js"></script><!-- top-level dependencys: canvas1,2,3 loaded.  -->
     <script src="scripts/ayop-main.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->
     <script src="scripts/ayop-vote.js"></script>
 </body>
+
 </html>
