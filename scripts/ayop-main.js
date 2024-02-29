@@ -276,12 +276,12 @@ function setButtonEnabled(jqueryButton, enabled) {
 
 function updateButtons() {
     setButtonEnabled($('#first'), currentFrame > 1);
-    // setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
-    //                  < currentFrame); // prevSpecial underflows if there are no more previous special frames
+    setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
+                     < currentFrame); // prevSpecial underflows if there are no more previous special frames
     setButtonEnabled($('#previous'), currentFrame > 1);
     setButtonEnabled($('#next'), currentFrame < frameCount);
-    // setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
-    //                  > currentFrame); // nextSpecial overflows if there are no more next special frames
+    setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
+                     > currentFrame); // nextSpecial overflows if there are no more next special frames
     setButtonEnabled($('#last'), currentFrame < frameCount);
 }
 $('#PauseDebatedFrames').change(updateButtons); // if the only previous/next special frames are debated ones,
@@ -289,15 +289,15 @@ $('#PauseDebatedFrames').change(updateButtons); // if the only previous/next spe
 
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
-    // var oldframe = currentFrame;
-    // var oldCompareFrame = currentCompareFrame;
+    var oldframe = currentFrame;
+    var oldCompareFrame = currentCompareFrame;
     currentFrame = frame;
     updateLastSeen(frame);
 
     $('#framecount input').val(frame);
     $('#totalframes').html(frameCount);
-    // $('#yay').html(frameData[frame].yes);
-    // $('#nay').html(frameData[frame].no);
+    $('#yay').html(frameData[frame].yes);
+    $('#nay').html(frameData[frame].no);
     updateButtons(); // updates first, previous-special, previous, next, next-special, last
 
     //hot debate and make it glow
@@ -332,10 +332,10 @@ function updateAllWithoutSlider(frame) {
         }
         preloadFrame(frame, slideshowLoaded);
     }
-    // updatePreloadingIndicator(oldframe);
-    // updatePreloadingIndicator(currentFrame);
-    // updatePreloadingIndicator(oldCompareFrame);
-    // updatePreloadingIndicator(currentCompareFrame);
+    updatePreloadingIndicator(oldframe);
+    updatePreloadingIndicator(currentFrame);
+    updatePreloadingIndicator(oldCompareFrame);
+    updatePreloadingIndicator(currentCompareFrame);
 
     //no most people will never see it, but it makes looking through the bitly links page easier.
     document.title = "xkcd Time - at your own pace (" + frame + ")";

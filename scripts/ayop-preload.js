@@ -74,14 +74,14 @@ function fetchColors(callback) {
         }
         return false;
     }
-    notYetLoadedColor = legendSvg.querySelectorAll("#fill_notloaded")[0].attributes["fill"].value;
-    loadingInProgressColor =  legendSvg.querySelectorAll("#fill_loading")[0].attributes["fill"].value;
-    loadingCompleteColor =  legendSvg.querySelectorAll("#fill_loaded")[0].attributes["fill"].value;
-    mouseOverFrameBorderColor =  legendSvg.querySelectorAll("#fill_cursor")[0].attributes["fill"].value;
-    specialFrameBorderColor =  legendSvg.querySelectorAll("#stroke_special")[0].attributes["stroke"].value;
-    debatedFrameBorderColor = legendSvg.querySelectorAll("#stroke_debated")[0].attributes["stroke"].value;
-    currentFrameBorderColor =  legendSvg.querySelectorAll("#stroke_current")[0].attributes["stroke"].value;
-    currentCompareFrameBorderColor =  legendSvg.querySelectorAll("#stroke_compare")[0].attributes["stroke"].value;
+    notYetLoadedColor = "#808080";
+    loadingInProgressColor =  "#6082B6";
+    loadingCompleteColor =  "#020202";
+    mouseOverFrameBorderColor =  "#0000FF";
+    specialFrameBorderColor =  "#FFFF00";
+    debatedFrameBorderColor = "#FF0000";
+    currentFrameBorderColor =  "#00FF00";
+    currentCompareFrameBorderColor =  "#FF00FF";
     callback();
     return true;
 }
@@ -365,15 +365,15 @@ function setupContext(frame) {
         // Current compare frame
         preloadingStatusCtx.strokeStyle = currentCompareFrameBorderColor;
     }
-    // else if (isSpecial(frame)) {
-    //     // Not current frame, but special frame
-    //     if (isDebated(frame)) {
-    //         preloadingStatusCtx.strokeStyle = debatedFrameBorderColor;
-    //     }
-    //     else {
-    //         preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
-    //     }
-    // }
+    else if (isSpecial(frame)) {
+        // Not current frame, but special frame
+        if (isDebated(frame)) {
+            preloadingStatusCtx.strokeStyle = debatedFrameBorderColor;
+        }
+        else {
+            preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
+        }
+    }
     else {
         // Neither current nor special frame
         preloadingStatusCtx.strokeStyle = preloadingStatusCtx.fillStyle;
