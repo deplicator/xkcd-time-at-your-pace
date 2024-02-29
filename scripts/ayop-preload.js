@@ -87,14 +87,7 @@ function fetchColors(callback) {
 }
 
 function getFrameURL(frame) {
-    //In case someone like me wget'ed the data.txt before thinking and now is facing the filename-problem.
-    //return 'frames/' + frames[frame].replace(/.*\//, '');
-    if (frame == 1 || diffEngine) {
-        return 'data/frames/' + frame + '.png';;
-    } else {
-        return frameData[frame].link;
-    }
-    //return frames[frame];  //Do not use! will break imagediff, because of cross-origin.
+    return 'data/frames/' + frame + '.png';
 }
 
 function preloadingInProgress(frame) {
@@ -278,7 +271,7 @@ function coordinatesToFrame(mouseX, mouseY) {
     var ret=( Math.ceil(x / preloadingStatusRectSize)       // dont ask me why it's ceil here
              + (Math.floor(y / preloadingStatusRectSize)    // and floor here, but this works
                 * (preloadingStatusWidth / preloadingStatusRectSize)));
-    
+
     // console.log("Mapped "+x+","+y+" to "+ret); // debug code
     return ret;
 }
@@ -286,7 +279,7 @@ function coordinatesToFrame(mouseX, mouseY) {
 function frameMouseMove(event) {
     var target = event.target || event.srcElement;
     var mouseOverFrame = coordinatesToFrame(event.clientX, event.clientY);
-    
+
     if(mouseOverFrame < 0) {
         var oldFrame = mouseOverOldFrame;
         mouseOverOldFrame = mouseOverCurrentFrame = 0;
@@ -296,7 +289,7 @@ function frameMouseMove(event) {
     }
 
     mouseOverCurrentFrame = mouseOverFrame;
-    
+
     if (mouseOverCurrentFrame == mouseOverOldFrame)
         return;
 
@@ -319,7 +312,7 @@ function frameMouseClick(event) {
             //Alt Key modifier => we want to move the compareFrame
             if (mouseOverCurrentFrame == currentFrame) {
                 changeDiffType("none", true);
-// For now i assume, that if someone alt-clicks the preloadindicator he/she does want to have a freeze-compare.                
+// For now i assume, that if someone alt-clicks the preloadindicator he/she does want to have a freeze-compare.
 //            } else if(mouseOverCurrentFrame == currentFrame - 1) {
 //                changeDiffType("prev", true);
             } else {
@@ -372,15 +365,15 @@ function setupContext(frame) {
         // Current compare frame
         preloadingStatusCtx.strokeStyle = currentCompareFrameBorderColor;
     }
-    else if (isSpecial(frame)) {
-        // Not current frame, but special frame
-        if (isDebated(frame)) {
-            preloadingStatusCtx.strokeStyle = debatedFrameBorderColor;
-        }
-        else {
-            preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
-        }
-    }
+    // else if (isSpecial(frame)) {
+    //     // Not current frame, but special frame
+    //     if (isDebated(frame)) {
+    //         preloadingStatusCtx.strokeStyle = debatedFrameBorderColor;
+    //     }
+    //     else {
+    //         preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
+    //     }
+    // }
     else {
         // Neither current nor special frame
         preloadingStatusCtx.strokeStyle = preloadingStatusCtx.fillStyle;

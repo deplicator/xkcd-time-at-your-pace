@@ -18,7 +18,6 @@ var diffEngine = false;
 var scrollhere = document.getElementById("scrollhere");
 var site = document.URL.substring(0, document.URL.lastIndexOf("/"));
 
-
 //From: http://jquery-howto.blogspot.de/2009/09/get-url-parameters-values-with-jquery.html
 // Read a page's GET URL variables and return them as an associative array.
 function getUrlVars() {
@@ -77,34 +76,27 @@ slider.oninput = function () {
  * Creates array of frame objects.
  */
 function getFrameData() {
-    $.ajax({
-        url: 'getFrameData.php',
-        dataType: "json",
-        success: function (response) {
-            frameData = response;
-            frameCount = frameData.length - 1;
-            if (frameInitial >= frameCount) {
-                frameInitial = frameCount;
-            } else if (frameInitial <= 1) {
-                frameInitial = 1;
-            }
-            createSpecialFramesArray();
-            initPreloadingStatus(frameCount);
-            slider.max = frameCount;
-            updateAll(frameInitial);
-            $("#LoadingImage").html('');
-            $('#sfcalcdate')
-                .html(new Date(response[0].updatetime).toLocaleString())
-                .attr('title', "Original Timestamp: " + response[0].updatetime);
-        },
-        error: function () {
-            $("#LoadingImage").html('Oh noes, something has gone wrong!');
+    $.getJSON("scripts/current-data.json", function(json) {
+        frameData = json;
+        frameCount = frameData.length - 1;
+        if (frameInitial >= frameCount) {
+            frameInitial = frameCount;
+        } else if (frameInitial <= 1) {
+            frameInitial = 1;
         }
+        createSpecialFramesArray();
+        initPreloadingStatus(frameCount);
+        slider.max = frameCount;
+        updateAll(frameInitial);
+        $("#LoadingImage").html('');
+        $('#sfcalcdate')
+            .html(new Date(json[0].updatetime).toLocaleString())
+            .attr('title', "Original Timestamp: " + json[0].updatetime);
     });
 }
 $(function(){ getFrameData(); });
 
-/* 
+/*
  * Change how url is displayed in "link to this frame" text box.
  * Frame is an int the frame to link to.
  * How is a string for "short" or "long" url.
@@ -205,7 +197,7 @@ function removeCss(someDocument, filename, parent) {
     }
 }
 
-/* 
+/*
  * Handler for the "themes" checkboxes.
  *
  * One handler fits all, as long as the following rules are followed:
@@ -284,30 +276,30 @@ function setButtonEnabled(jqueryButton, enabled) {
 
 function updateButtons() {
     setButtonEnabled($('#first'), currentFrame > 1);
-    setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
-                     < currentFrame); // prevSpecial underflows if there are no more previous special frames
+    // setButtonEnabled($('#previous-special'), prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
+    //                  < currentFrame); // prevSpecial underflows if there are no more previous special frames
     setButtonEnabled($('#previous'), currentFrame > 1);
     setButtonEnabled($('#next'), currentFrame < frameCount);
-    setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
-                     > currentFrame); // nextSpecial overflows if there are no more next special frames
+    // setButtonEnabled($('#next-special'), nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))
+    //                  > currentFrame); // nextSpecial overflows if there are no more next special frames
     setButtonEnabled($('#last'), currentFrame < frameCount);
 }
-$('#PauseDebatedFrames').change(updateButtons); // if the only previous/next special frames are debated ones, 
+$('#PauseDebatedFrames').change(updateButtons); // if the only previous/next special frames are debated ones,
                                                 // changes here have to disable/enable the previous/next-special buttons
 
 //Updates elements of the page that change as.
 function updateAllWithoutSlider(frame) {
-    var oldframe = currentFrame;
-    var oldCompareFrame = currentCompareFrame;
+    // var oldframe = currentFrame;
+    // var oldCompareFrame = currentCompareFrame;
     currentFrame = frame;
     updateLastSeen(frame);
 
     $('#framecount input').val(frame);
     $('#totalframes').html(frameCount);
-    $('#yay').html(frameData[frame].yes);
-    $('#nay').html(frameData[frame].no);
+    // $('#yay').html(frameData[frame].yes);
+    // $('#nay').html(frameData[frame].no);
     updateButtons(); // updates first, previous-special, previous, next, next-special, last
-    
+
     //hot debate and make it glow
     $('#debated').addClass('notvisible');
     $('#canvas3').removeClass('special-glow debated-glow normal-glow');
@@ -340,11 +332,11 @@ function updateAllWithoutSlider(frame) {
         }
         preloadFrame(frame, slideshowLoaded);
     }
-    updatePreloadingIndicator(oldframe);
-    updatePreloadingIndicator(currentFrame);
-    updatePreloadingIndicator(oldCompareFrame);
-    updatePreloadingIndicator(currentCompareFrame);
-    
+    // updatePreloadingIndicator(oldframe);
+    // updatePreloadingIndicator(currentFrame);
+    // updatePreloadingIndicator(oldCompareFrame);
+    // updatePreloadingIndicator(currentCompareFrame);
+
     //no most people will never see it, but it makes looking through the bitly links page easier.
     document.title = "xkcd Time - at your own pace (" + frame + ")";
 }
