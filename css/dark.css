@@ -18,7 +18,7 @@
 /* Cleanup
  *****************************************/
 
-/*header h2, /* "at your own pace 
+/*header h2, /* "at your pace
 #mousewheel,
 #showlong,
 #actuallink
@@ -61,7 +61,7 @@ header h1 a {
 }
 header h1 a:before {
 /*content: "xkcd 1190 - "!important;*/
-}  
+}
 
 body > a[href*="github"] {
     opacity: 0.1!important;
@@ -221,7 +221,7 @@ input#manualinput,
 */
 
 line.hand {
-    stroke: #ffffff; 
+    stroke: #ffffff;
 }
 
 #clock_circle {

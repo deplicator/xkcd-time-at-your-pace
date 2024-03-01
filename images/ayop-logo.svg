@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
-     xkcd Time: at your own pace logo
+     xkcd Time: At Your Pace logo
      originally by MaPePeR
 
      You can view the differences between this version and the original file on git
@@ -176,13 +176,13 @@
      x="50" y="74.5"
      font-family="Droid Serif"
      font-size="9"
-     text-anchor="middle">At your own pace</text>
+     text-anchor="middle">At your pace</text>
   <text
      id="text_foreground"
      x="50" y="74.5"
      font-family="Droid Serif"
      font-size="9"
-     text-anchor="middle">At your own pace</text>
+     text-anchor="middle">At your pace</text>
   <script type="text/javascript"><![CDATA[
       /**
         * Set the clock hands.

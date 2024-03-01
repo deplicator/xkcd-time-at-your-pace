@@ -338,7 +338,7 @@ function updateAllWithoutSlider(frame) {
     updatePreloadingIndicator(currentCompareFrame);
 
     //no most people will never see it, but it makes looking through the bitly links page easier.
-    document.title = "xkcd Time - at your own pace (" + frame + ")";
+    document.title = "xkcd Time: At Your Pace - Frame " + frame;
 }
 
 function updateAll(frame) {
