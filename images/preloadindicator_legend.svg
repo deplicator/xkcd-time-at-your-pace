@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
- 
+
 <svg xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
 	version="1.1" baseProfile="full"
@@ -9,7 +9,7 @@
 
 	<!-- Note: All the rectangles have IDs so that ayop-preload.js:fetchColors()
 		can get the colors from this svg document instead of having to repeat them -->
-	
+
 	<rect x="10" y="10" width="30" height="30" fill="#808080" id="fill_notloaded"/>
 	<text x="45" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Frame not loaded</text>
 
@@ -24,11 +24,8 @@
 
 
 	<rect x="247.5" y="12.5" width="25" height="25" fill="#222" stroke="#FFFF00" stroke-width="5" id="stroke_special"/>
-	<text x="280" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Special Frame</text>
+	<text x="280" y="25" text-anchor="left" dominant-baseline="middle" font-size="130%">Dialog Frame</text>
 
-	<rect x="247.5" y="52.5" width="25" height="25" fill="#222" stroke="#FF0000" stroke-width="5" id="stroke_debated"/>
-	<text x="280" y="65" text-anchor="left" dominant-baseline="middle" font-size="130%">Debated Frame</text>
-    
 	<rect x="247.5" y="92.5" width="25" height="25" fill="#222" stroke="#00FF00" stroke-width="5" id="stroke_current"/>
 	<text x="280" y="105" text-anchor="left" dominant-baseline="middle" font-size="130%">Current Frame</text>
 
