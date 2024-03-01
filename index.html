@@ -6,7 +6,6 @@
     <title>xkcd Time - At Your Pace</title>
     <link rel="stylesheet" href="css/default.css">
     <script src="scripts/analytic.js"></script>
-    <script src="scripts/detectmobile.js"></script>
 
     <!-- Libs -->
     <script src="scripts/jquery.js"></script>
@@ -84,13 +83,6 @@
         <p class="openingpanelrightext">last calculated on <span id="sfcalcdate"></span></p>
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
-            <div id="themes" class="framedata-sub widescreen-separate"> <!-- Event handler in scripts/ayop-main.js  -->
-                <label><input name="darktheme" value="dark.css" type="checkbox" />Use dark theme</label>
-                <!-- To add more themes, follow these rules:
-                      - Put a checkbox input inside a label, like above
-                      - Use the CSS file name as its value
-                     That's all! Event handlers are automatically added. -->
-            </div>
             <div id="imgdiffopts" class="framedata-sub widescreen-separate">
                 <h4>Image Difference</h4>
                 <div id="turnOnDiffEngine">
@@ -150,30 +142,6 @@
         </div>
     </div>
 
-    <div id="specialframes" class="openingpanel frames">
-        <h3><span class="craparrow">→</span>Special Frames</h3>
-        <div class="inside">
-            <ul id="textframelist">
-            </ul>
-        </div>
-    </div>
-
-    <div id="pastday" class="openingpanel frames">
-        <h3><span class="craparrow">→</span>Past Day (24 Frames)</h3>
-        <div class="inside">
-            <ul id="pastday-framelist">
-            </ul>
-        </div>
-    </div>
-
-    <div id="pastweek" class="openingpanel frames">
-        <h3><span class="craparrow">→</span>Past Week (168 Frames)</h3>
-        <div class="inside">
-            <ul id="past-weekframelist">
-            </ul>
-        </div>
-    </div>
-
     <footer>
         <div id="credit">
             xkcd is licensed by <a href="http://www.xkcd.com/about/">Randall Munroe</a> under a <a
@@ -189,7 +157,6 @@
                 href="mailto:james@geekwagon.net"
                 title="Find a bug? Suggestion? Complaint? Please email me.">Feedback</a> | <a
                 href="http://geekwagon.net" title="Just some guy">Who am I?</a></p>
-        <p id="note">Your screen is wide.</p>
     </footer>
 
     <a href="https://github.com/deplicator/xkcdTime_atyourownpace">

@@ -1,7 +1,6 @@
 @import url(reset.min.css);
-@import url(wide-screen.css);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400);
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,400);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif);
 
 html {
     background:#fdfdfd;
@@ -501,21 +500,8 @@ footer p {
     padding: 40px 0 0 0;
 }
 
-footer #note {
-    display: none;
-}
-
 #moreinfo li {
     display: block;
     font-size: 16px;
     padding: 5px 0 5px 10px;
 }
-
-/* Now no one can accuse me of never using a repsonsive web design. */
-@media screen and (min-width: 2600px) {
-    footer #note {
-        display: block;
-        padding: 3px 0 0 0;
-    }
-}
-
