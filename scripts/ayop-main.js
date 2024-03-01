@@ -28,12 +28,6 @@ function getUrlVars() {
 var vars = getUrlVars();
 if (vars.frame && !isNaN(vars.frame)) {
     frameInitial = parseInt(vars.frame, 10);
-} else {
-    if (getLastSeen() > 1) {
-        frameInitial = getLastSeen();
-    } else {
-        frameInitial = 1;
-    }
 }
 
 var framediff;
@@ -286,7 +280,6 @@ function updateAllWithoutSlider(frame) {
     var oldframe = currentFrame;
     var oldCompareFrame = currentCompareFrame;
     currentFrame = frame;
-    updateLastSeen(frame);
 
     $('#framecount input').val(frame);
     $('#totalframes').html(frameCount);

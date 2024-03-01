@@ -4,8 +4,6 @@
  * User Interface cosmetics.
  */
 
-var panels = $.cookie('ayop-panel');
-
 //load past frames
 function loadPastPanel(num, container) {
     var sflen = specialFrames.length, i;
@@ -47,22 +45,16 @@ $(document).ready(function () {
     $('#manualinput').click(textSelect);
     $('#actuallink').click(selectElementContent);
     $('#freezeframe').click(textSelect);
-    
-    if(panels == 'closed') {
-        $('#framedata .inside').hide('fast', function() {
-            $('#framedata h3 .craparrow').html(rightArrow);
-        });
-    }
-    
+
     //Play back direction buttons.
     $('.direction').click(function () {
         if (!$(this).hasClass('dir-select')) {
             $('.direction').toggleClass('dir-select');
         }
     });
-    
+
     var rightArrow = '\u2192', downArrow = '\u2193';
-    
+
     //Toggeling panels below comic.
     var specialFramesPanelLoaded = false;
     var pastDayPanelLoaded = false;
@@ -97,9 +89,9 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     /*
-     * Only allow numbers to be typed. 
+     * Only allow numbers to be typed.
      * Callback is called, when the number is accepted with <enter> or the focus is lost.
      */
     function onlyAllowFrameNumbersAndArrows(jqueryElement, callback) {
@@ -142,7 +134,7 @@ $(document).ready(function () {
             }
         }).blur(callback);
     }
-    
+
     onlyAllowFrameNumbersAndArrows($('#manualinput'), function () {
         var manualinput = $('#manualinput').val();
         if (manualinput < 1) {
@@ -153,6 +145,7 @@ $(document).ready(function () {
             updateAll(parseInt(manualinput, 10) || 1);
         }
     });
+
     onlyAllowFrameNumbersAndArrows($('#freezeframe'), function () {
         var freezeframe = parseInt($('#freezeframe').val(), 10);
         if (freezeframe < 1) {
@@ -162,12 +155,6 @@ $(document).ready(function () {
         }
         updateAll(currentFrame);
     });
-
-    var donatelinks = ["https://support.worldwildlife.org/site/SPageServer?pagename=donate_to_charity&s_src=AWE1302GD914",
-                       "http://wikimediafoundation.org/wiki/Ways_to_Give",
-                       "http://worldwish.org/en/donate/index.php",
-                       "http://store.xkcd.com/"];
-    $('#donate').html("<a href=\"" + donatelinks[Math.floor(Math.random()*4)] + "\">Donate</a>");
 
     // switch "Pause special frames" unit text between "seconds" and "second"
     $('#PauseSpecialFrameAmount').change(function() {
