@@ -46,12 +46,12 @@ function nextFrame(nopause) {
 
 function prevSpecialFrame() {
     pause();
-    updateAll(prevSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
+    updateAll(prevSpecial(currentFrame));
 }
 
 function nextSpecialFrame() {
     pause();
-    updateAll(nextSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked')));
+    updateAll(nextSpecial(currentFrame));
 }
 
 function prevDebatedFrame() {
@@ -108,7 +108,7 @@ $(document).keydown(function (e) {
  * Scrolling code.
  */
 function scrollHandler(e) {
-    //Delta was allways = 3 in my tests with Firefox and Chrome. 
+    //Delta was allways = 3 in my tests with Firefox and Chrome.
     //Maybe we can use it to determine the speed, but for now we only scroll one frame.
     var delta = e.deltaY != 0 ? e.deltaY : (e.deltaX != 0 ? e.deltaX : 0);
     if (delta < 0) { //Up or left-Scroll
@@ -125,10 +125,10 @@ var playforward = $.timer(function () {
     if (currentFrame >= frameCount) {
         updateAll(1);
     }
-    if (isSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))) {
+    if (isSpecial(currentFrame)) {
         specialframecounter += speed;
         if (specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
-            return;//should pause x seconds... 
+            return;//should pause x seconds...
         }
     }
     specialframecounter = 0;
@@ -145,10 +145,10 @@ var playreverse = $.timer(function () {
     if (currentFrame <= 1) {
         updateAll(frameCount);
     }
-    if (isSpecial(currentFrame, $('#PauseDebatedFrames').prop('checked'))) {
+    if (isSpecial(currentFrame)) {
         specialframecounter += speed;
         if (specialframecounter < (parseInt($('#PauseSpecialFrameAmount').val(), 10) || 0) * 1000) {
-            return;//should pause x seconds... 
+            return;//should pause x seconds...
         } else {
             specialframecounter = 0;
         }
@@ -252,8 +252,8 @@ $(document).ready(function () {
             autoplay: true
         });
     });
-    
-    
+
+
 
 
     /*

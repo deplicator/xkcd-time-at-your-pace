@@ -1,12 +1,6 @@
 /*jslint browser: true, eqeq: true, plusplus: true, sloppy: true, indent: 4, vars: true, maxerr: 100, regexp: true */
 /*global $, BrowserDetect, ctx3, diff,addWheelListener, preloadFrame, updatePreloadingIndicator, getLastSeen: false */
 
-//Fix console.log for IE
-if (typeof console === "undefined" || typeof console.log === "undefined") {
-    console = {};
-    console.log = function () {};
-}
-
 var frameData = [];
 var frameCount = 0;
 var frameInitial = 1;
@@ -247,7 +241,7 @@ function slideshowLoaded(frame, img) {
 //If frameData object special is set to 1, add frame to array.
 function createSpecialFramesArray() {
     for(i = 1; i <= frameCount; i++) {
-        if(frameData[i].special == "1") {
+        if(frameData[i].dialog) {
             specialFrames.push(i);
         }
     }
@@ -304,12 +298,7 @@ function updateAllWithoutSlider(frame) {
     $('#debated').addClass('notvisible');
     $('#canvas3').removeClass('special-glow debated-glow normal-glow');
     if(isSpecial(frame)) {
-        if(isDebated(frame)) {
-            $('#debated').removeClass('notvisible');
-            $('#canvas3').addClass('debated-glow');
-        } else {
-            $('#canvas3').addClass('special-glow');
-        }
+        $('#canvas3').addClass('special-glow');
     } else {
         $('#canvas3').addClass('normal-glow');
     }

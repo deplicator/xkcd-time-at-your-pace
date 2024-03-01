@@ -366,13 +366,7 @@ function setupContext(frame) {
         preloadingStatusCtx.strokeStyle = currentCompareFrameBorderColor;
     }
     else if (isSpecial(frame)) {
-        // Not current frame, but special frame
-        if (isDebated(frame)) {
-            preloadingStatusCtx.strokeStyle = debatedFrameBorderColor;
-        }
-        else {
-            preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
-        }
+        preloadingStatusCtx.strokeStyle = specialFrameBorderColor;
     }
     else {
         // Neither current nor special frame

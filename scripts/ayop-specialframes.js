@@ -34,35 +34,15 @@ function binary_search_iterative(a, value) {
     return -(lo + 1);
 }
 
-function isSpecial(frame, includeDebated) {
-    if (typeof includeDebated === "undefined") {
-        includeDebated = true;
-    }
-    if (!includeDebated && isDebated(frame)) {
-        return false;
-    }
-    return binary_search_iterative(specialFrames, frame) >= 0;
+function isSpecial(frame) {
+    return frameData[frame].dialog
 }
 
-/**
- * Warning: This function should always be used together with isSpecial(frame) (above).
- * It only checks that the ratio of yes answers is below a certain point, and returns true even for utterly boring frames.
- * (For usage examples, see updateAllWithoutSlider() (ayop-main.js) and setupContext() (ayop-preload.js)).
- */
-function isDebated(frame) {
-    return frameData[frame].no >= 5 && parseInt(frameData[frame].yes)/(parseInt(frameData[frame].yes)+parseInt(frameData[frame].no)) <= 0.6;
-}
 
-function nextSpecial(frame, includeDebated) {
-    if (typeof includeDebated === "undefined") {
-        includeDebated = true;
-    }
+function nextSpecial(frame) {
     var result = binary_search_iterative(specialFrames, frame);
     result = result >= 0 ? result + 1 : -1 * (result + 1);
     var nextFrame = specialFrames[result % specialFrames.length];
-    if (!includeDebated && isDebated(nextFrame)) {
-        return nextSpecial(nextFrame, includeDebated);
-    }
     return nextFrame;
 }
 
@@ -75,26 +55,6 @@ function prevSpecial(frame, includeDebated) {
     var prevFrame = specialFrames[(result + specialFrames.length) % specialFrames.length];
     if (!includeDebated && isDebated(prevFrame)) {
         return prevSpecial(prevFrame, includeDebated);
-    }
-    return prevFrame;
-}
-
-function nextDebated(frame) {
-    var result = binary_search_iterative(specialFrames, frame);
-    result = result >= 0 ? result + 1 : -1 * (result + 1);
-    var nextFrame = specialFrames[result % specialFrames.length];
-    if (!isDebated(nextFrame)) {
-        return nextDebated(nextFrame);
-    }
-    return nextFrame;
-}
-
-function prevDebated(frame) {
-    var result = binary_search_iterative(specialFrames, frame);
-    result = result >= 0 ? result - 1 : -1 * (result + 1) - 1;
-    var prevFrame = specialFrames[(result + specialFrames.length) % specialFrames.length];
-    if (!isDebated(prevFrame)) {
-        return prevDebated(prevFrame);
     }
     return prevFrame;
 }
