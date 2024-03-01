@@ -73,17 +73,13 @@
         <span id="loading">Loading...</span>
         <span id="actuallink"></span>
         <span id="showlong"><input id="urlCheckBox" type="checkbox">long url</span>
-
-        <div id="vote">
-            <ul id="voteconfirm"></ul>
-        </div>
     </div>
 
     <div id="framedata" class="openingpanel">
         <p class="openingpanelrightext">last calculated on <span id="sfcalcdate"></span></p>
         <h3><span class="craparrow">↓</span>Frame Data</h3>
         <div class="inside">
-            <div id="imgdiffopts" class="framedata-sub widescreen-separate">
+            <div id="imgdiffopts" class="framedata-sub">
                 <h4>Image Difference</h4>
                 <div id="turnOnDiffEngine">
                     <a href="index.html?frame=2&framediff=1">Turn on Image Difference</a>
@@ -95,7 +91,7 @@
                             id="freezeframe" type="text" /></p>
                 </div>
             </div>
-            <div id="votedata" class="framedata-sub widescreen-separate">
+            <div id="votedata" class="framedata-sub">
                 <h4>Special Frame Nomination</h4>
                 <p>Yes: <span id="yay"></span></p>
                 <p>No: <span id="nay"></span></p>
@@ -169,7 +165,6 @@
 
     <script src="scripts/imagediff.js"></script><!-- top-level dependencys: canvas1,2,3 loaded.  -->
     <script src="scripts/ayop-main.js"></script><!-- top-level dependencys: Gui loaded. lastseen, jquery -->
-    <script src="scripts/ayop-vote.js"></script>
 </body>
 
 </html>
