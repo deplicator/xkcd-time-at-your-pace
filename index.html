@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title>xkcd Time - At Your Pace</title>
     <link rel="stylesheet" href="css/default.css">
-    <script src="scripts/analytic.js"></script>
 
     <!-- Libs -->
     <script src="scripts/jquery.js"></script>
@@ -18,6 +17,16 @@
     <script src="scripts/ayop-preload.js"></script> <!-- top-level dependencys: jquery -->
     <script src="scripts/ayop-navigation.js"></script> <!-- top-level dependencys: jquery -->
     <script src="scripts/ayop-ui.js"></script> <!-- top-level dependencys: jquery -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FM3LMD9VQV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FM3LMD9VQV');
+    </script>
 </head>
 
 <body>
