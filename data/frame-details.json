@@ -3627,7 +3627,7 @@
         "yes": 2823,
         "no": 36,
         "special": 1,
-        "dialog": false
+        "dialog": true
     },
     {
         "frame": 404,
@@ -17397,7 +17397,7 @@
         "yes": 866,
         "no": 103,
         "special": 1,
-        "dialog": false
+        "dialog": true
     },
     {
         "frame": 1934,
@@ -23553,7 +23553,7 @@
         "yes": 427,
         "no": 189,
         "special": 1,
-        "dialog": false
+        "dialog": true
     },
     {
         "frame": 2618,
